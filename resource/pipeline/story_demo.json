@@ -48,6 +48,9 @@
     "post_delay": 800,
     "next": [
       "StoryCutscene",
+      "StoryBattleWarning",
+      "StoryHideCards",
+      "StoryAutoControlReady",
       "StoryEventPage",
       "StoryFormation",
       "StoryChoicePage",
@@ -58,7 +61,7 @@
     ],
     "timeout": 120000,
     "focus": {
-      "Node.Action.Succeeded": "关卡内状态路由：判断编队、剧情播放、战斗或事件；章节图标仅作为返回章节后的最后候选。"
+      "Node.Action.Succeeded": "关卡内状态路由：优先判断剧情、战斗警告、隐藏卡牌与 AUTO；不再识别章节关卡图标。"
     }
   },
   "StoryAfterRoute": {
