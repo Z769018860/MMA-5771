@@ -54,8 +54,7 @@
       "StoryShop",
       "StoryArtifactSelect",
       "StoryFinishInvestigation",
-      "StoryReviveDecision",
-      "StorySelectLatestStage"
+      "StoryReviveDecision"
     ],
     "timeout": 120000,
     "focus": {
@@ -68,14 +67,16 @@
     "post_delay": 1000,
     "next": [
       "StoryCutscene",
+      "StoryBattleWarning",
+      "StoryHideCards",
+      "StoryAutoControlReady",
       "StoryEventPage",
       "StoryFinishInvestigation",
       "StoryReviveDecision",
       "StoryChoicePage",
       "StoryShop",
       "StoryArtifactSelect",
-      "StoryFormation",
-      "StorySelectLatestStage"
+      "StoryFormation"
     ],
     "timeout": 120000
   },
@@ -195,26 +196,62 @@
   },
   "StoryHideCards": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards_live.png",
+    "template": "hide_cards_panel_live.png",
     "roi": [
-      1100,
-      535,
-      154,
-      120
+      1080,
+      520,
+      160,
+      125
     ],
-    "threshold": 0.52,
+    "threshold": 0.72,
     "action": "Click",
-    "target_offset": [
-      52,
-      38,
-      -104,
-      -76
+    "target": [
+      1125,
+      585,
+      60,
+      38
     ],
+    "post_delay": 900,
+    "next": [
+      "StoryHideCardsVerify"
+    ],
+    "method": 10001,
+    "focus": {
+      "Node.Recognition.Succeeded": "剧情战斗检测到完整隐藏卡牌文字与眼睛面板。",
+      "Node.Action.Succeeded": "已点击隐藏卡牌面板，回查页面消失后才进入 AUTO。"
+    }
+  },
+  "StoryHideCardsVerify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
     "post_delay": 700,
     "next": [
+      "StoryHideCardsRetry",
       "StoryAutoControlReady"
+    ]
+  },
+  "StoryHideCardsRetry": {
+    "recognition": "TemplateMatch",
+    "template": "hide_cards_panel_live.png",
+    "roi": [
+      1080,
+      520,
+      160,
+      125
     ],
-    "method": 10001
+    "threshold": 0.72,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1125,
+      585,
+      60,
+      38
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryHideCardsVerify"
+    ]
   },
   "StoryAutoControlReady": {
     "recognition": "TemplateMatch",
@@ -492,11 +529,29 @@
     ],
     "post_delay": 1000,
     "next": [
-      "StoryAfterRoute"
+      "StoryBattleStartRouter"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到上现虚景事件页，点击下方白色效果选项。",
       "Node.Action.Succeeded": "已点击事件页初始选项，返回剧情状态路由复核。"
+    }
+  },
+  "StoryBattleStartRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "timeout": 120000,
+    "next": [
+      "StoryBattleWarning",
+      "StoryHideCards",
+      "StoryAutoControlReady",
+      "StoryCutscene",
+      "StoryChoicePage",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "事件选项完成后进入战斗启动路由；只等待警告、隐藏卡牌或 AUTO，不再识别章节关卡图标。"
     }
   },
   "StoryShop": {

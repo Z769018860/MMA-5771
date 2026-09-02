@@ -534,30 +534,30 @@
   },
   "HideCards": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards_live.png",
+    "template": "hide_cards_panel_live.png",
     "roi": [
-      1100,
-      535,
-      154,
-      120
+      1080,
+      520,
+      160,
+      125
     ],
-    "threshold": 0.52,
+    "threshold": 0.72,
     "timeout": 180000,
     "rate_limit": 700,
     "action": "Click",
     "target": [
-      1195,
-      625,
-      26,
-      26
+      1125,
+      585,
+      60,
+      38
     ],
     "post_delay": 900,
     "next": [
       "HideCardsVerify"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "警告结束并延迟后检测到实机隐藏卡牌按钮。",
-      "Node.Action.Succeeded": "已点击右下角眼睛收起键；下一步回查隐藏卡牌是否真的消失。"
+      "Node.Recognition.Succeeded": "检测到完整的【隐藏卡牌】文字与眼睛面板，而不是战斗右下角常驻图标。",
+      "Node.Action.Succeeded": "已点击隐藏卡牌眼睛面板；下一步回查选择页面是否真的消失。"
     },
     "method": 10001
   },
@@ -575,21 +575,21 @@
   },
   "HideCardsRetry": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards_live.png",
+    "template": "hide_cards_panel_live.png",
     "roi": [
-      1100,
-      535,
-      154,
-      120
+      1080,
+      520,
+      160,
+      125
     ],
-    "threshold": 0.52,
+    "threshold": 0.72,
     "method": 10001,
     "action": "Click",
     "target": [
-      1195,
-      625,
-      26,
-      26
+      1125,
+      585,
+      60,
+      38
     ],
     "post_delay": 900,
     "next": [
