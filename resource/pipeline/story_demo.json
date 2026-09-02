@@ -49,7 +49,7 @@
     "next": [
       "StoryCutscene",
       "StoryEventPage",
-      "StoryFormation",
+      "StoryFirstFormation",
       "StoryChoicePage",
       "StoryShop",
       "StoryArtifactSelect",
@@ -69,10 +69,6 @@
       "StoryCutscene",
       "StoryEventPage",
       "StoryFormation",
-      "StoryBattleWarning",
-      "StoryHideCards",
-      "StoryAutoAlreadyOn",
-      "StoryAutoControlReady",
       "StoryFinishInvestigation",
       "StoryReviveDecision",
       "StoryChoicePage",
@@ -138,7 +134,7 @@
       "Node.Action.Succeeded": "已点击当前剧情列表中的剧情播放图标。"
     }
   },
-  "StoryFormation": {
+  "StoryFirstFormation": {
     "recognition": "TemplateMatch",
     "template": "investigate.png",
     "roi": [
@@ -157,15 +153,99 @@
     ],
     "post_delay": 2000,
     "next": [
-      "StoryBattleWarning",
+      "StoryFirstBattlePreludeRouter"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "剧情任务第一场战斗已点击调查；看到战斗开始图样后只执行这一次 AUTO。"
+    }
+  },
+  "StoryFirstBattlePreludeRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 500,
+    "timeout": 120000,
+    "next": [
+      "StoryFirstBattleStartSignal",
+      "StoryFirstCutscene",
+      "StoryFirstEventPage",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "第一场调查后只等待剧情、事件或【我方行动】图样；不会提前判断 AUTO。"
+    }
+  },
+  "StoryFirstCutscene": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_play_anchor.png",
+        "roi": [1080, 5, 82, 82],
+        "threshold": 0.7,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_skip_live.png",
+        "roi": [1170, 5, 84, 82],
+        "threshold": 0.68,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [1196, 32, 28, 38],
+    "post_delay": 900,
+    "next": ["StoryFirstBattlePreludeRouter"]
+  },
+  "StoryFirstEventPage": {
+    "recognition": "TemplateMatch",
+    "template": "story_event_page_live.png",
+    "roi": [520, 95, 220, 75],
+    "threshold": 0.76,
+    "method": 10001,
+    "action": "Click",
+    "target": [770, 565, 30, 24],
+    "post_delay": 1000,
+    "next": ["StoryFirstBattlePreludeRouter"]
+  },
+  "StoryFirstBattleStartSignal": {
+    "recognition": "TemplateMatch",
+    "template": "battle_start_action_live.png",
+    "roi": [430, 235, 400, 190],
+    "threshold": 0.72,
+    "method": 10001,
+    "action": "DoNothing",
+    "post_delay": 200,
+    "next": ["StoryFirstHideCardsGraceWait"],
+    "focus": {
+      "Node.Recognition.Succeeded": "剧情第一场战斗检测到【我方行动】图样，准备唯一一次 AUTO。"
+    }
+  },
+  "StoryFirstHideCardsGraceWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 2200,
+    "next": [
       "StoryHideCards",
       "StoryAutoAlreadyOn",
       "StoryAutoControlReady",
-      "StoryCutscene",
-      "StoryChoicePage"
-    ],
+      "StoryFinishInvestigation",
+      "StoryReviveDecision"
+    ]
+  },
+  "StoryFormation": {
+    "recognition": "TemplateMatch",
+    "template": "investigate.png",
+    "roi": [950, 610, 270, 105],
+    "threshold": 0.46,
+    "action": "Click",
+    "target_offset": [117, 29, -234, -58],
+    "post_delay": 2000,
+    "next": ["StoryBattleMonitor"],
     "focus": {
-      "Node.Action.Succeeded": "剧情战斗编队完成：已点击右下角调查。"
+      "Node.Action.Succeeded": "后续剧情战斗已点击调查；不再执行 AUTO，直接进入战斗监控。"
     }
   },
   "StoryBattleWarning": {
@@ -192,9 +272,7 @@
     "next": [
       "StoryReviveDecision",
       "StoryFinishInvestigation",
-      "StoryHideCards",
-      "StoryAutoAlreadyOn",
-      "StoryAutoControlReady"
+      "StoryBattleMonitor"
     ]
   },
   "StoryHideCards": {
@@ -601,17 +679,14 @@
     "post_delay": 1000,
     "timeout": 120000,
     "next": [
-      "StoryBattleWarning",
-      "StoryHideCards",
-      "StoryAutoAlreadyOn",
-      "StoryAutoControlReady",
       "StoryCutscene",
       "StoryChoicePage",
       "StoryFinishInvestigation",
-      "StoryReviveDecision"
+      "StoryReviveDecision",
+      "StoryBattleMonitor"
     ],
     "focus": {
-      "Node.Action.Succeeded": "事件选项完成后进入战斗启动路由；只等待警告、隐藏卡牌或 AUTO，不再识别章节关卡图标。"
+      "Node.Action.Succeeded": "后续事件结束后直接进入监控；AUTO 只允许第一场战斗处理。"
     }
   },
   "StoryShop": {

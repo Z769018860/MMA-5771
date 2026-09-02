@@ -3,8 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.9.7-auto-verify-story-restore",
-  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；AUTO 精确中心点击并验证亮起，剧情关恢复为关卡详情先点击调查。",
+  "version": "2.9.8-battle-start-priority",
+  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；检测我方行动后优先等待隐藏卡牌，同调率再处理 AUTO，剧情仅第一场点击 AUTO。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {
@@ -70,7 +70,7 @@
       ],
       "default_check": true,
       "repeatable": false,
-      "description": "挑战后等待警告结束并延迟；仅在完整面板出现时隐藏卡牌；AUTO 点击中心并确认白色亮起，未亮则重试。"
+      "description": "点击调查后等待【我方行动】图样，再等待 2.2 秒并优先隐藏卡牌；仍未出现才识别并验证 AUTO。"
     },
     {
       "name": "自动推剧情Demo",

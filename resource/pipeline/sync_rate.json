@@ -15,14 +15,10 @@
       "CharacterDetailRecovery",
       "DeployAssist",
       "QuickFormationRecovery",
-      "BattleWarning",
+      "BattleStartSignal",
       "ReviveDecision",
       "FailureChoice",
       "FinishInvestigation",
-      "HideCards",
-      "AutoAlreadyOn",
-      "AutoControlReady",
-      "BattleMonitor",
       "StopHere"
     ]
   },
@@ -473,17 +469,43 @@
     ],
     "post_delay": 2000,
     "next": [
-      "BattleWarning",
+      "BattleStartSignal",
       "ReviveDecision",
       "FailureChoice",
-      "FinishInvestigation",
-      "HideCards",
-      "AutoAlreadyOn",
-      "AutoControlReady"
+      "FinishInvestigation"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "判定结果：检测到编队界面的【调查】按钮（阈值 0.46）。",
       "Node.Action.Succeeded": "调查按钮已点击，等待最高警报或战斗初始化界面。"
+    }
+  },
+  "BattleStartSignal": {
+    "recognition": "TemplateMatch",
+    "template": "battle_start_action_live.png",
+    "roi": [430, 235, 400, 190],
+    "threshold": 0.72,
+    "method": 10001,
+    "action": "DoNothing",
+    "post_delay": 200,
+    "next": ["HideCardsGraceWait"],
+    "focus": {
+      "Node.Recognition.Succeeded": "检测到中央【我方行动】战斗开始图样；现在才准备判断隐藏卡牌和 AUTO。"
+    }
+  },
+  "HideCardsGraceWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 2200,
+    "next": [
+      "HideCards",
+      "AutoAlreadyOn",
+      "AutoControlReady",
+      "ReviveDecision",
+      "FailureChoice",
+      "FinishInvestigation"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "战斗开始后额外等待 2.2 秒，让延迟出现的隐藏卡牌页面先显示；到时仍无隐藏卡牌才判断 AUTO。"
     }
   },
   "BattleWarning": {
