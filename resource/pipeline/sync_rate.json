@@ -1,0 +1,156 @@
+{
+  "EntryRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": ["BattleWarning", "HideCards", "AutoStartWait", "ReviveDecision", "FinishInvestigation"]
+  },
+  "BattleWarning": {
+    "recognition": "TemplateMatch",
+    "template": "battle_warning.png",
+    "roi": [450, 180, 360, 210],
+    "threshold": 0.62,
+    "timeout": 180000,
+    "rate_limit": 1000,
+    "action": "DoNothing",
+    "post_delay": 4500,
+    "next": ["HideCards", "AutoStartWait", "ReviveDecision", "FinishInvestigation"]
+  },
+  "HideCards": {
+    "recognition": "TemplateMatch",
+    "template": "hide_cards.png",
+    "roi": [1100, 535, 150, 115],
+    "threshold": 0.50,
+    "timeout": 15000,
+    "rate_limit": 700,
+    "action": "Click",
+    "target_offset": [52, 38, -104, -76],
+    "post_delay": 900,
+    "next": ["AutoStartWait", "ReviveDecision", "FinishInvestigation"]
+  },
+  "AutoStartWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1200,
+    "next": ["AutoClick"]
+  },
+  "AutoClick": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [140, 650, 16, 16],
+    "post_delay": 1200,
+    "next": ["MotionFrame1"],
+    "focus": {
+      "Node.Action.Succeeded": "已点击左下角真正的 AUTO 控件中心 (148, 658)，开始三帧动态验证。"
+    }
+  },
+  "MotionFrame1": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "capture1", "{IMAGE}", "sync", "0.0025"],
+    "post_delay": 1500,
+    "next": ["MotionFrame2"]
+  },
+  "MotionFrame2": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "capture2", "{IMAGE}", "sync", "0.0025"],
+    "post_delay": 1500,
+    "next": ["MotionFrame3Compare"]
+  },
+  "MotionFrame3Compare": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "compare", "{IMAGE}", "sync", "0.0025"],
+    "next": ["BattleMonitor"],
+    "on_error": ["AutoRecoveryClick"]
+  },
+  "AutoRecoveryClick": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [140, 650, 16, 16],
+    "post_delay": 1200,
+    "next": ["RecoveryMotionFrame1"],
+    "focus": {
+      "Node.Action.Succeeded": "首次三帧均高度相似，已在真正 AUTO 控件补点一次。"
+    }
+  },
+  "RecoveryMotionFrame1": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "capture1", "{IMAGE}", "sync_recovery", "0.0025"],
+    "post_delay": 1500,
+    "next": ["RecoveryMotionFrame2"]
+  },
+  "RecoveryMotionFrame2": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "capture2", "{IMAGE}", "sync_recovery", "0.0025"],
+    "post_delay": 1500,
+    "next": ["RecoveryMotionFrame3Compare"]
+  },
+  "RecoveryMotionFrame3Compare": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "{RESOURCE_DIR}/scripts/frame_motion.ps1", "compare", "{IMAGE}", "sync_recovery", "0.0025"],
+    "next": ["BattleMonitor"],
+    "on_error": ["StopAfterDiagnostic"]
+  },
+  "BattleMonitor": {
+    "recognition": "DirectHit",
+    "timeout": 300000,
+    "rate_limit": 1200,
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "next": ["ReviveDecision", "FinishInvestigation"],
+    "on_error": ["StopAfterDiagnostic"]
+  },
+  "ReviveDecision": {
+    "recognition": "And",
+    "all_of": [
+      {"recognition": "TemplateMatch", "template": "revive_dialog_header.png", "roi": [450, 130, 380, 150], "threshold": 0.86, "method": 10001},
+      {"recognition": "TemplateMatch", "template": "revive_dialog_question.png", "roi": [300, 260, 680, 120], "threshold": 0.82, "method": 10001}
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [391, 603, 12, 12],
+    "post_delay": 1000,
+    "next": ["FinishInvestigation", "BattleMonitor"]
+  },
+  "FinishInvestigation": {
+    "recognition": "TemplateMatch",
+    "template": "result_title.png",
+    "roi": [820, 0, 434, 210],
+    "threshold": 0.50,
+    "action": "DoNothing",
+    "next": ["FinishCurrentButton", "FinishAltButton"]
+  },
+  "FinishCurrentButton": {
+    "recognition": "TemplateMatch",
+    "template": "finish_current.png",
+    "roi": [940, 590, 310, 125],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [116, 30, -232, -60],
+    "next": []
+  },
+  "FinishAltButton": {
+    "recognition": "TemplateMatch",
+    "template": "finish_alt.png",
+    "roi": [940, 590, 310, 125],
+    "threshold": 0.44,
+    "action": "Click",
+    "target_offset": [111, 28, -222, -57],
+    "next": []
+  },
+  "StopAfterDiagnostic": {
+    "recognition": "DirectHit",
+    "action": "StopTask",
+    "next": []
+  }
+}
