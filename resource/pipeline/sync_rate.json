@@ -914,16 +914,14 @@
     "timeout": 120000,
     "rate_limit": 700,
     "action": "Click",
-    "target_offset": [
-      116,
-      30,
-      -232,
-      -60
-    ],
+    "target": [1080, 640, 60, 30],
     "post_delay": 2500,
     "next": [
       "CycleStart",
       "ChooseMadness"
+    ],
+    "on_error": [
+      "FinishButtonClickRetry"
     ]
   },
   "FinishAltButton": {
@@ -939,17 +937,32 @@
     "timeout": 120000,
     "rate_limit": 700,
     "action": "Click",
-    "target_offset": [
-      111,
-      28,
-      -222,
-      -57
-    ],
+    "target": [1080, 640, 60, 30],
     "post_delay": 2500,
     "next": [
       "CycleStart",
       "ChooseMadness"
+    ],
+    "on_error": [
+      "FinishButtonClickRetry"
     ]
+  },
+  "FinishButtonClickRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [1080, 640, 60, 30],
+    "pre_delay": 800,
+    "post_delay": 2500,
+    "next": [
+      "CycleStart",
+      "ChooseMadness"
+    ],
+    "on_error": [
+      "TimeoutExport"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "首次完成调查点击执行失败后，已延迟补点固定按钮中心。"
+    }
   },
   "TimeoutExport": {
     "recognition": "DirectHit",
