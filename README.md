@@ -1,6 +1,17 @@
 # 忘却前夜同调率循环助手（MaaFramework 版）
 
-当前版本：2.9.9-ten-second-hide-story-investigate
+当前版本：2.10.0-maa-multi-anchor-reliability
+
+## 2.10.0 MAA 风格多锚点识别与双层调查流程
+
+- 隐藏卡牌优先等待由 `10` 秒调整为 `5` 秒；识别到【我方行动】后等待 5 秒，随后仍按“隐藏卡牌 → 已亮 AUTO → 灰色 AUTO”顺序处理。
+- 剧情第一场战斗明确拆成两次调查：先在关卡详情页点击中部“调查”，进入编队后再点击右下角“调查”；后续战斗只识别编队右下角按钮。
+- 助战列表不再点击原来的 `[870,210]`（落在角色密契/用户信息一带），改为点击第一行助战角色立绘中心 `[300,195,60,35]`。
+- 参考明日方舟 MAA 的任务识别思路，关键操作改为：窄 ROI、`TM_SQDIFF_NORMED` 反向分数、两个独立锚点 `And` 验证、较高阈值和固定安全点击点。TemplateMatch 分数只判断局部外观，不再直接决定点击坐标。
+- 编队页必须同时命中“队伍信息”锚点和右下角“调查”按钮；助战入口必须同时命中编队锚点与“助战”；助战上场必须同时命中“选择助战”标题与“上场”按钮。
+- 点击后的下一个页面仍作为后验验证：未进入预期状态就不会被当作操作成功，也不会直接跨入 AUTO/战斗监控。
+
+实现依据：[MAA 任务协议中的模板阈值、掩码与颜色特征](https://github.com/MaaAssistantArknights/MaaAssistantArknights/blob/dev/docs/zh-cn/protocol/task-schema.md)、[MaaFramework Pipeline 的 TemplateMatch 方法说明](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/3.1-任务流水线协议.md)。需要注意：匹配分数是特定算法下的局部相似度，不是可跨模板比较的概率或统一置信度，因此本工具使用页面结构约束来提高最终判定可靠度。
 
 ## 2.9.9 隐藏卡牌等待 10 秒与剧情调查修复
 

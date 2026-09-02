@@ -3,8 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.9.9-ten-second-hide-story-investigate",
-  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；检测我方行动后固定等待 10 秒优先识别隐藏卡牌，并修复剧情关卡详情页调查按钮。",
+  "version": "2.10.0-maa-multi-anchor-reliability",
+  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；隐藏卡牌等待 5 秒，关键点击采用 MAA 风格的窄 ROI、双锚点确认、固定安全点击和后验验证。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {

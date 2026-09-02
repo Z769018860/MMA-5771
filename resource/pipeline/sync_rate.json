@@ -252,24 +252,28 @@
     ]
   },
   "OpenAssist": {
-    "recognition": "TemplateMatch",
-    "template": "assist.png",
-    "roi": [
-      1020,
-      220,
-      250,
-      210
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_team_info.png",
+        "roi": [390, 10, 180, 75],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "assist.png",
+        "roi": [1020, 220, 250, 210],
+        "threshold": 0.7,
+        "method": 10001
+      }
     ],
-    "threshold": 0.5,
+    "box_index": 1,
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target_offset": [
-      75,
-      42,
-      -150,
-      -85
-    ],
+    "target": [1120, 315, 45, 35],
     "post_delay": 1300,
     "next": [
       "ChooseFirstAssist",
@@ -285,16 +289,12 @@
       400,
       110
     ],
-    "threshold": 0.48,
+    "threshold": 0.62,
+    "method": 10001,
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [
-      870,
-      210,
-      6,
-      6
-    ],
+    "target": [300, 195, 60, 35],
     "post_delay": 1200,
     "next": [
       "CharacterDetailRecovery",
@@ -371,24 +371,28 @@
     ]
   },
   "DeployAssist": {
-    "recognition": "TemplateMatch",
-    "template": "deploy.png",
-    "roi": [
-      950,
-      615,
-      255,
-      95
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "select_assist.png",
+        "roi": [0, 0, 400, 110],
+        "threshold": 0.62,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "deploy.png",
+        "roi": [950, 615, 255, 95],
+        "threshold": 0.78,
+        "method": 10001
+      }
     ],
-    "threshold": 0.5,
+    "box_index": 1,
     "timeout": 60000,
     "rate_limit": 700,
     "action": "Click",
-    "target_offset": [
-      119,
-      29,
-      -239,
-      -58
-    ],
+    "target": [1040, 635, 55, 30],
     "post_delay": 1500,
     "next": [
       "StartInvestigation",
@@ -397,24 +401,28 @@
     ]
   },
   "DeployAssistRetry": {
-    "recognition": "TemplateMatch",
-    "template": "deploy.png",
-    "roi": [
-      950,
-      615,
-      255,
-      95
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "select_assist.png",
+        "roi": [0, 0, 400, 110],
+        "threshold": 0.62,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "deploy.png",
+        "roi": [950, 615, 255, 95],
+        "threshold": 0.68,
+        "method": 10001
+      }
     ],
-    "threshold": 0.46,
+    "box_index": 1,
     "timeout": 60000,
     "rate_limit": 1000,
     "action": "Click",
-    "target_offset": [
-      119,
-      29,
-      -239,
-      -58
-    ],
+    "target": [1040, 635, 55, 30],
     "post_delay": 1500,
     "next": [
       "StartInvestigation",
@@ -449,24 +457,28 @@
     ]
   },
   "StartInvestigation": {
-    "recognition": "TemplateMatch",
-    "template": "investigate.png",
-    "roi": [
-      950,
-      610,
-      270,
-      105
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_team_info.png",
+        "roi": [390, 10, 180, 75],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [950, 610, 270, 105],
+        "threshold": 0.82,
+        "method": 10001
+      }
     ],
-    "threshold": 0.46,
+    "box_index": 1,
     "timeout": 90000,
     "rate_limit": 700,
     "action": "Click",
-    "target_offset": [
-      117,
-      29,
-      -234,
-      -58
-    ],
+    "target": [1050, 635, 55, 30],
     "post_delay": 2000,
     "next": [
       "BattleStartSignal",
@@ -495,7 +507,7 @@
   "HideCardsGraceWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 10000,
+    "post_delay": 5000,
     "next": [
       "HideCards",
       "AutoAlreadyOn",
@@ -505,7 +517,7 @@
       "FinishInvestigation"
     ],
     "focus": {
-      "Node.Action.Succeeded": "战斗开始后固定等待 10 秒，优先让延迟出现的隐藏卡牌页面完整显示；到时仍无隐藏卡牌才判断 AUTO。"
+      "Node.Action.Succeeded": "战斗开始后固定等待 5 秒，优先让延迟出现的隐藏卡牌页面完整显示；到时仍无隐藏卡牌才判断 AUTO。"
     }
   },
   "BattleWarning": {

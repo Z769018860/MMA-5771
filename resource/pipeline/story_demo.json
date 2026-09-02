@@ -135,24 +135,59 @@
     }
   },
   "StoryFirstFormation": {
-    "recognition": "TemplateMatch",
-    "template": "story_investigate_live.png",
-    "roi": [
-      660,
-      540,
-      310,
-      100
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_stage_detail_header.png",
+        "roi": [500, 70, 280, 100],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [660, 540, 310, 100],
+        "threshold": 0.76,
+        "method": 10001
+      }
     ],
-    "threshold": 0.72,
-    "method": 10001,
+    "box_index": 1,
     "action": "Click",
     "target": [790, 575, 35, 25],
     "post_delay": 2000,
     "next": [
-      "StoryFirstBattlePreludeRouter"
+      "StoryFirstSquadInvestigate"
     ],
     "focus": {
-      "Node.Action.Succeeded": "剧情任务第一场战斗已点击调查；看到战斗开始图样后只执行这一次 AUTO。"
+      "Node.Action.Succeeded": "剧情关卡详情页已点击中部调查；现在等待编队界面右下角的调查按钮。"
+    }
+  },
+  "StoryFirstSquadInvestigate": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_team_info.png",
+        "roi": [390, 10, 180, 75],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [950, 610, 270, 105],
+        "threshold": 0.82,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [1050, 635, 55, 30],
+    "post_delay": 2000,
+    "next": ["StoryFirstBattlePreludeRouter"],
+    "focus": {
+      "Node.Action.Succeeded": "剧情第一场编队界面已确认双锚点并点击右下角调查。"
     }
   },
   "StoryFirstBattlePreludeRouter": {
@@ -222,7 +257,7 @@
   "StoryFirstHideCardsGraceWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 10000,
+    "post_delay": 5000,
     "next": [
       "StoryHideCards",
       "StoryAutoAlreadyOn",
@@ -232,12 +267,26 @@
     ]
   },
   "StoryFormation": {
-    "recognition": "TemplateMatch",
-    "template": "investigate.png",
-    "roi": [950, 610, 270, 105],
-    "threshold": 0.46,
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_team_info.png",
+        "roi": [390, 10, 180, 75],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [950, 610, 270, 105],
+        "threshold": 0.82,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
     "action": "Click",
-    "target_offset": [117, 29, -234, -58],
+    "target": [1050, 635, 55, 30],
     "post_delay": 2000,
     "next": ["StoryBattleMonitor"],
     "focus": {
