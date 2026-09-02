@@ -3,8 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.10.1-assist-row-blank-area",
-  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；修复助战列表反复进入角色详情，改点第一行同步率与头像之间的空白区域。",
+  "version": "2.10.2-story-formation-investigate",
+  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；修复短队伍名称导致剧情编队页动态锚点失效，直接严格识别右下角调查按钮。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {
