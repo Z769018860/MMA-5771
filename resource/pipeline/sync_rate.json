@@ -545,21 +545,60 @@
     "timeout": 180000,
     "rate_limit": 700,
     "action": "Click",
-    "target_offset": [
-      52,
-      38,
-      -104,
-      -76
+    "target": [
+      1195,
+      625,
+      26,
+      26
     ],
-    "post_delay": 700,
+    "post_delay": 900,
     "next": [
-      "AutoControlReady"
+      "HideCardsVerify"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "警告结束并延迟后检测到实机隐藏卡牌按钮。",
-      "Node.Action.Succeeded": "隐藏卡牌已点击，下一步只点击一次 AUTO。"
+      "Node.Action.Succeeded": "已点击右下角眼睛收起键；下一步回查隐藏卡牌是否真的消失。"
     },
     "method": 10001
+  },
+  "HideCardsVerify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 700,
+    "next": [
+      "HideCardsRetry",
+      "AutoControlReady"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "回查隐藏卡牌界面：仍存在则再次点击眼睛键，消失后才允许点击 AUTO。"
+    }
+  },
+  "HideCardsRetry": {
+    "recognition": "TemplateMatch",
+    "template": "hide_cards_live.png",
+    "roi": [
+      1100,
+      535,
+      154,
+      120
+    ],
+    "threshold": 0.52,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1195,
+      625,
+      26,
+      26
+    ],
+    "post_delay": 900,
+    "next": [
+      "HideCardsVerify"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "回查确认隐藏卡牌仍未收起，重试右下角眼睛键。",
+      "Node.Action.Succeeded": "已重试收起键；不会把发送点击等同于界面已收起。"
+    }
   },
   "AutoControlReady": {
     "recognition": "TemplateMatch",

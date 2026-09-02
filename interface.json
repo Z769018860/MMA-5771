@@ -3,8 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.9.4-direct-auto-choice-fix",
-  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；警告结束后优先隐藏卡牌并只点击一次 AUTO，修复剧情初始单选项。",
+  "version": "2.9.5-verified-hide-event-fix",
+  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；隐藏卡牌点击后必须回查消失，新增上现虚景事件选项并收紧商店判定。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {
@@ -273,4 +273,3 @@
     }
   }
 }
-

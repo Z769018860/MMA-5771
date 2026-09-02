@@ -48,8 +48,8 @@
     "post_delay": 800,
     "next": [
       "StoryCutscene",
+      "StoryEventPage",
       "StoryFormation",
-      "StoryBattleWarning",
       "StoryChoicePage",
       "StoryShop",
       "StoryArtifactSelect",
@@ -68,6 +68,7 @@
     "post_delay": 1000,
     "next": [
       "StoryCutscene",
+      "StoryEventPage",
       "StoryFinishInvestigation",
       "StoryReviveDecision",
       "StoryChoicePage",
@@ -462,7 +463,8 @@
     ],
     "post_delay": 900,
     "next": [
-      "StoryInitialChoicePage",
+      "StoryEventPage",
+      "StoryChoicePage",
       "StoryAfterRoute"
     ],
     "focus": {
@@ -470,16 +472,62 @@
       "Node.Action.Succeeded": "已点击右上角快进/跳过按钮。"
     }
   },
-  "StoryShop": {
+  "StoryEventPage": {
     "recognition": "TemplateMatch",
-    "template": "story_shop_header.png",
+    "template": "story_event_page_live.png",
     "roi": [
-      390,
-      90,
-      500,
-      200
+      520,
+      95,
+      220,
+      75
     ],
-    "threshold": 0.5,
+    "threshold": 0.76,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      770,
+      565,
+      30,
+      24
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "检测到上现虚景事件页，点击下方白色效果选项。",
+      "Node.Action.Succeeded": "已点击事件页初始选项，返回剧情状态路由复核。"
+    }
+  },
+  "StoryShop": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_shop_header.png",
+        "roi": [
+          390,
+          90,
+          500,
+          200
+        ],
+        "threshold": 0.68,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_shop_close.png",
+        "roi": [
+          970,
+          170,
+          140,
+          120
+        ],
+        "threshold": 0.48,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
     "action": "DoNothing",
     "next": [
       "StoryShopItem1"
@@ -786,4 +834,3 @@
     }
   }
 }
-
