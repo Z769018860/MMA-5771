@@ -166,7 +166,7 @@
   "StoryFirstSquadInvestigate": {
     "recognition": "TemplateMatch",
     "template": "investigate.png",
-    "roi": [1000, 610, 230, 100],
+    "roi": [940, 610, 310, 105],
     "threshold": 0.82,
     "method": 10001,
     "action": "Click",
@@ -256,7 +256,7 @@
   "StoryFormation": {
     "recognition": "TemplateMatch",
     "template": "investigate.png",
-    "roi": [1000, 610, 230, 100],
+    "roi": [940, 610, 310, 105],
     "threshold": 0.82,
     "method": 10001,
     "action": "Click",
