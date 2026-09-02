@@ -594,31 +594,29 @@
   },
   "AutoControlReady": {
     "recognition": "TemplateMatch",
-    "template": "speed.png",
+    "template": [
+      "auto_off_text.png",
+      "auto_on_text.png"
+    ],
     "roi": [
-      105,
-      615,
-      90,
-      90
+      25,
+      470,
+      85,
+      60
     ],
     "threshold": 0.68,
     "method": 10001,
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
-    "target": [
-      140,
-      650,
-      16,
-      16
-    ],
+    "target": [45, 485, 28, 24],
     "post_delay": 1200,
     "next": [
       "MotionFrame1"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "已识别左下角真正的 AUTO 双箭头控件。",
-      "Node.Action.Succeeded": "已点击实际 AUTO 控件中心 (148, 658)，强制进入三帧动态验证。"
+        "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
+        "Node.Action.Succeeded": "已点击实际 AUTO 按钮中心附近 (59, 497)，强制进入三帧动态验证。"
     }
   },
   "MotionFrame1": {
@@ -686,32 +684,30 @@
       "AutoMotionRecoveryClick"
     ],
     "focus": {
-      "Node.Action.Succeeded": "三帧存在明显差异，确认自动战斗运行。",
-      "Node.Action.Failed": "三帧均高度相似，准备在真正 AUTO 控件补点一次。"
+      "Node.Action.Succeeded": "三帧存在明显差异，确认自动战斗运行并进入战斗监控。",
+      "Node.Action.Failed": "三帧均高度相似，准备在真正 AUTO 按钮补点一次。"
     }
   },
   "AutoMotionRecoveryClick": {
     "recognition": "TemplateMatch",
-    "template": "speed.png",
+    "template": ["auto_off_text.png", "auto_on_text.png"],
     "roi": [
-      105,
-      615,
-      90,
-      90
+      25,
+      470,
+      85,
+      60
     ],
     "threshold": 0.64,
     "method": 10001,
     "action": "Click",
-    "target": [
-      140,
-      650,
-      16,
-      16
-    ],
+    "target": [45, 485, 28, 24],
     "post_delay": 1200,
     "next": [
       "RecoveryMotionFrame1"
-    ]
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已在实际 AUTO 按钮中心补点一次，重新执行三帧验证。"
+    }
   },
   "RecoveryMotionFrame1": {
     "recognition": "DirectHit",
@@ -1031,4 +1027,3 @@
     }
   }
 }
-

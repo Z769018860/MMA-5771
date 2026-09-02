@@ -1,62 +1,98 @@
-param(
-    [Parameter(Mandatory = $true)][ValidateSet('capture1','capture2','compare')][string]$Mode,
-    [Parameter(Mandatory = $true)][string]$ImagePath,
-    [Parameter(Mandatory = $true)][string]$Prefix,
-    [double]$Threshold = 0.0025
-)
-
 $ErrorActionPreference = 'Stop'
+
+$mode = if ($args.Count -ge 1) { [string]$args[0] } else { '' }
+$imagePath = if ($args.Count -ge 2) { [string]$args[1] } else { '' }
+$prefix = if ($args.Count -ge 3) { [string]$args[2] } else { 'sync' }
+$threshold = if ($args.Count -ge 4) { [double]$args[3] } else { 0.0025 }
+
+$resourceDir = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$runtimeDir = Split-Path -Parent $resourceDir
+$stateDir = Join-Path $runtimeDir 'debug\motion'
+New-Item -ItemType Directory -Path $stateDir -Force | Out-Null
+
+if (-not $imagePath -or -not (Test-Path -LiteralPath $imagePath)) {
+    throw 'Current Maa screenshot is unavailable.'
+}
+
+$frame1 = Join-Path $stateDir ($prefix + '_frame1.png')
+$frame2 = Join-Path $stateDir ($prefix + '_frame2.png')
+$frame3 = Join-Path $stateDir ($prefix + '_frame3.png')
+$resultFile = Join-Path $stateDir ($prefix + '_result.txt')
+
+if ($mode -eq 'capture1') {
+    Copy-Item -LiteralPath $imagePath -Destination $frame1 -Force
+    exit 0
+}
+if ($mode -eq 'capture2') {
+    Copy-Item -LiteralPath $imagePath -Destination $frame2 -Force
+    exit 0
+}
+if ($mode -ne 'compare') {
+    throw ('Unknown frame-motion mode: ' + $mode)
+}
+
+Copy-Item -LiteralPath $imagePath -Destination $frame3 -Force
+if (-not (Test-Path -LiteralPath $frame1) -or -not (Test-Path -LiteralPath $frame2)) {
+    throw 'The first two motion frames are missing.'
+}
+
 Add-Type -AssemblyName System.Drawing
-$stateDir = Join-Path $PSScriptRoot '.motion_state'
-New-Item -ItemType Directory -Force -Path $stateDir | Out-Null
-$frame1 = Join-Path $stateDir ($Prefix + '_1.png')
-$frame2 = Join-Path $stateDir ($Prefix + '_2.png')
-$logFile = Join-Path $stateDir ($Prefix + '_motion.log')
 
-function Save-Frame([string]$Source, [string]$Destination) {
-    $sourceBitmap = [System.Drawing.Bitmap]::FromFile($Source)
+function Get-Samples([string]$path) {
+    $source = [System.Drawing.Bitmap]::new($path)
     try {
-        # 仅保留战场主体，排除时间、AUTO 按钮、资源计数和调试标注区域。
-        $x = [Math]::Min(220, $sourceBitmap.Width - 1)
-        $y = [Math]::Min(100, $sourceBitmap.Height - 1)
-        $w = [Math]::Min(780, $sourceBitmap.Width - $x)
-        $h = [Math]::Min(430, $sourceBitmap.Height - $y)
-        $small = New-Object System.Drawing.Bitmap 96, 54
-        $graphics = [System.Drawing.Graphics]::FromImage($small)
+        $cropX = [int]($source.Width * 0.12)
+        $cropY = [int]($source.Height * 0.10)
+        $cropW = [int]($source.Width * 0.76)
+        $cropH = [int]($source.Height * 0.62)
+        $small = [System.Drawing.Bitmap]::new(64, 36)
         try {
-            $graphics.DrawImage($sourceBitmap, (New-Object System.Drawing.Rectangle 0,0,96,54), (New-Object System.Drawing.Rectangle $x,$y,$w,$h), [System.Drawing.GraphicsUnit]::Pixel)
-            $small.Save($Destination, [System.Drawing.Imaging.ImageFormat]::Png)
-        } finally { $graphics.Dispose(); $small.Dispose() }
-    } finally { $sourceBitmap.Dispose() }
-}
-
-function Get-Difference([string]$Left, [string]$Right) {
-    $a = [System.Drawing.Bitmap]::FromFile($Left)
-    $b = [System.Drawing.Bitmap]::FromFile($Right)
-    try {
-        [double]$sum = 0
-        for ($y = 0; $y -lt $a.Height; $y += 2) {
-            for ($x = 0; $x -lt $a.Width; $x += 2) {
-                $pa = $a.GetPixel($x, $y); $pb = $b.GetPixel($x, $y)
-                $sum += ([Math]::Abs($pa.R-$pb.R) + [Math]::Abs($pa.G-$pb.G) + [Math]::Abs($pa.B-$pb.B)) / 765.0
+            $graphics = [System.Drawing.Graphics]::FromImage($small)
+            try {
+                $graphics.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBilinear
+                $graphics.DrawImage($source, [System.Drawing.Rectangle]::new(0, 0, 64, 36), [System.Drawing.Rectangle]::new($cropX, $cropY, $cropW, $cropH), [System.Drawing.GraphicsUnit]::Pixel)
             }
+            finally { $graphics.Dispose() }
+
+            $values = [double[]]::new(64 * 36)
+            $index = 0
+            for ($y = 0; $y -lt 36; $y++) {
+                for ($x = 0; $x -lt 64; $x++) {
+                    $pixel = $small.GetPixel($x, $y)
+                    $values[$index] = (0.2126 * $pixel.R + 0.7152 * $pixel.G + 0.0722 * $pixel.B) / 255.0
+                    $index++
+                }
+            }
+            return $values
         }
-        return $sum / (($a.Width / 2) * ($a.Height / 2))
-    } finally { $a.Dispose(); $b.Dispose() }
+        finally { $small.Dispose() }
+    }
+    finally { $source.Dispose() }
 }
 
-switch ($Mode) {
-    'capture1' { Save-Frame $ImagePath $frame1; exit 0 }
-    'capture2' { Save-Frame $ImagePath $frame2; exit 0 }
-    'compare' {
-        $frame3 = Join-Path $stateDir ($Prefix + '_3.png')
-        Save-Frame $ImagePath $frame3
-        if (!(Test-Path $frame1) -or !(Test-Path $frame2)) { throw 'motion frames are incomplete' }
-        $d12 = Get-Difference $frame1 $frame2
-        $d23 = Get-Difference $frame2 $frame3
-        ('{0:o} d12={1:F6} d23={2:F6} threshold={3:F6}' -f (Get-Date),$d12,$d23,$Threshold) | Add-Content -Encoding UTF8 $logFile
-        # 三帧两段都几乎不变才判定停住。任何一段有明显动态即进入战斗监控。
-        if (($d12 -le $Threshold) -and ($d23 -le $Threshold)) { exit 2 }
-        exit 0
+function Get-MeanDifference([double[]]$left, [double[]]$right) {
+    $sum = 0.0
+    for ($i = 0; $i -lt $left.Length; $i++) {
+        $sum += [Math]::Abs($left[$i] - $right[$i])
     }
+    return $sum / $left.Length
 }
+
+$samples1 = Get-Samples $frame1
+$samples2 = Get-Samples $frame2
+$samples3 = Get-Samples $frame3
+$difference12 = Get-MeanDifference $samples1 $samples2
+$difference23 = Get-MeanDifference $samples2 $samples3
+$isStatic = ($difference12 -lt $threshold -and $difference23 -lt $threshold)
+
+$lines = @(
+    ('time=' + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')),
+    ('difference_1_2=' + $difference12.ToString('F6', [Globalization.CultureInfo]::InvariantCulture)),
+    ('difference_2_3=' + $difference23.ToString('F6', [Globalization.CultureInfo]::InvariantCulture)),
+    ('static_threshold=' + $threshold.ToString('F6', [Globalization.CultureInfo]::InvariantCulture)),
+    ('result=' + $(if ($isStatic) { 'STATIC' } else { 'MOVING' }))
+)
+[System.IO.File]::WriteAllLines($resultFile, $lines, [System.Text.UTF8Encoding]::new($true))
+
+if ($isStatic) { exit 2 }
+exit 0

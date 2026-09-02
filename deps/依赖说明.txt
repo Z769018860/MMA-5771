@@ -1,0 +1,7 @@
+此目录用于存放 Windows x64 离线依赖。
+
+启动器会优先使用：
+1. MFAAvalonia-v2.16.0-win-x64.zip
+2. windowsdesktop-runtime-10-win-x64.exe
+
+若文件不存在，START_WIN64.cmd 会自动下载，并保存在此目录供以后离线启动。

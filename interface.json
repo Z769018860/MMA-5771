@@ -1,0 +1,276 @@
+{
+  "interface_version": 2,
+  "name": "MorimensSyncRate",
+  "label": "忘却前夜同调率循环助手",
+  "title": "忘却前夜同调率循环助手（MaaFramework）",
+  "version": "2.9.3-auto-story-fix",
+  "description": "基于 MaaFramework 的忘却前夜 Windows 后台同调率循环与自动推剧情 Demo；修复 AUTO 实际按钮点击、强制三帧验证与剧情跳过。",
+  "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
+  "controller": [
+    {
+      "name": "BackgroundCursor",
+      "label": "后台增强·光标定位（推荐）",
+      "description": "FramePool 后台截图 + SendMessageWithCursorPos 后台输入。不会切换前台窗口，点击时鼠标会极短暂移动并自动恢复。",
+      "type": "Win32",
+      "display_short_side": 720,
+      "win32": {
+        "class_regex": ".*",
+        "window_regex": ".*(忘却前夜|Morimens).*",
+        "screencap": "FramePool",
+        "mouse": "SendMessageWithCursorPos",
+        "keyboard": "SendMessage"
+      }
+    },
+    {
+      "name": "BackgroundWindow",
+      "label": "纯后台·窗口定位",
+      "description": "PrintWindow 后台截图 + PostMessageWithWindowPos 输入。不抢占鼠标和前台焦点，但游戏窗口可能轻微闪动。",
+      "type": "Win32",
+      "display_short_side": 720,
+      "win32": {
+        "class_regex": ".*",
+        "window_regex": ".*(忘却前夜|Morimens).*",
+        "screencap": "PrintWindow",
+        "mouse": "PostMessageWithWindowPos",
+        "keyboard": "PostMessage"
+      }
+    },
+    {
+      "name": "BackgroundPost",
+      "label": "纯后台·标准消息",
+      "description": "FramePool 后台截图 + SendMessage 输入。完全不移动鼠标；若游戏忽略消息，请改用后台增强模式。",
+      "type": "Win32",
+      "display_short_side": 720,
+      "win32": {
+        "class_regex": ".*",
+        "window_regex": ".*(忘却前夜|Morimens).*",
+        "screencap": "FramePool",
+        "mouse": "SendMessage",
+        "keyboard": "SendMessage"
+      }
+    }
+  ],
+  "resource": [
+    {
+      "name": "Default",
+      "label": "默认资源",
+      "path": [
+        "resource"
+      ]
+    }
+  ],
+  "task": [
+    {
+      "name": "同步率循环",
+      "label": "羽毛·癫狂同调率循环",
+      "entry": "EntryRouter",
+      "option": [
+        "同调率助战",
+        "失败处理"
+      ],
+      "default_check": true,
+      "repeatable": false,
+      "description": "支持从主界面自动进入羽毛·癫狂；AUTO 开启后通过 3 秒三帧画面差判断是否真正开战，静止时只补点一次。"
+    },
+    {
+      "name": "自动推剧情Demo",
+      "label": "自动推剧情（Demo）",
+      "entry": "StoryEntryRouter",
+      "option": [
+        "剧情购买策略",
+        "剧情造物位置",
+        "剧情灵知"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从章节列表启动；先点击最右侧的最新战斗/剧情关卡，进入后才判断编队、剧情、战斗、选项、商店和造物。"
+    }
+  ],
+  "option": {
+    "同调率助战": {
+      "type": "select",
+      "label": "同调率是否使用助战",
+      "description": "使用助战时保持挑战→助战→选择角色→上场→调查的强制顺序；不使用时挑战后直接点击调查。",
+      "default_case": "使用助战",
+      "cases": [
+        {
+          "name": "使用助战",
+          "label": "使用助战（默认）"
+        },
+        {
+          "name": "不使用助战",
+          "label": "不使用助战",
+          "pipeline_override": {
+            "CycleStart": {
+              "next": [
+                "StartInvestigation"
+              ]
+            },
+            "EntryRouter": {
+              "next": [
+                "CycleStart",
+                "HomeScreen",
+                "ActivityScreen",
+                "OpenLimitedPlay",
+                "MaterialPopupRecovery",
+                "ChooseFeather",
+                "ChooseMadness",
+                "StartInvestigation",
+                "QuickFormationRecovery",
+                "BattleWarning",
+                "ReviveDecision",
+                "FailureChoice",
+                "FinishInvestigation",
+                "HideCards",
+                "AutoControlReady",
+                "BattleMonitor",
+                "StopHere"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "失败处理": {
+      "type": "select",
+      "label": "挑战失败处理",
+      "description": "使用灵知会确认复活并重新开启 AUTO；直接退出会取消复活、暂时撤退并点击止步于此。",
+      "default_case": "直接退出",
+      "cases": [
+        {
+          "name": "直接退出",
+          "label": "直接退出（默认）",
+          "description": "不消耗应急灵知体，退出本次调查并重新开始循环。"
+        },
+        {
+          "name": "使用灵知",
+          "label": "使用灵知继续挑战",
+          "description": "消耗一次应急灵知体复活，随后确认 AUTO 已开启并继续挑战。",
+          "pipeline_override": {
+            "ReviveDecision": {
+              "target_offset": [
+                341,
+                343,
+                -292,
+                -92
+              ],
+              "next": [
+                "FinishInvestigation",
+                "AutoControlReady"
+              ],
+              "timeout": 60000,
+              "focus": {
+                "Node.Recognition.Succeeded": "严格判定成功：同时匹配【复活确认】标题和【是否启用应急灵知体】正文，按设置选择【确认】。",
+                "Node.Action.Succeeded": "已精确点击右侧【确认】按钮；只在复活后重新确认一次 AUTO。"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "剧情购买策略": {
+      "type": "select",
+      "label": "商店购买策略",
+      "description": "购买全部会依次尝试左、中、右三个造物；只购买第一个会在首次购买后关闭商店。遇到红色价格均会取消并立即退出商店。",
+      "default_case": "购买全部造物",
+      "cases": [
+        {
+          "name": "购买全部造物",
+          "label": "购买全部造物（默认）"
+        },
+        {
+          "name": "只购买第一个造物",
+          "label": "只购买第一个造物",
+          "pipeline_override": {
+            "StoryPurchase1Confirm": {
+              "next": [
+                "StoryShopClose"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "剧情造物位置": {
+      "type": "select",
+      "label": "三选一造物位置",
+      "description": "进入造物选择页后点击指定卡片，再点击下方亮起的确认按钮。",
+      "default_case": "中间造物",
+      "cases": [
+        {
+          "name": "中间造物",
+          "label": "选择中间造物（默认）",
+          "pipeline_override": {
+            "StoryArtifactSelect": {
+              "target": [
+                640,
+                335,
+                8,
+                8
+              ]
+            }
+          }
+        },
+        {
+          "name": "左边造物",
+          "label": "选择左边造物",
+          "pipeline_override": {
+            "StoryArtifactSelect": {
+              "target": [
+                420,
+                335,
+                8,
+                8
+              ]
+            }
+          }
+        },
+        {
+          "name": "右边造物",
+          "label": "选择右边造物",
+          "pipeline_override": {
+            "StoryArtifactSelect": {
+              "target": [
+                855,
+                335,
+                8,
+                8
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "剧情灵知": {
+      "type": "select",
+      "label": "剧情战斗使用应急灵知体",
+      "description": "严格匹配复活确认标题和应急灵知体正文后，再按设置点击确认或取消。",
+      "default_case": "剧情不使用灵知",
+      "cases": [
+        {
+          "name": "剧情不使用灵知",
+          "label": "不使用（默认）"
+        },
+        {
+          "name": "剧情使用灵知",
+          "label": "使用应急灵知体",
+          "pipeline_override": {
+            "StoryReviveDecision": {
+              "target_offset": [
+                341,
+                343,
+                -292,
+                -92
+              ],
+              "next": [
+                "StoryFinishInvestigation",
+                "StoryAutoControlReady"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+

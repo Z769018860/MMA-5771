@@ -1,0 +1,913 @@
+{
+  "StoryEntryRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StorySelectLatestStage"
+    ],
+    "timeout": 120000,
+    "focus": {
+      "Node.Action.Succeeded": "自动推剧情 Demo 第一阶段：章节界面只选择最新关卡，不执行任何剧情或战后事件点击。"
+    }
+  },
+  "StorySelectLatestStage": {
+    "recognition": "TemplateMatch",
+    "template": [
+      "story_stage_battle_icon.png",
+      "story_stage_dialogue_icon.png"
+    ],
+    "roi": [
+      100,
+      140,
+      1000,
+      470
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "order_by": "Horizontal",
+    "index": -1,
+    "action": "Click",
+    "target_offset": [
+      22,
+      22,
+      -44,
+      -44
+    ],
+    "post_delay": 1800,
+    "next": [
+      "StoryInsideRouter"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "章节界面已识别战斗/剧情关图标，并选择最右侧的最新关卡。",
+      "Node.Action.Succeeded": "最新关卡已点击；现在才开始判断编队、剧情、战斗和战后事件。"
+    }
+  },
+  "StoryInsideRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 800,
+    "next": [
+      "StoryCutscene",
+      "StoryFormation",
+      "StoryBattleWarning",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision",
+      "StorySelectLatestStage"
+    ],
+    "timeout": 120000,
+    "focus": {
+      "Node.Action.Succeeded": "关卡内状态路由：判断编队、剧情播放、战斗或事件；章节图标仅作为返回章节后的最后候选。"
+    }
+  },
+  "StoryAfterRoute": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "next": [
+      "StoryCutscene",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryFormation",
+      "StorySelectLatestStage"
+    ],
+    "timeout": 120000
+  },
+  "StoryBattleStage": {
+    "recognition": "TemplateMatch",
+    "template": "story_stage_battle.png",
+    "roi": [
+      80,
+      80,
+      1120,
+      570
+    ],
+    "threshold": 0.58,
+    "action": "Click",
+    "target_offset": [
+      54,
+      54,
+      -108,
+      -108
+    ],
+    "post_delay": 1800,
+    "next": [
+      "StoryFormation",
+      "StoryBattleWarning",
+      "StoryCutscene",
+      "StoryChoicePage"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击当前剧情列表中的战斗关图标。"
+    }
+  },
+  "StoryDialogueStage": {
+    "recognition": "TemplateMatch",
+    "template": "story_stage_dialogue.png",
+    "roi": [
+      80,
+      80,
+      1120,
+      570
+    ],
+    "threshold": 0.56,
+    "action": "Click",
+    "target_offset": [
+      49,
+      49,
+      -98,
+      -98
+    ],
+    "post_delay": 1600,
+    "next": [
+      "StoryCutscene",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击当前剧情列表中的剧情播放图标。"
+    }
+  },
+  "StoryFormation": {
+    "recognition": "TemplateMatch",
+    "template": "investigate.png",
+    "roi": [
+      950,
+      610,
+      270,
+      105
+    ],
+    "threshold": 0.46,
+    "action": "Click",
+    "target_offset": [
+      117,
+      29,
+      -234,
+      -58
+    ],
+    "post_delay": 2000,
+    "next": [
+      "StoryBattleWarning",
+      "StoryHideCards",
+      "StoryAutoControlReady",
+      "StoryCutscene",
+      "StoryChoicePage"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "剧情战斗编队完成：已点击右下角调查。"
+    }
+  },
+  "StoryBattleWarning": {
+    "recognition": "TemplateMatch",
+    "template": "battle_warning.png",
+    "roi": [
+      450,
+      180,
+      360,
+      210
+    ],
+    "threshold": 0.62,
+    "action": "DoNothing",
+    "post_delay": 3000,
+    "next": [
+      "StoryBattleWarning",
+      "StoryPostWarningWait"
+    ]
+  },
+  "StoryPostWarningWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 4000,
+    "next": [
+      "StoryReviveDecision",
+      "StoryFinishInvestigation",
+      "StoryHideCards",
+      "StoryAutoControlReady"
+    ]
+  },
+  "StoryHideCards": {
+    "recognition": "TemplateMatch",
+    "template": "hide_cards.png",
+    "roi": [
+      1100,
+      535,
+      150,
+      115
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [
+      52,
+      38,
+      -104,
+      -76
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryAutoControlReady",
+      "StoryHideCards"
+    ]
+  },
+  "StoryAutoControlReady": {
+    "recognition": "TemplateMatch",
+    "template": [
+      "auto_off_text.png",
+      "auto_on_text.png"
+    ],
+    "roi": [
+      25,
+      470,
+      85,
+      60
+    ],
+    "threshold": 0.68,
+    "method": 10001,
+    "timeout": 180000,
+    "rate_limit": 650,
+    "action": "Click",
+    "target": [45, 485, 28, 24],
+    "post_delay": 1200,
+    "next": [
+      "StoryMotionFrame1"
+    ],
+    "focus": {
+        "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
+        "Node.Action.Succeeded": "已点击实际 AUTO 按钮中心附近 (59, 497)，强制进入三帧动态验证。"
+    }
+  },
+  "StoryMotionFrame1": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "capture1",
+      "{IMAGE}",
+      "story",
+      "0.0025"
+    ],
+    "post_delay": 1500,
+    "next": [
+      "StoryMotionFrame2"
+    ]
+  },
+  "StoryMotionFrame2": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "capture2",
+      "{IMAGE}",
+      "story",
+      "0.0025"
+    ],
+    "post_delay": 1500,
+    "next": [
+      "StoryMotionFrame3Compare"
+    ]
+  },
+  "StoryMotionFrame3Compare": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "compare",
+      "{IMAGE}",
+      "story",
+      "0.0025"
+    ],
+    "next": [
+      "StoryBattleMonitor"
+    ],
+    "on_error": [
+      "StoryAutoMotionRecoveryClick"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "三帧存在明显差异，确认自动战斗运行并进入战斗监控。",
+      "Node.Action.Failed": "三帧均高度相似，准备在真正 AUTO 按钮补点一次。"
+    }
+  },
+  "StoryAutoMotionRecoveryClick": {
+    "recognition": "TemplateMatch",
+    "template": ["auto_off_text.png", "auto_on_text.png"],
+    "roi": [
+      25,
+      470,
+      85,
+      60
+    ],
+    "threshold": 0.64,
+    "method": 10001,
+    "action": "Click",
+    "target": [45, 485, 28, 24],
+    "post_delay": 1200,
+    "next": [
+      "StoryRecoveryMotionFrame1"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已在实际 AUTO 按钮中心补点一次，重新执行三帧验证。"
+    }
+  },
+  "StoryRecoveryMotionFrame1": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "capture1",
+      "{IMAGE}",
+      "story_recovery",
+      "0.0025"
+    ],
+    "post_delay": 1500,
+    "next": [
+      "StoryRecoveryMotionFrame2"
+    ]
+  },
+  "StoryRecoveryMotionFrame2": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "capture2",
+      "{IMAGE}",
+      "story_recovery",
+      "0.0025"
+    ],
+    "post_delay": 1500,
+    "next": [
+      "StoryRecoveryMotionFrame3Compare"
+    ]
+  },
+  "StoryRecoveryMotionFrame3Compare": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
+      "compare",
+      "{IMAGE}",
+      "story_recovery",
+      "0.0025"
+    ],
+    "next": [
+      "StoryBattleMonitor"
+    ],
+    "on_error": [
+      "TimeoutExport"
+    ]
+  },
+  "StoryBattleMonitor": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1000,
+    "timeout": 300000,
+    "next": [
+      "StoryReviveDecision",
+      "StoryFinishInvestigation",
+      "StoryCutscene",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect"
+    ],
+    "on_error": [
+      "TimeoutExport"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "剧情战斗监控：等待调查完成、复活弹窗或战后事件，最长 5 分钟。"
+    }
+  },
+  "StoryReviveDecision": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "revive_dialog_header.png",
+        "roi": [
+          450,
+          130,
+          380,
+          150
+        ],
+        "threshold": 0.86,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "revive_dialog_question.png",
+        "roi": [
+          300,
+          260,
+          680,
+          120
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": true,
+    "target_offset": [
+      -41,
+      343,
+      -292,
+      -92
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StoryFailureChoice",
+      "StoryFinishInvestigation"
+    ]
+  },
+  "StoryFailureChoice": {
+    "recognition": "TemplateMatch",
+    "template": "temporary_retreat.png",
+    "roi": [
+      600,
+      400,
+      654,
+      250
+    ],
+    "threshold": 0.6,
+    "action": "Click",
+    "target_offset": [
+      210,
+      48,
+      -421,
+      -96
+    ],
+    "post_delay": 1200,
+    "next": [
+      "StoryStopHere"
+    ]
+  },
+  "StoryStopHere": {
+    "recognition": "TemplateMatch",
+    "template": "stop_here.png",
+    "roi": [
+      850,
+      510,
+      420,
+      200
+    ],
+    "threshold": 0.46,
+    "action": "Click",
+    "target_offset": [
+      153,
+      45,
+      -306,
+      -91
+    ],
+    "post_delay": 1800,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "StoryChoicePage": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_choice_marker.png",
+        "roi": [
+          1160,
+          465,
+          120,
+          115
+        ],
+        "threshold": 0.48
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_choice_marker.png",
+        "roi": [
+          1160,
+          575,
+          120,
+          145
+        ],
+        "threshold": 0.48
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "StoryPreferredChoice",
+      "StoryBottomChoice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "检测到剧情选项框：优先 OCR 查找黄金造物或白银造物，否则选择最下面一项。"
+    }
+  },
+  "StoryPreferredChoice": {
+    "recognition": "OCR",
+    "roi": [
+      430,
+      300,
+      760,
+      380
+    ],
+    "expected": [
+      ".*黄金造物.*",
+      ".*白银造物.*"
+    ],
+    "threshold": 0.3,
+    "order_by": "Expected",
+    "action": "Click",
+    "post_delay": 1100,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "StoryBottomChoice": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      835,
+      640,
+      8,
+      8
+    ],
+    "post_delay": 1100,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "StoryCutscene": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_play_anchor.png",
+        "roi": [
+          1080,
+          5,
+          82,
+          82
+        ],
+        "threshold": 0.7,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_skip_live.png",
+        "roi": [
+          1170,
+          5,
+          84,
+          82
+        ],
+        "threshold": 0.68,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      1196,
+      32,
+      28,
+      38
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "同时识别右上角播放图标和实机快进图标，确认当前为剧情播放。",
+      "Node.Action.Succeeded": "已点击右上角快进/跳过按钮。"
+    }
+  },
+  "StoryShop": {
+    "recognition": "TemplateMatch",
+    "template": "story_shop_header.png",
+    "roi": [
+      390,
+      90,
+      500,
+      200
+    ],
+    "threshold": 0.5,
+    "action": "DoNothing",
+    "next": [
+      "StoryShopItem1"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "检测到造物商店，按设置开始购买。"
+    }
+  },
+  "StoryShopItem1": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      430,
+      325,
+      8,
+      8
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryPurchasePriceRed",
+      "StoryPurchase1Confirm"
+    ]
+  },
+  "StoryPurchase1Confirm": {
+    "recognition": "TemplateMatch",
+    "template": "story_purchase_confirm.png",
+    "roi": [
+      690,
+      570,
+      390,
+      140
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [
+      148,
+      33,
+      -296,
+      -66
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryShopItem2",
+      "StoryShopClose"
+    ]
+  },
+  "StoryShopItem2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      640,
+      325,
+      8,
+      8
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryPurchasePriceRed",
+      "StoryPurchase2Confirm"
+    ]
+  },
+  "StoryPurchase2Confirm": {
+    "recognition": "TemplateMatch",
+    "template": "story_purchase_confirm.png",
+    "roi": [
+      690,
+      570,
+      390,
+      140
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [
+      148,
+      33,
+      -296,
+      -66
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryShopItem3",
+      "StoryShopClose"
+    ]
+  },
+  "StoryShopItem3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      850,
+      325,
+      8,
+      8
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryPurchasePriceRed",
+      "StoryPurchase3Confirm"
+    ]
+  },
+  "StoryPurchase3Confirm": {
+    "recognition": "TemplateMatch",
+    "template": "story_purchase_confirm.png",
+    "roi": [
+      690,
+      570,
+      390,
+      140
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [
+      148,
+      33,
+      -296,
+      -66
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryShopClose"
+    ]
+  },
+  "StoryPurchasePriceRed": {
+    "recognition": "ColorMatch",
+    "roi": [
+      785,
+      525,
+      200,
+      115
+    ],
+    "method": 4,
+    "lower": [
+      145,
+      0,
+      0
+    ],
+    "upper": [
+      255,
+      155,
+      155
+    ],
+    "count": 24,
+    "connected": false,
+    "action": "Click",
+    "target": [
+      405,
+      650,
+      8,
+      8
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryShopClose"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "购买价格为红字：点击取消并退出本次商店购买。"
+    }
+  },
+  "StoryShopClose": {
+    "recognition": "TemplateMatch",
+    "template": "story_shop_close.png",
+    "roi": [
+      950,
+      80,
+      260,
+      200
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target_offset": [
+      27,
+      27,
+      -54,
+      -54
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "StoryArtifactSelect": {
+    "recognition": "TemplateMatch",
+    "template": "story_artifact_header.png",
+    "roi": [
+      420,
+      90,
+      440,
+      180
+    ],
+    "threshold": 0.48,
+    "action": "Click",
+    "target": [
+      640,
+      335,
+      8,
+      8
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryArtifactConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "检测到造物三选一页面，已按设置选择造物。"
+    }
+  },
+  "StoryArtifactConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      640,
+      570,
+      8,
+      8
+    ],
+    "post_delay": 1100,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击亮起的造物确认按钮。"
+    }
+  },
+  "StoryFinishInvestigation": {
+    "recognition": "TemplateMatch",
+    "template": "result_title.png",
+    "roi": [
+      820,
+      0,
+      434,
+      210
+    ],
+    "threshold": 0.48,
+    "action": "DoNothing",
+    "next": [
+      "StoryFinishCurrentButton",
+      "StoryFinishAltButton"
+    ]
+  },
+  "StoryFinishCurrentButton": {
+    "recognition": "TemplateMatch",
+    "template": "finish_current.png",
+    "roi": [
+      940,
+      590,
+      310,
+      125
+    ],
+    "threshold": 0.46,
+    "action": "Click",
+    "target_offset": [
+      116,
+      30,
+      -232,
+      -60
+    ],
+    "post_delay": 2200,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "StoryFinishAltButton": {
+    "recognition": "TemplateMatch",
+    "template": "finish_alt.png",
+    "roi": [
+      940,
+      590,
+      310,
+      125
+    ],
+    "threshold": 0.43,
+    "action": "Click",
+    "target_offset": [
+      111,
+      28,
+      -222,
+      -57
+    ],
+    "post_delay": 2200,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  }
+}

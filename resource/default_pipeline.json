@@ -1,0 +1,12 @@
+{
+  "Default": {
+    "on_error": ["TimeoutExport"],
+    "focus": {
+      "Node.Recognition.Succeeded": "识别命中：{name}",
+      "Node.Action.Starting": "开始执行：{name}",
+      "Node.Action.Succeeded": "执行成功：{name}",
+      "Node.Action.Failed": "执行失败：{name}；即将停止任务并导出诊断报告。",
+      "Node.PipelineNode.Failed": "步骤超时或失败：{name}；即将停止任务并导出诊断报告。"
+    }
+  }
+}
