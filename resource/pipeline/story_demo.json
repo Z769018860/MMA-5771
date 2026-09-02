@@ -136,21 +136,17 @@
   },
   "StoryFirstFormation": {
     "recognition": "TemplateMatch",
-    "template": "investigate.png",
+    "template": "story_investigate_live.png",
     "roi": [
-      950,
-      610,
-      270,
-      105
+      660,
+      540,
+      310,
+      100
     ],
-    "threshold": 0.46,
+    "threshold": 0.72,
+    "method": 10001,
     "action": "Click",
-    "target_offset": [
-      117,
-      29,
-      -234,
-      -58
-    ],
+    "target": [790, 575, 35, 25],
     "post_delay": 2000,
     "next": [
       "StoryFirstBattlePreludeRouter"
@@ -226,7 +222,7 @@
   "StoryFirstHideCardsGraceWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 2200,
+    "post_delay": 10000,
     "next": [
       "StoryHideCards",
       "StoryAutoAlreadyOn",
