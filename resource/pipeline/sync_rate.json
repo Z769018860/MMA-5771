@@ -294,12 +294,15 @@
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [300, 195, 60, 35],
+    "target": [815, 195, 45, 35],
     "post_delay": 1200,
     "next": [
       "CharacterDetailRecovery",
       "DeployAssist"
-    ]
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击第一行助战条目中同步率与玩家头像之间的空白区域；仅在【上场】按钮亮起后继续。"
+    }
   },
   "CharacterDetailRecovery": {
     "recognition": "TemplateMatch",
