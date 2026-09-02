@@ -522,11 +522,11 @@
     "action": "DoNothing",
     "post_delay": 4500,
     "next": [
+      "HideCards",
+      "AutoControlReady",
       "ReviveDecision",
       "FailureChoice",
-      "FinishInvestigation",
-      "HideCards",
-      "AutoControlReady"
+      "FinishInvestigation"
     ],
     "focus": {
       "Node.Action.Succeeded": "最高警报已结束；等待 4.5 秒后依次判断：灵知弹窗、调查完成、隐藏卡牌、AUTO 状态。"
@@ -534,14 +534,14 @@
   },
   "HideCards": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards.png",
+    "template": "hide_cards_live.png",
     "roi": [
       1100,
       535,
-      150,
-      115
+      154,
+      120
     ],
-    "threshold": 0.5,
+    "threshold": 0.52,
     "timeout": 180000,
     "rate_limit": 700,
     "action": "Click",
@@ -553,44 +553,13 @@
     ],
     "post_delay": 700,
     "next": [
-      "ReviveDecision",
-      "FailureChoice",
-      "FinishInvestigation",
-      "AutoControlReady",
-      "HideCardsRecovery"
+      "AutoControlReady"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "判定结果：开战阶段检测到【隐藏卡牌】按钮（阈值 0.50）。",
-      "Node.Action.Succeeded": "隐藏卡牌已点击；接下来只确认一次 AUTO。"
-    }
-  },
-  "HideCardsRecovery": {
-    "recognition": "TemplateMatch",
-    "template": "hide_cards.png",
-    "roi": [
-      1100,
-      535,
-      150,
-      115
-    ],
-    "threshold": 0.46,
-    "timeout": 60000,
-    "rate_limit": 900,
-    "action": "Click",
-    "target_offset": [
-      52,
-      38,
-      -104,
-      -76
-    ],
-    "post_delay": 700,
-    "next": [
-      "ReviveDecision",
-      "FailureChoice",
-      "FinishInvestigation",
-      "AutoControlReady",
-      "HideCardsRecovery"
-    ]
+      "Node.Recognition.Succeeded": "警告结束并延迟后检测到实机隐藏卡牌按钮。",
+      "Node.Action.Succeeded": "隐藏卡牌已点击，下一步只点击一次 AUTO。"
+    },
+    "method": 10001
   },
   "AutoControlReady": {
     "recognition": "TemplateMatch",
@@ -609,170 +578,20 @@
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
-    "target": [45, 485, 28, 24],
-    "post_delay": 1200,
-    "next": [
-      "MotionFrame1"
+    "target": [
+      45,
+      485,
+      28,
+      24
     ],
-    "focus": {
-        "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-        "Node.Action.Succeeded": "已点击实际 AUTO 按钮中心附近 (59, 497)，强制进入三帧动态验证。"
-    }
-  },
-  "MotionFrame1": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture1",
-      "{IMAGE}",
-      "sync",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "MotionFrame2"
-    ]
-  },
-  "MotionFrame2": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture2",
-      "{IMAGE}",
-      "sync",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "MotionFrame3Compare"
-    ]
-  },
-  "MotionFrame3Compare": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "compare",
-      "{IMAGE}",
-      "sync",
-      "0.0025"
-    ],
+    "post_delay": 900,
     "next": [
       "BattleMonitor"
     ],
-    "on_error": [
-      "AutoMotionRecoveryClick"
-    ],
     "focus": {
-      "Node.Action.Succeeded": "三帧存在明显差异，确认自动战斗运行并进入战斗监控。",
-      "Node.Action.Failed": "三帧均高度相似，准备在真正 AUTO 按钮补点一次。"
+      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
+      "Node.Action.Succeeded": "已点击一次真正的 AUTO 按钮；不再进行三帧判定，直接进入战斗监控。"
     }
-  },
-  "AutoMotionRecoveryClick": {
-    "recognition": "TemplateMatch",
-    "template": ["auto_off_text.png", "auto_on_text.png"],
-    "roi": [
-      25,
-      470,
-      85,
-      60
-    ],
-    "threshold": 0.64,
-    "method": 10001,
-    "action": "Click",
-    "target": [45, 485, 28, 24],
-    "post_delay": 1200,
-    "next": [
-      "RecoveryMotionFrame1"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "已在实际 AUTO 按钮中心补点一次，重新执行三帧验证。"
-    }
-  },
-  "RecoveryMotionFrame1": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture1",
-      "{IMAGE}",
-      "sync_recovery",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "RecoveryMotionFrame2"
-    ]
-  },
-  "RecoveryMotionFrame2": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture2",
-      "{IMAGE}",
-      "sync_recovery",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "RecoveryMotionFrame3Compare"
-    ]
-  },
-  "RecoveryMotionFrame3Compare": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "compare",
-      "{IMAGE}",
-      "sync_recovery",
-      "0.0025"
-    ],
-    "next": [
-      "BattleMonitor"
-    ],
-    "on_error": [
-      "TimeoutExport"
-    ]
   },
   "BattleMonitor": {
     "recognition": "DirectHit",

@@ -194,14 +194,14 @@
   },
   "StoryHideCards": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards.png",
+    "template": "hide_cards_live.png",
     "roi": [
       1100,
       535,
-      150,
-      115
+      154,
+      120
     ],
-    "threshold": 0.48,
+    "threshold": 0.52,
     "action": "Click",
     "target_offset": [
       52,
@@ -211,9 +211,9 @@
     ],
     "post_delay": 700,
     "next": [
-      "StoryAutoControlReady",
-      "StoryHideCards"
-    ]
+      "StoryAutoControlReady"
+    ],
+    "method": 10001
   },
   "StoryAutoControlReady": {
     "recognition": "TemplateMatch",
@@ -232,170 +232,20 @@
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
-    "target": [45, 485, 28, 24],
-    "post_delay": 1200,
-    "next": [
-      "StoryMotionFrame1"
+    "target": [
+      45,
+      485,
+      28,
+      24
     ],
-    "focus": {
-        "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-        "Node.Action.Succeeded": "已点击实际 AUTO 按钮中心附近 (59, 497)，强制进入三帧动态验证。"
-    }
-  },
-  "StoryMotionFrame1": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture1",
-      "{IMAGE}",
-      "story",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "StoryMotionFrame2"
-    ]
-  },
-  "StoryMotionFrame2": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture2",
-      "{IMAGE}",
-      "story",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "StoryMotionFrame3Compare"
-    ]
-  },
-  "StoryMotionFrame3Compare": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "compare",
-      "{IMAGE}",
-      "story",
-      "0.0025"
-    ],
+    "post_delay": 900,
     "next": [
       "StoryBattleMonitor"
     ],
-    "on_error": [
-      "StoryAutoMotionRecoveryClick"
-    ],
     "focus": {
-      "Node.Action.Succeeded": "三帧存在明显差异，确认自动战斗运行并进入战斗监控。",
-      "Node.Action.Failed": "三帧均高度相似，准备在真正 AUTO 按钮补点一次。"
+      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
+      "Node.Action.Succeeded": "已点击一次真正的 AUTO 按钮；不再进行三帧判定，直接进入剧情战斗监控。"
     }
-  },
-  "StoryAutoMotionRecoveryClick": {
-    "recognition": "TemplateMatch",
-    "template": ["auto_off_text.png", "auto_on_text.png"],
-    "roi": [
-      25,
-      470,
-      85,
-      60
-    ],
-    "threshold": 0.64,
-    "method": 10001,
-    "action": "Click",
-    "target": [45, 485, 28, 24],
-    "post_delay": 1200,
-    "next": [
-      "StoryRecoveryMotionFrame1"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "已在实际 AUTO 按钮中心补点一次，重新执行三帧验证。"
-    }
-  },
-  "StoryRecoveryMotionFrame1": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture1",
-      "{IMAGE}",
-      "story_recovery",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "StoryRecoveryMotionFrame2"
-    ]
-  },
-  "StoryRecoveryMotionFrame2": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "capture2",
-      "{IMAGE}",
-      "story_recovery",
-      "0.0025"
-    ],
-    "post_delay": 1500,
-    "next": [
-      "StoryRecoveryMotionFrame3Compare"
-    ]
-  },
-  "StoryRecoveryMotionFrame3Compare": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      "{RESOURCE_DIR}/scripts/frame_motion.ps1",
-      "compare",
-      "{IMAGE}",
-      "story_recovery",
-      "0.0025"
-    ],
-    "next": [
-      "StoryBattleMonitor"
-    ],
-    "on_error": [
-      "TimeoutExport"
-    ]
   },
   "StoryBattleMonitor": {
     "recognition": "DirectHit",
@@ -612,6 +462,7 @@
     ],
     "post_delay": 900,
     "next": [
+      "StoryInitialChoicePage",
       "StoryAfterRoute"
     ],
     "focus": {
@@ -909,5 +760,30 @@
     "next": [
       "StoryAfterRoute"
     ]
+  },
+  "StoryInitialChoicePage": {
+    "recognition": "TemplateMatch",
+    "template": "story_choice_marker.png",
+    "roi": [
+      1080,
+      260,
+      174,
+      460
+    ],
+    "threshold": 0.46,
+    "method": 10001,
+    "order_by": "Vertical",
+    "index": -1,
+    "action": "Click",
+    "target": true,
+    "post_delay": 1000,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "跳过剧情后检测到至少一个初始选项。",
+      "Node.Action.Succeeded": "已点击初始选项；随后恢复严格的多选项/事件状态路由。"
+    }
   }
 }
+

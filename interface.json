@@ -3,8 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.9.3-auto-story-fix",
-  "description": "基于 MaaFramework 的忘却前夜 Windows 后台同调率循环与自动推剧情 Demo；修复 AUTO 实际按钮点击、强制三帧验证与剧情跳过。",
+  "version": "2.9.4-direct-auto-choice-fix",
+  "description": "忘却前夜后台同调率循环与自动推剧情 Demo；警告结束后优先隐藏卡牌并只点击一次 AUTO，修复剧情初始单选项。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {
@@ -70,7 +70,7 @@
       ],
       "default_check": true,
       "repeatable": false,
-      "description": "支持从主界面自动进入羽毛·癫狂；AUTO 开启后通过 3 秒三帧画面差判断是否真正开战，静止时只补点一次。"
+      "description": "挑战后等待警告结束并延迟；有隐藏卡牌则先点击，随后只点击一次正确位置的 AUTO；无隐藏卡牌则直接点击 AUTO。"
     },
     {
       "name": "自动推剧情Demo",
