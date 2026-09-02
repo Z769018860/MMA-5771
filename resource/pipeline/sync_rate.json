@@ -20,6 +20,7 @@
       "FailureChoice",
       "FinishInvestigation",
       "HideCards",
+      "AutoAlreadyOn",
       "AutoControlReady",
       "BattleMonitor",
       "StopHere"
@@ -477,6 +478,7 @@
       "FailureChoice",
       "FinishInvestigation",
       "HideCards",
+      "AutoAlreadyOn",
       "AutoControlReady"
     ],
     "focus": {
@@ -523,6 +525,7 @@
     "post_delay": 4500,
     "next": [
       "HideCards",
+      "AutoAlreadyOn",
       "AutoControlReady",
       "ReviveDecision",
       "FailureChoice",
@@ -567,6 +570,7 @@
     "post_delay": 700,
     "next": [
       "HideCardsRetry",
+      "AutoAlreadyOn",
       "AutoControlReady"
     ],
     "focus": {
@@ -602,34 +606,95 @@
   },
   "AutoControlReady": {
     "recognition": "TemplateMatch",
-    "template": [
-      "auto_off_text.png",
-      "auto_on_text.png"
-    ],
+    "template": "auto_off_text.png",
     "roi": [
       25,
       470,
       85,
       60
     ],
-    "threshold": 0.68,
+    "threshold": 0.75,
     "method": 10001,
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
     "target": [
-      45,
-      485,
-      28,
-      24
+      62,
+      495,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 700,
+    "next": [
+      "AutoVerifyWait"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
+      "Node.Action.Succeeded": "已点击 AUTO 文字中心；下一步必须确认文字变为白色亮起状态。"
+    }
+  },
+  "AutoVerifyWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 650,
+    "next": [
+      "AutoAlreadyOn",
+      "AutoRetryClick"
+    ]
+  },
+  "AutoAlreadyOn": {
+    "recognition": "ColorMatch",
+    "roi": [
+      42,
+      484,
+      54,
+      30
+    ],
+    "method": 4,
+    "lower": [
+      190,
+      190,
+      180
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 24,
+    "connected": false,
+    "action": "DoNothing",
     "next": [
       "BattleMonitor"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-      "Node.Action.Succeeded": "已点击一次真正的 AUTO 按钮；不再进行三帧判定，直接进入战斗监控。"
+      "Node.Recognition.Succeeded": "确认 AUTO 文字已变为白色亮起状态，进入战斗监控。"
+    }
+  },
+  "AutoRetryClick": {
+    "recognition": "TemplateMatch",
+    "template": "auto_off_text.png",
+    "roi": [
+      25,
+      470,
+      85,
+      60
+    ],
+    "threshold": 0.72,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      62,
+      495,
+      10,
+      10
+    ],
+    "post_delay": 700,
+    "next": [
+      "AutoVerifyWait"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "AUTO 仍为灰色，重新点击文字中心。"
     }
   },
   "BattleMonitor": {

@@ -48,9 +48,6 @@
     "post_delay": 800,
     "next": [
       "StoryCutscene",
-      "StoryBattleWarning",
-      "StoryHideCards",
-      "StoryAutoControlReady",
       "StoryEventPage",
       "StoryFormation",
       "StoryChoicePage",
@@ -61,7 +58,7 @@
     ],
     "timeout": 120000,
     "focus": {
-      "Node.Action.Succeeded": "关卡内状态路由：优先判断剧情、战斗警告、隐藏卡牌与 AUTO；不再识别章节关卡图标。"
+      "Node.Action.Succeeded": "点击关卡后优先识别剧情或调查按钮；未点击调查前禁止判断 AUTO。"
     }
   },
   "StoryAfterRoute": {
@@ -70,16 +67,17 @@
     "post_delay": 1000,
     "next": [
       "StoryCutscene",
+      "StoryEventPage",
+      "StoryFormation",
       "StoryBattleWarning",
       "StoryHideCards",
+      "StoryAutoAlreadyOn",
       "StoryAutoControlReady",
-      "StoryEventPage",
       "StoryFinishInvestigation",
       "StoryReviveDecision",
       "StoryChoicePage",
       "StoryShop",
-      "StoryArtifactSelect",
-      "StoryFormation"
+      "StoryArtifactSelect"
     ],
     "timeout": 120000
   },
@@ -161,6 +159,7 @@
     "next": [
       "StoryBattleWarning",
       "StoryHideCards",
+      "StoryAutoAlreadyOn",
       "StoryAutoControlReady",
       "StoryCutscene",
       "StoryChoicePage"
@@ -194,6 +193,7 @@
       "StoryReviveDecision",
       "StoryFinishInvestigation",
       "StoryHideCards",
+      "StoryAutoAlreadyOn",
       "StoryAutoControlReady"
     ]
   },
@@ -230,6 +230,7 @@
     "post_delay": 700,
     "next": [
       "StoryHideCardsRetry",
+      "StoryAutoAlreadyOn",
       "StoryAutoControlReady"
     ]
   },
@@ -258,35 +259,90 @@
   },
   "StoryAutoControlReady": {
     "recognition": "TemplateMatch",
-    "template": [
-      "auto_off_text.png",
-      "auto_on_text.png"
-    ],
+    "template": "auto_off_text.png",
     "roi": [
       25,
       470,
       85,
       60
     ],
-    "threshold": 0.68,
+    "threshold": 0.75,
     "method": 10001,
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
     "target": [
-      45,
-      485,
-      28,
-      24
+      62,
+      495,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 700,
     "next": [
-      "StoryBattleMonitor"
+      "StoryAutoVerifyWait"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-      "Node.Action.Succeeded": "已点击一次真正的 AUTO 按钮；不再进行三帧判定，直接进入剧情战斗监控。"
+      "Node.Action.Succeeded": "已点击剧情战斗 AUTO 中心；确认变亮后才进入监控。"
     }
+  },
+  "StoryAutoVerifyWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 650,
+    "next": [
+      "StoryAutoAlreadyOn",
+      "StoryAutoRetryClick"
+    ]
+  },
+  "StoryAutoAlreadyOn": {
+    "recognition": "ColorMatch",
+    "roi": [
+      42,
+      484,
+      54,
+      30
+    ],
+    "method": 4,
+    "lower": [
+      190,
+      190,
+      180
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 24,
+    "connected": false,
+    "action": "DoNothing",
+    "next": [
+      "StoryBattleMonitor"
+    ]
+  },
+  "StoryAutoRetryClick": {
+    "recognition": "TemplateMatch",
+    "template": "auto_off_text.png",
+    "roi": [
+      25,
+      470,
+      85,
+      60
+    ],
+    "threshold": 0.72,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      62,
+      495,
+      10,
+      10
+    ],
+    "post_delay": 700,
+    "next": [
+      "StoryAutoVerifyWait"
+    ]
   },
   "StoryBattleMonitor": {
     "recognition": "DirectHit",
@@ -547,6 +603,7 @@
     "next": [
       "StoryBattleWarning",
       "StoryHideCards",
+      "StoryAutoAlreadyOn",
       "StoryAutoControlReady",
       "StoryCutscene",
       "StoryChoicePage",
