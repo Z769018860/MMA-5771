@@ -583,16 +583,17 @@
     }
   },
   "StoryChoiceRewardPopup": {
-    "recognition": "OCR",
-    "roi": [700, 120, 520, 180],
-    "expected": [".*刻印说明.*", ".*造物说明.*"],
-    "threshold": 0.4,
+    "recognition": "TemplateMatch",
+    "template": "story_reward_popup_frame.png",
+    "roi": [1080, 130, 160, 140],
+    "threshold": 0.82,
+    "method": 10001,
     "action": "Click",
-    "target": [180, 620, 90, 45],
+    "target": [170, 300, 100, 100],
     "post_delay": 700,
     "next": ["StoryChoicePage", "StoryAfterRoute"],
     "focus": {
-      "Node.Recognition.Succeeded": "检测到选项产生的卡牌或造物说明弹窗，点击左下安全空白处关闭。",
+      "Node.Recognition.Succeeded": "直接检测到卡牌或造物详情弹窗的右上框体，不依赖 OCR 文字，点击左侧安全空白处关闭。",
       "Node.Action.Succeeded": "附加说明弹窗已关闭，重新识别事件选项或后续页面。"
     }
   },
