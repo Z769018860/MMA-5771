@@ -589,48 +589,35 @@
     }
   },
   "StoryChoiceSealPopup": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "OCR",
-        "roi": [700, 125, 500, 150],
-        "expected": ["刻印说明"],
-        "threshold": 0.72,
-        "only_rec": true
-      },
-      {
-        "recognition": "TemplateMatch",
-        "template": "story_reward_popup_frame.png",
-        "roi": [1080, 130, 160, 140],
-        "threshold": 0.95,
-        "method": 10001
-      }
-    ],
-    "box_index": 0,
+    "recognition": "TemplateMatch",
+    "template": "story_seal_popup_title.png",
+    "roi": [730, 140, 260, 100],
+    "threshold": 0.78,
+    "method": 10001,
     "action": "Click",
     "target": [170, 300, 100, 100],
     "post_delay": 700,
-    "next": ["StoryChoicePage", "StoryAfterRoute"],
+    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryChoicePage", "StoryAfterRoute"],
     "focus": {
-      "Node.Recognition.Succeeded": "事件选择后同时命中【刻印说明】和高阈值弹窗框体。",
-      "Node.Action.Succeeded": "刻印弹窗已点击一次左侧安全空白；随后重新识别最下面的离开选项。"
+      "Node.Recognition.Succeeded": "事件选择后直接命中实机【刻印说明】标题模板，不再依赖不可用的 OCR。",
+      "Node.Action.Succeeded": "已点击刻印弹窗左侧安全空白；仅当标题仍存在时才补点，否则识别最下面的离开选项。"
     }
   },
   "StoryChoiceArtifactPopup": {
     "recognition": "And",
     "all_of": [
       {
-        "recognition": "OCR",
-        "roi": [700, 125, 500, 150],
-        "expected": ["造物说明"],
-        "threshold": 0.72,
-        "only_rec": true
+        "recognition": "TemplateMatch",
+        "template": "story_reward_popup_explain_suffix.png",
+        "roi": [760, 145, 360, 105],
+        "threshold": 0.78,
+        "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "story_reward_popup_frame.png",
         "roi": [1080, 130, 160, 140],
-        "threshold": 0.95,
+        "threshold": 0.82,
         "method": 10001
       }
     ],
@@ -638,10 +625,10 @@
     "action": "Click",
     "target": [170, 300, 100, 100],
     "post_delay": 700,
-    "next": ["StoryChoicePage", "StoryAfterRoute"],
+    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryChoicePage", "StoryAfterRoute"],
     "focus": {
-      "Node.Recognition.Succeeded": "事件选择后同时命中【造物说明】和高阈值弹窗框体。",
-      "Node.Action.Succeeded": "造物弹窗已点击一次左侧安全空白；随后重新识别最下面的离开选项。"
+      "Node.Recognition.Succeeded": "事件选择后同时命中实机【说明】标题后缀与弹窗框体模板。",
+      "Node.Action.Succeeded": "已点击造物说明弹窗左侧安全空白；仅当弹窗仍存在时才补点，否则识别最下面的离开选项。"
     }
   },
   "StoryPreferredChoice": {
