@@ -1,0 +1,59 @@
+name: Build MFAAvalonia update package
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - interface.json
+      - resource/**
+      - setup_and_run.ps1
+      - START_WIN64.cmd
+      - README.md
+      - 使用说明.md
+      - .github/workflows/release.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read project version
+        id: version
+        shell: bash
+        run: |
+          version="$(jq -r '.version' interface.json)"
+          if ! [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "interface.json version must be semantic x.y.z: $version" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Build update archive
+        shell: bash
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          archive="Morimens_MAA_v${version}.zip"
+          zip -q -r "$archive" . \
+            -x '.git/*' '.github/*' 'deliverables/*' '*.zip'
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          version="${{ steps.version.outputs.version }}"
+          tag="v${version}"
+          archive="Morimens_MAA_v${version}.zip"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag already exists; no duplicate release created."
+            exit 0
+          fi
+          gh release create "$tag" "$archive" \
+            --target "$GITHUB_SHA" \
+            --title "Morimens MAA v${version}" \
+            --notes "MFAAvalonia 可通过项目内置更新入口自动检测并安装此版本。完整变更见 README.md。"

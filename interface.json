@@ -3,7 +3,8 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.13.1-direct-reward-popup-frame",
+  "version": "2.14.0",
+  "github": "https://github.com/Z769018860/MMA-5771",
   "description": "忘却前夜后台同调率循环与自动推剧情 Demo；事件选项优先于底层战斗信号，并增强多轮同调率结果页恢复。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
@@ -70,7 +71,7 @@
       ],
       "default_check": true,
       "repeatable": false,
-      "description": "点击调查后等待【我方行动】图样，再等待 2.2 秒并优先隐藏卡牌；仍未出现才识别并验证 AUTO。"
+      "description": "点击调查后优先直接恢复可能已覆盖开场图样的隐藏卡牌；否则等待【我方行动】并在 5 秒后再次优先判断隐藏卡牌，最后才识别并验证 AUTO。"
     },
     {
       "name": "自动推剧情Demo",
