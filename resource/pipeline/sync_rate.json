@@ -19,6 +19,8 @@
       "ReviveDecision",
       "FailureChoice",
       "FinishInvestigation",
+      "FinishCurrentButton",
+      "FinishAltButton",
       "StopHere"
     ]
   },
@@ -748,7 +750,9 @@
     "post_delay": 1000,
     "next": [
       "ReviveDecision",
-      "FinishInvestigation"
+      "FinishInvestigation",
+      "FinishCurrentButton",
+      "FinishAltButton"
     ],
     "on_error": [
       "TimeoutExport"
@@ -918,7 +922,9 @@
     "post_delay": 2500,
     "next": [
       "CycleStart",
-      "ChooseMadness"
+      "ChooseMadness",
+      "FinishCurrentButton",
+      "FinishAltButton"
     ],
     "on_error": [
       "FinishButtonClickRetry"
@@ -941,7 +947,9 @@
     "post_delay": 2500,
     "next": [
       "CycleStart",
-      "ChooseMadness"
+      "ChooseMadness",
+      "FinishCurrentButton",
+      "FinishAltButton"
     ],
     "on_error": [
       "FinishButtonClickRetry"
@@ -955,7 +963,9 @@
     "post_delay": 2500,
     "next": [
       "CycleStart",
-      "ChooseMadness"
+      "ChooseMadness",
+      "FinishCurrentButton",
+      "FinishAltButton"
     ],
     "on_error": [
       "TimeoutExport"

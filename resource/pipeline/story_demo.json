@@ -183,9 +183,9 @@
     "post_delay": 500,
     "timeout": 120000,
     "next": [
-      "StoryFirstBattleStartSignal",
       "StoryFirstCutscene",
       "StoryFirstEventPage",
+      "StoryFirstBattleStartSignal",
       "StoryFinishInvestigation",
       "StoryReviveDecision"
     ],
@@ -246,12 +246,16 @@
     "action": "DoNothing",
     "post_delay": 5000,
     "next": [
+      "StoryFirstEventPage",
       "StoryHideCards",
       "StoryAutoAlreadyOn",
       "StoryAutoControlReady",
       "StoryFinishInvestigation",
       "StoryReviveDecision"
-    ]
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "等待结束后先复核开场事件选项，再判断隐藏卡牌和 AUTO，避免底层战斗 UI 抢先改变状态。"
+    }
   },
   "StoryFormation": {
     "recognition": "TemplateMatch",
