@@ -66,7 +66,6 @@
     "action": "DoNothing",
     "post_delay": 1000,
     "next": [
-      "StoryChoiceRewardPopup",
       "StoryCutscene",
       "StoryEventPage",
       "StoryFormation",
@@ -454,7 +453,6 @@
     "post_delay": 1000,
     "timeout": 300000,
     "next": [
-      "StoryChoiceRewardPopup",
       "StoryReviveDecision",
       "StoryFinishInvestigation",
       "StoryCutscene",
@@ -574,27 +572,76 @@
     "target_offset": [-270, 0, -20, 0],
     "post_delay": 700,
     "next": [
-      "StoryChoiceRewardPopup",
-      "StoryAfterRoute"
+      "StoryChoicePostSelectWait"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到事件选项结构，按纵向排序选择最下面一项，不依赖事件名称或固定纵坐标。",
       "Node.Action.Succeeded": "已点击最下面的事件选项；接下来优先处理可能出现的卡牌或造物说明弹窗。"
     }
   },
-  "StoryChoiceRewardPopup": {
-    "recognition": "TemplateMatch",
-    "template": "story_reward_popup_frame.png",
-    "roi": [1080, 130, 160, 140],
-    "threshold": 0.82,
-    "method": 10001,
+  "StoryChoicePostSelectWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 900,
+    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryAfterRoute"],
+    "focus": {
+      "Node.Action.Succeeded": "事件选项已点击；仅在此短链检查刻印或造物说明弹窗。"
+    }
+  },
+  "StoryChoiceSealPopup": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "OCR",
+        "roi": [700, 125, 500, 150],
+        "expected": ["刻印说明"],
+        "threshold": 0.72,
+        "only_rec": true
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_reward_popup_frame.png",
+        "roi": [1080, 130, 160, 140],
+        "threshold": 0.95,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
     "action": "Click",
     "target": [170, 300, 100, 100],
     "post_delay": 700,
     "next": ["StoryChoicePage", "StoryAfterRoute"],
     "focus": {
-      "Node.Recognition.Succeeded": "直接检测到卡牌或造物详情弹窗的右上框体，不依赖 OCR 文字，点击左侧安全空白处关闭。",
-      "Node.Action.Succeeded": "附加说明弹窗已关闭，重新识别事件选项或后续页面。"
+      "Node.Recognition.Succeeded": "事件选择后同时命中【刻印说明】和高阈值弹窗框体。",
+      "Node.Action.Succeeded": "刻印弹窗已点击一次左侧安全空白；随后重新识别最下面的离开选项。"
+    }
+  },
+  "StoryChoiceArtifactPopup": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "OCR",
+        "roi": [700, 125, 500, 150],
+        "expected": ["造物说明"],
+        "threshold": 0.72,
+        "only_rec": true
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_reward_popup_frame.png",
+        "roi": [1080, 130, 160, 140],
+        "threshold": 0.95,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [170, 300, 100, 100],
+    "post_delay": 700,
+    "next": ["StoryChoicePage", "StoryAfterRoute"],
+    "focus": {
+      "Node.Recognition.Succeeded": "事件选择后同时命中【造物说明】和高阈值弹窗框体。",
+      "Node.Action.Succeeded": "造物弹窗已点击一次左侧安全空白；随后重新识别最下面的离开选项。"
     }
   },
   "StoryPreferredChoice": {
@@ -695,7 +742,7 @@
     ],
     "post_delay": 1000,
     "next": [
-      "StoryBattleStartRouter"
+      "StoryChoicePostSelectWait"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到事件页下方白色选项面板，不依赖事件名称，点击选项。",
@@ -708,7 +755,6 @@
     "post_delay": 1000,
     "timeout": 120000,
     "next": [
-      "StoryChoiceRewardPopup",
       "StoryCutscene",
       "StoryChoicePage",
       "StoryFinishInvestigation",
