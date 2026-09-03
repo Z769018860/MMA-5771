@@ -66,6 +66,7 @@
     "action": "DoNothing",
     "post_delay": 1000,
     "next": [
+      "StoryChoiceRewardPopup",
       "StoryCutscene",
       "StoryEventPage",
       "StoryFormation",
@@ -172,7 +173,7 @@
     "action": "Click",
     "target": [1080, 635, 60, 30],
     "post_delay": 2000,
-    "next": ["StoryFirstBattlePreludeRouter"],
+    "next": ["StoryFirstSquadInvestigate", "StoryFirstBattlePreludeRouter"],
     "focus": {
       "Node.Action.Succeeded": "剧情第一场编队界面已识别并点击右下角调查；不再依赖随队伍名称移动的队伍信息按钮。"
     }
@@ -268,7 +269,7 @@
     "action": "Click",
     "target": [1080, 635, 60, 30],
     "post_delay": 2000,
-    "next": ["StoryBattleMonitor"],
+    "next": ["StoryFormation", "StoryBattleMonitor"],
     "focus": {
       "Node.Action.Succeeded": "后续剧情战斗已点击调查；不再执行 AUTO，直接进入战斗监控。"
     }
@@ -453,6 +454,7 @@
     "post_delay": 1000,
     "timeout": 300000,
     "next": [
+      "StoryChoiceRewardPopup",
       "StoryReviveDecision",
       "StoryFinishInvestigation",
       "StoryCutscene",
@@ -565,13 +567,33 @@
     ],
     "threshold": 0.72,
     "method": 10001,
-    "action": "DoNothing",
+    "order_by": "Vertical",
+    "index": -1,
+    "action": "Click",
+    "target": true,
+    "target_offset": [-270, 0, -20, 0],
+    "post_delay": 700,
     "next": [
-      "StoryPreferredChoice",
-      "StoryBottomChoice"
+      "StoryChoiceRewardPopup",
+      "StoryAfterRoute"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "检测到事件选项右侧结构按钮，不依赖事件名称；优先 OCR 查找黄金造物或白银造物，否则点击第一项。"
+      "Node.Recognition.Succeeded": "检测到事件选项结构，按纵向排序选择最下面一项，不依赖事件名称或固定纵坐标。",
+      "Node.Action.Succeeded": "已点击最下面的事件选项；接下来优先处理可能出现的卡牌或造物说明弹窗。"
+    }
+  },
+  "StoryChoiceRewardPopup": {
+    "recognition": "OCR",
+    "roi": [700, 120, 520, 180],
+    "expected": [".*刻印说明.*", ".*造物说明.*"],
+    "threshold": 0.4,
+    "action": "Click",
+    "target": [180, 620, 90, 45],
+    "post_delay": 700,
+    "next": ["StoryChoicePage", "StoryAfterRoute"],
+    "focus": {
+      "Node.Recognition.Succeeded": "检测到选项产生的卡牌或造物说明弹窗，点击左下安全空白处关闭。",
+      "Node.Action.Succeeded": "附加说明弹窗已关闭，重新识别事件选项或后续页面。"
     }
   },
   "StoryPreferredChoice": {
@@ -685,6 +707,7 @@
     "post_delay": 1000,
     "timeout": 120000,
     "next": [
+      "StoryChoiceRewardPopup",
       "StoryCutscene",
       "StoryChoicePage",
       "StoryFinishInvestigation",
