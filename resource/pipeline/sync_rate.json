@@ -588,25 +588,25 @@
     "rate_limit": 700,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1190,
+      598,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 650,
     "next": [
       "HideCardsVerify"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到完整的【隐藏卡牌】文字与眼睛面板，而不是战斗右下角常驻图标。",
-      "Node.Action.Succeeded": "已点击隐藏卡牌眼睛面板；下一步回查选择页面是否真的消失。"
+      "Node.Action.Succeeded": "已精确补点隐藏卡牌眼睛中心；下一步回查选择页面是否真的消失。"
     },
     "method": 10001
   },
   "HideCardsVerify": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 700,
+    "post_delay": 500,
     "next": [
       "HideCardsRetry",
       "AutoAlreadyOn",
@@ -629,18 +629,18 @@
     "method": 10001,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1190,
+      598,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 650,
     "next": [
       "HideCardsVerify"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "回查确认隐藏卡牌仍未收起，重试右下角眼睛键。",
-      "Node.Action.Succeeded": "已重试收起键；不会把发送点击等同于界面已收起。"
+      "Node.Action.Succeeded": "已再次精确补点眼睛中心；仍会继续回查，发送成功不等于界面已收起。"
     }
   },
   "AutoControlReady": {

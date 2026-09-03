@@ -218,11 +218,13 @@
     "next": ["StoryFirstBattlePreludeRouter"]
   },
   "StoryFirstEventPage": {
-    "recognition": "TemplateMatch",
-    "template": "story_event_page_live.png",
-    "roi": [520, 95, 220, 75],
-    "threshold": 0.76,
-    "method": 10001,
+    "recognition": "ColorMatch",
+    "roi": [500, 520, 570, 110],
+    "method": 4,
+    "lower": [145, 145, 145],
+    "upper": [255, 255, 255],
+    "count": 20000,
+    "connected": false,
     "action": "Click",
     "target": [770, 565, 30, 24],
     "post_delay": 1000,
@@ -310,12 +312,12 @@
     "threshold": 0.72,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1190,
+      598,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 650,
     "next": [
       "StoryHideCardsVerify"
     ],
@@ -328,7 +330,7 @@
   "StoryHideCardsVerify": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 700,
+    "post_delay": 500,
     "next": [
       "StoryHideCardsRetry",
       "StoryAutoAlreadyOn",
@@ -348,12 +350,12 @@
     "method": 10001,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1190,
+      598,
+      10,
+      10
     ],
-    "post_delay": 900,
+    "post_delay": 650,
     "next": [
       "StoryHideCardsVerify"
     ]
@@ -553,39 +555,23 @@
     ]
   },
   "StoryChoicePage": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "TemplateMatch",
-        "template": "story_choice_marker.png",
-        "roi": [
-          1160,
-          465,
-          120,
-          115
-        ],
-        "threshold": 0.48
-      },
-      {
-        "recognition": "TemplateMatch",
-        "template": "story_choice_marker.png",
-        "roi": [
-          1160,
-          575,
-          120,
-          145
-        ],
-        "threshold": 0.48
-      }
+    "recognition": "TemplateMatch",
+    "template": "story_option_button.png",
+    "roi": [
+      1035,
+      360,
+      105,
+      270
     ],
-    "box_index": 0,
+    "threshold": 0.72,
+    "method": 10001,
     "action": "DoNothing",
     "next": [
       "StoryPreferredChoice",
       "StoryBottomChoice"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "检测到剧情选项框：优先 OCR 查找黄金造物或白银造物，否则选择最下面一项。"
+      "Node.Recognition.Succeeded": "检测到事件选项右侧结构按钮，不依赖事件名称；优先 OCR 查找黄金造物或白银造物，否则点击第一项。"
     }
   },
   "StoryPreferredChoice": {
@@ -612,10 +598,10 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      835,
-      640,
-      8,
-      8
+      790,
+      430,
+      20,
+      16
     ],
     "post_delay": 1100,
     "next": [
@@ -670,16 +656,13 @@
     }
   },
   "StoryEventPage": {
-    "recognition": "TemplateMatch",
-    "template": "story_event_page_live.png",
-    "roi": [
-      520,
-      95,
-      220,
-      75
-    ],
-    "threshold": 0.76,
-    "method": 10001,
+    "recognition": "ColorMatch",
+    "roi": [500, 520, 570, 110],
+    "method": 4,
+    "lower": [145, 145, 145],
+    "upper": [255, 255, 255],
+    "count": 20000,
+    "connected": false,
     "action": "Click",
     "target": [
       770,
@@ -692,7 +675,7 @@
       "StoryBattleStartRouter"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "检测到上现虚景事件页，点击下方白色效果选项。",
+      "Node.Recognition.Succeeded": "检测到事件页下方白色选项面板，不依赖事件名称，点击选项。",
       "Node.Action.Succeeded": "已点击事件页初始选项，返回剧情状态路由复核。"
     }
   },
