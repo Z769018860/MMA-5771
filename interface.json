@@ -9,6 +9,14 @@
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
   "controller": [
     {
+      "name": "AndroidEmulator",
+      "label": "安卓模拟器（ADB）",
+      "description": "自动发现已启动的模拟器，通过 ADB 截图和触控操作。请将游戏设为横屏 16:9；多实例时在连接页面选择目标设备。",
+      "type": "Adb",
+      "display_short_side": 720,
+      "adb": {}
+    },
+    {
       "name": "BackgroundCursor",
       "label": "后台增强·光标定位（推荐）",
       "description": "FramePool 后台截图 + SendMessageWithCursorPos 后台输入。不会切换前台窗口，点击时鼠标会极短暂移动并自动恢复。",

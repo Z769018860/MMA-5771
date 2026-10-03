@@ -184,6 +184,7 @@
     "timeout": 120000,
     "next": [
       "StoryFirstCutscene",
+      "StoryFirstCutsceneEmulator",
       "StoryFirstEventPage",
       "StoryFirstBattleStartSignal",
       "StoryFinishInvestigation",
@@ -214,6 +215,30 @@
     "box_index": 1,
     "action": "Click",
     "target": [1196, 32, 28, 38],
+    "post_delay": 900,
+    "next": ["StoryFirstBattlePreludeRouter"]
+  },
+  "StoryFirstCutsceneEmulator": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_play_emulator.png",
+        "roi": [1090, 5, 100, 85],
+        "threshold": 0.76,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "story_skip_emulator.png",
+        "roi": [1185, 5, 90, 85],
+        "threshold": 0.76,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [1210, 24, 45, 45],
     "post_delay": 900,
     "next": ["StoryFirstBattlePreludeRouter"]
   },
@@ -248,6 +273,7 @@
     "action": "DoNothing",
     "post_delay": 5000,
     "next": [
+      "StoryFirstCutsceneEmulator",
       "StoryFirstEventPage",
       "StoryHideCards",
       "StoryAutoAlreadyOn",
