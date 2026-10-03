@@ -14,7 +14,7 @@ If the API answers with a Cloudflare challenge, open the wiki in a browser, copy
 
 For each wiki page the script records the page wikitext, every file it embeds, and follows links (default: titles ending in -NN such as 蔷薇礼赞-01, see --follow/--depth) plus "页面/子页"-style sub-pages.
 It then resolves image URL/size/sha1 and (with --download) saves the files whose name matches
---filter (default: map/地图/战斗/地形). Use --all-images to download everything.
+--filter (default: names ending in _map.jpg/png, e.g. 蔷薇礼赞01_map.jpg). Use --all-images to download every embedded file.
 Pages that do not exist (e.g. the 异梦视界 red link) are reported, not fatal; use
 --image-prefix to also pull files by file-name prefix (e.g. --image-prefix 异梦视界).
 """
@@ -31,7 +31,7 @@ import requests
 
 API = "https://morimens.huijiwiki.com/api.php"
 DEFAULT_PAGES = ["意识潜游", "特遣记录", "异梦视界"]
-DEFAULT_FILTER = r"map|地图|战斗|地形"
+DEFAULT_FILTER = r"_map\.(jpe?g|png)$"
 
 
 class Wiki:
