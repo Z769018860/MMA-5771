@@ -12,9 +12,8 @@ If the API answers with a Cloudflare challenge, open the wiki in a browser, copy
     python tools/fetch_huiji_special_maps.py --download \
         --cookie "cf_clearance=XXXX" --user-agent "<your browser UA>"
 
-For each wiki page the script records the page wikitext, every file it embeds, and the
-files embedded by its sub-pages (links in the main namespace, one level deep). It then
-resolves image URL/size/sha1 and (with --download) saves the files whose name matches
+For each wiki page the script records the page wikitext, every file it embeds, and follows links (default: titles ending in -NN such as 蔷薇礼赞-01, see --follow/--depth) plus "页面/子页"-style sub-pages.
+It then resolves image URL/size/sha1 and (with --download) saves the files whose name matches
 --filter (default: map/地图/战斗/地形). Use --all-images to download everything.
 Pages that do not exist (e.g. the 异梦视界 red link) are reported, not fatal; use
 --image-prefix to also pull files by file-name prefix (e.g. --image-prefix 异梦视界).
@@ -153,6 +152,8 @@ def main():
     ap.add_argument("--image-prefix", action="append", default=[], help="also list files by name prefix")
     ap.add_argument("--filter", default=DEFAULT_FILTER, help="regex on file name to download")
     ap.add_argument("--all-images", action="store_true", help="ignore --filter")
+    ap.add_argument("--depth", type=int, default=2, help="how many link levels to follow from each --page")
+    ap.add_argument("--follow", default=r"-\d+$", help="regex: link titles to follow (default: stage pages like 蔷薇礼赞-01)")
     ap.add_argument("--no-subpages", action="store_true", help="do not follow linked sub-pages")
     ap.add_argument("--download", action="store_true")
     ap.add_argument("--cookie")
@@ -163,20 +164,27 @@ def main():
 
     wiki = Wiki(args)
     pages, seen = {}, set()
-    queue = [(t, None) for t in (args.page or DEFAULT_PAGES)]
+    follow = re.compile(args.follow)
+    queue = [(t, None, 0) for t in (args.page or DEFAULT_PAGES)]
     while queue:
-        title, parent = queue.pop(0)
+        title, parent, depth = queue.pop(0)
         if title in seen:
             continue
         seen.add(title)
         page = parse_page(wiki, title)
-        page["parent"] = parent
+        page["parent"], page["depth"] = parent, depth
         pages[title] = page
-        print(("MISSING " if page["missing"] else "ok      ") + title)
-        if page["missing"] or args.no_subpages or parent is not None:
+        if page["missing"]:
+            print(f"MISSING {title}")
             continue
-        for sub in sorted(set(subpage_titles(wiki, title)) | {l for l in page["links"] if l.startswith(title + "/")}):
-            queue.append((sub, title))
+        print(f"ok d{depth} {title}: {len(page['images'])} images, {len(page['links'])} links")
+        if depth >= args.depth:
+            continue
+        cands = {l for l in page["links"] if follow.search(l)}
+        if not args.no_subpages:
+            cands |= set(subpage_titles(wiki, title))
+        for sub in sorted(cands):
+            queue.append((sub, title, depth + 1))
 
     files = {}  # name -> set(pages)
     for t, p in pages.items():
@@ -217,11 +225,15 @@ def main():
             json.dumps(p, ensure_ascii=False, indent=2), encoding="utf-8")
     manifest = {
         "source": API, "retrieved_at": datetime.now(timezone.utc).isoformat(),
-        "pages": {t: {"missing": p["missing"], "parent": p["parent"], "image_count": len(p.get("images", []))}
+        "pages": {t: {"missing": p["missing"], "parent": p["parent"], "depth": p.get("depth"), "image_count": len(p.get("images", []))}
                   for t, p in pages.items()},
         "files": records,
     }
     (args.out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    if not any(r["selected"] for r in records):
+        print("No file matched --filter. Sample file names (use --all-images or adjust --filter):")
+        for r in records[:15]:
+            print("   ", r["name"])
     print(json.dumps({
         "pages": len(pages), "missing_pages": [t for t, p in pages.items() if p["missing"]],
         "files": len(records), "selected": sum(r["selected"] for r in records),
