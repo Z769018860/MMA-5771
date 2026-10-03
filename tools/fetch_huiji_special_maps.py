@@ -153,7 +153,7 @@ def main():
     ap.add_argument("--filter", default=DEFAULT_FILTER, help="regex on file name to download")
     ap.add_argument("--all-images", action="store_true", help="ignore --filter")
     ap.add_argument("--depth", type=int, default=2, help="how many link levels to follow from each --page")
-    ap.add_argument("--follow", default=r"-\d+$", help="regex: link titles to follow (default: stage pages like 蔷薇礼赞-01)")
+    ap.add_argument("--follow", default=r"-\d+(·.+)?$", help="regex: link titles to follow (default: stage pages like 蔷薇礼赞-01 and their event pages like 终末交响曲-02·剧情)")
     ap.add_argument("--no-subpages", action="store_true", help="do not follow linked sub-pages")
     ap.add_argument("--download", action="store_true")
     ap.add_argument("--cookie")
