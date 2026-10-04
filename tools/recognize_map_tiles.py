@@ -67,7 +67,7 @@ def detect_icons(image, templates, thr=0.64, nms=105):
     return out
 
 
-def classify_site(hsv, gray, cx, cy, interior=False):
+def classify_site(hsv, gray, cx, cy, interior=0):
     """Classify an icon-less lattice site: plain / cracked_rock / purple_rift / red_flesh / unknown_icon / None."""
     h, w = gray.shape
     if not (135 < cx < w - 135 and 135 < cy < h - 135):
@@ -83,20 +83,27 @@ def classify_site(hsv, gray, cx, cy, interior=False):
     ring = ((ax ** 2 + ay ** 2) >= 100 ** 2) & ((ax ** 2 + ay ** 2) <= 135 ** 2)
     fog_level = max(35.0, 0.45 * mean)  # fog is not always pure black
     in_fog = (gray[int(cy) - 135:int(cy) + 136, int(cx) - 135:int(cx) + 136][ring] < fog_level).mean() >= 0.08
-    if not interior and not in_fog:
+    if interior < 2 and not in_fog:
         return None  # tiles sit inside the black fog (interior holes surrounded by known tiles are exempt)
     hue, sat, val = hp[:, 0], hp[:, 1], hp[:, 2]
+    patch = cv2.GaussianBlur(gray[int(cy) - 61:int(cy) + 62, int(cx) - 61:int(cx) + 62], (0, 0), 1.2).astype(np.float32)
+    edge = float(cv2.magnitude(cv2.Sobel(patch, cv2.CV_32F, 1, 0), cv2.Sobel(patch, cv2.CV_32F, 0, 1))[1:-1, 1:-1][disc].mean())
+    smooth = edge < 6  # paper/background blotches have no stone texture
     if (((hue < 10) | (hue > 165)) & (sat > 120) & (val > 110)).mean() > 0.45:
         return "red_flesh"
     if ((hue >= 100) & (hue <= 132) & (sat >= 72) & (sat <= 160) & (val > 70)).mean() > 0.45:
-        return "purple_rift" if in_fog else None  # blue-ish backgrounds look the same
+        return "purple_rift" if (in_fog or interior >= 3) and edge >= 19 else None  # blue-ish backgrounds look the same
     m_sat, m_hue, m_val, lines = np.median(sat), np.median(hue), np.median(val), (gp < 70).mean()
     if (gp > np.median(gp) + 45).mean() > 0.06 and m_sat >= 15 and lines < 0.15 and mean > 85:
         return "unknown_icon"  # an icon exists but no template matched
     if 0.15 < lines < 0.5 and 85 < m_val < 165 and gp.std() > 30 and m_sat < 50:
-        return "cracked_rock"
+        return "cracked_rock" if edge >= 25 else None
+    if (smooth and m_sat < 40) or (interior < 2 and m_sat > 100):
+        return None
     if lines < 0.12 and m_sat >= 22 and 8 <= m_hue <= 75 and mean > 85:
         return "plain"
+    if interior >= 2 and mean > 85 and gp.std() > 30 and m_sat < 60 and edge >= 25:
+        return "cracked_rock"  # chapter-7 rubble variant: dark gaps between stones, only trusted when ringed by known tiles
     if lines < 0.12 and mean > 85 and gp.std() < 25:
         return "plain_weak"  # pale/cream stone; only accepted when >= 2 known neighbours (paper background looks similar)
     return None
@@ -147,7 +154,7 @@ def build_tiles(image, icons):
                 continue
             seen.add(key)
             cx, cy = ox + key[1] * DX2, oy + key[0] * DY + YOFF
-            kind = classify_site(hsv, gray, cx, cy, interior=known_neighbours(key) >= 2)
+            kind = classify_site(hsv, gray, cx, cy, interior=known_neighbours(key))
             if kind == "plain_weak":
                 weak[key] = (cx, cy)
             elif kind:

@@ -34,7 +34,7 @@
  },
  "扭曲核心02": {
   "status": "ok",
-  "tiles": 27,
+  "tiles": 25,
   "islands": 1,
   "doors": 1,
   "keys": 1,
@@ -177,7 +177,7 @@
  },
  "血与沙02": {
   "status": "ok",
-  "tiles": 25,
+  "tiles": 23,
   "islands": 2,
   "doors": 2,
   "keys": 1,
@@ -210,7 +210,7 @@
  },
  "骑士的愿望03": {
   "status": "ok",
-  "tiles": 36,
+  "tiles": 32,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -243,7 +243,7 @@
  },
  "1-13": {
   "status": "ok",
-  "tiles": 42,
+  "tiles": 41,
   "islands": 1,
   "doors": 4,
   "keys": 1,
@@ -441,7 +441,7 @@
  },
  "3-1": {
   "status": "ok",
-  "tiles": 12,
+  "tiles": 13,
   "islands": 1,
   "doors": 1,
   "keys": 1,
@@ -485,7 +485,7 @@
  },
  "3-2": {
   "status": "ok",
-  "tiles": 20,
+  "tiles": 21,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -496,7 +496,7 @@
  },
  "3-4": {
   "status": "ok",
-  "tiles": 17,
+  "tiles": 18,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -914,7 +914,7 @@
  },
  "7-10": {
   "status": "ok",
-  "tiles": 30,
+  "tiles": 32,
   "islands": 2,
   "doors": 0,
   "keys": 0,
@@ -925,7 +925,7 @@
  },
  "7-11": {
   "status": "ok",
-  "tiles": 32,
+  "tiles": 33,
   "islands": 2,
   "doors": 0,
   "keys": 0,
@@ -991,18 +991,18 @@
  },
  "7-4": {
   "status": "ok",
-  "tiles": 31,
+  "tiles": 32,
   "islands": 2,
   "doors": 0,
   "keys": 0,
   "problems": [],
-  "cost": 53,
+  "cost": 43,
   "works_if_keys_consumed": true,
   "reason": null
  },
  "7-6": {
   "status": "ok",
-  "tiles": 30,
+  "tiles": 31,
   "islands": 1,
   "doors": 1,
   "keys": 1,
@@ -1013,12 +1013,12 @@
  },
  "7-7": {
   "status": "ok",
-  "tiles": 34,
+  "tiles": 36,
   "islands": 2,
   "doors": 4,
   "keys": 1,
   "problems": [],
-  "cost": 53,
+  "cost": 44,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -1046,7 +1046,7 @@
  },
  "8-11": {
   "status": "ok",
-  "tiles": 32,
+  "tiles": 27,
   "islands": 1,
   "doors": 1,
   "keys": 1,
@@ -1101,7 +1101,7 @@
  },
  "8-4": {
   "status": "ok",
-  "tiles": 8,
+  "tiles": 7,
   "islands": 1,
   "doors": 0,
   "keys": 0,
@@ -1156,7 +1156,7 @@
  },
  "9-12": {
   "status": "ok",
-  "tiles": 40,
+  "tiles": 38,
   "islands": 1,
   "doors": 3,
   "keys": 1,
@@ -1167,7 +1167,7 @@
  },
  "9-2": {
   "status": "ok",
-  "tiles": 22,
+  "tiles": 21,
   "islands": 1,
   "doors": 0,
   "keys": 0,

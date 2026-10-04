@@ -63,7 +63,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 27,
+   "recognized_tiles": 25,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -269,7 +269,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 25,
+   "recognized_tiles": 23,
    "generic_event_tiles": 2,
    "stage_event_entries": 0,
    "stage_event_link": {},
@@ -313,7 +313,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 36,
+   "recognized_tiles": 32,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -361,7 +361,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 42,
+   "recognized_tiles": 41,
    "generic_event_tiles": 4,
    "stage_event_entries": 4,
    "stage_event_link": {
@@ -649,7 +649,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 12,
+   "recognized_tiles": 13,
    "generic_event_tiles": 1,
    "stage_event_entries": 1,
    "stage_event_link": {
@@ -713,7 +713,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 20,
+   "recognized_tiles": 21,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -729,7 +729,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 17,
+   "recognized_tiles": 18,
    "generic_event_tiles": 1,
    "stage_event_entries": 1,
    "stage_event_link": {
@@ -1335,7 +1335,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 30,
+   "recognized_tiles": 32,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1351,7 +1351,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 32,
+   "recognized_tiles": 33,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1447,7 +1447,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 31,
+   "recognized_tiles": 32,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1463,7 +1463,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 30,
+   "recognized_tiles": 31,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1479,7 +1479,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 34,
+   "recognized_tiles": 36,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1527,7 +1527,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 32,
+   "recognized_tiles": 27,
    "generic_event_tiles": 2,
    "stage_event_entries": 4,
    "stage_event_link": {
@@ -1607,7 +1607,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 8,
+   "recognized_tiles": 7,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1687,7 +1687,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 40,
+   "recognized_tiles": 38,
    "generic_event_tiles": 3,
    "stage_event_entries": 4,
    "stage_event_link": {
@@ -1703,7 +1703,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 22,
+   "recognized_tiles": 21,
    "generic_event_tiles": 3,
    "stage_event_entries": 4,
    "stage_event_link": {
