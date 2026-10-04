@@ -1,0 +1,79 @@
+{
+ "chapters": 9,
+ "reset_swipes": 9,
+ "swipe": {
+  "to_previous": {
+   "begin": [
+    330,
+    380,
+    40,
+    40
+   ],
+   "end": [
+    900,
+    380,
+    40,
+    40
+   ],
+   "duration": 450
+  },
+  "to_next": {
+   "begin": [
+    900,
+    380,
+    40,
+    40
+   ],
+   "end": [
+    330,
+    380,
+    40,
+    40
+   ],
+   "duration": 450
+  },
+  "post_delay": 1000
+ },
+ "center_card_click": [
+  560,
+  260,
+  160,
+  160
+ ],
+ "chapter_numeral_roi": [
+  310,
+  80,
+  80,
+  90
+ ],
+ "stage_tabs": {
+  "normal": [
+   720,
+   55,
+   110,
+   40
+  ],
+  "hard": [
+   880,
+   55,
+   110,
+   40
+  ]
+ },
+ "stage_arrows": {
+  "prev": [
+   8,
+   108,
+   50,
+   40
+  ],
+  "next": [
+   185,
+   108,
+   50,
+   40
+  ]
+ },
+ "template_threshold": 0.8,
+ "roi_margin": 14
+}

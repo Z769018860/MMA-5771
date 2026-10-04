@@ -1,0 +1,2223 @@
+{
+  "NavHome_investigate": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_investigate.png",
+    "roi": [
+      1053,
+      94,
+      168,
+      161
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      869,
+      142,
+      340,
+      88
+    ],
+    "post_delay": 1500,
+    "next": [
+      "NavChapterScreen"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【调查】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【调查】。"
+    },
+    "timeout": 20000
+  },
+  "NavHome_awakener": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_awakener.png",
+    "roi": [
+      844,
+      271,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【唤醒体】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【唤醒体】。"
+    }
+  },
+  "NavHome_formation": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_formation.png",
+    "roi": [
+      940,
+      271,
+      101,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【编队】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【编队】。"
+    }
+  },
+  "NavHome_supplies": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_supplies.png",
+    "roi": [
+      1037,
+      271,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【物资】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【物资】。"
+    }
+  },
+  "NavHome_interlude": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_interlude.png",
+    "roi": [
+      1133,
+      271,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【幕间演习】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【幕间演习】。"
+    }
+  },
+  "NavHome_term_topic": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_term_topic.png",
+    "roi": [
+      844,
+      353,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【学期课题】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【学期课题】。"
+    }
+  },
+  "NavHome_keeper_log": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_keeper_log.png",
+    "roi": [
+      940,
+      353,
+      101,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【守密纪行】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【守密纪行】。"
+    }
+  },
+  "NavHome_student_file": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_student_file.png",
+    "roi": [
+      1037,
+      353,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【学籍档案】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【学籍档案】。"
+    }
+  },
+  "NavHome_codex": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_codex.png",
+    "roi": [
+      1133,
+      353,
+      100,
+      92
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【秘典书库】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【秘典书库】。"
+    }
+  },
+  "NavHome_memory_corridor": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_memory_corridor.png",
+    "roi": [
+      844,
+      435,
+      100,
+      94
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【记忆回廊】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【记忆回廊】。"
+    }
+  },
+  "NavHome_dream_dive": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_dream_dive.png",
+    "roi": [
+      940,
+      435,
+      101,
+      94
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【幻梦深潜】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【幻梦深潜】。"
+    }
+  },
+  "NavHome_phase_duel": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_phase_duel.png",
+    "roi": [
+      1037,
+      446,
+      100,
+      83
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【相位对弈】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【相位对弈】。"
+    }
+  },
+  "NavHome_calamity_zone": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_calamity_zone.png",
+    "roi": [
+      1133,
+      435,
+      100,
+      94
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【融灾禁区】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【融灾禁区】。"
+    }
+  },
+  "NavHome_secret_classroom": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_secret_classroom.png",
+    "roi": [
+      844,
+      541,
+      201,
+      108
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【密境课堂】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【密境课堂】。"
+    }
+  },
+  "NavHome_misago_shop": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_misago_shop.png",
+    "roi": [
+      1037,
+      541,
+      200,
+      108
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【弥萨格商店】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【弥萨格商店】。"
+    }
+  },
+  "NavHome_settings": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_settings.png",
+        "roi": [
+          15,
+          97,
+          68,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【设置】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【设置】。"
+    }
+  },
+  "NavHome_home_icon": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_home_icon.png",
+        "roi": [
+          81,
+          97,
+          66,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【主页图标】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【主页图标】。"
+    }
+  },
+  "NavHome_mail": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_mail.png",
+        "roi": [
+          15,
+          227,
+          66,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【邮件】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【邮件】。"
+    }
+  },
+  "NavHome_social": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_social.png",
+        "roi": [
+          82,
+          227,
+          67,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【好友】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【好友】。"
+    }
+  },
+  "NavHome_side_new": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_side_new.png",
+        "roi": [
+          15,
+          164,
+          66,
+          65
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【左侧新功能】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【左侧新功能】。"
+    }
+  },
+  "NavHome_side_archive": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_side_archive.png",
+        "roi": [
+          81,
+          164,
+          66,
+          60
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【左侧档案机】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【左侧档案机】。"
+    }
+  },
+  "NavHome_banner_event": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      34,
+      449,
+      225,
+      72
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Action.Succeeded": "已点击主界面【限时活动横幅】（活动内容每天变化，只按固定位置点击，不做图像识别）。"
+    }
+  },
+  "NavHome_banner_awaken": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      34,
+      558,
+      225,
+      69
+    ],
+    "post_delay": 1500,
+    "next": [],
+    "focus": {
+      "Node.Action.Succeeded": "已点击主界面【今日推荐横幅】（活动内容每天变化，只按固定位置点击，不做图像识别）。"
+    }
+  },
+  "NavHomeRouter": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "NavHome_investigate"
+    ],
+    "timeout": 30000,
+    "focus": {
+      "Node.Recognition.Succeeded": "已识别主界面；按【主界面按钮】设置点击对应按钮。"
+    }
+  },
+  "NavChapterScreen": {
+    "recognition": "TemplateMatch",
+    "template": "nav_chapters_title.png",
+    "roi": [
+      83,
+      9,
+      140,
+      61
+    ],
+    "threshold": 0.75,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 20000,
+    "next": [
+      "NavToFirst_1"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【调查行动】章节选择页。"
+    }
+  },
+  "NavToFirst_1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_2"
+    ]
+  },
+  "NavToFirst_2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_3"
+    ]
+  },
+  "NavToFirst_3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_4"
+    ]
+  },
+  "NavToFirst_4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_5"
+    ]
+  },
+  "NavToFirst_5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_6"
+    ]
+  },
+  "NavToFirst_6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_7"
+    ]
+  },
+  "NavToFirst_7": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_8"
+    ]
+  },
+  "NavToFirst_8": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirst_9"
+    ]
+  },
+  "NavToFirst_9": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavToFirstDone"
+    ]
+  },
+  "NavToFirstDone": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC1_Start"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已滑到第 1 章，开始向右数到目标章节。"
+    }
+  },
+  "NavC1_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 1 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC1_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC1_Verify"
+    ]
+  },
+  "NavC2_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 2 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC2_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC2_Verify"
+    ]
+  },
+  "NavC2_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC2_F1"
+    ]
+  },
+  "NavC3_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 3 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC3_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC3_F2"
+    ]
+  },
+  "NavC3_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC3_Verify"
+    ]
+  },
+  "NavC3_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC3_F1"
+    ]
+  },
+  "NavC4_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 4 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC4_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC4_F2"
+    ]
+  },
+  "NavC4_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC4_F3"
+    ]
+  },
+  "NavC4_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC4_Verify"
+    ]
+  },
+  "NavC4_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC4_F1"
+    ]
+  },
+  "NavC5_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 5 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC5_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC5_F2"
+    ]
+  },
+  "NavC5_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC5_F3"
+    ]
+  },
+  "NavC5_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC5_F4"
+    ]
+  },
+  "NavC5_F4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC5_Verify"
+    ]
+  },
+  "NavC5_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC5_F1"
+    ]
+  },
+  "NavC6_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 6 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC6_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC6_F2"
+    ]
+  },
+  "NavC6_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC6_F3"
+    ]
+  },
+  "NavC6_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC6_F4"
+    ]
+  },
+  "NavC6_F4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC6_F5"
+    ]
+  },
+  "NavC6_F5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC6_Verify"
+    ]
+  },
+  "NavC6_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC6_F1"
+    ]
+  },
+  "NavC7_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 7 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC7_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_F2"
+    ]
+  },
+  "NavC7_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_F3"
+    ]
+  },
+  "NavC7_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_F4"
+    ]
+  },
+  "NavC7_F4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_F5"
+    ]
+  },
+  "NavC7_F5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_F6"
+    ]
+  },
+  "NavC7_F6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC7_Verify"
+    ]
+  },
+  "NavC7_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC7_F1"
+    ]
+  },
+  "NavC8_Verify": {
+    "recognition": "TemplateMatch",
+    "template": "nav_chapter_08.png",
+    "roi": [
+      310,
+      80,
+      80,
+      90
+    ],
+    "threshold": 0.9,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 6000,
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "章节页中央的章节编号与第 8 章模板一致。"
+    }
+  },
+  "NavC8_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F2"
+    ]
+  },
+  "NavC8_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F3"
+    ]
+  },
+  "NavC8_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F4"
+    ]
+  },
+  "NavC8_F4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F5"
+    ]
+  },
+  "NavC8_F5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F6"
+    ]
+  },
+  "NavC8_F6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_F7"
+    ]
+  },
+  "NavC8_F7": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC8_Verify"
+    ]
+  },
+  "NavC8_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC8_F1"
+    ]
+  },
+  "NavC9_Verify": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavEnterCenterCard"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 9 章没有编号模板，未验证中央章节（可用 tools/make_chapter_template.py 添加）。"
+    }
+  },
+  "NavC9_F1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F2"
+    ]
+  },
+  "NavC9_F2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F3"
+    ]
+  },
+  "NavC9_F3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F4"
+    ]
+  },
+  "NavC9_F4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F5"
+    ]
+  },
+  "NavC9_F5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F6"
+    ]
+  },
+  "NavC9_F6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F7"
+    ]
+  },
+  "NavC9_F7": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_F8"
+    ]
+  },
+  "NavC9_F8": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      900,
+      380,
+      40,
+      40
+    ],
+    "end": [
+      330,
+      380,
+      40,
+      40
+    ],
+    "duration": 450,
+    "post_delay": 1000,
+    "next": [
+      "NavC9_Verify"
+    ]
+  },
+  "NavC9_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "NavC9_F1"
+    ]
+  },
+  "NavEnterCenterCard": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      560,
+      260,
+      160,
+      160
+    ],
+    "post_delay": 2200,
+    "next": [
+      "NavStageScreen"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击中央章节卡片，等待关卡列表。"
+    }
+  },
+  "NavStageScreen": {
+    "recognition": "TemplateMatch",
+    "template": "nav_stages_bottom_bar.png",
+    "roi": [
+      0,
+      598,
+      628,
+      101
+    ],
+    "threshold": 0.75,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 20000,
+    "next": [
+      "NavStageDone"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入章节关卡列表。"
+    }
+  },
+  "NavDiff_normal": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      720,
+      55,
+      110,
+      40
+    ],
+    "post_delay": 1200,
+    "next": [
+      "NavStageDone"
+    ]
+  },
+  "NavDiff_hard": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      880,
+      55,
+      110,
+      40
+    ],
+    "post_delay": 1200,
+    "next": [
+      "NavStageDone"
+    ]
+  },
+  "NavStageDone": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "导航完成：停在关卡列表。"
+    }
+  },
+  "NavStagePrevChapter": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      8,
+      108,
+      50,
+      40
+    ],
+    "post_delay": 1500,
+    "next": [
+      "NavStageScreen"
+    ]
+  },
+  "NavStageNextChapter": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      185,
+      108,
+      50,
+      40
+    ],
+    "post_delay": 1500,
+    "next": [
+      "NavStageScreen"
+    ]
+  },
+  "NavStageOpenLatest": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryEntryRouter"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "交给自动推剧情流程：点击最右侧最新关卡。"
+    }
+  },
+  "NavBack": {
+    "recognition": "TemplateMatch",
+    "template": "nav_chapters_compass.png",
+    "roi": [
+      1189,
+      0,
+      91,
+      83
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1500,
+    "next": []
+  },
+  "NavMainEntry": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "NavStageScreen",
+      "NavChapterScreen",
+      "NavHomeRouter"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "导航入口：从关卡列表、章节选择页或主界面开始。"
+    }
+  }
+}

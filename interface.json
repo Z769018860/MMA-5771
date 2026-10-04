@@ -93,6 +93,30 @@
       "default_check": false,
       "repeatable": false,
       "description": "从章节列表启动；先点击最右侧的最新战斗/剧情关卡，进入后才判断编队、剧情、战斗、选项、商店和造物。"
+    },
+    {
+      "name": "主界面按钮测试",
+      "label": "主界面按钮识别测试",
+      "entry": "NavHomeRouter",
+      "option": [
+        "主界面按钮"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "在主界面识别所选 UI 按钮并点击一次；用于实机核对每个按钮的识别和点击位置。"
+    },
+    {
+      "name": "进入主线章节",
+      "label": "进入主线章节",
+      "entry": "NavMainEntry",
+      "option": [
+        "目标章节",
+        "关卡难度",
+        "导航结束后"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从主界面点击调查，在章节选择页拖动选章，进入关卡列表；也可以从章节选择页或关卡列表页开始。"
     }
   ],
   "option": {
@@ -274,6 +298,452 @@
               "next": [
                 "StoryFinishInvestigation",
                 "StoryAutoControlReady"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "主界面按钮": {
+      "type": "select",
+      "label": "主界面按钮",
+      "description": "在主界面识别并点击所选按钮。小图标按钮要求同时识别到主界面的唤醒体/编队/物资；限时活动横幅每天变化，只按固定位置点击。",
+      "default_case": "investigate",
+      "cases": [
+        {
+          "name": "investigate",
+          "label": "调查",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_investigate"
+              ]
+            }
+          }
+        },
+        {
+          "name": "awakener",
+          "label": "唤醒体",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_awakener"
+              ]
+            }
+          }
+        },
+        {
+          "name": "formation",
+          "label": "编队",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_formation"
+              ]
+            }
+          }
+        },
+        {
+          "name": "supplies",
+          "label": "物资",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_supplies"
+              ]
+            }
+          }
+        },
+        {
+          "name": "interlude",
+          "label": "幕间演习",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_interlude"
+              ]
+            }
+          }
+        },
+        {
+          "name": "term_topic",
+          "label": "学期课题",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_term_topic"
+              ]
+            }
+          }
+        },
+        {
+          "name": "keeper_log",
+          "label": "守密纪行",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_keeper_log"
+              ]
+            }
+          }
+        },
+        {
+          "name": "student_file",
+          "label": "学籍档案",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_student_file"
+              ]
+            }
+          }
+        },
+        {
+          "name": "codex",
+          "label": "秘典书库",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_codex"
+              ]
+            }
+          }
+        },
+        {
+          "name": "memory_corridor",
+          "label": "记忆回廊",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_memory_corridor"
+              ]
+            }
+          }
+        },
+        {
+          "name": "dream_dive",
+          "label": "幻梦深潜",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_dream_dive"
+              ]
+            }
+          }
+        },
+        {
+          "name": "phase_duel",
+          "label": "相位对弈",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_phase_duel"
+              ]
+            }
+          }
+        },
+        {
+          "name": "calamity_zone",
+          "label": "融灾禁区",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_calamity_zone"
+              ]
+            }
+          }
+        },
+        {
+          "name": "secret_classroom",
+          "label": "密境课堂",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_secret_classroom"
+              ]
+            }
+          }
+        },
+        {
+          "name": "misago_shop",
+          "label": "弥萨格商店",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_misago_shop"
+              ]
+            }
+          }
+        },
+        {
+          "name": "settings",
+          "label": "设置",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_settings"
+              ]
+            }
+          }
+        },
+        {
+          "name": "home_icon",
+          "label": "主页图标",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_home_icon"
+              ]
+            }
+          }
+        },
+        {
+          "name": "mail",
+          "label": "邮件",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_mail"
+              ]
+            }
+          }
+        },
+        {
+          "name": "social",
+          "label": "好友",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_social"
+              ]
+            }
+          }
+        },
+        {
+          "name": "side_new",
+          "label": "左侧新功能",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_side_new"
+              ]
+            }
+          }
+        },
+        {
+          "name": "side_archive",
+          "label": "左侧档案机",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_side_archive"
+              ]
+            }
+          }
+        },
+        {
+          "name": "banner_event",
+          "label": "限时活动横幅",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_banner_event"
+              ]
+            }
+          }
+        },
+        {
+          "name": "banner_awaken",
+          "label": "今日推荐横幅",
+          "pipeline_override": {
+            "NavHomeRouter": {
+              "next": [
+                "NavHome_banner_awaken"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "目标章节": {
+      "type": "select",
+      "label": "目标章节",
+      "description": "章节选择页的拖动选章；拖动距离和次数在 resource/navigation/nav_config.json 中调整，改完运行 python tools/build_nav_pipeline.py。",
+      "default_case": "current",
+      "cases": [
+        {
+          "name": "current",
+          "label": "当前章节（不滑动，默认）",
+          "description": "直接点击章节页中央的章节卡片。",
+          "pipeline_override": {
+            "NavChapterScreen": {
+              "next": [
+                "NavEnterCenterCard"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter1",
+          "label": "第 1 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 0 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC1_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter2",
+          "label": "第 2 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 1 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC2_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter3",
+          "label": "第 3 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 2 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC3_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter4",
+          "label": "第 4 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 3 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC4_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter5",
+          "label": "第 5 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 4 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC5_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter6",
+          "label": "第 6 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 5 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC6_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter7",
+          "label": "第 7 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 6 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC7_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter8",
+          "label": "第 8 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 7 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC8_Start"
+              ]
+            }
+          }
+        },
+        {
+          "name": "chapter9",
+          "label": "第 9 章",
+          "description": "先向右连续拖动回到第 1 章，再向左拖 8 次；第 8 章有编号模板可校验，其余章节不校验。",
+          "pipeline_override": {
+            "NavToFirstDone": {
+              "next": [
+                "NavC9_Start"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "关卡难度": {
+      "type": "select",
+      "label": "关卡难度页签",
+      "description": "进入章节关卡列表后点击的难度页签（溯梦/噩梦未解锁时不可用）。",
+      "default_case": "keep",
+      "cases": [
+        {
+          "name": "keep",
+          "label": "不切换（默认）"
+        },
+        {
+          "name": "normal",
+          "label": "普通",
+          "pipeline_override": {
+            "NavStageScreen": {
+              "next": [
+                "NavDiff_normal"
+              ]
+            }
+          }
+        },
+        {
+          "name": "hard",
+          "label": "困难",
+          "pipeline_override": {
+            "NavStageScreen": {
+              "next": [
+                "NavDiff_hard"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "导航结束后": {
+      "type": "select",
+      "label": "到达关卡列表后",
+      "description": "停止，或交给「自动推剧情」流程点击最右侧最新关卡。",
+      "default_case": "stop",
+      "cases": [
+        {
+          "name": "stop",
+          "label": "停在关卡列表（默认）"
+        },
+        {
+          "name": "latest",
+          "label": "点击最新关卡并自动推剧情",
+          "pipeline_override": {
+            "NavStageDone": {
+              "next": [
+                "NavStageOpenLatest"
               ]
             }
           }

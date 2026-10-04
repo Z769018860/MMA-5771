@@ -1,0 +1,336 @@
+{
+ "note": "boxes are in the original screenshot pixels (src size per screen); tools/build_nav_pipeline.py scales them to the 1280x720 pipeline space. 'template' crops are taken from resource/navigation/samples.",
+ "screens": {
+  "home": {
+   "sample": "home.png",
+   "src_size": [
+    1596,
+    898
+   ]
+  },
+  "chapters": {
+   "sample": "chapters.png",
+   "src_size": [
+    1605,
+    893
+   ]
+  },
+  "stages": {
+   "sample": "stages.png",
+   "src_size": [
+    1606,
+    894
+   ]
+  }
+ },
+ "home_buttons": [
+  {
+   "id": "investigate",
+   "label": "调查",
+   "box": [
+    1330,
+    135,
+    1505,
+    300
+   ],
+   "click_box": [
+    1058,
+    152,
+    1532,
+    312
+   ]
+  },
+  {
+   "id": "awakener",
+   "label": "唤醒体",
+   "box": [
+    1070,
+    355,
+    1160,
+    435
+   ]
+  },
+  {
+   "id": "formation",
+   "label": "编队",
+   "box": [
+    1190,
+    355,
+    1280,
+    435
+   ]
+  },
+  {
+   "id": "supplies",
+   "label": "物资",
+   "box": [
+    1310,
+    355,
+    1400,
+    435
+   ]
+  },
+  {
+   "id": "interlude",
+   "label": "幕间演习",
+   "box": [
+    1430,
+    355,
+    1520,
+    435
+   ]
+  },
+  {
+   "id": "term_topic",
+   "label": "学期课题",
+   "box": [
+    1070,
+    458,
+    1160,
+    538
+   ]
+  },
+  {
+   "id": "keeper_log",
+   "label": "守密纪行",
+   "box": [
+    1190,
+    458,
+    1280,
+    538
+   ]
+  },
+  {
+   "id": "student_file",
+   "label": "学籍档案",
+   "box": [
+    1310,
+    458,
+    1400,
+    538
+   ]
+  },
+  {
+   "id": "codex",
+   "label": "秘典书库",
+   "box": [
+    1430,
+    458,
+    1520,
+    538
+   ]
+  },
+  {
+   "id": "memory_corridor",
+   "label": "记忆回廊",
+   "box": [
+    1070,
+    560,
+    1160,
+    642
+   ]
+  },
+  {
+   "id": "dream_dive",
+   "label": "幻梦深潜",
+   "box": [
+    1190,
+    560,
+    1280,
+    642
+   ]
+  },
+  {
+   "id": "phase_duel",
+   "label": "相位对弈",
+   "box": [
+    1310,
+    574,
+    1400,
+    642
+   ]
+  },
+  {
+   "id": "calamity_zone",
+   "label": "融灾禁区",
+   "box": [
+    1430,
+    560,
+    1520,
+    642
+   ]
+  },
+  {
+   "id": "secret_classroom",
+   "label": "密境课堂",
+   "box": [
+    1070,
+    692,
+    1285,
+    792
+   ]
+  },
+  {
+   "id": "misago_shop",
+   "label": "弥萨格商店",
+   "box": [
+    1310,
+    692,
+    1525,
+    792
+   ]
+  },
+  {
+   "id": "settings",
+   "label": "设置",
+   "box": [
+    36,
+    138,
+    86,
+    186
+   ]
+  },
+  {
+   "id": "home_icon",
+   "label": "主页图标",
+   "box": [
+    118,
+    138,
+    166,
+    186
+   ]
+  },
+  {
+   "id": "mail",
+   "label": "邮件",
+   "box": [
+    36,
+    300,
+    84,
+    348
+   ]
+  },
+  {
+   "id": "social",
+   "label": "好友",
+   "box": [
+    120,
+    300,
+    168,
+    348
+   ]
+  },
+  {
+   "id": "side_new",
+   "label": "左侧新功能",
+   "box": [
+    36,
+    222,
+    84,
+    268
+   ]
+  },
+  {
+   "id": "side_archive",
+   "label": "左侧档案机",
+   "box": [
+    118,
+    222,
+    166,
+    262
+   ]
+  },
+  {
+   "id": "banner_event",
+   "label": "限时活动横幅",
+   "box": [
+    30,
+    548,
+    335,
+    662
+   ]
+  },
+  {
+   "id": "banner_awaken",
+   "label": "今日推荐横幅",
+   "box": [
+    30,
+    684,
+    335,
+    794
+   ]
+  }
+ ],
+ "home_markers": [
+  "awakener",
+  "formation",
+  "supplies"
+ ],
+ "chapter_markers": [
+  {
+   "id": "title",
+   "label": "调查行动标题",
+   "screen": "chapters",
+   "box": [
+    122,
+    28,
+    262,
+    70
+   ]
+  },
+  {
+   "id": "compass",
+   "label": "右上罗盘(返回)",
+   "screen": "chapters",
+   "box": [
+    1508,
+    8,
+    1592,
+    85
+   ]
+  }
+ ],
+ "stage_markers": [
+  {
+   "id": "bottom_bar",
+   "label": "共鸣/星级/成就栏",
+   "screen": "stages",
+   "box": [
+    0,
+    760,
+    770,
+    850
+   ]
+  },
+  {
+   "id": "compass",
+   "label": "右上罗盘(返回)",
+   "screen": "stages",
+   "box": [
+    1506,
+    8,
+    1594,
+    85
+   ]
+  },
+  {
+   "id": "arrows",
+   "label": "章节切换箭头",
+   "screen": "stages",
+   "box": [
+    4,
+    108,
+    258,
+    148
+   ]
+  }
+ ],
+ "small_icons": [
+  "settings",
+  "home_icon",
+  "mail",
+  "social",
+  "side_new",
+  "side_archive"
+ ]
+}
