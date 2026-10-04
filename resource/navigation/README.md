@@ -199,16 +199,16 @@ python tools/test_daily.py
 
 ## AUTO 点击逻辑（story_demo / sync_rate 共用）
 
-问题：`auto_off_text.png` 是 AUTO 文字的轮廓模板，开/关两种状态都能匹配（实测亮起的 AUTO 也命中），而旧流程只等 0.65 秒就判断"没亮"并补点，容易把已经开启的 AUTO 点回关闭，形成反复点击。
+问题：旧流程只用灰色版 `auto_off_text.png`（阈值 0.75）判断，一张完整战斗截图里亮起的 AUTO 也能命中（0.758），而且只等 0.65 秒就判断"没亮"并补点，容易把已经开启的 AUTO 点回关闭，形成反复点击。
 
 现在：
-- 「已亮起」= AUTO 轮廓在位且文字区域有足够多的亮色像素（`AutoAlreadyOn` / `StoryAutoAlreadyOn`，不再单看颜色，避免地图等页面误判）。
-- 点击节点 `AutoControlReady` 永远排在「已亮起」之后，要求轮廓在位且有文字像素（排除纯黑/模糊页面）才点一次。
+- 「已亮起」= 亮起版文字模板 `auto_on_text.png` 在位且文字区域有足够多的亮色像素（`AutoAlreadyOn` / `StoryAutoAlreadyOn`）。
+- 点击节点 `AutoControlReady` 永远排在「已亮起」之后，要求灰色版模板 `auto_off_text.png` 在位且有文字像素（排除纯黑/模糊页面）才点一次。两个模板（阈值 0.8）互相只有约 0.41 的相似度，所以能分开开/关。
 - 点击后等 1.5 秒看是否亮起；没亮只补点一次，再等 1.5 秒；仍没亮就放弃（`AutoGiveUp`），不再点击，交给战斗监控的超时处理。每次进入 AUTO 流程最多点两次，不循环。
 - 复活会关闭 AUTO：`StoryPostReviveWait` 等 3.5 秒动画结束后再按同样规则判断（记忆回廊用 `TR_PostReviveWait`，补点后仍未亮起会弹窗停止）。
 - 测试：`python tools/test_auto.py`（46 项）。
 
-没有验证的：只有一张真实的 AUTO 亮起战斗截图（`current-battle2.png`），"未亮起"是把这张图的按钮文字调暗合成的，不是真实的关闭状态截图；亮度阈值 190/95 若与实机不符，需要用一张真实的关闭状态截图校准。
+校准：用设备上的真实按钮裁剪图 `auto_on.png`（亮）和 `auto_off.png`（灰）贴到真实战斗截图的按钮位置测试：亮起时亮色像素 155、灰色时 0；有文字像素 321 / 158，所以阈值 190（亮）和 95（有文字）都能分开两种状态。没有验证的是整张"AUTO 关闭"的实机战斗截图和动画过程中的中间状态。
 
 ## 记忆回廊：设置项
 
@@ -217,6 +217,6 @@ python tools/test_daily.py
 - 「记忆回廊灵知」：与主线灵知相同，但复活后走记忆回廊自己的 AUTO 复核。
 - 实机校准的节点放在 `resource/navigation/train_nodes.json`（手工维护），`build_train_pipeline.py` 会叠加到生成结果上；设备裁剪的模板图直接放 `resource/image/train_*.png`。
 
-## 需要重新上传的模板图
+## 模板图完整性
 
-`real-device-train-tests-20261005` 分支里有 6 个 PNG 在仓库里已经损坏（长度/CRC 不一致，像是被当作文本传输过）：`train_ability_title.png`、`train_artifact_choice_title.png`、`train_artifact_confirm_blue.png`、`train_engrave_title.png`、`train_engrave_tooltip_title.png`、`train_relic_title.png`。依赖它们的节点（战后选能力、选造物、镶嵌刻印、灰烬遗迹）在这些图重新上传前不会生效。`tools/validate_resource.py` 现在会检查所有 PNG 的完整性，这 6 个登记在 `tools/lint_allow.json` 的 `corrupt_images` 里（只告警）；重新上传后请删掉登记。
+`real-device-train-tests-20261005` 分支里曾有 6 个 PNG 损坏（长度/CRC 不一致），已用你重新上传的完整版本（image.zip）替换：`train_ability_title.png`、`train_artifact_choice_title.png`、`train_artifact_confirm_blue.png`、`train_engrave_title.png`、`train_engrave_tooltip_title.png`、`train_relic_title.png`。zip 里其余 145 张与仓库逐字节一致。`tools/validate_resource.py` 会检查所有 PNG 的完整性；确实无法修复的图可登记到 `tools/lint_allow.json` 的 `corrupt_images`（只告警）。

@@ -962,7 +962,7 @@
           85,
           60
         ],
-        "threshold": 0.75,
+        "threshold": 0.8,
         "method": 10001
       },
       {
@@ -1003,7 +1003,7 @@
       "AutoVerifyWait"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Recognition.Succeeded": "灰色版 AUTO 文字模板（auto_off_text）在位：自动没开。本节点排在“已亮起”判断之后。",
       "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
     }
   },
@@ -1025,14 +1025,14 @@
     "all_of": [
       {
         "recognition": "TemplateMatch",
-        "template": "auto_off_text.png",
+        "template": "auto_on_text.png",
         "roi": [
           25,
           470,
           85,
           60
         ],
-        "threshold": 0.75,
+        "threshold": 0.8,
         "method": 10001
       },
       {
@@ -1066,7 +1066,7 @@
       "BattleMonitor"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "AUTO 按钮在位且文字已亮起：自动已开启，之后不再点击。"
+      "Node.Recognition.Succeeded": "AUTO 亮起版文字模板（auto_on_text）在位且文字区域亮色像素足够：自动已开启，之后不再点击。"
     }
   },
   "BattleSpeedOne": {
@@ -1127,7 +1127,7 @@
           85,
           60
         ],
-        "threshold": 0.75,
+        "threshold": 0.8,
         "method": 10001
       },
       {
@@ -1166,7 +1166,7 @@
       "AutoVerifyWait2"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Recognition.Succeeded": "灰色版 AUTO 文字模板（auto_off_text）在位：自动没开。本节点排在“已亮起”判断之后。",
       "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
     }
   },

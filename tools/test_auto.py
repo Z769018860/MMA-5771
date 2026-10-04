@@ -2,15 +2,14 @@
 
     python tools/test_auto.py
 
-Only one real battle screenshot with a lit AUTO exists (current-battle2.png); the "not lit" look is made by dimming
-the button text in that screenshot, and flat / blurred screens come from other real screenshots.
+Screens: a real battle screenshot (current-battle2.png) with the real lit / gray AUTO button crops (auto_on.png,
+auto_off.png) pasted in, and flat / blurred / map screens from other real screenshots.
 """
 
 import sys
 from pathlib import Path
 
 import cv2
-import numpy as np
 from maa.resource import Resource
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -36,17 +35,18 @@ def main():
     def load(name):
         return cv2.resize(cv2.imread(str(ROOT / name)), (1280, 720))
 
-    on = load("current-battle2.png")
-    off = on.copy()
-    x, y, w, h = 25, 470, 85, 60
-    off[y:y + h, x:x + w] = (off[y:y + h, x:x + w].astype(np.float32) * 0.55).astype(np.uint8)   # gray text, same shape
+    base = load("current-battle2.png")
+    # real button crops from the device: auto_on.png (lit) / auto_off.png (gray), pasted where the button sits (0, 472)
+    on, off = base.copy(), base.copy()
+    for img, name in ((on, "auto_on"), (off, "auto_off")):
+        img[472:472 + 59, 0:128] = cv2.imread(str(ROOT / "resource" / "image" / f"{name}.png"))
     others = {n: load(n) for n in ("current-game.png", "battle-later.png", "check2.png", "current-map.png", "next-tile.png",
                                    "after-card-detail.png", "event-after-choice.png", "lantern-selected.png")}
     images = {"on": on, "off": off, **others}
     for pre, ready, lit in (("Story", "StoryAutoControlReady", "StoryAutoAlreadyOn"), ("", "AutoControlReady", "AutoAlreadyOn")):
         for n, img in images.items():
-            f, _ = T.run_node(resource, img, ready, timeout=200)       # evaluated only after the lit check, so "on" may match here
-            expect(f == (n in ("on", "off")), f"{ready} on {n}: got {f}")
+            f, _ = T.run_node(resource, img, ready, timeout=200)
+            expect(f == (n == "off"), f"{ready} on {n}: got {f}")
             f, _ = T.run_node(resource, img, lit, timeout=200)
             expect(f == (n == "on"), f"{lit} on {n}: got {f}")
         # flows: how many times is AUTO clicked?
