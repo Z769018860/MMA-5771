@@ -324,8 +324,8 @@
    "name": "审查会探员",
    "category": "special",
    "appearance": "人形 + 眼睛 + 标签「审查会探员」",
-   "function": "很可能触发「监察点」与「审查会探员」两条事件（逐图对照推断）",
-   "function_confidence": "inferred_from_counts",
+   "function": "8-2 实机：从羁押点走到此格触发「审查会探员」；此前必经的监察点在相邻普通格触发。其他地图尚需逐图实机确认",
+   "function_confidence": "confirmed_8_2",
    "templates": [
     "templates/inquisitor_1.png",
     "templates/inquisitor_2.png",

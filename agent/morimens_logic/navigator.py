@@ -170,6 +170,19 @@ class Navigator:
     def _goal_tiles(self):
         return {k for k, t in self.tiles.items() if t == get(self.policy, "route.objective", "final_battle")}
 
+    def required_for_goal(self, pos, tile):
+        """Whether every currently known route to the goal crosses this tile."""
+        if pos not in self.tiles or tile not in self.tiles or tile == pos or tile in self.blacklist:
+            return False
+        goals = self._goal_tiles()
+        if not goals or not self._best(self._dijkstra(pos, self.has_key)[0], goals):
+            return False
+        self.blacklist.add(tile)
+        try:
+            return self._best(self._dijkstra(pos, self.has_key)[0], goals) is None
+        finally:
+            self.blacklist.remove(tile)
+
     def _extras(self, hp):
         pol, out = self.policy, {}
         want = list(get(pol, "route.must_visit", []))

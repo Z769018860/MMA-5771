@@ -59,7 +59,7 @@ def score_option(policy, effects, label, hp_ratio):
     return total
 
 
-def choose_event_option(policy, kn, title, options, hp_ratio=None, map_id=None):
+def choose_event_option(policy, kn, title, options, hp_ratio=None, map_id=None, required_checkpoint=False):
     n = len(options)
     if n == 0:
         raise ValueError("event without options")
@@ -68,6 +68,10 @@ def choose_event_option(policy, kn, title, options, hp_ratio=None, map_id=None):
     if all(l is None for l in labels):
         idx = _blind_index(get(policy, "event.blind_choice"), n)
         return Decision(idx, f"no option text: blind_choice={get(policy, 'event.blind_choice')}")
+    if required_checkpoint and title and "监察点" in title:
+        for i, label in enumerate(labels):
+            if label and "诈降" in label:
+                return Decision(i, "required checkpoint: surrender to detention, then resolve inquisitor")
     if mode == "first":
         return Decision(0, "choice_mode=first")
     if mode == "last":

@@ -11,6 +11,7 @@ from morimens_logic.contract import Do, Observation, Screen, ShopItem
 from morimens_logic.engine import Engine
 from morimens_logic.guard import StuckGuard
 from morimens_logic.knowledge import Knowledge
+from morimens_logic.navigator import Navigator
 
 KN = Knowledge()
 
@@ -46,6 +47,23 @@ class EventTests(unittest.TestCase):
         self.assertEqual(d.index, 0)
         d = decisions.choose_event_option(pol(event={"overrides": {"监察点": {"prefer": ["诈降"]}}}), KN, "监察点", ["离开", "诈降", "闯入"], 0.9)
         self.assertEqual(d.index, 1)
+
+    def test_required_checkpoint_surrenders(self):
+        d = decisions.choose_event_option(
+            pol(), KN, "监察点", ["离开", "诈降", "闯入"], 0.9, "8-2",
+            required_checkpoint=True,
+        )
+        self.assertEqual(d.index, 1)
+        self.assertEqual(decisions.choose_event_option(
+            pol(), KN, "监察点", ["离开", "闯入"], 0.9, "8-2",
+            required_checkpoint=True,
+        ).index, 0)
+
+    def test_8_2_checkpoint_blocks_known_route(self):
+        nav = Navigator(pol(), KN, "8-2")
+        self.assertTrue(nav.required_for_goal((0, 3, 2), (0, 3, 4)))
+        self.assertFalse(nav.required_for_goal((0, 1, 8), (0, 0, 7)))
+        self.assertFalse(nav.blacklist)
 
     def test_blind_choice_without_text(self):
         self.assertEqual(decisions.choose_event_option(pol(), KN, None, [None] * 3).index, 2)

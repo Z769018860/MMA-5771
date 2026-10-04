@@ -149,7 +149,11 @@ class Engine:
             self.alt_cursor += 1
             idx = (n - 1 - self.alt_cursor) % n
             return self._emit(Do.TAP_OPTION, idx, f"stuck level {level}: rotating options")
-        dec = decisions.choose_event_option(self.policy, self.kn, obs.event_title, obs.options, obs.hp_ratio, self.map_id)
+        required = self.nav.required_for_goal(self._last_pos, self.cur_tile)
+        dec = decisions.choose_event_option(
+            self.policy, self.kn, obs.event_title, obs.options, obs.hp_ratio, self.map_id,
+            required_checkpoint=required,
+        )
         idx, why = dec.index, dec.reason
         tried = self.tried.setdefault(self.cur_tile, set())
         if self.defeats.get(self.cur_tile) and idx in tried and len(tried) < n:

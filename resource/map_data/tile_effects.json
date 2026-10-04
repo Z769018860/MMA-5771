@@ -253,9 +253,9 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "审查会探员：很可能触发「监察点」和「审查会探员」两条事件（监察点选项：离开 / 诈降 / 闯入，见 README 8-2）。依据：10 张含该事件的图与 10 张含审查会探员格的图完全重合；一张图有 2 个探员格时仍只有这一对事件",
-   "confidence": "inferred_from_counts",
-   "source": "events.json 与 maps.json 的逐图对照（VALIDATION.md）；8-2 实机确认监察点的离开与诈降分支，尚未确认审查会探员后续事件"
+   "effect": "8-2 实机：先经过普通格上的监察点，选诈降传送羁押点；再走到审查会探员格，选硬闯或缴械。硬闯使全队获得 30 狂气并加入 2 张警觉，处理后该格变为已走过。其余地图两事件的关联仍依赖逐图计数推断",
+   "confidence": "confirmed_8_2",
+   "source": "8-2 实机验证（VALIDATION.md）；其他地图来自 events.json 与 maps.json 的逐图对照"
   },
   "strange_cyst": {
    "role": "special",

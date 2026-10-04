@@ -14,7 +14,7 @@
 | `morimens_logic/guard.py` | 卡死检测与逐级升级 |
 | `morimens_logic/engine.py` | 把上面组合成 `step(obs) -> Action` |
 | `morimens_logic/sim.py` | 模拟游戏，用来验证引擎 |
-| `tests/test_logic.py` | 单元测试（22 项） |
+| `tests/test_logic.py` | 单元测试（24 项） |
 | `../resource/explore/policy.default.json`、`presets/` | 默认设置和三个预设 |
 | `../config/explore_policy.example.json` | 用户设置示例 |
 
@@ -36,13 +36,13 @@ python -m morimens_logic.policy --show --preset greedy                  # 查看
 | `route.allow_hazard` | `false` 时幻象/紫蓝格代价乘 1000（仍可在别无通路时走） |
 | `route.use_searchlight` | 顺路踩探照灯 |
 | `route.visit_contact_below_hp` | 血量低于此值时优先去联络点，无视绕路限制 |
-| `route.must_visit` | 顺路必访的地块类型，如 `["event","rusty_key"]`；受 `max_detour_cost` 限制 |
+| `route.must_visit` | 顺路必访的地块类型，默认包含 `inquisitor`；受 `max_detour_cost` 限制 |
 | `route.key_policy` | `pick_when_needed` 门挡路才取钥匙 / `always_pick` 总是取 / `never` |
 | `route.unknown_map_priority` | 不知道是哪一关时，可走格的类型优先级 |
 | `event.choice_mode` | `best_score` 按效果打分 / `leave` 优先离开 / `first` / `last` |
 | `event.weights` | 各效果的权重：得造物、得刻印、回血、受伤、得症状、传送…… |
 | `event.hp_guard` | 血量低于此值时，受伤和症状的惩罚加重、回血加成翻倍 |
-| `event.overrides` | 按事件名指定偏好/回避选项，如 `监察点: prefer 离开` |
+| `event.overrides` | 按事件名指定偏好/回避选项；8-2 的必经监察点优先选择「诈降」，抵达探员格后默认选择「硬闯」 |
 | `event.blind_choice` | 读不到选项文字时按位置选：`first`/`middle`/`last`（默认最后一项，与原流程一致） |
 | `event.tie_break` | 分数相同时选离开/第一项/最后一项 |
 | `shop.mode` | `none` 不买 / `first` 只买第一个 / `all` 买全部 / `priority` 按名称优先级 |
