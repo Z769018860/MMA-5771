@@ -891,6 +891,7 @@
             "StoryEventPage",
             "StoryFormation",
             "StoryFinishInvestigation",
+            "AA_PaidRevive",
             "StoryReviveDecision",
             "StoryChoicePage",
             "StoryShop",
@@ -911,6 +912,7 @@
             "StoryShop",
             "StoryArtifactSelect",
             "StoryFinishInvestigation",
+            "AA_PaidRevive",
             "StoryReviveDecision",
             "MA_Map",
             "MA_StageList"
@@ -921,6 +923,7 @@
         },
         "StoryBattleMonitor": {
           "next": [
+            "AA_PaidRevive",
             "StoryReviveDecision",
             "StoryFinishInvestigation",
             "StoryCutscene",
@@ -943,6 +946,47 @@
         "NavStageDone": {
           "next": [
             "MA_StageList"
+          ]
+        },
+        "StoryFirstBattlePreludeRouter": {
+          "next": [
+            "StoryFirstCutscene",
+            "StoryFirstCutsceneEmulator",
+            "StoryFirstEventPage",
+            "StoryFirstBattleStartSignal",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision"
+          ]
+        },
+        "StoryFirstHideCardsGraceWait": {
+          "next": [
+            "StoryFirstCutsceneEmulator",
+            "StoryFirstEventPage",
+            "StoryHideCards",
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision"
+          ]
+        },
+        "StoryPostWarningWait": {
+          "next": [
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryFinishInvestigation",
+            "StoryBattleMonitor"
+          ]
+        },
+        "StoryBattleStartRouter": {
+          "next": [
+            "StoryCutscene",
+            "StoryChoicePage",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryBattleMonitor"
           ]
         }
       },

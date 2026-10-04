@@ -132,13 +132,20 @@ def task_definition(orig):
     after = [x for x in orig["StoryAfterRoute"]["next"]] + [n for n in ("MA_Map", "MA_StageList") if n not in orig["StoryAfterRoute"]["next"]]
     inside = [x for x in orig["StoryInsideRouter"]["next"]] + ["MA_Map", "MA_StageList"]
     monitor = [x for x in orig["StoryBattleMonitor"]["next"]] + ["MA_Map", "MA_StageList"]
-    return {
+    out = {
         "StoryAfterRoute": {"next": after, "on_error": ["MA_StuckNotice"]},
         "StoryInsideRouter": {"next": inside, "on_error": ["MA_StuckNotice"]},
         "StoryBattleMonitor": {"next": monitor, "timeout": 240000, "on_error": ["MA_ManualNotice"]},
         "StoryStopHere": {"next": ["MA_DefeatNotice"]},
         "NavStageDone": {"next": ["MA_StageList"]},
     }
+    # Live finding (activity advance): once emergency 灵知 runs out the revive dialog offers a material exchange.
+    # AA_PaidRevive (activity_advance.json) warns and stops without clicking; try it before StoryReviveDecision everywhere.
+    for name, node in orig.items():
+        nxt = out.get(name, {}).get("next", node.get("next", []))
+        if "StoryReviveDecision" in nxt:
+            out.setdefault(name, {})["next"] = [x for y in nxt for x in (["AA_PaidRevive", y] if y == "StoryReviveDecision" else [y])]
+    return out
 
 
 def update_interface(orig):
