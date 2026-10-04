@@ -231,8 +231,8 @@
       "Soc_ListPage"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "主界面按钮【好友】已识别。",
-      "Node.Action.Succeeded": "已点击主界面按钮【好友】。"
+      "Node.Recognition.Succeeded": "主界面按钮【校友会】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【校友会】。"
     },
     "timeout": 20000
   },
