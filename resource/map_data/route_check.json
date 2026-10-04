@@ -111,23 +111,23 @@
  },
  "蔷薇礼赞05": {
   "status": "ok",
-  "tiles": 12,
+  "tiles": 14,
   "islands": 1,
   "doors": 0,
   "keys": 0,
   "problems": [],
-  "cost": 10,
+  "cost": 6,
   "works_if_keys_consumed": true,
   "reason": null
  },
  "蔷薇礼赞06": {
   "status": "ok",
-  "tiles": 31,
+  "tiles": 33,
   "islands": 2,
   "doors": 2,
   "keys": 1,
   "problems": [],
-  "cost": 29,
+  "cost": 28,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -177,12 +177,12 @@
  },
  "血与沙02": {
   "status": "ok",
-  "tiles": 23,
+  "tiles": 25,
   "islands": 2,
   "doors": 2,
   "keys": 1,
   "problems": [],
-  "cost": 36,
+  "cost": 28,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -210,7 +210,7 @@
  },
  "骑士的愿望03": {
   "status": "ok",
-  "tiles": 35,
+  "tiles": 36,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -243,7 +243,7 @@
  },
  "1-13": {
   "status": "ok",
-  "tiles": 41,
+  "tiles": 42,
   "islands": 1,
   "doors": 4,
   "keys": 1,
@@ -320,7 +320,7 @@
  },
  "2-10": {
   "status": "ok",
-  "tiles": 30,
+  "tiles": 31,
   "islands": 2,
   "doors": 1,
   "keys": 1,
@@ -452,7 +452,7 @@
  },
  "3-10": {
   "status": "ok",
-  "tiles": 34,
+  "tiles": 35,
   "islands": 2,
   "doors": 3,
   "keys": 1,
@@ -463,23 +463,23 @@
  },
  "3-12": {
   "status": "ok",
-  "tiles": 35,
+  "tiles": 36,
   "islands": 1,
   "doors": 3,
   "keys": 1,
   "problems": [],
-  "cost": 31,
+  "cost": 30,
   "works_if_keys_consumed": true,
   "reason": null
  },
  "3-13": {
   "status": "ok",
-  "tiles": 40,
+  "tiles": 41,
   "islands": 1,
   "doors": 4,
   "keys": 1,
   "problems": [],
-  "cost": 38,
+  "cost": 35,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -518,12 +518,12 @@
  },
  "3-7": {
   "status": "ok",
-  "tiles": 28,
+  "tiles": 29,
   "islands": 1,
   "doors": 2,
   "keys": 1,
   "problems": [],
-  "cost": 26,
+  "cost": 25,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -606,12 +606,12 @@
  },
  "4-15": {
   "status": "ok",
-  "tiles": 37,
+  "tiles": 38,
   "islands": 2,
   "doors": 2,
   "keys": 1,
   "problems": [],
-  "cost": 35,
+  "cost": 31,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -693,15 +693,15 @@
   "reason": null
  },
  "5-11": {
-  "status": "unreachable",
-  "tiles": 34,
+  "status": "ok",
+  "tiles": 37,
   "islands": 1,
   "doors": 3,
   "keys": 1,
   "problems": [],
-  "cost": null,
-  "works_if_keys_consumed": false,
-  "reason": "goal needs more keys than the map offers"
+  "cost": 22,
+  "works_if_keys_consumed": true,
+  "reason": null
  },
  "5-12": {
   "status": "ok",
@@ -716,7 +716,7 @@
  },
  "5-14": {
   "status": "ok",
-  "tiles": 42,
+  "tiles": 44,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -749,7 +749,7 @@
  },
  "5-5": {
   "status": "ok",
-  "tiles": 24,
+  "tiles": 25,
   "islands": 1,
   "doors": 1,
   "keys": 1,
@@ -771,23 +771,23 @@
  },
  "5-7": {
   "status": "ok",
-  "tiles": 14,
+  "tiles": 16,
   "islands": 1,
   "doors": 0,
   "keys": 0,
   "problems": [],
-  "cost": 8,
+  "cost": 5,
   "works_if_keys_consumed": true,
   "reason": null
  },
  "5-8": {
   "status": "ok",
-  "tiles": 31,
+  "tiles": 32,
   "islands": 1,
   "doors": 2,
   "keys": 1,
   "problems": [],
-  "cost": 23,
+  "cost": 19,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -804,12 +804,12 @@
  },
  "6-10": {
   "status": "ok",
-  "tiles": 36,
+  "tiles": 37,
   "islands": 2,
   "doors": 1,
   "keys": 1,
   "problems": [],
-  "cost": 27,
+  "cost": 19,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -826,7 +826,7 @@
  },
  "6-12": {
   "status": "ok",
-  "tiles": 31,
+  "tiles": 33,
   "islands": 2,
   "doors": 1,
   "keys": 1,
@@ -848,12 +848,12 @@
  },
  "6-2": {
   "status": "ok",
-  "tiles": 27,
+  "tiles": 31,
   "islands": 2,
   "doors": 0,
   "keys": 0,
   "problems": [],
-  "cost": 25,
+  "cost": 18,
   "works_if_keys_consumed": true,
   "reason": null
  },
@@ -969,7 +969,7 @@
  },
  "7-18": {
   "status": "ok",
-  "tiles": 46,
+  "tiles": 47,
   "islands": 1,
   "doors": 3,
   "keys": 1,
@@ -1013,7 +1013,7 @@
  },
  "7-7": {
   "status": "ok",
-  "tiles": 33,
+  "tiles": 34,
   "islands": 2,
   "doors": 4,
   "keys": 1,
@@ -1035,7 +1035,7 @@
  },
  "8-10": {
   "status": "ok",
-  "tiles": 39,
+  "tiles": 40,
   "islands": 1,
   "doors": 2,
   "keys": 1,
@@ -1046,12 +1046,12 @@
  },
  "8-11": {
   "status": "ok",
-  "tiles": 31,
+  "tiles": 32,
   "islands": 1,
   "doors": 1,
   "keys": 1,
   "problems": [],
-  "cost": 21,
+  "cost": 20,
   "works_if_keys_consumed": true,
   "reason": null
  },

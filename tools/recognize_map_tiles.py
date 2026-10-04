@@ -67,7 +67,7 @@ def detect_icons(image, templates, thr=0.64, nms=105):
     return out
 
 
-def classify_site(hsv, gray, cx, cy):
+def classify_site(hsv, gray, cx, cy, interior=False):
     """Classify an icon-less lattice site: plain / cracked_rock / purple_rift / red_flesh / unknown_icon / None."""
     h, w = gray.shape
     if not (135 < cx < w - 135 and 135 < cy < h - 135):
@@ -82,13 +82,14 @@ def classify_site(hsv, gray, cx, cy):
     ay, ax = np.ogrid[-135:136, -135:136]
     ring = ((ax ** 2 + ay ** 2) >= 100 ** 2) & ((ax ** 2 + ay ** 2) <= 135 ** 2)
     fog_level = max(35.0, 0.45 * mean)  # fog is not always pure black
-    if (gray[int(cy) - 135:int(cy) + 136, int(cx) - 135:int(cx) + 136][ring] < fog_level).mean() < 0.08:
-        return None  # tiles sit inside the black fog
+    in_fog = (gray[int(cy) - 135:int(cy) + 136, int(cx) - 135:int(cx) + 136][ring] < fog_level).mean() >= 0.08
+    if not interior and not in_fog:
+        return None  # tiles sit inside the black fog (interior holes surrounded by known tiles are exempt)
     hue, sat, val = hp[:, 0], hp[:, 1], hp[:, 2]
     if (((hue < 10) | (hue > 165)) & (sat > 120) & (val > 110)).mean() > 0.45:
         return "red_flesh"
     if ((hue >= 100) & (hue <= 132) & (sat >= 72) & (sat <= 160) & (val > 70)).mean() > 0.45:
-        return "purple_rift"
+        return "purple_rift" if in_fog else None  # blue-ish backgrounds look the same
     m_sat, m_hue, m_val, lines = np.median(sat), np.median(hue), np.median(val), (gp < 70).mean()
     if (gp > np.median(gp) + 45).mean() > 0.06 and m_sat >= 15 and lines < 0.15 and mean > 85:
         return "unknown_icon"  # an icon exists but no template matched
@@ -146,7 +147,7 @@ def build_tiles(image, icons):
                 continue
             seen.add(key)
             cx, cy = ox + key[1] * DX2, oy + key[0] * DY + YOFF
-            kind = classify_site(hsv, gray, cx, cy)
+            kind = classify_site(hsv, gray, cx, cy, interior=known_neighbours(key) >= 2)
             if kind == "plain_weak":
                 weak[key] = (cx, cy)
             elif kind:

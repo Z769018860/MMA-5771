@@ -1,5 +1,5 @@
 {
- "note": "planner 使用 passable/blocking/cost/requires_key/gives_key/transport；cost 只是规划权重（越大越想避开），不是游戏数值。confidence: confirmed=已有来源确认; inferred=按名称/图标/数据规律推断; inferred_by_elimination=按排除法; unverified=来源未核实; unknown=不明。",
+ "note": "planner 使用 passable/blocking/cost/requires_key/gives_key/transport；cost 只是规划权重（越大越想避开），不是游戏数值。confidence: confirmed=已有来源确认; inferred=按名称/图标/数据规律推断; inferred_by_elimination=按排除法; unverified=来源未核实; inferred_from_counts=由地图格数与维基事件数的吻合规律推断; unknown=不明。",
  "effects": {
   "player": {
    "role": "start",
@@ -189,8 +189,8 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "入学仪式：选卡及刻印分支（README 8-2）",
-   "confidence": "name_only",
+   "effect": "入学仪式；第 8/9 章维基事件数与「事件格+入学仪式+审查会探员」在 10 张里 7 张吻合，推断会触发事件（README 8-2 已确认入学仪式为选卡/刻印分支）",
+   "confidence": "inferred_from_counts",
    "source": "README 8-2"
   },
   "detention": {
@@ -229,8 +229,8 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "第 7 章专属格，功能不明",
-   "confidence": "unknown",
+   "effect": "第 7 章每张图 1 个；该章维基事件数 = 事件格数 + 孕育之母数（12 张里 11 张吻合），推断为会触发一个事件",
+   "confidence": "inferred_from_counts",
    "source": "无"
   },
   "proxy_rite": {
@@ -253,8 +253,8 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "第 8/9 章专属格，功能不明（可能是遭遇审查会探员）",
-   "confidence": "unknown",
+   "effect": "审查会探员；见入学仪式的计数规律，推断会触发事件（8-2 的「监察点」，README 已核对选项：离开/诈降/闯入）",
+   "confidence": "inferred_from_counts",
    "source": "无"
   },
   "strange_cyst": {

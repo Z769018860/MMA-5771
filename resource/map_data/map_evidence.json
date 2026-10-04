@@ -5,7 +5,7 @@
   "maps": 108,
   "images_verified": 108,
   "maps_with_stage_events": 103,
-  "routes_found": 107
+  "routes_found": 108
  },
  "maps": {
   "一步之遥02": {
@@ -173,7 +173,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 12,
+   "recognized_tiles": 14,
    "generic_event_tiles": 1,
    "stage_event_entries": 1,
    "stage_event_link": {
@@ -189,7 +189,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 31,
+   "recognized_tiles": 33,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -269,7 +269,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 23,
+   "recognized_tiles": 25,
    "generic_event_tiles": 2,
    "stage_event_entries": 0,
    "stage_event_link": {},
@@ -313,7 +313,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 35,
+   "recognized_tiles": 36,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -361,7 +361,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 41,
+   "recognized_tiles": 42,
    "generic_event_tiles": 4,
    "stage_event_entries": 4,
    "stage_event_link": {
@@ -473,7 +473,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 30,
+   "recognized_tiles": 31,
    "generic_event_tiles": 3,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -665,7 +665,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 34,
+   "recognized_tiles": 35,
    "generic_event_tiles": 3,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -681,7 +681,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 35,
+   "recognized_tiles": 36,
    "generic_event_tiles": 3,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -697,7 +697,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 40,
+   "recognized_tiles": 41,
    "generic_event_tiles": 5,
    "stage_event_entries": 5,
    "stage_event_link": {
@@ -761,7 +761,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 28,
+   "recognized_tiles": 29,
    "generic_event_tiles": 3,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -887,7 +887,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 37,
+   "recognized_tiles": 38,
    "generic_event_tiles": 3,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1015,13 +1015,13 @@
     3508,
     1974
    ],
-   "recognized_tiles": 34,
+   "recognized_tiles": 37,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
     "wiki_map_field": 2
    },
-   "route_status": "unreachable",
+   "route_status": "ok",
    "tile_to_specific_event_known": false
   },
   "5-12": {
@@ -1047,7 +1047,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 42,
+   "recognized_tiles": 44,
    "generic_event_tiles": 4,
    "stage_event_entries": 4,
    "stage_event_link": {
@@ -1095,7 +1095,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 24,
+   "recognized_tiles": 25,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1127,7 +1127,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 14,
+   "recognized_tiles": 16,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1143,7 +1143,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 31,
+   "recognized_tiles": 32,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1175,7 +1175,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 36,
+   "recognized_tiles": 37,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1207,7 +1207,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 31,
+   "recognized_tiles": 33,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1239,7 +1239,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 27,
+   "recognized_tiles": 31,
    "generic_event_tiles": 2,
    "stage_event_entries": 2,
    "stage_event_link": {
@@ -1415,7 +1415,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 46,
+   "recognized_tiles": 47,
    "generic_event_tiles": 4,
    "stage_event_entries": 5,
    "stage_event_link": {
@@ -1479,7 +1479,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 33,
+   "recognized_tiles": 34,
    "generic_event_tiles": 2,
    "stage_event_entries": 3,
    "stage_event_link": {
@@ -1511,7 +1511,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 39,
+   "recognized_tiles": 40,
    "generic_event_tiles": 2,
    "stage_event_entries": 5,
    "stage_event_link": {
@@ -1527,7 +1527,7 @@
     3508,
     1974
    ],
-   "recognized_tiles": 31,
+   "recognized_tiles": 32,
    "generic_event_tiles": 2,
    "stage_event_entries": 4,
    "stage_event_link": {
