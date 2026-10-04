@@ -209,10 +209,11 @@
       }
     },
     {
-      "name": "自动活动推进全部",
-      "label": "活动自动推进：第 1–9 关",
+      "name": "自动活动推进",
+      "label": "活动自动推进",
       "entry": "AA_Start",
       "option": [
+        "活动推进范围",
         "同调率助战",
         "活动应急灵知体",
         "活动列表项",
@@ -314,1051 +315,7 @@
           ]
         }
       },
-      "description": "倘若荣光不复：依次挑战第 1–9 关癫狂；未解锁则先打之六。战败即停止。"
-    },
-    {
-      "name": "自动活动推进第1关",
-      "label": "活动第 1 关：危险席位",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage1_ResetA"
-          ]
-        },
-        "AA_Completed1": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第2关",
-      "label": "活动第 2 关：向怨朝圣",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage2_ResetA"
-          ]
-        },
-        "AA_Completed2": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第3关",
-      "label": "活动第 3 关：战余的枯骨",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage3_ResetA"
-          ]
-        },
-        "AA_Completed3": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第4关",
-      "label": "活动第 4 关：妖影的诱惑",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage4_ResetA"
-          ]
-        },
-        "AA_Completed4": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第5关",
-      "label": "活动第 5 关：荒原尽头",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage5_ResetA"
-          ]
-        },
-        "AA_Completed5": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第6关",
-      "label": "活动第 6 关：未赴之约",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage6_ResetA"
-          ]
-        },
-        "AA_Completed6": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第7关",
-      "label": "活动第 7 关：暗塔",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage7_ResetA"
-          ]
-        },
-        "AA_Completed7": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第8关",
-      "label": "活动第 8 关：归于光中",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage8_ResetA"
-          ]
-        },
-        "AA_Completed8": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
-    },
-    {
-      "name": "自动活动推进第9关",
-      "label": "活动第 9 关：无形的骑士",
-      "entry": "AA_Start",
-      "option": [
-        "同调率助战",
-        "活动应急灵知体",
-        "活动列表项",
-        "活动玩法入口"
-      ],
-      "default_check": false,
-      "repeatable": false,
-      "pipeline_override": {
-        "FinishCurrentButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishAltButton": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "FinishButtonClickRetry": {
-          "next": [
-            "AA_AfterResult"
-          ]
-        },
-        "BattleMonitor": {
-          "next": [
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "StartInvestigation": {
-          "next": [
-            "InvestigationWarningUnchecked",
-            "InvestigationWarningChecked",
-            "HideCards",
-            "BattleStartSignal",
-            "AutoAlreadyOn",
-            "AutoControlReady",
-            "AA_PaidRevive",
-            "ReviveDecision",
-            "FinishInvestigation"
-          ]
-        },
-        "FailureChoice": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "StopHere": {
-          "next": [
-            "AA_BattleFailed"
-          ]
-        },
-        "ActEntry_right": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry_left": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist",
-            "ActEntryRetry"
-          ]
-        },
-        "ActEntryRetry": {
-          "next": [
-            "AA_StagePage",
-            "ActStagePage",
-            "ActOathDetail",
-            "CycleStart",
-            "ChooseFeather",
-            "ChooseMadness",
-            "OpenAssist"
-          ]
-        },
-        "AA_StagePage": {
-          "next": [
-            "AA_Stage9_ResetA"
-          ]
-        },
-        "AA_Completed9": {
-          "next": []
-        }
-      },
-      "description": "仅挑战这一关；癫狂未解锁时先打之六。"
+      "description": "倘若荣光不复：按「推进范围」选项依次挑战癫狂（未解锁则先打之六），战败即停止。默认推进第 1–9 关；也可以只打其中某一关。"
     },
     {
       "name": "记忆回廊列车",
@@ -3118,6 +2075,144 @@
                 75,
                 90
               ]
+            }
+          }
+        }
+      ]
+    },
+    "活动推进范围": {
+      "type": "select",
+      "label": "活动推进：关卡范围",
+      "description": "全部：依次挑战第 1–9 关；或只挑战选中的这一关。",
+      "default_case": "all",
+      "cases": [
+        {
+          "name": "all",
+          "label": "第 1–9 关（全部）"
+        },
+        {
+          "name": "stage1",
+          "label": "第 1 关：危险席位",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage1_ResetA"
+              ]
+            },
+            "AA_Completed1": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage2",
+          "label": "第 2 关：向怨朝圣",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage2_ResetA"
+              ]
+            },
+            "AA_Completed2": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage3",
+          "label": "第 3 关：战余的枯骨",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage3_ResetA"
+              ]
+            },
+            "AA_Completed3": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage4",
+          "label": "第 4 关：妖影的诱惑",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage4_ResetA"
+              ]
+            },
+            "AA_Completed4": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage5",
+          "label": "第 5 关：荒原尽头",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage5_ResetA"
+              ]
+            },
+            "AA_Completed5": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage6",
+          "label": "第 6 关：未赴之约",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage6_ResetA"
+              ]
+            },
+            "AA_Completed6": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage7",
+          "label": "第 7 关：暗塔",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage7_ResetA"
+              ]
+            },
+            "AA_Completed7": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage8",
+          "label": "第 8 关：归于光中",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage8_ResetA"
+              ]
+            },
+            "AA_Completed8": {
+              "next": []
+            }
+          }
+        },
+        {
+          "name": "stage9",
+          "label": "第 9 关：无形的骑士",
+          "pipeline_override": {
+            "AA_StagePage": {
+              "next": [
+                "AA_Stage9_ResetA"
+              ]
+            },
+            "AA_Completed9": {
+              "next": []
             }
           }
         }

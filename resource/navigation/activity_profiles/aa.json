@@ -5,14 +5,9 @@
  "label": "倘若荣光不复",
  "pipeline": "activity_advance.json",
  "task_all": {
-  "name": "自动活动推进全部",
-  "label": "活动自动推进：第 1–{n} 关",
-  "description": "倘若荣光不复：依次挑战第 1–{n} 关癫狂；未解锁则先打之六。战败即停止。"
- },
- "task_stage": {
-  "name": "自动活动推进第{i}关",
-  "label": "活动第 {i} 关：{title}",
-  "description": "仅挑战这一关；癫狂未解锁时先打之六。"
+  "name": "自动活动推进",
+  "label": "活动自动推进",
+  "description": "倘若荣光不复：按「推进范围」选项依次挑战癫狂（未解锁则先打之六），战败即停止。默认推进第 1–{n} 关；也可以只打其中某一关。"
  },
  "templates": {
   "stage_page": {
@@ -277,5 +272,12 @@
     "image": "activity_advance_title_9.png"
    }
   }
- ]
+ ],
+ "scope_option": {
+  "name": "活动推进范围",
+  "label": "活动推进：关卡范围",
+  "description": "全部：依次挑战第 1–{n} 关；或只挑战选中的这一关。",
+  "all_label": "第 1–{n} 关（全部）",
+  "stage_label": "第 {i} 关：{title}"
+ }
 }

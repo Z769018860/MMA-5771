@@ -37,11 +37,12 @@ def main():
     parser.add_argument("--revive", choices=("use", "skip"), default="use")
     args = parser.parse_args()
     interface = json.loads((ROOT / "interface.json").read_text(encoding="utf-8"))
-    name = "自动活动推进全部" if args.all else f"自动活动推进第{args.stage}关"
-    task = next(t for t in interface["task"] if t["name"] == name)
+    task = next(t for t in interface["task"] if t["name"] == "自动活动推进")
+    scope = interface["option"]["活动推进范围"]
+    scope_case = next(c for c in scope["cases"] if c["name"] == ("all" if args.all else f"stage{args.stage}"))
     option = interface["option"]["活动应急灵知体"]
     case = next(c for c in option["cases"] if c["name"] == args.revive)
-    override = merge_override(task["pipeline_override"], case.get("pipeline_override", {}))
+    override = merge_override(task["pipeline_override"], scope_case.get("pipeline_override", {}), case.get("pipeline_override", {}))
 
     resource = Resource()
     controller = AdbController(args.adb, args.serial)

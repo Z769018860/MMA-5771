@@ -50,12 +50,17 @@ def check_profile(prof, label):
         expect(done["next"] == ([f"{P}_BackToStage{i + 1}"] if i < n else []), f"{label}: stage {i} completion next")
     order = nodes[f"{P}_AfterResult"]["next"]
     expect(order == [*[f"{P}_Completed{i}" for i in range(1, n + 1)], f"{P}_AfterSix"], f"{label}: AfterResult order {order}")
-    tasks = A.profile_tasks(prof)
-    expect(len(tasks) == n + 1 and all(t["entry"] == f"{P}_Start" for t in tasks), f"{label}: tasks")
-    for t in tasks:
-        refs = {x for v in t["pipeline_override"].values() for x in v.get("next", [])}
-        expect(all(x in pool for x in refs), f"{label}: task {t['name']} override refers to unknown nodes {sorted(refs - set(pool))}")
-        expect(f"{P}_StagePage" in t["pipeline_override"]["ActEntry"]["next"], f"{label}: generic entry must reach {P}_StagePage")
+    task, cases = A.profile_task(prof), A.scope_cases(prof)
+    expect(task["entry"] == f"{P}_Start" and task["option"][0] == prof["scope_option"]["name"], f"{label}: task")
+    expect([c["name"] for c in cases] == ["all", *[f"stage{i}" for i in range(1, n + 1)]], f"{label}: scope cases")
+    for i, c in enumerate(cases[1:], 1):
+        ov = c["pipeline_override"]
+        expect(ov[f"{P}_StagePage"]["next"] == [f"{P}_Stage{i}_ResetA"] and ov[f"{P}_Completed{i}"]["next"] == [], f"{label}: case stage{i}")
+    overrides = [task["pipeline_override"]] + [c.get("pipeline_override", {}) for c in cases]
+    for ov in overrides:
+        refs = {x for v in ov.values() for x in v.get("next", [])}
+        expect(all(x in pool for x in refs), f"{label}: override refers to unknown nodes {sorted(refs - set(pool))}")
+    expect(f"{P}_StagePage" in task["pipeline_override"]["ActEntry"]["next"], f"{label}: generic entry must reach {P}_StagePage")
     return nodes
 
 
@@ -71,6 +76,7 @@ expect(tnodes["AB_Completed3"].get("max_hit") == 1 and "all_of" not in tnodes["A
 interface = json.loads((ROOT / "interface.json").read_text(encoding="utf-8"))
 names = [t["name"] for t in interface["task"]]
 expect(len(names) == len(set(names)), "duplicate task names")
+expect(not any(n.startswith(("活动第", "自动活动推进第")) for n in names), "per-stage tasks must not exist any more")
 print(f"{checks} checks, {len(failures)} failures")
 for f in failures:
     print("FAIL", f)

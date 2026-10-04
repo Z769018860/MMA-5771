@@ -177,11 +177,12 @@ python tools/test_daily.py
 合并与通用化：
 - 入口：原来只认「倘若荣光不复」专属的列表项/金色入口图；现在认不到就落到同调率循环用的通用节点（`ActSlot` 选活动列表第几项、`ActEntry` 点左/右玩法入口），任务里带了「活动列表项」「活动玩法入口」两个选项。通用入口落到的关卡页也会被识别为本活动的关卡页。
 - 关卡序列由配置决定：关卡数、每关点击位置、点击前的滚动（`reset_swipes` + 每关 `swipes`）。
+- 任务列表里只有一个「活动自动推进」任务，推进哪些关卡放在它的选项「活动推进范围」里（全部 / 第 1–N 关中的某一关），不再每关一个任务。
 - 不再要求每关都有标题模板：没有 `title` 的关卡按顺序结算（`AA_CompletedN` 只能命中一次），有 `title` 的仍按标题+癫狂选中判断。
 - 付费复活预警、战败即停、应急灵知体选项、之六→癫狂的难度策略对所有活动共用。
 - 多个活动互不冲突：每份配置有自己的节点前缀和流水线文件。
 
-适配新活动：复制 `_template.json` 为 `<id>.json`，改 `id`/`prefix`/任务名/`stages`/模板图名，把需要的模板截图放进 `resource/image/`，运行 `python tools/build_activity_advance.py`，再跑 `python tools/test_activity_advance.py` 做结构检查，最后用 `tools/verify_activity_advance.py` 实机验证。
+适配新活动：复制 `_template.json` 为 `<id>.json`，改 `id`/`prefix`/`task_all`/`scope_option`/`stages`/模板图名，把需要的模板截图放进 `resource/image/`，运行 `python tools/build_activity_advance.py`，再跑 `python tools/test_activity_advance.py` 做结构检查，最后用 `tools/verify_activity_advance.py` 实机验证。
 
 没有验证的部分：新增的通用入口兜底、按顺序结算（`max_hit`）都只做了结构测试，没有实机跑过；换活动时关卡页模板、关卡坐标和滚动方式必须按新活动的截图重新填。
 

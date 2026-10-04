@@ -1,18 +1,13 @@
 {
- "_doc": "新活动模板：复制为 <id>.json（不要以下划线开头），改 id/prefix(2-4 个大写字母，必须唯一)/label/任务名/stages/templates 图片名后运行 python tools/build_activity_advance.py。stages 每项：label、click=[x,y]（关卡在列表里的点击位置，1280x720）、swipes=[[起点x,终点x],…]（点击前要做的滚动，在 reset_swipes 之后执行）、title（可选，详情页标题模板；不给则按顺序结算）。",
+ "_doc": "新活动模板：复制为 <id>.json（不要以下划线开头），改 id/prefix(2-4 个大写字母，必须唯一)/label/任务名/scope_option/stages/templates 图片名后运行 python tools/build_activity_advance.py。stages 每项：label、click=[x,y]（关卡在列表里的点击位置，1280x720）、swipes=[[起点x,终点x],…]（点击前要做的滚动，在 reset_swipes 之后执行）、title（可选，详情页标题模板；不给则按顺序结算）。",
  "id": "new",
  "prefix": "AB",
  "label": "新活动名",
  "pipeline": "activity_advance_new.json",
  "task_all": {
-  "name": "自动活动推进[新活动]全部",
-  "label": "新活动：第 1–{n} 关",
-  "description": "依次挑战第 1–{n} 关。"
- },
- "task_stage": {
-  "name": "自动活动推进[新活动]第{i}关",
-  "label": "新活动第 {i} 关：{title}",
-  "description": "仅挑战这一关。"
+  "name": "自动活动推进[新活动]",
+  "label": "新活动自动推进",
+  "description": "按「推进范围」选项依次挑战，默认第 1–{n} 关。"
  },
  "templates": {
   "stage_page": {
@@ -166,5 +161,12 @@
     ]
    ]
   }
- ]
+ ],
+ "scope_option": {
+  "name": "活动推进范围[新活动]",
+  "label": "新活动：关卡范围",
+  "description": "全部：依次挑战第 1–{n} 关；或只挑战选中的这一关。",
+  "all_label": "第 1–{n} 关（全部）",
+  "stage_label": "第 {i} 关：{title}"
+ }
 }

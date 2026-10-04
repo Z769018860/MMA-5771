@@ -198,24 +198,25 @@ def revive_option(prefix):
     return {"ReviveDecision": {"target_offset": [341, 343, -292, -92], "next": [f"{prefix}_PostReviveWait"]}}
 
 
-def profile_tasks(prof):
+def scope_cases(prof):
+    """Option cases of the single task: the whole run, or one stage (its page/completion nodes are redirected)."""
     P, stages = prof["prefix"], prof["stages"]
-    count = len(stages)
-    finish = task_overrides(prof)
-    ta, ts = prof["task_all"], prof["task_stage"]
-    all_task = {"name": ta["name"], "label": ta["label"].format(n=count), "entry": f"{P}_Start",
-                "option": ["同调率助战", "活动应急灵知体", "活动列表项", "活动玩法入口"], "default_check": False,
-                "repeatable": False, "pipeline_override": finish,
-                "description": ta["description"].format(n=count)}
-    single = []
+    so = prof["scope_option"]
+    cases = [{"name": "all", "label": so["all_label"].format(n=len(stages))}]
     for i, stage in enumerate(stages, 1):
-        override = {**finish, f"{P}_StagePage": {"next": [f"{P}_Stage{i}_ResetA"]},
-                    f"{P}_Completed{i}": {"next": []}}
-        single.append({"name": ts["name"].format(i=i), "label": ts["label"].format(i=i, title=stage["label"]),
-                       "entry": f"{P}_Start", "option": ["同调率助战", "活动应急灵知体", "活动列表项", "活动玩法入口"],
-                       "default_check": False, "repeatable": False, "pipeline_override": override,
-                       "description": ts["description"].format(i=i)})
-    return [all_task, *single]
+        cases.append({"name": f"stage{i}", "label": so["stage_label"].format(i=i, title=stage["label"]),
+                      "pipeline_override": {f"{P}_StagePage": {"next": [f"{P}_Stage{i}_ResetA"]},
+                                            f"{P}_Completed{i}": {"next": []}}})
+    return cases
+
+
+def profile_task(prof):
+    P, count = prof["prefix"], len(prof["stages"])
+    ta, so = prof["task_all"], prof["scope_option"]
+    return {"name": ta["name"], "label": ta["label"], "entry": f"{P}_Start",
+            "option": [so["name"], "同调率助战", "活动应急灵知体", "活动列表项", "活动玩法入口"], "default_check": False,
+            "repeatable": False, "pipeline_override": task_overrides(prof),
+            "description": ta["description"].format(n=count)}
 
 
 def update_interface(profiles):
@@ -230,10 +231,15 @@ def update_interface(profiles):
             {"name": "skip", "label": "不使用灵知，战败停止"},
         ],
     }
-    mine = {p["task_all"]["name"] for p in profiles} | {
-        p["task_stage"]["name"].format(i=i) for p in profiles for i in range(1, len(p["stages"]) + 1)}
-    data["task"] = [t for t in data["task"] if t["name"] not in mine and not t["name"].startswith("自动活动推进")]
-    tasks = [t for p in profiles for t in profile_tasks(p)]
+    for p in profiles:
+        so = p["scope_option"]
+        data["option"][so["name"]] = {"type": "select", "label": so["label"],
+                                      "description": so["description"].format(n=len(p["stages"])),
+                                      "default_case": "all", "cases": scope_cases(p)}
+    mine = {p["task_all"]["name"] for p in profiles}
+    data["task"] = [t for t in data["task"] if t["name"] not in mine and not t["name"].startswith("自动活动推进")
+                    and not t["name"].startswith("活动自动推进")]
+    tasks = [profile_task(p) for p in profiles]
     mainline = next((j for j, t in enumerate(data["task"]) if t["name"] in ("记忆回廊列车", "自动推进主线")), len(data["task"]))
     data["task"][mainline:mainline] = tasks
     return data
