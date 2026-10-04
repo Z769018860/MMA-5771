@@ -1,0 +1,492 @@
+{
+  "Sweep_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "Sweep_Reward",
+      "Sweep_Dialog",
+      "Sweep_Page",
+      "Sweep_FromStage"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "活动扫荡：从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。"
+    }
+  },
+  "Sweep_FromStage": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "SweepNode1"
+    ]
+  },
+  "SweepNode1": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000,
+    "action": "Click",
+    "target": [
+      146,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 1。"
+    }
+  },
+  "SweepNode2": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000,
+    "action": "Click",
+    "target": [
+      418,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 2。"
+    }
+  },
+  "SweepNode3": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000,
+    "action": "Click",
+    "target": [
+      690,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 3。"
+    }
+  },
+  "SweepNode4": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000,
+    "action": "Click",
+    "target": [
+      963,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 4。"
+    }
+  },
+  "SweepNode5": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000,
+    "action": "Click",
+    "target": [
+      1232,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 5。"
+    }
+  },
+  "Sweep_Page": {
+    "recognition": "TemplateMatch",
+    "template": "activity_oath_title.png",
+    "roi": [
+      0,
+      15,
+      230,
+      80
+    ],
+    "threshold": 0.88,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 20000,
+    "next": [
+      "Sweep_Scroll"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入活动关卡列表。"
+    }
+  },
+  "Sweep_Scroll": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      185,
+      585,
+      20,
+      20
+    ],
+    "end": [
+      185,
+      165,
+      20,
+      20
+    ],
+    "duration": 450,
+    "post_delay": 800,
+    "next": [
+      "Sweep_SelectPrev"
+    ]
+  },
+  "Sweep_SelectPrev": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      185,
+      505,
+      30,
+      30
+    ],
+    "post_delay": 900,
+    "next": [
+      "Sweep_Replay"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选中列表最后一项上面的关卡（癫狂的上一个）。"
+    }
+  },
+  "Sweep_Replay": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_oath_title.png",
+        "roi": [
+          0,
+          15,
+          230,
+          80
+        ],
+        "threshold": 0.88,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_replay_btn.png",
+        "roi": [
+          974,
+          598,
+          266,
+          80
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "timeout": 15000,
+    "action": "Click",
+    "target_offset": [
+      20,
+      8,
+      -40,
+      -16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_Dialog",
+      "Sweep_ReplayRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击【重现】。"
+    }
+  },
+  "Sweep_ReplayRetry": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_oath_title.png",
+        "roi": [
+          0,
+          15,
+          230,
+          80
+        ],
+        "threshold": 0.88,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_replay_btn.png",
+        "roi": [
+          974,
+          598,
+          266,
+          80
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "timeout": 10000,
+    "action": "Click",
+    "target_offset": [
+      20,
+      8,
+      -40,
+      -16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_Dialog"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "【重现】没有打开窗口，再点一次。"
+    }
+  },
+  "Sweep_Dialog": {
+    "recognition": "TemplateMatch",
+    "template": "sweep_dlg_title.png",
+    "roi": [
+      573,
+      188,
+      132,
+      60
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 15000,
+    "next": [
+      "Sweep_Max"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已打开【重现次数】窗口。"
+    }
+  },
+  "Sweep_Max": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_title.png",
+        "roi": [
+          573,
+          188,
+          132,
+          60
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_max.png",
+        "roi": [
+          929,
+          242,
+          84,
+          59
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target_offset": [
+      6,
+      5,
+      -12,
+      -10
+    ],
+    "post_delay": 900,
+    "next": [
+      "Sweep_Confirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击最大次数按钮（↑）。"
+    }
+  },
+  "Sweep_Confirm": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_title.png",
+        "roi": [
+          573,
+          188,
+          132,
+          60
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_ok.png",
+        "roi": [
+          697,
+          490,
+          264,
+          83
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target_offset": [
+      20,
+      10,
+      -40,
+      -20
+    ],
+    "post_delay": 2500,
+    "next": [
+      "Sweep_Reward",
+      "Sweep_Dialog"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击【确定】。"
+    }
+  },
+  "Sweep_Reward": {
+    "recognition": "TemplateMatch",
+    "template": "sweep_reward_title.png",
+    "roi": [
+      550,
+      166,
+      166,
+      66
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "timeout": 20000,
+    "action": "Click",
+    "target": [
+      161,
+      459,
+      240,
+      66
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_Reward",
+      "Sweep_Done"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击空白处关闭【重现奖励】。"
+    }
+  },
+  "Sweep_Done": {
+    "recognition": "TemplateMatch",
+    "template": "activity_oath_title.png",
+    "roi": [
+      0,
+      15,
+      230,
+      80
+    ],
+    "threshold": 0.88,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [],
+    "timeout": 10000,
+    "focus": {
+      "Node.Recognition.Succeeded": "扫荡完成，回到关卡列表。"
+    }
+  }
+}

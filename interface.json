@@ -163,6 +163,17 @@
       "default_check": false,
       "repeatable": false,
       "description": "从主界面（或信箱页）开始：点击信箱，点击【全部领取】，关闭【获得物资】弹窗，返回主界面。"
+    },
+    {
+      "name": "活动扫荡",
+      "label": "活动扫荡（重现）",
+      "entry": "Sweep_Start",
+      "option": [
+        "扫荡节点"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "在活动关卡列表（如巨古誓言）：滚到底部，选中最后一项（癫狂）上面的关卡，点【重现】，点最大次数，点【确定】，关闭【重现奖励】。可从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。"
     }
   ],
   "option": {
@@ -1107,6 +1118,69 @@
             "ActNode": {
               "next": [
                 "ActNode5"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "扫荡节点": {
+      "type": "select",
+      "label": "活动扫荡：从活动关卡页进入的节点",
+      "description": "仅当任务从活动关卡页（横排节点）开始时使用；从关卡列表开始则忽略。",
+      "default_case": "node1",
+      "cases": [
+        {
+          "name": "node1",
+          "label": "节点 1（默认）",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node2",
+          "label": "节点 2",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node3",
+          "label": "节点 3",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node4",
+          "label": "节点 4",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode4"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node5",
+          "label": "节点 5",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode5"
               ]
             }
           }
