@@ -84,8 +84,8 @@
    "name": "联络点",
    "category": "support",
    "appearance": "白色十字 + 标签「联络点」或「联络处」",
-   "function": "推断为补给/恢复点",
-   "function_confidence": "inferred",
+   "function": "接通恢复生命，或冥想选择觉醒一名唤醒体（维基事件页）",
+   "function_confidence": "confirmed",
    "templates": [
     "templates/contact_1.png",
     "templates/contact_2.png"

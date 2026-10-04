@@ -1,0 +1,1730 @@
+{
+ "schema": 1,
+ "note": "SHA-1 verifies source bytes, not tile recognition accuracy. Stage event entries are possible events in a stage, not assigned to individual hexes. Route status depends on the current inferred movement rules.",
+ "summary": {
+  "maps": 108,
+  "images_verified": 108,
+  "maps_with_stage_events": 103,
+  "routes_found": 107
+ },
+ "maps": {
+  "一步之遥02": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/02/%E4%B8%80%E6%AD%A5%E4%B9%8B%E9%81%A502_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "如歌的雕琢01": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/83/%E5%A6%82%E6%AD%8C%E7%9A%84%E9%9B%95%E7%90%A201_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 14,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "如歌的雕琢03": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/2e/%E5%A6%82%E6%AD%8C%E7%9A%84%E9%9B%95%E7%90%A203_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "stage_filename_match": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "扭曲核心02": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/1d/%E6%89%AD%E6%9B%B2%E6%A0%B8%E5%BF%8302_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "燃烧的群宴02": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/d/d5/%E7%87%83%E7%83%A7%E7%9A%84%E7%BE%A4%E5%AE%B402_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 12,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "燃烧的群宴04": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/64/%E7%87%83%E7%83%A7%E7%9A%84%E7%BE%A4%E5%AE%B404_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 32,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "狩猎愉快！11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/a7/%E7%8B%A9%E7%8C%8E%E6%84%89%E5%BF%AB%EF%BC%8111_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 23,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 0,
+   "stage_event_link": {},
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞01": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/ec/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E01_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 8,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "stage_filename_match": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞03": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/4f/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E03_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 12,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞04": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/0b/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E04_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 18,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞05": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/9/95/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E05_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 12,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "stage_filename_match": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞06": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/d/d3/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E06_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞07": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/0a/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E07_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 26,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞08": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/13/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E08_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 17,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/ca/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 19,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "蔷薇礼赞12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/3/37/%E8%94%B7%E8%96%87%E7%A4%BC%E8%B5%9E12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "血与沙02": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/24/%E8%A1%80%E4%B8%8E%E6%B2%9902_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 23,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 0,
+   "stage_event_link": {},
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "血与沙04": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/ce/%E8%A1%80%E4%B8%8E%E6%B2%9904_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 0,
+   "stage_event_link": {},
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "诸事如常02": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/ab/%E8%AF%B8%E4%BA%8B%E5%A6%82%E5%B8%B802_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "骑士的愿望03": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/d/dd/%E9%AA%91%E5%A3%AB%E7%9A%84%E6%84%BF%E6%9C%9B03_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 35,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "stage_filename_match": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/6f/%E5%BF%98%E5%8D%B4%E7%AF%871-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 32,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/80/%E5%BF%98%E5%8D%B4%E7%AF%871-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 29,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-13": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/d/d8/%E5%BF%98%E5%8D%B4%E7%AF%871-13_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 41,
+   "generic_event_tiles": 4,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/5f/%E5%BF%98%E5%8D%B4%E7%AF%871-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 13,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/2f/%E5%BF%98%E5%8D%B4%E7%AF%871-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 15,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "chapter_inferred": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/5e/%E5%BF%98%E5%8D%B4%E7%AF%871-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 24,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-8": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/6a/%E5%BF%98%E5%8D%B4%E7%AF%871-8_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 25,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "1-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/1f/%E5%BF%98%E5%8D%B4%E7%AF%871-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/51/%E5%BF%98%E5%8D%B4%E7%AF%872-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 15,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/01/%E5%BF%98%E5%8D%B4%E7%AF%872-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "chapter_inferred": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/42/%E5%BF%98%E5%8D%B4%E7%AF%872-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 4,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-13": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/00/%E5%BF%98%E5%8D%B4%E7%AF%872-13_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 38,
+   "generic_event_tiles": 4,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-14": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/02/%E5%BF%98%E5%8D%B4%E7%AF%872-14_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 42,
+   "generic_event_tiles": 5,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "chapter_inferred": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-15": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/3/37/%E5%BF%98%E5%8D%B4%E7%AF%872-15_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 33,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "chapter_inferred": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/62/%E5%BF%98%E5%8D%B4%E7%AF%872-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 23,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-4": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/77/%E5%BF%98%E5%8D%B4%E7%AF%872-4_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 11,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/b/be/%E5%BF%98%E5%8D%B4%E7%AF%872-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "chapter_inferred": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-6": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/a6/%E5%BF%98%E5%8D%B4%E7%AF%872-6_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-8": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/1b/%E5%BF%98%E5%8D%B4%E7%AF%872-8_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 6,
+   "stage_event_entries": 7,
+   "stage_event_link": {
+    "wiki_map_field": 7
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "2-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/e0/%E5%BF%98%E5%8D%B4%E7%AF%872-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/f/f0/%E5%BF%98%E5%8D%B4%E7%AF%873-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 12,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/43/%E5%BF%98%E5%8D%B4%E7%AF%873-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/4b/%E5%BF%98%E5%8D%B4%E7%AF%873-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 35,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-13": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/63/%E5%BF%98%E5%8D%B4%E7%AF%873-13_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 40,
+   "generic_event_tiles": 5,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "wiki_map_field": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/0f/%E5%BF%98%E5%8D%B4%E7%AF%873-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 20,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "chapter_inferred": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-4": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/07/%E5%BF%98%E5%8D%B4%E7%AF%873-4_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 17,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/57/%E5%BF%98%E5%8D%B4%E7%AF%873-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 38,
+   "generic_event_tiles": 8,
+   "stage_event_entries": 8,
+   "stage_event_link": {
+    "wiki_map_field": 8
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/27/%E5%BF%98%E5%8D%B4%E7%AF%873-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "chapter_inferred": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-8": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/72/%E5%BF%98%E5%8D%B4%E7%AF%873-8_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 3,
+   "generic_event_tiles": 0,
+   "stage_event_entries": 0,
+   "stage_event_link": {},
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "3-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/6c/%E5%BF%98%E5%8D%B4%E7%AF%873-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 24,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/84/%E5%BF%98%E5%8D%B4%E7%AF%874-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 21,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/ce/%E5%BF%98%E5%8D%B4%E7%AF%874-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 29,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/ed/%E5%BF%98%E5%8D%B4%E7%AF%874-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-13": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/59/%E5%BF%98%E5%8D%B4%E7%AF%874-13_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 9,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-14": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/8f/%E5%BF%98%E5%8D%B4%E7%AF%874-14_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 41,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-15": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/45/%E5%BF%98%E5%8D%B4%E7%AF%874-15_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 37,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/19/%E5%BF%98%E5%8D%B4%E7%AF%874-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "chapter_inferred": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/c3/%E5%BF%98%E5%8D%B4%E7%AF%874-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 19,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/e5/%E5%BF%98%E5%8D%B4%E7%AF%874-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 32,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-6": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/52/%E5%BF%98%E5%8D%B4%E7%AF%874-6_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/a1/%E5%BF%98%E5%8D%B4%E7%AF%874-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 29,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "4-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/82/%E5%BF%98%E5%8D%B4%E7%AF%874-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 29,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/44/%E5%BF%98%E5%8D%B4%E7%AF%875-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/3/3f/%E5%BF%98%E5%8D%B4%E7%AF%875-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "unreachable",
+   "tile_to_specific_event_known": false
+  },
+  "5-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/19/%E5%BF%98%E5%8D%B4%E7%AF%875-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 48,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-14": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/e5/%E5%BF%98%E5%8D%B4%E7%AF%875-14_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 42,
+   "generic_event_tiles": 4,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/0/02/%E5%BF%98%E5%8D%B4%E7%AF%875-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 13,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-4": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/e8/%E5%BF%98%E5%8D%B4%E7%AF%875-4_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/a9/%E5%BF%98%E5%8D%B4%E7%AF%875-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 24,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-6": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/3/32/%E5%BF%98%E5%8D%B4%E7%AF%875-6_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 36,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/b/b7/%E5%BF%98%E5%8D%B4%E7%AF%875-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 14,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "5-8": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/88/%E5%BF%98%E5%8D%B4%E7%AF%875-8_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/b/b0/%E5%BF%98%E5%8D%B4%E7%AF%876-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 14,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/9/9e/%E5%BF%98%E5%8D%B4%E7%AF%876-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 36,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/b/b2/%E5%BF%98%E5%8D%B4%E7%AF%876-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 22,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/c8/%E5%BF%98%E5%8D%B4%E7%AF%876-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-14": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/9/95/%E5%BF%98%E5%8D%B4%E7%AF%876-14_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 37,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/78/%E5%BF%98%E5%8D%B4%E7%AF%876-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/f/fa/%E5%BF%98%E5%8D%B4%E7%AF%876-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 24,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "chapter_inferred": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/4c/%E5%BF%98%E5%8D%B4%E7%AF%876-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 12,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-6": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/e/e6/%E5%BF%98%E5%8D%B4%E7%AF%876-6_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "6-8": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/f/f4/%E5%BF%98%E5%8D%B4%E7%AF%876-8_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 28,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "chapter_inferred": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/29/%E5%BF%98%E5%8D%B4%E7%AF%877-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 19,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/3/38/%E5%BF%98%E5%8D%B4%E7%AF%877-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/76/%E5%BF%98%E5%8D%B4%E7%AF%877-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 32,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/40/%E5%BF%98%E5%8D%B4%E7%AF%877-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-15": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/a6/%E5%BF%98%E5%8D%B4%E7%AF%877-15_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 8,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 1,
+   "stage_event_link": {
+    "wiki_map_field": 1
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-16": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/cb/%E5%BF%98%E5%8D%B4%E7%AF%877-16_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 39,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-18": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/15/%E5%BF%98%E5%8D%B4%E7%AF%877-18_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 46,
+   "generic_event_tiles": 4,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "chapter_inferred": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/29/%E5%BF%98%E5%8D%B4%E7%AF%877-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-4": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/79/%E5%BF%98%E5%8D%B4%E7%AF%877-4_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-6": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/f/f4/%E5%BF%98%E5%8D%B4%E7%AF%877-6_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 30,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/69/%E5%BF%98%E5%8D%B4%E7%AF%877-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 33,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "7-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/7c/%E5%BF%98%E5%8D%B4%E7%AF%877-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 17,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-10": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/7d/%E5%BF%98%E5%8D%B4%E7%AF%878-10_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 39,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "wiki_map_field": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-11": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/2/27/%E5%BF%98%E5%8D%B4%E7%AF%878-11_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "chapter_inferred": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/66/%E5%BF%98%E5%8D%B4%E7%AF%878-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "wiki_map_field": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-13": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/8c/%E5%BF%98%E5%8D%B4%E7%AF%878-13_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 40,
+   "generic_event_tiles": 4,
+   "stage_event_entries": 7,
+   "stage_event_link": {
+    "wiki_map_field": 7
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/6b/%E5%BF%98%E5%8D%B4%E7%AF%878-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 15,
+   "generic_event_tiles": 1,
+   "stage_event_entries": 3,
+   "stage_event_link": {
+    "wiki_map_field": 3
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/5/56/%E5%BF%98%E5%8D%B4%E7%AF%878-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 21,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "wiki_map_field": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-4": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/7/78/%E5%BF%98%E5%8D%B4%E7%AF%878-4_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 8,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 2,
+   "stage_event_link": {
+    "wiki_map_field": 2
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-5": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/6/62/%E5%BF%98%E5%8D%B4%E7%AF%878-5_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 34,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "chapter_inferred": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-7": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/8/89/%E5%BF%98%E5%8D%B4%E7%AF%878-7_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 27,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "8-9": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/4/45/%E5%BF%98%E5%8D%B4%E7%AF%878-9_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 31,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "chapter_inferred": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "9-1": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/1/12/%E5%BF%98%E5%8D%B4%E7%AF%879-1_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 35,
+   "generic_event_tiles": 2,
+   "stage_event_entries": 5,
+   "stage_event_link": {
+    "wiki_map_field": 5
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "9-12": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/c3/%E5%BF%98%E5%8D%B4%E7%AF%879-12_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 40,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "9-2": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/a/af/%E5%BF%98%E5%8D%B4%E7%AF%879-2_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 22,
+   "generic_event_tiles": 3,
+   "stage_event_entries": 4,
+   "stage_event_link": {
+    "wiki_map_field": 4
+   },
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  },
+  "9-3": {
+   "source_image": "https://huiji-public.huijistatic.com/morimens/uploads/c/c4/%E5%BF%98%E5%8D%B4%E7%AF%879-3_map.jpg",
+   "source_image_sha1_verified": true,
+   "source_image_dimensions": [
+    3508,
+    1974
+   ],
+   "recognized_tiles": 3,
+   "generic_event_tiles": 0,
+   "stage_event_entries": 0,
+   "stage_event_link": {},
+   "route_status": "ok",
+   "tile_to_specific_event_known": false
+  }
+ }
+}

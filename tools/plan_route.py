@@ -169,7 +169,7 @@ def main():
             if r["status"] != "ok":
                 print(name, r["status"], r["reason"], r["problems"])
         if args.out:
-            args.out.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+            args.out.write_bytes(json.dumps(report, ensure_ascii=False, indent=1).encode("utf-8"))
         return
     g = Graph(maps[args.map], effects)
     res = plan(g, args.key_mode, avoid, collect)

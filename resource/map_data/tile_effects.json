@@ -37,10 +37,11 @@
    "role": "event",
    "passable": true,
    "cost": 2,
-   "effect": "触发带选项的事件；选项与结果因事件而异（见 README 8-2 示例），需要实机记录",
+   "effect": "触发带选项的事件；可用 events.json 预读本关维基事件与选项，具体落在哪个格子仍需实机确认",
    "confidence": "confirmed",
-   "source": "搜索摘要：忘却前夜主线十种特殊格介绍",
-   "options_known": false
+   "source": "https://morimens.huijiwiki.com/wiki/事件；resource/map_data/events.json",
+   "stage_options_catalog": "events.json",
+   "specific_event_per_tile_known": false
   },
   "story": {
    "role": "story",
@@ -56,9 +57,9 @@
    "cost": 1,
    "heals": true,
    "optional": true,
-   "effect": "援助点：恢复生命，或改为唤醒一名角色（二选一）",
-   "confidence": "inferred",
-   "source": "https://morimens.fandom.com/wiki/Exploration（healing space: rouse an awakener）；中文介绍中的「援助格」"
+   "effect": "联络点：接通可恢复生命；冥想可选择觉醒一名唤醒体",
+   "confidence": "confirmed",
+   "source": "https://morimens.huijiwiki.com/wiki/联络点"
   },
   "searchlight": {
    "role": "vision",
