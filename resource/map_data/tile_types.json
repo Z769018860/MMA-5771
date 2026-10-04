@@ -1,0 +1,386 @@
+{
+ "note": "function_confidence: confirmed=实机或维基页面确认；name_only=只确认名称；inferred=按名称/图标推断，需核对；unknown=不明。terrain 类和 unknown_icon 无模板，由颜色/纹理识别。",
+ "types": [
+  {
+   "key": "player",
+   "name": "当前位置",
+   "category": "marker",
+   "appearance": "蓝色发光描边的人物头像水滴",
+   "function": "当前所在格",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/player_1.png"
+   ]
+  },
+  {
+   "key": "other_pin",
+   "name": "其他头像标记",
+   "category": "marker",
+   "appearance": "粉色发光的人物头像水滴",
+   "function": "非主角的头像标记（见于特殊活动图）；用途未核对",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/other_pin_1.png"
+   ]
+  },
+  {
+   "key": "battle",
+   "name": "战斗",
+   "category": "combat",
+   "appearance": "交叉双剑 + 标签「战斗」",
+   "function": "普通战斗",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/battle_1.png"
+   ]
+  },
+  {
+   "key": "elite",
+   "name": "精英",
+   "category": "combat",
+   "appearance": "骷髅 + 交叉剑 + 标签「精英」",
+   "function": "精英战斗",
+   "function_confidence": "name_only",
+   "templates": [
+    "templates/elite_1.png",
+    "templates/elite_2.png"
+   ]
+  },
+  {
+   "key": "final_battle",
+   "name": "最终战",
+   "category": "combat",
+   "appearance": "红晕的恶魔骷髅 + 标签「最终战」",
+   "function": "本关 Boss 战，通常每个地图 1 个",
+   "function_confidence": "name_only",
+   "templates": [
+    "templates/final_battle_1.png",
+    "templates/final_battle_2.png",
+    "templates/final_battle_3.png"
+   ]
+  },
+  {
+   "key": "event",
+   "name": "事件",
+   "category": "event",
+   "appearance": "问号形弯钩 + 标签「事件」",
+   "function": "进入带选项的事件；选项见 README 8-2 示例，其余需实机记录",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/event_1.png",
+    "templates/event_2.png",
+    "templates/event_3.png",
+    "templates/event_4.png"
+   ]
+  },
+  {
+   "key": "story",
+   "name": "剧情",
+   "category": "story",
+   "appearance": "对话气泡 + 标签「剧情」",
+   "function": "剧情对话",
+   "function_confidence": "name_only",
+   "templates": [
+    "templates/story_1.png",
+    "templates/story_2.png",
+    "templates/story_3.png"
+   ]
+  },
+  {
+   "key": "contact",
+   "name": "联络点",
+   "category": "support",
+   "appearance": "白色十字 + 标签「联络点」或「联络处」",
+   "function": "推断为补给/恢复点",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/contact_1.png",
+    "templates/contact_2.png"
+   ]
+  },
+  {
+   "key": "meltmark",
+   "name": "融痕",
+   "category": "unknown",
+   "appearance": "天平 + 标签「融痕」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/meltmark_1.png",
+    "templates/meltmark_2.png",
+    "templates/meltmark_3.png",
+    "templates/meltmark_4.png",
+    "templates/meltmark_5.png"
+   ]
+  },
+  {
+   "key": "blackseal",
+   "name": "黑印",
+   "category": "unknown",
+   "appearance": "圆形印章里一棵树 + 标签「黑印」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/blackseal_1.png",
+    "templates/blackseal_2.png",
+    "templates/blackseal_3.png"
+   ]
+  },
+  {
+   "key": "searchlight",
+   "name": "探照灯",
+   "category": "vision",
+   "appearance": "提灯 + 标签「探照灯」",
+   "function": "推断为扩大视野",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/searchlight_1.png",
+    "templates/searchlight_2.png"
+   ]
+  },
+  {
+   "key": "illusion",
+   "name": "幻象",
+   "category": "hazard",
+   "appearance": "八芒星 + 标签「幻象」",
+   "function": "推断为需要付出症状作代价",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/illusion_1.png",
+    "templates/illusion_2.png"
+   ]
+  },
+  {
+   "key": "locked_door",
+   "name": "锈蚀门扉",
+   "category": "gate",
+   "appearance": "锁 + 标签「锈蚀门扉」",
+   "function": "阻挡通行，需持有锈蚀钥匙",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/locked_door_1.png",
+    "templates/locked_door_2.png"
+   ]
+  },
+  {
+   "key": "rusty_key",
+   "name": "锈蚀钥匙",
+   "category": "item",
+   "appearance": "钥匙串（或单把钥匙）+ 标签「锈蚀钥匙」",
+   "function": "拾取后可开锈蚀门扉",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/rusty_key_1.png",
+    "templates/rusty_key_2.png"
+   ]
+  },
+  {
+   "key": "tunnel",
+   "name": "隧道",
+   "category": "transport",
+   "appearance": "旋涡 + 标签「隧道」",
+   "function": "推断为传送",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/tunnel_1.png",
+    "templates/tunnel_2.png"
+   ]
+  },
+  {
+   "key": "oneway_in",
+   "name": "单行密道",
+   "category": "transport",
+   "appearance": "带箭头进入的门 + 标签「单行密道」",
+   "function": "推断为单向传送入口，与「密道出口」成对",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/oneway_in_1.png",
+    "templates/oneway_in_2.png"
+   ]
+  },
+  {
+   "key": "secret_exit",
+   "name": "密道出口",
+   "category": "transport",
+   "appearance": "带箭头离开的门 + 标签「密道出口」",
+   "function": "推断为单行密道的出口",
+   "function_confidence": "inferred",
+   "templates": [
+    "templates/secret_exit_1.png",
+    "templates/secret_exit_2.png"
+   ]
+  },
+  {
+   "key": "extract",
+   "name": "析出点",
+   "category": "unknown",
+   "appearance": "菱形宝石 + 标签「析出点」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/extract_1.png",
+    "templates/extract_2.png"
+   ]
+  },
+  {
+   "key": "enrollment",
+   "name": "入学仪式",
+   "category": "special",
+   "appearance": "翻开的书 + 标签「入学仪式」",
+   "function": "选卡及刻印分支（README 8-2）",
+   "function_confidence": "name_only",
+   "templates": [
+    "templates/enrollment_1.png",
+    "templates/enrollment_2.png"
+   ]
+  },
+  {
+   "key": "strange_cyst",
+   "name": "古怪脓疱",
+   "category": "special",
+   "appearance": "白色团块 + 标签「古怪脓疱」",
+   "function": "3-5 起点旁；功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/strange_cyst_1.png",
+    "templates/strange_cyst_2.png"
+   ]
+  },
+  {
+   "key": "detention",
+   "name": "羁押点",
+   "category": "special",
+   "appearance": "牢笼 + 标签「羁押点」",
+   "function": "8-2 中监察点的传送目的地（README）",
+   "function_confidence": "confirmed",
+   "templates": [
+    "templates/detention_1.png",
+    "templates/detention_2.png",
+    "templates/detention_3.png"
+   ]
+  },
+  {
+   "key": "honey_wine",
+   "name": "蜂蜜甜酒",
+   "category": "special",
+   "appearance": "高脚杯 + 标签「蜂蜜甜酒」",
+   "function": "特殊事件格；功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/honey_wine_1.png",
+    "templates/honey_wine_2.png"
+   ]
+  },
+  {
+   "key": "unfinished_statue",
+   "name": "未完的雕像",
+   "category": "special",
+   "appearance": "人像头部 + 标签「未完的雕像」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/unfinished_statue_1.png"
+   ]
+  },
+  {
+   "key": "kind_gift",
+   "name": "善意的礼物",
+   "category": "special",
+   "appearance": "礼盒 + 标签「善意的礼物」",
+   "function": "1-2 起点旁；功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/kind_gift_1.png"
+   ]
+  },
+  {
+   "key": "mother_of_brood",
+   "name": "孕育之母",
+   "category": "special",
+   "appearance": "石堆 + 标签「孕育之母」",
+   "function": "7-9 最终战旁；功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/mother_of_brood_1.png"
+   ]
+  },
+  {
+   "key": "proxy_rite",
+   "name": "代行之仪",
+   "category": "special",
+   "appearance": "放射状王冠 + 标签「代行之仪」",
+   "function": "5-6 起点附近；功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/proxy_rite_1.png"
+   ]
+  },
+  {
+   "key": "white_sail",
+   "name": "纯白之帆",
+   "category": "special",
+   "appearance": "帆船 + 标签「纯白之帆」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/white_sail_1.png"
+   ]
+  },
+  {
+   "key": "inquisitor",
+   "name": "审查会探员",
+   "category": "special",
+   "appearance": "人形 + 眼睛 + 标签「审查会探员」",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": [
+    "templates/inquisitor_1.png"
+   ]
+  },
+  {
+   "key": "plain",
+   "name": "空白格",
+   "category": "terrain",
+   "appearance": "无图标的浅色石砖",
+   "function": "可走的空格（推断）",
+   "function_confidence": "inferred",
+   "templates": []
+  },
+  {
+   "key": "cracked_rock",
+   "name": "裂纹石格",
+   "category": "terrain",
+   "appearance": "灰色带黑色裂纹的石块",
+   "function": "推断为不可通行障碍",
+   "function_confidence": "inferred",
+   "templates": []
+  },
+  {
+   "key": "purple_rift",
+   "name": "紫蓝光格",
+   "category": "terrain",
+   "appearance": "紫蓝色涡流",
+   "function": "功能未知",
+   "function_confidence": "unknown",
+   "templates": []
+  },
+  {
+   "key": "red_flesh",
+   "name": "红色血肉格",
+   "category": "terrain",
+   "appearance": "红色肉质",
+   "function": "功能未知（见于 7-9 和狩猎愉快）",
+   "function_confidence": "unknown",
+   "templates": []
+  },
+  {
+   "key": "unknown_icon",
+   "name": "未识别图标",
+   "category": "unknown",
+   "appearance": "有图标但没有匹配的模板",
+   "function": "需要补模板",
+   "function_confidence": "unknown",
+   "templates": []
+  }
+ ]
+}
