@@ -1,0 +1,254 @@
+{
+  "TR_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "TR_Diff",
+      "TR_Entry",
+      "TR_Resume"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "记忆回廊：从入口页、难度页或调查中的任意页面开始。"
+    }
+  },
+  "TR_Resume": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryFormation",
+      "StoryFirstFormation",
+      "StoryCutscene",
+      "StoryEventPage",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryFinishInvestigation",
+      "AA_PaidRevive",
+      "StoryReviveDecision"
+    ]
+  },
+  "TR_Entry": {
+    "recognition": "TemplateMatch",
+    "template": "train_entry_title.png",
+    "roi": [
+      78,
+      12,
+      152,
+      68
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 20000,
+    "rate_limit": 700,
+    "action": "Click",
+    "target": [
+      993,
+      638,
+      211,
+      39
+    ],
+    "post_delay": 2000,
+    "next": [
+      "TR_Diff",
+      "TR_EntryRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击入口页右下角的启程按钮。"
+    }
+  },
+  "TR_EntryRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      993,
+      638,
+      211,
+      39
+    ],
+    "post_delay": 2000,
+    "timeout": 15000,
+    "next": [
+      "TR_Diff"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
+  },
+  "TR_Diff": {
+    "recognition": "TemplateMatch",
+    "template": "train_diff_title.png",
+    "roi": [
+      935,
+      93,
+      148,
+      68
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 30000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "TR_Selected",
+      "TR_Select"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【选择难度】页。"
+    }
+  },
+  "TR_Selected": {
+    "recognition": "ColorMatch",
+    "roi": [
+      823,
+      199,
+      376,
+      11
+    ],
+    "method": 4,
+    "lower": [
+      225,
+      215,
+      100
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 400,
+    "connected": false,
+    "action": "Click",
+    "target": [
+      901,
+      630,
+      216,
+      38
+    ],
+    "post_delay": 2500,
+    "next": [
+      "StoryFormation",
+      "TR_ChallengeRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "目标难度已选中（金边），点击【挑战】。"
+    }
+  },
+  "TR_ChallengeRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      901,
+      630,
+      216,
+      38
+    ],
+    "post_delay": 2500,
+    "timeout": 20000,
+    "next": [
+      "StoryFormation"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
+  },
+  "TR_Select": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      833,
+      216,
+      356,
+      69
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_Selected",
+      "TR_SelectRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击目标难度卡片。"
+    }
+  },
+  "TR_SelectRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      833,
+      216,
+      356,
+      69
+    ],
+    "post_delay": 900,
+    "next": [
+      "TR_Selected",
+      "TR_Locked"
+    ]
+  },
+  "TR_Locked": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAsIvGX95Wyl4a/wmQ6WKEdr6Wpl6hbAlnCZAtTgj/71P9gBpcKmfjiQGVCf8CMPeLS2KoUgmQ6WIATipO71Modb6Wpl4M/xZiKFf7TqFSCZB5mMyROWUQYoOPTk++lqZeAjAnACwAJwDYX3RTTVIcWalSS2InACwAJwBPAEsAJwAsACcAVwBhAHIAbgBpAG4AZwAnACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA=="
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "难度未能选中：已弹出提示并停止。"
+    }
+  },
+  "TR_Started": {
+    "recognition": "TemplateMatch",
+    "template": "train_hud_icon.png",
+    "roi": [
+      944,
+      0,
+      108,
+      88
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 60000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入调查（右上角出现层数 1-1/6 这类标识）：交给事件/商店/战斗节点。"
+    }
+  },
+  "TR_Finished": {
+    "recognition": "TemplateMatch",
+    "template": "train_entry_title.png",
+    "roi": [
+      78,
+      12,
+      152,
+      68
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "调查已结束并回到入口页：记忆回廊任务完成。"
+    }
+  }
+}

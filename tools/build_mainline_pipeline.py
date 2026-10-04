@@ -127,21 +127,24 @@ def build():
     return images, nodes
 
 
-def task_definition(orig):
+def task_definition(orig, extra=("MA_Map", "MA_StageList"), done_next=("MA_StageList",)):
     """Task-level overrides: extend the story_demo nodes so they cooperate with map walking and the stop conditions."""
-    after = [x for x in orig["StoryAfterRoute"]["next"]] + [n for n in ("MA_Map", "MA_StageList") if n not in orig["StoryAfterRoute"]["next"]]
-    inside = [x for x in orig["StoryInsideRouter"]["next"]] + ["MA_Map", "MA_StageList"]
-    monitor = [x for x in orig["StoryBattleMonitor"]["next"]] + ["MA_Map", "MA_StageList"]
+    after = [x for x in orig["StoryAfterRoute"]["next"]] + [n for n in extra if n not in orig["StoryAfterRoute"]["next"]]
+    inside = [x for x in orig["StoryInsideRouter"]["next"]] + list(extra)
+    monitor = [x for x in orig["StoryBattleMonitor"]["next"]] + list(extra)
     out = {
         "StoryAfterRoute": {"next": after, "on_error": ["MA_StuckNotice"]},
         "StoryInsideRouter": {"next": inside, "on_error": ["MA_StuckNotice"]},
         "StoryBattleMonitor": {"next": monitor, "timeout": 240000, "on_error": ["MA_ManualNotice"]},
         "StoryStopHere": {"next": ["MA_DefeatNotice"]},
-        "NavStageDone": {"next": ["MA_StageList"]},
     }
+    if done_next:
+        out["NavStageDone"] = {"next": list(done_next)}
     # Live finding (activity advance): once emergency 灵知 runs out the revive dialog offers a material exchange.
     # AA_PaidRevive (activity_advance.json) warns and stops without clicking; try it before StoryReviveDecision everywhere.
     for name, node in orig.items():
+        if not name.startswith("Story"):
+            continue
         nxt = out.get(name, {}).get("next", node.get("next", []))
         if "StoryReviveDecision" in nxt:
             out.setdefault(name, {})["next"] = [x for y in nxt for x in (["AA_PaidRevive", y] if y == "StoryReviveDecision" else [y])]

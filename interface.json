@@ -1361,6 +1361,126 @@
       "description": "仅挑战这一关；癫狂未解锁时先打之六。"
     },
     {
+      "name": "记忆回廊列车",
+      "label": "记忆回廊：疾驰的欢愉专列（星辰篇）",
+      "entry": "TR_Start",
+      "option": [
+        "记忆回廊难度",
+        "主线灵知",
+        "主线战斗超时",
+        "剧情购买策略",
+        "剧情造物位置"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "pipeline_override": {
+        "StoryAfterRoute": {
+          "next": [
+            "StoryCutscene",
+            "StoryEventPage",
+            "StoryFormation",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "TR_Finished"
+          ],
+          "on_error": [
+            "MA_StuckNotice"
+          ]
+        },
+        "StoryInsideRouter": {
+          "next": [
+            "StoryCutscene",
+            "StoryEventPage",
+            "StoryFirstFormation",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "TR_Finished"
+          ],
+          "on_error": [
+            "MA_StuckNotice"
+          ]
+        },
+        "StoryBattleMonitor": {
+          "next": [
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryFinishInvestigation",
+            "StoryCutscene",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "TR_Finished"
+          ],
+          "timeout": 240000,
+          "on_error": [
+            "MA_ManualNotice"
+          ]
+        },
+        "StoryStopHere": {
+          "next": [
+            "MA_DefeatNotice"
+          ]
+        },
+        "StoryFirstBattlePreludeRouter": {
+          "next": [
+            "StoryFirstCutscene",
+            "StoryFirstCutsceneEmulator",
+            "StoryFirstEventPage",
+            "StoryFirstBattleStartSignal",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision"
+          ]
+        },
+        "StoryFirstHideCardsGraceWait": {
+          "next": [
+            "StoryFirstCutsceneEmulator",
+            "StoryFirstEventPage",
+            "StoryHideCards",
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision"
+          ]
+        },
+        "StoryPostWarningWait": {
+          "next": [
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryFinishInvestigation",
+            "StoryBattleMonitor"
+          ]
+        },
+        "StoryBattleStartRouter": {
+          "next": [
+            "StoryCutscene",
+            "StoryChoicePage",
+            "StoryFinishInvestigation",
+            "AA_PaidRevive",
+            "StoryReviveDecision",
+            "StoryBattleMonitor"
+          ]
+        },
+        "StoryFormation": {
+          "next": [
+            "StoryFormation",
+            "TR_Started",
+            "StoryBattleMonitor"
+          ]
+        }
+      },
+      "description": "入口页点启程 → 选难度 → 挑战 → 编队页点调查 → 事件/商店/战斗按主线逻辑自动处理，直到调查结束回到入口页。Boss 超时、战败且灵知用完、或画面无法识别时弹窗提示并停止。"
+    },
+    {
       "name": "自动推进主线",
       "label": "自动推进主线（实验）",
       "entry": "MA_Start",
@@ -2776,6 +2896,104 @@
         {
           "name": "skip",
           "label": "不使用灵知，战败停止"
+        }
+      ]
+    },
+    "记忆回廊难度": {
+      "type": "select",
+      "label": "记忆回廊（列车）：挑战难度",
+      "description": "进入【选择难度】页后点选的难度。未解锁的难度选不中时会弹出提示并停止。",
+      "default_case": "normal",
+      "cases": [
+        {
+          "name": "normal",
+          "label": "普通（默认）",
+          "pipeline_override": {
+            "TR_Select": {
+              "target": [
+                833,
+                216,
+                356,
+                69
+              ]
+            },
+            "TR_SelectRetry": {
+              "target": [
+                833,
+                216,
+                356,
+                69
+              ]
+            },
+            "TR_Selected": {
+              "roi": [
+                823,
+                199,
+                376,
+                11
+              ]
+            }
+          }
+        },
+        {
+          "name": "hard",
+          "label": "困难",
+          "pipeline_override": {
+            "TR_Select": {
+              "target": [
+                833,
+                364,
+                356,
+                66
+              ]
+            },
+            "TR_SelectRetry": {
+              "target": [
+                833,
+                364,
+                356,
+                66
+              ]
+            },
+            "TR_Selected": {
+              "roi": [
+                823,
+                347,
+                376,
+                11
+              ]
+            }
+          }
+        },
+        {
+          "name": "crazy",
+          "label": "癫狂",
+          "pipeline_override": {
+            "TR_Select": {
+              "target": [
+                833,
+                511,
+                356,
+                68
+              ]
+            },
+            "TR_SelectRetry": {
+              "target": [
+                833,
+                511,
+                356,
+                68
+              ]
+            },
+            "TR_Selected": {
+              "roi": [
+                823,
+                495,
+                376,
+                11
+              ]
+            }
+          }
         }
       ]
     }

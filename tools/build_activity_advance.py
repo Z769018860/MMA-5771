@@ -234,7 +234,7 @@ def update_interface(profiles):
         p["task_stage"]["name"].format(i=i) for p in profiles for i in range(1, len(p["stages"]) + 1)}
     data["task"] = [t for t in data["task"] if t["name"] not in mine and not t["name"].startswith("自动活动推进")]
     tasks = [t for p in profiles for t in profile_tasks(p)]
-    mainline = next((j for j, t in enumerate(data["task"]) if t["name"] == "自动推进主线"), len(data["task"]))
+    mainline = next((j for j, t in enumerate(data["task"]) if t["name"] in ("记忆回廊列车", "自动推进主线")), len(data["task"]))
     data["task"][mainline:mainline] = tasks
     return data
 

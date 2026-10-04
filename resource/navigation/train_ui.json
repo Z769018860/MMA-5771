@@ -1,0 +1,23 @@
+{
+ "note": "记忆回廊（列车）：入口页 -> 选择难度页 -> 编队页(调查) -> 调查开始 -> 事件/商店/战斗（story_demo 节点）。框坐标为原截图像素，用 tools/build_train_pipeline.py 生成。",
+ "screens": {
+  "star_entry": {"sample": "star_entry.png", "src_size": [1602, 899]},
+  "star_difficulty": {"sample": "star_difficulty.png", "src_size": [1602, 893]},
+  "star_start": {"sample": "star_start.png", "src_size": [1594, 899]}
+ },
+ "templates": [
+  {"id": "entry_title", "screen": "star_entry", "box": [118, 35, 268, 80], "label": "入口页标题「记忆回廊」", "threshold": 0.8},
+  {"id": "diff_title", "screen": "star_difficulty", "box": [1190, 135, 1335, 180], "label": "难度页「选择难度」", "threshold": 0.8},
+  {"id": "hud_icon", "screen": "star_start", "box": [1205, 12, 1280, 80], "label": "调查中右上角层数图标（罗盘）", "threshold": 0.8}
+ ],
+ "regions": {
+  "go_button": {"screen": "star_entry", "box": [1230, 790, 1520, 852], "label": "入口页右下角启程按钮"},
+  "challenge_button": {"screen": "star_difficulty", "box": [1115, 775, 1410, 835], "label": "难度页「挑战」按钮"},
+  "card_normal": {"screen": "star_difficulty", "box": [1030, 262, 1500, 360], "label": "普通难度卡片"},
+  "card_hard": {"screen": "star_difficulty", "box": [1030, 445, 1500, 540], "label": "困难难度卡片"},
+  "card_crazy": {"screen": "star_difficulty", "box": [1030, 628, 1500, 724], "label": "癫狂难度卡片"},
+  "edge_normal": {"screen": "star_difficulty", "box": [1030, 247, 1500, 261], "label": "普通卡片选中金边所在条带"},
+  "edge_hard": {"screen": "star_difficulty", "box": [1030, 430, 1500, 444], "label": "困难卡片选中金边条带"},
+  "edge_crazy": {"screen": "star_difficulty", "box": [1030, 614, 1500, 628], "label": "癫狂卡片选中金边条带"}
+ }
+}
