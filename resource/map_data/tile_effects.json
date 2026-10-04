@@ -147,7 +147,7 @@
    "passable": true,
    "cost": 1,
    "optional": true,
-   "effect": "菱形宝石图标；功能不明，可能是资源/奖励格",
+   "effect": "菱形宝石图标，功能不明。2-8 中该图标的标签是「亮晶晶」，且维基事件里恰有同名事件，疑似该图的析出点是事件格；其他图没有这个规律",
    "confidence": "unknown",
    "source": "无"
   },
@@ -177,20 +177,20 @@
    "source": "搜索摘要（未核实）"
   },
   "red_flesh": {
-   "role": "hazard?",
+   "role": "event",
    "passable": true,
-   "cost": 8,
-   "hazard": true,
-   "effect": "红色血肉格；功能不明，规划时按高代价可走处理",
-   "confidence": "unknown",
-   "source": "无"
+   "cost": 4,
+   "hazard": false,
+   "effect": "红色血肉格：很可能触发「血污之池」事件（选项多为 呼唤唤醒体 / 奋力挣扎 / 插入银钥匙）。依据：有 19 张图出现血污之池事件，且这 19 张都有红色格，其余 67 张既没有该事件也没有红色格；同一张图的多个红色格只对应 1 条事件，每格是否都能触发未核对",
+   "confidence": "inferred_from_counts",
+   "source": "events.json 与 maps.json 的逐图对照（VALIDATION.md）"
   },
   "enrollment": {
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "入学仪式；第 8/9 章维基事件数与「事件格+入学仪式+审查会探员」在 10 张里 7 张吻合，推断会触发事件（README 8-2 已确认入学仪式为选卡/刻印分支）",
-   "confidence": "inferred_from_counts",
+   "effect": "入学仪式：选卡及刻印分支（README 8-2 已核对）。维基事件列表里没有对应的事件条目，不计入事件格",
+   "confidence": "name_only",
    "source": "README 8-2"
   },
   "detention": {
@@ -229,8 +229,8 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "第 7 章每张图 1 个；该章维基事件数 = 事件格数 + 孕育之母数（12 张里 11 张吻合），推断为会触发一个事件",
-   "confidence": "inferred_from_counts",
+   "effect": "第 7 章每张图 1 个，功能不明。早先推断它会触发事件，已撤回：该章多出的那条事件其实是「血污之池」（对应红色血肉格），孕育之母不对应事件（7-15 无红色格也无多余事件）",
+   "confidence": "unknown",
    "source": "无"
   },
   "proxy_rite": {
@@ -253,9 +253,9 @@
    "role": "special",
    "passable": true,
    "cost": 2,
-   "effect": "审查会探员；见入学仪式的计数规律，推断会触发事件（8-2 的「监察点」，README 已核对选项：离开/诈降/闯入）",
+   "effect": "审查会探员：很可能触发「监察点」和「审查会探员」两条事件（监察点选项：离开 / 诈降 / 闯入，见 README 8-2）。依据：10 张含该事件的图与 10 张含审查会探员格的图完全重合；一张图有 2 个探员格时仍只有这一对事件",
    "confidence": "inferred_from_counts",
-   "source": "无"
+   "source": "events.json 与 maps.json 的逐图对照（VALIDATION.md）"
   },
   "strange_cyst": {
    "role": "special",

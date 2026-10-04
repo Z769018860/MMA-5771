@@ -291,7 +291,7 @@
    "name": "孕育之母",
    "category": "special",
    "appearance": "石堆 + 标签「孕育之母」",
-   "function": "7-9 最终战旁；功能未知",
+   "function": "功能不明（早先推断会触发事件，已撤回）",
    "function_confidence": "unknown",
    "templates": [
     "templates/mother_of_brood_1.png"
@@ -324,8 +324,8 @@
    "name": "审查会探员",
    "category": "special",
    "appearance": "人形 + 眼睛 + 标签「审查会探员」",
-   "function": "功能未知",
-   "function_confidence": "unknown",
+   "function": "很可能触发「监察点」与「审查会探员」两条事件（逐图对照推断）",
+   "function_confidence": "inferred_from_counts",
    "templates": [
     "templates/inquisitor_1.png",
     "templates/inquisitor_2.png",
@@ -364,8 +364,8 @@
    "name": "红色血肉格",
    "category": "terrain",
    "appearance": "红色肉质",
-   "function": "功能未知（见于 7-9 和狩猎愉快）",
-   "function_confidence": "unknown",
+   "function": "很可能触发「血污之池」事件（逐图对照推断，见 tile_effects.json）",
+   "function_confidence": "inferred_from_counts",
    "templates": []
   },
   {
