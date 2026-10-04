@@ -1,0 +1,28 @@
+{
+ "note": "Generic limited-time activity entry for the sync-rate loop. Boxes in original screenshot pixels; build with tools/build_activity_pipeline.py",
+ "screens": {
+  "activity": {"sample": "activity.png", "src_size": [1885, 1035]},
+  "activity_stage": {"sample": "activity_stage.png", "src_size": [1903, 1058]}
+ },
+ "templates": [
+  {"id": "act_title", "screen": "activity", "box": [140, 14, 224, 62], "label": "活动页标题「活动」", "threshold": 0.8},
+  {"id": "act_drop", "screen": "activity_stage", "box": [195, 804, 312, 838], "label": "节点下的「掉落预览」", "threshold": 0.8},
+  {"id": "act_back", "screen": "activity_stage", "box": [1808, 0, 1900, 92], "label": "右上罗盘", "threshold": 0.7}
+ ],
+ "slots": {
+  "x": 170,
+  "y": [150, 270, 395, 520, 645, 770, 895, 985],
+  "screen": "activity",
+  "note": "left activity list; y of slot 1..8 centres"
+ },
+ "entries": {
+  "left": {"screen": "activity", "box": [1085, 920, 1420, 985], "label": "左侧玩法入口（蓝色，如意识潜游）"},
+  "right": {"screen": "activity", "box": [1465, 920, 1805, 985], "label": "右侧玩法入口（金色，如追寻圣杯之旅）"}
+ },
+ "nodes": {
+  "screen": "activity_stage",
+  "x": [250, 655, 1060, 1465, 1865],
+  "y": 760,
+  "note": "stage page: node centres 1..5 (name label); more nodes need a drag, not supported"
+ }
+}

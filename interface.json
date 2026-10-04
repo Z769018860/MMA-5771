@@ -71,11 +71,14 @@
   "task": [
     {
       "name": "同步率循环",
-      "label": "羽毛·癫狂同调率循环",
+      "label": "同调率循环（通用活动）",
       "entry": "EntryRouter",
       "option": [
         "同调率助战",
-        "失败处理"
+        "失败处理",
+        "活动列表项",
+        "活动玩法入口",
+        "活动关卡节点"
       ],
       "default_check": true,
       "repeatable": false,
@@ -187,6 +190,7 @@
                 "CycleStart",
                 "HomeScreen",
                 "ActivityScreen",
+                "ActStagePage",
                 "OpenLimitedPlay",
                 "MaterialPopupRecovery",
                 "ChooseFeather",
@@ -902,6 +906,204 @@
             "Soc_ProfilePage": {
               "next": [
                 "Soc_AfterLike"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "活动列表项": {
+      "type": "select",
+      "label": "活动：左侧列表选择",
+      "description": "活动页左侧列表自上而下第几项（含「回归活动」等）。没有按名称识别，活动列表顺序变了就要改这里。",
+      "default_case": "keep",
+      "cases": [
+        {
+          "name": "keep",
+          "label": "保持当前选中（默认）",
+          "description": "不点击列表；进入活动页时游戏选中哪个就用哪个。"
+        },
+        {
+          "name": "slot1",
+          "label": "列表第 1 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot2",
+          "label": "列表第 2 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot3",
+          "label": "列表第 3 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot4",
+          "label": "列表第 4 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot4"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot5",
+          "label": "列表第 5 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot6",
+          "label": "列表第 6 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot6"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot7",
+          "label": "列表第 7 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot7"
+              ]
+            }
+          }
+        },
+        {
+          "name": "slot8",
+          "label": "列表第 8 项",
+          "pipeline_override": {
+            "ActSlot": {
+              "next": [
+                "ActSlot8"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "活动玩法入口": {
+      "type": "select",
+      "label": "活动：玩法入口按钮",
+      "description": "活动页右下角的玩法入口：右侧（金色，如追寻圣杯之旅）或左侧（蓝色，如意识潜游）。",
+      "default_case": "right",
+      "cases": [
+        {
+          "name": "right",
+          "label": "右侧入口（默认）"
+        },
+        {
+          "name": "left",
+          "label": "左侧入口",
+          "pipeline_override": {
+            "ActEntry": {
+              "target": [
+                832,
+                644,
+                36,
+                36
+              ]
+            },
+            "ActEntryRetry": {
+              "target": [
+                832,
+                644,
+                36,
+                36
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "活动关卡节点": {
+      "type": "select",
+      "label": "活动：刷取的关卡节点",
+      "description": "活动关卡页横排的节点 1–5（节点 5 通常只露出一半，点击可能无效）。超过 5 个需要拖动，暂不支持。",
+      "default_case": "node1",
+      "cases": [
+        {
+          "name": "node1",
+          "label": "节点 1（默认）",
+          "pipeline_override": {
+            "ActNode": {
+              "next": [
+                "ActNode1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node2",
+          "label": "节点 2",
+          "pipeline_override": {
+            "ActNode": {
+              "next": [
+                "ActNode2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node3",
+          "label": "节点 3",
+          "pipeline_override": {
+            "ActNode": {
+              "next": [
+                "ActNode3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node4",
+          "label": "节点 4",
+          "pipeline_override": {
+            "ActNode": {
+              "next": [
+                "ActNode4"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node5",
+          "label": "节点 5",
+          "pipeline_override": {
+            "ActNode": {
+              "next": [
+                "ActNode5"
               ]
             }
           }

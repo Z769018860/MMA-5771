@@ -1,0 +1,674 @@
+{
+  "ActivityScreen": {
+    "recognition": "TemplateMatch",
+    "template": "activity_act_title.png",
+    "roi": [
+      79,
+      0,
+      89,
+      59
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 120000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "ActSlot",
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【活动】页。"
+    }
+  },
+  "ActSlot": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "ActEntry"
+    ]
+  },
+  "ActSlot1": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      96,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 1 项。"
+    }
+  },
+  "ActSlot2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      179,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 2 项。"
+    }
+  },
+  "ActSlot3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      266,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 3 项。"
+    }
+  },
+  "ActSlot4": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      353,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 4 项。"
+    }
+  },
+  "ActSlot5": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      440,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 5 项。"
+    }
+  },
+  "ActSlot6": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      527,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 6 项。"
+    }
+  },
+  "ActSlot7": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      614,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 7 项。"
+    }
+  },
+  "ActSlot8": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      107,
+      677,
+      16,
+      16
+    ],
+    "post_delay": 1500,
+    "next": [
+      "ActEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动列表第 8 项。"
+    }
+  },
+  "ActEntry_right": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1092,
+      644,
+      36,
+      36
+    ],
+    "post_delay": 2200,
+    "next": [
+      "ActStagePage",
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActEntryRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击右侧玩法入口（金色，如追寻圣杯之旅）。"
+    }
+  },
+  "ActEntry_left": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      832,
+      644,
+      36,
+      36
+    ],
+    "post_delay": 2200,
+    "next": [
+      "ActStagePage",
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActEntryRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击左侧玩法入口（蓝色，如意识潜游）。"
+    }
+  },
+  "ActEntry": {
+    "recognition": "And",
+    "action": "Click",
+    "target": [
+      1092,
+      644,
+      36,
+      36
+    ],
+    "post_delay": 2200,
+    "next": [
+      "ActStagePage",
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActEntryRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击右侧玩法入口（金色，如追寻圣杯之旅）。"
+    },
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_title.png",
+        "roi": [
+          79,
+          0,
+          89,
+          59
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0
+  },
+  "ActEntryRetry": {
+    "recognition": "And",
+    "action": "Click",
+    "target": [
+      1092,
+      644,
+      36,
+      36
+    ],
+    "post_delay": 2200,
+    "next": [
+      "ActStagePage",
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "入口没有生效，再点一次。"
+    },
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_title.png",
+        "roi": [
+          79,
+          0,
+          89,
+          59
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 15000
+  },
+  "ActStagePage": {
+    "recognition": "TemplateMatch",
+    "template": "activity_act_drop.png",
+    "roi": [
+      0,
+      440,
+      1280,
+      160
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 120000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "ActNode",
+      "ActNode1"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入活动关卡页（识别到节点下的【掉落预览】）。"
+    }
+  },
+  "ActNode": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "ActNode1"
+    ]
+  },
+  "ActNode1": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      146,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActNodeRetry1"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 1。"
+    }
+  },
+  "ActNodeRetry1": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      146,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "节点 1 没有进入下一页，再点一次。"
+    },
+    "timeout": 15000
+  },
+  "ActNode2": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      418,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActNodeRetry2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 2。"
+    }
+  },
+  "ActNodeRetry2": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      418,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "节点 2 没有进入下一页，再点一次。"
+    },
+    "timeout": 15000
+  },
+  "ActNode3": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      690,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActNodeRetry3"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 3。"
+    }
+  },
+  "ActNodeRetry3": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      690,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "节点 3 没有进入下一页，再点一次。"
+    },
+    "timeout": 15000
+  },
+  "ActNode4": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      963,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActNodeRetry4"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 4。"
+    }
+  },
+  "ActNodeRetry4": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      963,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "节点 4 没有进入下一页，再点一次。"
+    },
+    "timeout": 15000
+  },
+  "ActNode5": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      1232,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist",
+      "ActNodeRetry5"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 5。"
+    }
+  },
+  "ActNodeRetry5": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      1232,
+      495,
+      44,
+      44
+    ],
+    "post_delay": 2200,
+    "next": [
+      "CycleStart",
+      "ChooseFeather",
+      "ChooseMadness",
+      "OpenAssist"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "节点 5 没有进入下一页，再点一次。"
+    },
+    "timeout": 15000
+  }
+}

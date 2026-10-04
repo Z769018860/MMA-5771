@@ -6,6 +6,7 @@
       "CycleStart",
       "HomeScreen",
       "ActivityScreen",
+      "ActStagePage",
       "OpenLimitedPlay",
       "MaterialPopupRecovery",
       "ChooseFeather",
@@ -45,34 +46,8 @@
     "post_delay": 2000,
     "next": [
       "ActivityScreen",
-      "OpenLimitedPlay",
+      "ActStagePage",
       "ChooseFeather"
-    ]
-  },
-  "ActivityScreen": {
-    "recognition": "TemplateMatch",
-    "template": "activity_slot_frame.png",
-    "roi": [
-      0,
-      70,
-      250,
-      590
-    ],
-    "threshold": 0.43,
-    "timeout": 120000,
-    "rate_limit": 700,
-    "action": "Click",
-    "target": [
-      112,
-      124,
-      8,
-      8
-    ],
-    "post_delay": 1600,
-    "next": [
-      "OpenLimitedPlay",
-      "ChooseFeather",
-      "ChooseMadness"
     ]
   },
   "OpenLimitedPlay": {
@@ -96,6 +71,7 @@
     ],
     "post_delay": 1900,
     "next": [
+      "ActStagePage",
       "ChooseFeather",
       "ChooseMadness",
       "CycleStart",
@@ -123,6 +99,7 @@
     ],
     "post_delay": 1600,
     "next": [
+      "ActStagePage",
       "ChooseFeather",
       "ChooseMadness",
       "CycleStart",
@@ -258,14 +235,24 @@
       {
         "recognition": "TemplateMatch",
         "template": "formation_team_info.png",
-        "roi": [390, 10, 180, 75],
+        "roi": [
+          390,
+          10,
+          180,
+          75
+        ],
         "threshold": 0.78,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "assist.png",
-        "roi": [1020, 220, 250, 210],
+        "roi": [
+          1020,
+          220,
+          250,
+          210
+        ],
         "threshold": 0.7,
         "method": 10001
       }
@@ -274,7 +261,12 @@
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [1120, 315, 45, 35],
+    "target": [
+      1120,
+      315,
+      45,
+      35
+    ],
     "post_delay": 1300,
     "next": [
       "ChooseFirstAssist",
@@ -295,7 +287,12 @@
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [815, 195, 45, 35],
+    "target": [
+      815,
+      195,
+      45,
+      35
+    ],
     "post_delay": 1200,
     "next": [
       "CharacterDetailRecovery",
@@ -380,14 +377,24 @@
       {
         "recognition": "TemplateMatch",
         "template": "select_assist.png",
-        "roi": [0, 0, 400, 110],
+        "roi": [
+          0,
+          0,
+          400,
+          110
+        ],
         "threshold": 0.62,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "deploy.png",
-        "roi": [950, 615, 255, 95],
+        "roi": [
+          950,
+          615,
+          255,
+          95
+        ],
         "threshold": 0.78,
         "method": 10001
       }
@@ -396,7 +403,12 @@
     "timeout": 60000,
     "rate_limit": 700,
     "action": "Click",
-    "target": [1040, 635, 55, 30],
+    "target": [
+      1040,
+      635,
+      55,
+      30
+    ],
     "post_delay": 1500,
     "next": [
       "StartInvestigation",
@@ -410,14 +422,24 @@
       {
         "recognition": "TemplateMatch",
         "template": "select_assist.png",
-        "roi": [0, 0, 400, 110],
+        "roi": [
+          0,
+          0,
+          400,
+          110
+        ],
         "threshold": 0.62,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "deploy.png",
-        "roi": [950, 615, 255, 95],
+        "roi": [
+          950,
+          615,
+          255,
+          95
+        ],
         "threshold": 0.68,
         "method": 10001
       }
@@ -426,7 +448,12 @@
     "timeout": 60000,
     "rate_limit": 1000,
     "action": "Click",
-    "target": [1040, 635, 55, 30],
+    "target": [
+      1040,
+      635,
+      55,
+      30
+    ],
     "post_delay": 1500,
     "next": [
       "StartInvestigation",
@@ -466,14 +493,24 @@
       {
         "recognition": "TemplateMatch",
         "template": "formation_team_info.png",
-        "roi": [390, 10, 180, 75],
+        "roi": [
+          390,
+          10,
+          180,
+          75
+        ],
         "threshold": 0.78,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "investigate.png",
-        "roi": [950, 610, 270, 105],
+        "roi": [
+          950,
+          610,
+          270,
+          105
+        ],
         "threshold": 0.82,
         "method": 10001
       }
@@ -482,7 +519,12 @@
     "timeout": 90000,
     "rate_limit": 700,
     "action": "Click",
-    "target": [1050, 635, 55, 30],
+    "target": [
+      1050,
+      635,
+      55,
+      30
+    ],
     "post_delay": 2000,
     "next": [
       "HideCards",
@@ -499,12 +541,19 @@
   "BattleStartSignal": {
     "recognition": "TemplateMatch",
     "template": "battle_start_action_live.png",
-    "roi": [430, 235, 400, 190],
+    "roi": [
+      430,
+      235,
+      400,
+      190
+    ],
     "threshold": 0.72,
     "method": 10001,
     "action": "DoNothing",
     "post_delay": 200,
-    "next": ["HideCardsGraceWait"],
+    "next": [
+      "HideCardsGraceWait"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到中央【我方行动】战斗开始图样；现在才准备判断隐藏卡牌和 AUTO。"
     }
@@ -916,7 +965,12 @@
     "timeout": 120000,
     "rate_limit": 700,
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "post_delay": 2500,
     "next": [
       "CycleStart",
@@ -941,7 +995,12 @@
     "timeout": 120000,
     "rate_limit": 700,
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "post_delay": 2500,
     "next": [
       "CycleStart",
@@ -956,7 +1015,12 @@
   "FinishButtonClickRetry": {
     "recognition": "DirectHit",
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "pre_delay": 800,
     "post_delay": 2500,
     "next": [
