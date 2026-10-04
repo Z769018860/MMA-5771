@@ -3,15 +3,31 @@
  "screens": {
   "star_entry": {"sample": "star_entry.png", "src_size": [1602, 899]},
   "star_difficulty": {"sample": "star_difficulty.png", "src_size": [1602, 893]},
-  "star_start": {"sample": "star_start.png", "src_size": [1594, 899]}
+  "star_start": {"sample": "star_start.png", "src_size": [1594, 899]},
+  "train_ability": {"sample": "train_ability.png", "src_size": [1600, 900]},
+  "train_tooltip": {"sample": "train_tooltip.png", "src_size": [1600, 900]},
+  "train_relic": {"sample": "train_relic.png", "src_size": [1600, 900]},
+  "train_artifact_choice": {"sample": "train_artifact_choice.png", "src_size": [1600, 900]},
+  "train_artifact_selected": {"sample": "train_artifact_selected.png", "src_size": [1600, 900]},
+  "train_engrave": {"sample": "train_engrave.png", "src_size": [1600, 900]},
+  "train_engrave_tooltip": {"sample": "train_engrave_tooltip.png", "src_size": [1600, 900]}
  },
  "templates": [
   {"id": "entry_title", "screen": "star_entry", "box": [118, 35, 268, 80], "label": "入口页标题「记忆回廊」", "threshold": 0.8},
   {"id": "diff_title", "screen": "star_difficulty", "box": [1190, 135, 1335, 180], "label": "难度页「选择难度」", "threshold": 0.8},
-  {"id": "hud_icon", "screen": "star_start", "box": [1205, 12, 1280, 80], "label": "调查中右上角层数图标（罗盘）", "threshold": 0.8}
+  {"id": "hud_icon", "screen": "star_start", "box": [1205, 12, 1280, 80], "label": "调查中右上角层数图标（罗盘）", "threshold": 0.8},
+  {"id": "ability_title", "screen": "train_ability", "box": [744, 155, 883, 200], "label": "战后选择能力标题", "threshold": 0.8},
+  {"id": "tooltip_title", "screen": "train_tooltip", "box": [985, 210, 1130, 245], "label": "衍生卡说明悬浮层", "threshold": 0.8},
+  {"id": "relic_title", "screen": "train_relic", "box": [720, 135, 885, 185], "label": "灰烬遗迹标题", "threshold": 0.8},
+  {"id": "artifact_choice_title", "screen": "train_artifact_choice", "box": [710, 145, 900, 183], "label": "选择1个造物标题", "threshold": 0.8},
+  {"id": "artifact_confirm_blue", "screen": "train_artifact_selected", "box": [720, 744, 880, 795], "label": "已选造物蓝色确认按钮", "threshold": 0.8},
+  {"id": "engrave_title", "screen": "train_engrave", "box": [655, 148, 960, 187], "label": "镶嵌刻印选牌标题", "threshold": 0.8},
+  {"id": "engrave_tooltip_title", "screen": "train_engrave_tooltip", "box": [980, 210, 1120, 245], "label": "刻印说明悬浮层", "threshold": 0.8}
  ],
  "regions": {
   "go_button": {"screen": "star_entry", "box": [1230, 790, 1520, 852], "label": "入口页右下角启程按钮"},
+  "ability_card": {"screen": "train_ability", "box": [835, 270, 1120, 650], "label": "战后能力第三张"},
+  "ability_confirm": {"screen": "train_ability", "box": [655, 720, 940, 780], "label": "战后选择确认"},
   "challenge_button": {"screen": "star_difficulty", "box": [1115, 775, 1410, 835], "label": "难度页「挑战」按钮"},
   "card_normal": {"screen": "star_difficulty", "box": [1030, 262, 1500, 360], "label": "普通难度卡片"},
   "card_hard": {"screen": "star_difficulty", "box": [1030, 445, 1500, 540], "label": "困难难度卡片"},
