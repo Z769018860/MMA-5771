@@ -1,0 +1,2222 @@
+{
+  "AA_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_PaidRevive",
+      "AA_DetailBack",
+      "AA_StagePage",
+      "AA_ActivityPage",
+      "AA_Home"
+    ]
+  },
+  "AA_DetailBack": {
+    "recognition": "TemplateMatch",
+    "template": "challenge.png",
+    "roi": [
+      930,
+      550,
+      340,
+      160
+    ],
+    "threshold": 0.53,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 800,
+    "next": [
+      "AA_StagePage"
+    ]
+  },
+  "AA_Home": {
+    "recognition": "TemplateMatch",
+    "template": "home_marker.png",
+    "roi": [
+      1040,
+      70,
+      235,
+      210
+    ],
+    "threshold": 0.48,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      148,
+      465,
+      24,
+      24
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_ActivityPage"
+    ]
+  },
+  "AA_ActivityPage": {
+    "recognition": "TemplateMatch",
+    "template": "activity_act_title.png",
+    "roi": [
+      65,
+      0,
+      210,
+      80
+    ],
+    "threshold": 0.79,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_CurrentEvent"
+    ]
+  },
+  "AA_CurrentEvent": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_current_item.png",
+    "roi": [
+      0,
+      340,
+      250,
+      320
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      75,
+      435,
+      30,
+      30
+    ],
+    "post_delay": 900,
+    "next": [
+      "AA_GoldEntry"
+    ]
+  },
+  "AA_GoldEntry": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_StagePage"
+    ]
+  },
+  "AA_StagePage": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage1_ResetA"
+    ]
+  },
+  "AA_MadnessSelected": {
+    "recognition": "ColorMatch",
+    "roi": [
+      49,
+      575,
+      5,
+      70
+    ],
+    "method": 4,
+    "lower": [
+      150,
+      170,
+      180
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 200,
+    "connected": false,
+    "action": "DoNothing",
+    "next": [
+      "CycleStart"
+    ]
+  },
+  "AA_MadnessLocked": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_locked.png",
+    "roi": [
+      40,
+      560,
+      390,
+      105
+    ],
+    "threshold": 0.88,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_SelectSix"
+    ]
+  },
+  "AA_SelectSix": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      187,
+      507,
+      26,
+      26
+    ],
+    "post_delay": 450,
+    "next": [
+      "CycleStart"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "癫狂尚未解锁，先挑战当前关的之六。"
+    }
+  },
+  "AA_SelectMadness": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      187,
+      602,
+      26,
+      26
+    ],
+    "post_delay": 650,
+    "next": [
+      "AA_MadnessSelected",
+      "AA_SelectMadnessRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选择当前关癫狂难度。"
+    }
+  },
+  "AA_SelectMadnessRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      190,
+      605,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_MadnessSelected",
+      "AA_SelectMadnessLast"
+    ]
+  },
+  "AA_SelectMadnessLast": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      192,
+      607,
+      16,
+      16
+    ],
+    "post_delay": 850,
+    "next": [
+      "AA_MadnessSelected"
+    ]
+  },
+  "AA_ScrollDifficulty": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      185,
+      585,
+      20,
+      20
+    ],
+    "end": [
+      185,
+      165,
+      20,
+      20
+    ],
+    "duration": 450,
+    "post_delay": 650,
+    "next": [
+      "AA_MadnessSelected",
+      "AA_MadnessLocked",
+      "AA_SelectMadness"
+    ]
+  },
+  "AA_AfterResult": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1500,
+    "next": [
+      "AA_Completed1",
+      "AA_Completed2",
+      "AA_Completed3",
+      "AA_Completed4",
+      "AA_Completed5",
+      "AA_Completed6",
+      "AA_Completed7",
+      "AA_Completed8",
+      "AA_Completed9",
+      "AA_AfterSix"
+    ]
+  },
+  "AA_AfterSix": {
+    "recognition": "TemplateMatch",
+    "template": "challenge.png",
+    "roi": [
+      930,
+      550,
+      340,
+      160
+    ],
+    "threshold": 0.53,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_SelectMadness"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "之六已结算，改选癫狂。"
+    }
+  },
+  "AA_BattleFailed": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "本关战斗失败，停止推进，避免跳过未通关关卡。"
+    }
+  },
+  "AA_PaidRevive": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_paid_revival.png",
+    "roi": [
+      350,
+      245,
+      600,
+      120
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAlF4lYHVw5XdTT/JdF4A9XAz/OG4PYmNrKFfii+6VL2YmVIhtF4BQZ5llUVFiYw1ZO20CMDttqFLqgahSqGPbj/JdXFBiawz/Kme5cPtROG4PYi1OhHZueKSLFmLWU4htAjD3i0tiqFIEWQZ0DVk7bTlfl3oCMCcALAAnANhfdFNNUhxZO22oUoSYZosnACwAJwBPAEsAJwAsACcAVwBhAHIAbgBpAG4AZwAnACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA=="
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "付费复活弹窗已出现：停止推进并弹出预警；不会消耗材料。",
+      "Node.Action.Failed": "付费复活弹窗已出现，预警框弹出失败；自动推进仍已停止。"
+    }
+  },
+  "AA_PostReviveWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 4500,
+    "next": [
+      "AA_PaidRevive",
+      "AA_ReviveAuto"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "复活后等待画面稳定，重新确认 AUTO。"
+    }
+  },
+  "AA_ReviveAuto": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      57,
+      487,
+      16,
+      16
+    ],
+    "post_delay": 700,
+    "next": [
+      "AutoVerifyWait"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "复活会关闭 AUTO，已重新点击开启。"
+    }
+  },
+  "AA_Stage1_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage1_ResetB"
+    ]
+  },
+  "AA_Stage1_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage1_Click"
+    ]
+  },
+  "AA_Stage1_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      150,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage1_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 1 关：危险席位。"
+    }
+  },
+  "AA_Stage1_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_1.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed1": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_1.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage2"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 1 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage2_Page"
+    ]
+  },
+  "AA_Stage2_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage2_Ready",
+      "AA_Stage2_Reenter"
+    ]
+  },
+  "AA_Stage2_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage2_ResetA"
+    ]
+  },
+  "AA_Stage2_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage2_Page"
+    ]
+  },
+  "AA_Stage2_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage2_ResetB"
+    ]
+  },
+  "AA_Stage2_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage2_Click"
+    ]
+  },
+  "AA_Stage2_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      420,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage2_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 2 关：向怨朝圣。"
+    }
+  },
+  "AA_Stage2_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_2.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed2": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_2.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage3"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 2 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage3_Page"
+    ]
+  },
+  "AA_Stage3_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage3_Ready",
+      "AA_Stage3_Reenter"
+    ]
+  },
+  "AA_Stage3_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage3_ResetA"
+    ]
+  },
+  "AA_Stage3_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage3_Page"
+    ]
+  },
+  "AA_Stage3_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage3_ResetB"
+    ]
+  },
+  "AA_Stage3_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage3_Click"
+    ]
+  },
+  "AA_Stage3_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      690,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage3_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 3 关：战余的枯骨。"
+    }
+  },
+  "AA_Stage3_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_3.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed3": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_3.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage4"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 3 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage4": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage4_Page"
+    ]
+  },
+  "AA_Stage4_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage4_Ready",
+      "AA_Stage4_Reenter"
+    ]
+  },
+  "AA_Stage4_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage4_ResetA"
+    ]
+  },
+  "AA_Stage4_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage4_Page"
+    ]
+  },
+  "AA_Stage4_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage4_ResetB"
+    ]
+  },
+  "AA_Stage4_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage4_Click"
+    ]
+  },
+  "AA_Stage4_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      960,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage4_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 4 关：妖影的诱惑。"
+    }
+  },
+  "AA_Stage4_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_4.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed4": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_4.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage5"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 4 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage5": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage5_Page"
+    ]
+  },
+  "AA_Stage5_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage5_Ready",
+      "AA_Stage5_Reenter"
+    ]
+  },
+  "AA_Stage5_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage5_ResetA"
+    ]
+  },
+  "AA_Stage5_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage5_Page"
+    ]
+  },
+  "AA_Stage5_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage5_ResetB"
+    ]
+  },
+  "AA_Stage5_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage5_MoveA"
+    ]
+  },
+  "AA_Stage5_MoveA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      560,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage5_Click"
+    ]
+  },
+  "AA_Stage5_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      438,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage5_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 5 关：荒原尽头。"
+    }
+  },
+  "AA_Stage5_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_5.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed5": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_5.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage6"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 5 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage6": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage6_Page"
+    ]
+  },
+  "AA_Stage6_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage6_Ready",
+      "AA_Stage6_Reenter"
+    ]
+  },
+  "AA_Stage6_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage6_ResetA"
+    ]
+  },
+  "AA_Stage6_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage6_Page"
+    ]
+  },
+  "AA_Stage6_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage6_ResetB"
+    ]
+  },
+  "AA_Stage6_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage6_MoveA"
+    ]
+  },
+  "AA_Stage6_MoveA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage6_MoveB"
+    ]
+  },
+  "AA_Stage6_MoveB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage6_Click"
+    ]
+  },
+  "AA_Stage6_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      212,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage6_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 6 关：未赴之约。"
+    }
+  },
+  "AA_Stage6_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_6.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed6": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_6.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage7"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 6 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage7": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage7_Page"
+    ]
+  },
+  "AA_Stage7_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage7_Ready",
+      "AA_Stage7_Reenter"
+    ]
+  },
+  "AA_Stage7_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage7_ResetA"
+    ]
+  },
+  "AA_Stage7_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage7_Page"
+    ]
+  },
+  "AA_Stage7_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage7_ResetB"
+    ]
+  },
+  "AA_Stage7_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage7_MoveA"
+    ]
+  },
+  "AA_Stage7_MoveA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage7_MoveB"
+    ]
+  },
+  "AA_Stage7_MoveB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage7_Click"
+    ]
+  },
+  "AA_Stage7_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      482,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage7_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 7 关：暗塔。"
+    }
+  },
+  "AA_Stage7_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_7.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed7": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_7.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage8"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 7 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage8": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage8_Page"
+    ]
+  },
+  "AA_Stage8_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage8_Ready",
+      "AA_Stage8_Reenter"
+    ]
+  },
+  "AA_Stage8_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage8_ResetA"
+    ]
+  },
+  "AA_Stage8_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage8_Page"
+    ]
+  },
+  "AA_Stage8_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage8_ResetB"
+    ]
+  },
+  "AA_Stage8_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage8_MoveA"
+    ]
+  },
+  "AA_Stage8_MoveA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage8_MoveB"
+    ]
+  },
+  "AA_Stage8_MoveB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage8_Click"
+    ]
+  },
+  "AA_Stage8_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      752,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage8_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 8 关：归于光中。"
+    }
+  },
+  "AA_Stage8_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_8.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed8": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_8.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [
+      "AA_BackToStage9"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 8 关癫狂已结算。"
+    }
+  },
+  "AA_BackToStage9": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1228,
+      28,
+      20,
+      20
+    ],
+    "post_delay": 750,
+    "next": [
+      "AA_Stage9_Page"
+    ]
+  },
+  "AA_Stage9_Page": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage9_Ready",
+      "AA_Stage9_Reenter"
+    ]
+  },
+  "AA_Stage9_Ready": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_Stage9_ResetA"
+    ]
+  },
+  "AA_Stage9_Reenter": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_gold_entry.png",
+    "roi": [
+      930,
+      610,
+      320,
+      80
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1073,
+      625,
+      44,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "AA_Stage9_Page"
+    ]
+  },
+  "AA_Stage9_ResetA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage9_ResetB"
+    ]
+  },
+  "AA_Stage9_ResetB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      240,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      1040,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage9_MoveA"
+    ]
+  },
+  "AA_Stage9_MoveA": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage9_MoveB"
+    ]
+  },
+  "AA_Stage9_MoveB": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      512,
+      15,
+      15
+    ],
+    "end": [
+      280,
+      512,
+      15,
+      15
+    ],
+    "duration": 500,
+    "post_delay": 650,
+    "next": [
+      "AA_Stage9_Click"
+    ]
+  },
+  "AA_Stage9_Click": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_stage_page.png",
+    "roi": [
+      0,
+      15,
+      310,
+      85
+    ],
+    "threshold": 0.86,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1022,
+      494,
+      36,
+      36
+    ],
+    "post_delay": 950,
+    "next": [
+      "AA_Stage9_Detail"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "进入活动第 9 关：无形的骑士。"
+    }
+  },
+  "AA_Stage9_Detail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_advance_title_9.png",
+    "roi": [
+      0,
+      20,
+      310,
+      80
+    ],
+    "threshold": 0.87,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "AA_ScrollDifficulty"
+    ]
+  },
+  "AA_Completed9": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_advance_title_9.png",
+        "roi": [
+          0,
+          20,
+          310,
+          80
+        ],
+        "threshold": 0.87,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          49,
+          575,
+          5,
+          70
+        ],
+        "method": 4,
+        "lower": [
+          150,
+          170,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 200,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "第 9 关癫狂已结算。"
+    }
+  }
+}

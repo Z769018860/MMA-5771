@@ -18,6 +18,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
@@ -50,7 +51,7 @@ def build():
     images, nodes, rects, thr = {}, {}, {}, {}
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imread(str(NAV / "samples" / sc["sample"]))
+        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
         images[f"main_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
