@@ -26,6 +26,7 @@ OUT = ROOT / "resource" / "pipeline" / "train.json"
 INTERFACE = ROOT / "interface.json"
 TASK = "记忆回廊列车"
 GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}   # RGB of the selected-difficulty glow
+TRAIN_PAGES = ("TR_Ability", "TR_Tooltip", "TR_EngraveTooltip", "TR_RelicExit", "TR_ArtifactChoice", "TR_Engrave")
 DIFFICULTIES = (("normal", "普通"), ("hard", "困难"), ("crazy", "癫狂"))
 
 
@@ -34,9 +35,15 @@ def build():
     images, nodes, rects, thr = {}, {}, {}, {}
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
-        images[f"train_{t['id']}.png"] = img[y0:y1, x0:x1]
+        sample, out = NAV / "samples" / sc["sample"], IMAGE / f"train_{t['id']}.png"
+        if sample.is_file():
+            img = cv2.imdecode(np.fromfile(sample, dtype=np.uint8), cv2.IMREAD_COLOR)
+            images[out.name] = img[y0:y1, x0:x1]
+        elif out.is_file():          # calibrated on the device; the full screenshot is not kept in the repo
+            pass
+        else:
+            raise FileNotFoundError(f"missing sample and template: {sample}, {out}")
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
         thr[t["id"]] = t.get("threshold", 0.8)
 
@@ -94,6 +101,12 @@ def build():
                            "focus": focus("已进入调查（右上角出现层数 1-1/6 这类标识）：交给事件/商店/战斗节点。")}
     nodes["TR_Finished"] = {**match("entry_title"), "action": "DoNothing", "next": [],
                             "focus": focus("调查已结束并回到入口页：记忆回廊任务完成。")}
+    extra = json.loads((NAV / "train_nodes.json").read_text(encoding="utf-8"))["nodes"]
+    nodes.update(extra)
+    # the post-revive AUTO click uses the same "button present but not lit" test as the story chain (see README)
+    ready = M.load_pipelines()["StoryAutoControlReady"]
+    after = {k: v for k, v in nodes["TR_AutoAfterRevive"].items() if k not in ("recognition", "template", "roi", "threshold", "method")}
+    nodes["TR_AutoAfterRevive"] = {"recognition": ready["recognition"], "all_of": ready["all_of"], "box_index": 0, **after}
     return images, nodes, ui
 
 
@@ -125,8 +138,33 @@ def update_interface(orig, ui, nodes):
                   for k, label in DIFFICULTIES]}
     override = M.task_definition(orig, extra=("TR_Finished",), done_next=())
     override["StoryFormation"] = {"next": ["StoryFormation", "TR_Started", "StoryBattleMonitor"]}
+    # pages seen on the train (calibrated on the device) go in front of the generic story handlers
+    for name in ("StoryAfterRoute", "StoryInsideRouter", "StoryBattleMonitor"):
+        nxt = override[name]["next"]
+        at = nxt.index("StoryCutscene") if "StoryCutscene" in nxt else 0
+        override[name]["next"] = nxt[:at] + [n for n in TRAIN_PAGES if n not in nxt] + nxt[at:]
+    revive = json.loads(json.dumps(d["option"]["主线灵知"]))
+    revive["label"], revive["description"] = ("记忆回廊：战斗失败时使用应急灵知体",
+                                              "使用：失败时确认复活，等动画结束后只在 AUTO 仍关闭时点一次；灵知用完或不使用时，失败后弹窗警告并停止。")
+    revive["cases"][0]["pipeline_override"]["StoryReviveDecision"]["next"] = ["TR_PostReviveWait"]
+    d["option"]["记忆回廊灵知"] = revive
+    d["option"]["记忆回廊事件选项"] = {
+        "type": "select", "label": "记忆回廊：事件选项选哪一个",
+        "description": "事件页有多个选项时点哪一个（按从上到下的位置）。默认沿用主线：最下面一项。",
+        "default_case": "bottom", "cases": [
+            {"name": "bottom", "label": "最下面（默认）"},
+            {"name": "top", "label": "最上面", "pipeline_override": {"StoryChoicePage": {"index": 0}}},
+            {"name": "second", "label": "从上数第二项", "pipeline_override": {"StoryChoicePage": {"index": 1}}},
+            {"name": "third", "label": "从上数第三项", "pipeline_override": {"StoryChoicePage": {"index": 2}}}]}
+    d["option"]["记忆回廊造物位置"] = {
+        "type": "select", "label": "记忆回廊：「选择 1 个造物」选哪一张",
+        "description": "造物三选一页点哪张卡片，再点确认。",
+        "default_case": "left", "cases": [
+            {"name": "left", "label": "左边（默认）"},
+            {"name": "middle", "label": "中间", "pipeline_override": {"TR_ArtifactChoice": {"target": [565, 340, 150, 90]}}},
+            {"name": "right", "label": "右边", "pipeline_override": {"TR_ArtifactChoice": {"target": [890, 340, 75, 90]}}}]}
     entry = {"name": TASK, "label": "记忆回廊：疾驰的欢愉专列（星辰篇）", "entry": "TR_Start",
-             "option": ["记忆回廊难度", "主线灵知", "主线战斗超时", "剧情购买策略", "剧情造物位置"],
+             "option": ["记忆回廊难度", "记忆回廊灵知", "记忆回廊事件选项", "记忆回廊造物位置", "主线战斗超时", "剧情购买策略", "剧情造物位置"],
              "default_check": False, "repeatable": False, "pipeline_override": override,
              "description": "入口页点启程 → 选难度 → 挑战 → 编队页点调查 → 事件/商店/战斗按主线逻辑自动处理，直到调查结束回到入口页。Boss 超时、战败且灵知用完、或画面无法识别时弹窗提示并停止。"}
     tasks = [t for t in d["task"] if t["name"] != TASK]

@@ -31,16 +31,6 @@
       "StoryReviveDecision"
     ]
   },
-  "TR_FormationRouter": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "next": [
-      "StoryFormation"
-    ],
-    "on_error": [
-      "MA_StuckNotice"
-    ]
-  },
   "TR_Entry": {
     "recognition": "TemplateMatch",
     "template": "train_entry_title.png",
@@ -243,6 +233,33 @@
     "focus": {
       "Node.Recognition.Succeeded": "已进入调查（右上角出现层数 1-1/6 这类标识）：交给事件/商店/战斗节点。"
     }
+  },
+  "TR_Finished": {
+    "recognition": "TemplateMatch",
+    "template": "train_entry_title.png",
+    "roi": [
+      78,
+      12,
+      152,
+      68
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "调查已结束并回到入口页：记忆回廊任务完成。"
+    }
+  },
+  "TR_FormationRouter": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryFormation"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
   },
   "TR_Ability": {
     "recognition": "TemplateMatch",
@@ -482,25 +499,6 @@
       "StoryAfterRoute"
     ]
   },
-  "TR_AutoOffNoClick": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
-    "roi": [
-      25,
-      470,
-      85,
-      60
-    ],
-    "threshold": 0.75,
-    "method": 10001,
-    "action": "DoNothing",
-    "next": [
-      "StoryBattleMonitor"
-    ],
-    "focus": {
-      "Node.Recognition.Succeeded": "AUTO 已在本次调查中尝试过；继续监控，不再点击以免切换关闭。"
-    }
-  },
   "TR_PostReviveWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
@@ -515,16 +513,44 @@
     ]
   },
   "TR_AutoAfterRevive": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
-    "roi": [
-      25,
-      470,
-      85,
-      60
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          95,
+          95,
+          90
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 12,
+        "connected": false
+      }
     ],
-    "threshold": 0.75,
-    "method": 10001,
+    "box_index": 0,
     "action": "Click",
     "target": [
       62,
@@ -563,23 +589,6 @@
     "on_error": [],
     "focus": {
       "Node.Recognition.Succeeded": "AUTO 点击后仍未启用：已停止并弹出提示。"
-    }
-  },
-  "TR_Finished": {
-    "recognition": "TemplateMatch",
-    "template": "train_entry_title.png",
-    "roi": [
-      78,
-      12,
-      152,
-      68
-    ],
-    "threshold": 0.8,
-    "method": 10001,
-    "action": "DoNothing",
-    "next": [],
-    "focus": {
-      "Node.Recognition.Succeeded": "调查已结束并回到入口页：记忆回廊任务完成。"
     }
   }
 }

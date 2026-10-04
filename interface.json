@@ -1366,7 +1366,9 @@
       "entry": "TR_Start",
       "option": [
         "记忆回廊难度",
-        "主线灵知",
+        "记忆回廊灵知",
+        "记忆回廊事件选项",
+        "记忆回廊造物位置",
         "主线战斗超时",
         "剧情购买策略",
         "剧情造物位置"
@@ -1376,6 +1378,12 @@
       "pipeline_override": {
         "StoryAfterRoute": {
           "next": [
+            "TR_Ability",
+            "TR_Tooltip",
+            "TR_EngraveTooltip",
+            "TR_RelicExit",
+            "TR_ArtifactChoice",
+            "TR_Engrave",
             "StoryCutscene",
             "StoryEventPage",
             "StoryFormation",
@@ -1393,6 +1401,12 @@
         },
         "StoryInsideRouter": {
           "next": [
+            "TR_Ability",
+            "TR_Tooltip",
+            "TR_EngraveTooltip",
+            "TR_RelicExit",
+            "TR_ArtifactChoice",
+            "TR_Engrave",
             "StoryCutscene",
             "StoryEventPage",
             "StoryFirstFormation",
@@ -1413,6 +1427,12 @@
             "AA_PaidRevive",
             "StoryReviveDecision",
             "StoryFinishInvestigation",
+            "TR_Ability",
+            "TR_Tooltip",
+            "TR_EngraveTooltip",
+            "TR_RelicExit",
+            "TR_ArtifactChoice",
+            "TR_Engrave",
             "StoryCutscene",
             "StoryChoicePage",
             "StoryShop",
@@ -1784,8 +1804,7 @@
                 -92
               ],
               "next": [
-                "StoryFinishInvestigation",
-                "StoryAutoControlReady"
+                "StoryPostReviveWait"
               ]
             }
           }
@@ -2632,8 +2651,7 @@
                 -92
               ],
               "next": [
-                "StoryFinishInvestigation",
-                "StoryAutoControlReady"
+                "StoryPostReviveWait"
               ]
             }
           }
@@ -2991,6 +3009,114 @@
                 495,
                 376,
                 11
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "记忆回廊灵知": {
+      "type": "select",
+      "label": "记忆回廊：战斗失败时使用应急灵知体",
+      "description": "使用：失败时确认复活，等动画结束后只在 AUTO 仍关闭时点一次；灵知用完或不使用时，失败后弹窗警告并停止。",
+      "default_case": "use",
+      "cases": [
+        {
+          "name": "use",
+          "label": "使用灵知（默认）",
+          "pipeline_override": {
+            "StoryReviveDecision": {
+              "target_offset": [
+                341,
+                343,
+                -292,
+                -92
+              ],
+              "next": [
+                "TR_PostReviveWait"
+              ]
+            }
+          }
+        },
+        {
+          "name": "skip",
+          "label": "不使用灵知，失败即警告停止"
+        }
+      ]
+    },
+    "记忆回廊事件选项": {
+      "type": "select",
+      "label": "记忆回廊：事件选项选哪一个",
+      "description": "事件页有多个选项时点哪一个（按从上到下的位置）。默认沿用主线：最下面一项。",
+      "default_case": "bottom",
+      "cases": [
+        {
+          "name": "bottom",
+          "label": "最下面（默认）"
+        },
+        {
+          "name": "top",
+          "label": "最上面",
+          "pipeline_override": {
+            "StoryChoicePage": {
+              "index": 0
+            }
+          }
+        },
+        {
+          "name": "second",
+          "label": "从上数第二项",
+          "pipeline_override": {
+            "StoryChoicePage": {
+              "index": 1
+            }
+          }
+        },
+        {
+          "name": "third",
+          "label": "从上数第三项",
+          "pipeline_override": {
+            "StoryChoicePage": {
+              "index": 2
+            }
+          }
+        }
+      ]
+    },
+    "记忆回廊造物位置": {
+      "type": "select",
+      "label": "记忆回廊：「选择 1 个造物」选哪一张",
+      "description": "造物三选一页点哪张卡片，再点确认。",
+      "default_case": "left",
+      "cases": [
+        {
+          "name": "left",
+          "label": "左边（默认）"
+        },
+        {
+          "name": "middle",
+          "label": "中间",
+          "pipeline_override": {
+            "TR_ArtifactChoice": {
+              "target": [
+                565,
+                340,
+                150,
+                90
+              ]
+            }
+          }
+        },
+        {
+          "name": "right",
+          "label": "右边",
+          "pipeline_override": {
+            "TR_ArtifactChoice": {
+              "target": [
+                890,
+                340,
+                75,
+                90
               ]
             }
           }

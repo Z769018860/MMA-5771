@@ -1,0 +1,388 @@
+{
+ "_doc": "实机校准的节点（手工维护）：build_train_pipeline.py 会把这里的节点叠加到生成结果上，同名则以这里为准。模板图 train_*.png 由设备截图裁剪后直接放在 resource/image/。",
+ "nodes": {
+  "TR_Resume": {
+   "recognition": "DirectHit",
+   "action": "DoNothing",
+   "next": [
+    "AA_PaidRevive",
+    "StoryFormation",
+    "StoryFirstFormation",
+    "StoryCutscene",
+    "StoryEventPage",
+    "StoryChoicePage",
+    "StoryShop",
+    "StoryArtifactSelect",
+    "StoryFinishInvestigation",
+    "StoryReviveDecision"
+   ]
+  },
+  "TR_FormationRouter": {
+   "recognition": "DirectHit",
+   "action": "DoNothing",
+   "next": [
+    "StoryFormation"
+   ],
+   "on_error": [
+    "MA_StuckNotice"
+   ]
+  },
+  "TR_Selected": {
+   "recognition": "ColorMatch",
+   "roi": [
+    823,
+    199,
+    376,
+    11
+   ],
+   "method": 4,
+   "lower": [
+    225,
+    215,
+    100
+   ],
+   "upper": [
+    255,
+    255,
+    255
+   ],
+   "count": 400,
+   "connected": false,
+   "action": "Click",
+   "target": [
+    901,
+    630,
+    216,
+    38
+   ],
+   "post_delay": 2500,
+   "next": [
+    "TR_FormationRouter",
+    "TR_ChallengeRetry"
+   ],
+   "focus": {
+    "Node.Action.Succeeded": "目标难度已选中（金边），点击【挑战】。"
+   }
+  },
+  "TR_ChallengeRetry": {
+   "recognition": "DirectHit",
+   "action": "Click",
+   "target": [
+    901,
+    630,
+    216,
+    38
+   ],
+   "post_delay": 2500,
+   "timeout": 20000,
+   "next": [
+    "TR_FormationRouter"
+   ],
+   "on_error": [
+    "MA_StuckNotice"
+   ]
+  },
+  "TR_Ability": {
+   "recognition": "TemplateMatch",
+   "template": "train_ability_title.png",
+   "roi": [
+    579,
+    108,
+    143,
+    68
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    678,
+    221,
+    208,
+    294
+   ],
+   "post_delay": 700,
+   "next": [
+    "TR_AbilityConfirm"
+   ]
+  },
+  "TR_AbilityConfirm": {
+   "recognition": "DirectHit",
+   "action": "Click",
+   "target": [
+    697,
+    584,
+    40,
+    32
+   ],
+   "post_delay": 1400,
+   "next": [
+    "StoryAfterRoute"
+   ]
+  },
+  "TR_Tooltip": {
+   "recognition": "TemplateMatch",
+   "template": "train_tooltip_title.png",
+   "roi": [
+    772,
+    152,
+    148,
+    60
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    95,
+    555,
+    50,
+    50
+   ],
+   "post_delay": 500,
+   "next": [
+    "StoryAfterRoute"
+   ]
+  },
+  "TR_EngraveTooltip": {
+   "recognition": "TemplateMatch",
+   "template": "train_engrave_tooltip_title.png",
+   "roi": [
+    768,
+    152,
+    144,
+    60
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    95,
+    555,
+    50,
+    50
+   ],
+   "post_delay": 500,
+   "next": [
+    "StoryAfterRoute"
+   ]
+  },
+  "TR_RelicExit": {
+   "recognition": "TemplateMatch",
+   "template": "train_relic_title.png",
+   "roi": [
+    560,
+    92,
+    164,
+    72
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    1105,
+    115,
+    42,
+    35
+   ],
+   "post_delay": 1100,
+   "next": [
+    "StoryAfterRoute"
+   ],
+   "focus": {
+    "Node.Recognition.Succeeded": "已退出列车遗迹页，继续下一段。"
+   }
+  },
+  "TR_ArtifactChoice": {
+   "recognition": "TemplateMatch",
+   "template": "train_artifact_choice_title.png",
+   "roi": [
+    552,
+    100,
+    184,
+    62
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    315,
+    340,
+    75,
+    90
+   ],
+   "post_delay": 600,
+   "next": [
+    "TR_ArtifactDismiss"
+   ]
+  },
+  "TR_ArtifactDismiss": {
+   "recognition": "DirectHit",
+   "action": "Click",
+   "target": [
+    85,
+    560,
+    35,
+    35
+   ],
+   "post_delay": 550,
+   "next": [
+    "TR_ArtifactConfirm"
+   ]
+  },
+  "TR_ArtifactConfirm": {
+   "recognition": "And",
+   "all_of": [
+    {
+     "recognition": "TemplateMatch",
+     "template": "train_artifact_choice_title.png",
+     "roi": [
+      552,
+      100,
+      184,
+      62
+     ],
+     "threshold": 0.8,
+     "method": 10001
+    },
+    {
+     "recognition": "TemplateMatch",
+     "template": "train_artifact_confirm_blue.png",
+     "roi": [
+      560,
+      579,
+      160,
+      73
+     ],
+     "threshold": 0.8,
+     "method": 10001
+    }
+   ],
+   "box_index": 1,
+   "action": "Click",
+   "target": [
+    640,
+    616,
+    1,
+    1
+   ],
+   "post_delay": 1300,
+   "next": [
+    "StoryAfterRoute"
+   ]
+  },
+  "TR_Engrave": {
+   "recognition": "TemplateMatch",
+   "template": "train_engrave_title.png",
+   "roi": [
+    508,
+    102,
+    276,
+    64
+   ],
+   "threshold": 0.8,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    315,
+    350,
+    70,
+    80
+   ],
+   "post_delay": 500,
+   "next": [
+    "TR_EngraveDismiss"
+   ]
+  },
+  "TR_EngraveDismiss": {
+   "recognition": "DirectHit",
+   "action": "Click",
+   "target": [
+    85,
+    560,
+    35,
+    35
+   ],
+   "post_delay": 450,
+   "next": [
+    "TR_EngraveConfirm"
+   ]
+  },
+  "TR_EngraveConfirm": {
+   "recognition": "DirectHit",
+   "action": "Click",
+   "target": [
+    640,
+    616,
+    1,
+    1
+   ],
+   "post_delay": 1300,
+   "next": [
+    "StoryAfterRoute"
+   ]
+  },
+  "TR_PostReviveWait": {
+   "recognition": "DirectHit",
+   "action": "DoNothing",
+   "post_delay": 2500,
+   "next": [
+    "AA_PaidRevive",
+    "StoryAutoAlreadyOn",
+    "TR_AutoAfterRevive"
+   ],
+   "on_error": [
+    "MA_StuckNotice"
+   ]
+  },
+  "TR_AutoAfterRevive": {
+   "recognition": "TemplateMatch",
+   "template": "auto_off_text.png",
+   "roi": [
+    25,
+    470,
+    85,
+    60
+   ],
+   "threshold": 0.75,
+   "method": 10001,
+   "action": "Click",
+   "target": [
+    62,
+    495,
+    10,
+    10
+   ],
+   "post_delay": 1500,
+   "next": [
+    "TR_AutoVerify"
+   ]
+  },
+  "TR_AutoVerify": {
+   "recognition": "DirectHit",
+   "action": "DoNothing",
+   "post_delay": 1400,
+   "next": [
+    "StoryAutoAlreadyOn",
+    "TR_AutoUnavailable"
+   ]
+  },
+  "TR_AutoUnavailable": {
+   "recognition": "DirectHit",
+   "action": "Command",
+   "exec": "powershell.exe",
+   "args": [
+    "-NoLogo",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-EncodedCommand",
+    "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAsIvGX95Wyl4a/7lw+1EgAEEAVQBUAE8AIAAOVM1O4GXVbOqBqFIYYpdlDP/3i0tiqFLAaOVnU19NUhhil2UCMPtOoVLyXVxQYmsM/w1OGk/NUw1ZuXD7USAAQQBVAFQATwACMCcALAAnANhfdFNNUhxZqVJLYicALAAnAE8ASwAnACwAJwBXAGEAcgBuAGkAbgBnACcAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwA"
+   ],
+   "timeout": 30000,
+   "next": [],
+   "on_error": [],
+   "focus": {
+    "Node.Recognition.Succeeded": "AUTO 点击后仍未启用：已停止并弹出提示。"
+   }
+  }
+ }
+}

@@ -140,21 +140,36 @@
       {
         "recognition": "TemplateMatch",
         "template": "story_stage_detail_header.png",
-        "roi": [500, 70, 280, 100],
+        "roi": [
+          500,
+          70,
+          280,
+          100
+        ],
         "threshold": 0.78,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "investigate.png",
-        "roi": [660, 540, 310, 100],
+        "roi": [
+          660,
+          540,
+          310,
+          100
+        ],
         "threshold": 0.76,
         "method": 10001
       }
     ],
     "box_index": 1,
     "action": "Click",
-    "target": [790, 575, 35, 25],
+    "target": [
+      790,
+      575,
+      35,
+      25
+    ],
     "post_delay": 2000,
     "next": [
       "StoryFirstSquadInvestigate"
@@ -166,13 +181,26 @@
   "StoryFirstSquadInvestigate": {
     "recognition": "TemplateMatch",
     "template": "investigate.png",
-    "roi": [940, 610, 310, 105],
+    "roi": [
+      940,
+      610,
+      310,
+      105
+    ],
     "threshold": 0.82,
     "method": 10001,
     "action": "Click",
-    "target": [1080, 635, 60, 30],
+    "target": [
+      1080,
+      635,
+      60,
+      30
+    ],
     "post_delay": 2000,
-    "next": ["StoryFirstSquadInvestigate", "StoryFirstBattlePreludeRouter"],
+    "next": [
+      "StoryFirstSquadInvestigate",
+      "StoryFirstBattlePreludeRouter"
+    ],
     "focus": {
       "Node.Action.Succeeded": "剧情第一场编队界面已识别并点击右下角调查；不再依赖随队伍名称移动的队伍信息按钮。"
     }
@@ -200,23 +228,40 @@
       {
         "recognition": "TemplateMatch",
         "template": "story_play_anchor.png",
-        "roi": [1080, 5, 82, 82],
+        "roi": [
+          1080,
+          5,
+          82,
+          82
+        ],
         "threshold": 0.7,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "story_skip_live.png",
-        "roi": [1170, 5, 84, 82],
+        "roi": [
+          1170,
+          5,
+          84,
+          82
+        ],
         "threshold": 0.68,
         "method": 10001
       }
     ],
     "box_index": 1,
     "action": "Click",
-    "target": [1196, 32, 28, 38],
+    "target": [
+      1196,
+      32,
+      28,
+      38
+    ],
     "post_delay": 900,
-    "next": ["StoryFirstBattlePreludeRouter"]
+    "next": [
+      "StoryFirstBattlePreludeRouter"
+    ]
   },
   "StoryFirstCutsceneEmulator": {
     "recognition": "And",
@@ -224,46 +269,90 @@
       {
         "recognition": "TemplateMatch",
         "template": "story_play_emulator.png",
-        "roi": [1090, 5, 100, 85],
+        "roi": [
+          1090,
+          5,
+          100,
+          85
+        ],
         "threshold": 0.76,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "story_skip_emulator.png",
-        "roi": [1185, 5, 90, 85],
+        "roi": [
+          1185,
+          5,
+          90,
+          85
+        ],
         "threshold": 0.76,
         "method": 10001
       }
     ],
     "box_index": 1,
     "action": "Click",
-    "target": [1210, 24, 45, 45],
+    "target": [
+      1210,
+      24,
+      45,
+      45
+    ],
     "post_delay": 900,
-    "next": ["StoryFirstBattlePreludeRouter"]
+    "next": [
+      "StoryFirstBattlePreludeRouter"
+    ]
   },
   "StoryFirstEventPage": {
     "recognition": "ColorMatch",
-    "roi": [500, 520, 570, 110],
+    "roi": [
+      500,
+      520,
+      570,
+      110
+    ],
     "method": 4,
-    "lower": [145, 145, 145],
-    "upper": [255, 255, 255],
+    "lower": [
+      145,
+      145,
+      145
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
     "count": 20000,
     "connected": false,
     "action": "Click",
-    "target": [770, 565, 30, 24],
+    "target": [
+      770,
+      565,
+      30,
+      24
+    ],
     "post_delay": 1000,
-    "next": ["StoryFirstBattlePreludeRouter"]
+    "next": [
+      "StoryFirstBattlePreludeRouter"
+    ]
   },
   "StoryFirstBattleStartSignal": {
     "recognition": "TemplateMatch",
     "template": "battle_start_action_live.png",
-    "roi": [430, 235, 400, 190],
+    "roi": [
+      430,
+      235,
+      400,
+      190
+    ],
     "threshold": 0.72,
     "method": 10001,
     "action": "DoNothing",
     "post_delay": 200,
-    "next": ["StoryFirstHideCardsGraceWait"],
+    "next": [
+      "StoryFirstHideCardsGraceWait"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "剧情第一场战斗检测到【我方行动】图样，准备唯一一次 AUTO。"
     }
@@ -288,13 +377,26 @@
   "StoryFormation": {
     "recognition": "TemplateMatch",
     "template": "investigate.png",
-    "roi": [940, 610, 310, 105],
+    "roi": [
+      940,
+      610,
+      310,
+      105
+    ],
     "threshold": 0.82,
     "method": 10001,
     "action": "Click",
-    "target": [1080, 635, 60, 30],
+    "target": [
+      1080,
+      635,
+      60,
+      30
+    ],
     "post_delay": 2000,
-    "next": ["StoryFormation", "StoryBattleMonitor"],
+    "next": [
+      "StoryFormation",
+      "StoryBattleMonitor"
+    ],
     "focus": {
       "Node.Action.Succeeded": "后续剧情战斗已点击调查；不再执行 AUTO，直接进入战斗监控。"
     }
@@ -387,16 +489,44 @@
     ]
   },
   "StoryAutoControlReady": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
-    "roi": [
-      25,
-      470,
-      85,
-      60
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          95,
+          95,
+          90
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 12,
+        "connected": false
+      }
     ],
-    "threshold": 0.75,
-    "method": 10001,
+    "box_index": 0,
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
@@ -411,56 +541,109 @@
       "StoryAutoVerifyWait"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-      "Node.Action.Succeeded": "已点击剧情战斗 AUTO 中心；确认变亮后才进入监控。"
+      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
     }
   },
   "StoryAutoVerifyWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 650,
+    "post_delay": 1500,
     "next": [
       "StoryAutoAlreadyOn",
-      "StoryAutoRetryClick"
-    ]
+      "StoryAutoRetryClick",
+      "StoryAutoGiveUp"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "等 AUTO 动画结束：已亮起则不再点；仍未亮起只补点一次。"
+    }
   },
   "StoryAutoAlreadyOn": {
-    "recognition": "ColorMatch",
-    "roi": [
-      42,
-      484,
-      54,
-      30
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          190,
+          190,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 24,
+        "connected": false
+      }
     ],
-    "method": 4,
-    "lower": [
-      190,
-      190,
-      180
-    ],
-    "upper": [
-      255,
-      255,
-      255
-    ],
-    "count": 24,
-    "connected": false,
+    "box_index": 0,
     "action": "DoNothing",
     "next": [
       "StoryBattleMonitor"
-    ]
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "AUTO 按钮在位且文字已亮起：自动已开启，之后不再点击。"
+    }
   },
   "StoryAutoRetryClick": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
-    "roi": [
-      25,
-      470,
-      85,
-      60
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          95,
+          95,
+          90
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 12,
+        "connected": false
+      }
     ],
-    "threshold": 0.72,
-    "method": 10001,
+    "box_index": 0,
     "action": "Click",
     "target": [
       62,
@@ -470,8 +653,12 @@
     ],
     "post_delay": 700,
     "next": [
-      "StoryAutoVerifyWait"
-    ]
+      "StoryAutoVerifyWait2"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
+    }
   },
   "StoryBattleMonitor": {
     "recognition": "DirectHit",
@@ -595,7 +782,12 @@
     "index": -1,
     "action": "Click",
     "target": true,
-    "target_offset": [-270, 0, -20, 0],
+    "target_offset": [
+      -270,
+      0,
+      -20,
+      0
+    ],
     "post_delay": 700,
     "next": [
       "StoryChoicePostSelectWait"
@@ -609,7 +801,11 @@
     "recognition": "DirectHit",
     "action": "DoNothing",
     "post_delay": 900,
-    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryAfterRoute"],
+    "next": [
+      "StoryChoiceSealPopup",
+      "StoryChoiceArtifactPopup",
+      "StoryAfterRoute"
+    ],
     "focus": {
       "Node.Action.Succeeded": "事件选项已点击；仅在此短链检查刻印或造物说明弹窗。"
     }
@@ -617,13 +813,28 @@
   "StoryChoiceSealPopup": {
     "recognition": "TemplateMatch",
     "template": "story_seal_popup_title.png",
-    "roi": [730, 140, 260, 100],
+    "roi": [
+      730,
+      140,
+      260,
+      100
+    ],
     "threshold": 0.78,
     "method": 10001,
     "action": "Click",
-    "target": [170, 300, 100, 100],
+    "target": [
+      170,
+      300,
+      100,
+      100
+    ],
     "post_delay": 700,
-    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryChoicePage", "StoryAfterRoute"],
+    "next": [
+      "StoryChoiceSealPopup",
+      "StoryChoiceArtifactPopup",
+      "StoryChoicePage",
+      "StoryAfterRoute"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "事件选择后直接命中实机【刻印说明】标题模板，不再依赖不可用的 OCR。",
       "Node.Action.Succeeded": "已点击刻印弹窗左侧安全空白；仅当标题仍存在时才补点，否则识别最下面的离开选项。"
@@ -635,23 +846,43 @@
       {
         "recognition": "TemplateMatch",
         "template": "story_reward_popup_explain_suffix.png",
-        "roi": [760, 145, 360, 105],
+        "roi": [
+          760,
+          145,
+          360,
+          105
+        ],
         "threshold": 0.78,
         "method": 10001
       },
       {
         "recognition": "TemplateMatch",
         "template": "story_reward_popup_frame.png",
-        "roi": [1080, 130, 160, 140],
+        "roi": [
+          1080,
+          130,
+          160,
+          140
+        ],
         "threshold": 0.82,
         "method": 10001
       }
     ],
     "box_index": 0,
     "action": "Click",
-    "target": [170, 300, 100, 100],
+    "target": [
+      170,
+      300,
+      100,
+      100
+    ],
     "post_delay": 700,
-    "next": ["StoryChoiceSealPopup", "StoryChoiceArtifactPopup", "StoryChoicePage", "StoryAfterRoute"],
+    "next": [
+      "StoryChoiceSealPopup",
+      "StoryChoiceArtifactPopup",
+      "StoryChoicePage",
+      "StoryAfterRoute"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "事件选择后同时命中实机【说明】标题后缀与弹窗框体模板。",
       "Node.Action.Succeeded": "已点击造物说明弹窗左侧安全空白；仅当弹窗仍存在时才补点，否则识别最下面的离开选项。"
@@ -740,10 +971,23 @@
   },
   "StoryEventPage": {
     "recognition": "ColorMatch",
-    "roi": [500, 520, 570, 110],
+    "roi": [
+      500,
+      520,
+      570,
+      110
+    ],
     "method": 4,
-    "lower": [145, 145, 145],
-    "upper": [255, 255, 255],
+    "lower": [
+      145,
+      145,
+      145
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
     "count": 20000,
     "connected": false,
     "action": "Click",
@@ -1055,7 +1299,12 @@
     ],
     "threshold": 0.46,
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "post_delay": 2200,
     "next": [
       "StoryAfterRoute"
@@ -1075,7 +1324,12 @@
     ],
     "threshold": 0.43,
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "post_delay": 2200,
     "next": [
       "StoryAfterRoute"
@@ -1087,10 +1341,17 @@
   "StoryFinishButtonClickRetry": {
     "recognition": "DirectHit",
     "action": "Click",
-    "target": [1080, 640, 60, 30],
+    "target": [
+      1080,
+      640,
+      60,
+      30
+    ],
     "pre_delay": 800,
     "post_delay": 2200,
-    "next": ["StoryAfterRoute"],
+    "next": [
+      "StoryAfterRoute"
+    ],
     "focus": {
       "Node.Action.Succeeded": "剧情调查完成按钮首次点击执行失败后，已延迟补点固定按钮中心。"
     }
@@ -1117,6 +1378,38 @@
     "focus": {
       "Node.Recognition.Succeeded": "跳过剧情后检测到至少一个初始选项。",
       "Node.Action.Succeeded": "已点击初始选项；随后恢复严格的多选项/事件状态路由。"
+    }
+  },
+  "StoryAutoVerifyWait2": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1500,
+    "next": [
+      "StoryAutoAlreadyOn",
+      "StoryAutoGiveUp"
+    ]
+  },
+  "StoryAutoGiveUp": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryBattleMonitor"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "AUTO 点过两次仍无法确认亮起：不再点击（避免反复开关），继续监控；战斗不结束会由超时处理。"
+    }
+  },
+  "StoryPostReviveWait": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 3500,
+    "next": [
+      "StoryFinishInvestigation",
+      "StoryAutoAlreadyOn",
+      "StoryAutoControlReady"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "复活会关闭 AUTO：等动画结束后再判断，只在 AUTO 未亮起时点一次。"
     }
   }
 }

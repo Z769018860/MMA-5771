@@ -1,5 +1,6 @@
 import json
 import struct
+import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +14,22 @@ def png_size(path):
     if len(header) < 24 or header[:8] != b"\x89PNG\r\n\x1a\n":
         return None
     return struct.unpack(">II", header[16:24])
+
+
+def png_intact(path):
+    """True when the PNG chunk lengths/CRCs are consistent and it ends with IEND (a truncated or text-mangled copy is not)."""
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        return False
+    i, seen_end = 8, False
+    while i + 12 <= len(data):
+        length, kind = struct.unpack(">I4s", data[i:i + 8])
+        end = i + 12 + length
+        if end > len(data) or zlib.crc32(data[i + 4:i + 8 + length]) != struct.unpack(">I", data[end - 4:end])[0]:
+            return False
+        seen_end = kind == b"IEND"
+        i = end
+    return seen_end and i == len(data)
 
 
 def validate_recognition(path, name, recognition, errors):
@@ -40,6 +57,13 @@ def validate_recognition(path, name, recognition, errors):
 
 def main():
     errors = []
+    known_bad = set(json.loads((ROOT / "tools" / "lint_allow.json").read_text(encoding="utf-8")).get("corrupt_images", []))
+    for image in sorted(IMAGE.glob("*.png")):
+        if not png_intact(image):
+            if image.name in known_bad:
+                print(f"WARNING corrupt image (known, must be re-uploaded as a binary file): {image.name}")
+            else:
+                errors.append(f"corrupt image {image.name}")
     all_nodes = {}
     parsed = {}
     for path in sorted(PIPELINE.glob("*.json")):

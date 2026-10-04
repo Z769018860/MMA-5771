@@ -1,4 +1,26 @@
 {
- "unreachable": ["ActEntry_left", "ActEntry_right", "CR_ToDaily", "NavBack", "NavStageNextChapter", "NavStagePrevChapter", "Soc_SkipLike"],
- "unused_images": ["activity_act_back.png", "nav_stages_arrows.png", "nav_stages_compass.png", "social_mb_done_toast.png", "social_pf_liked_toast.png"]
+ "unreachable": [
+  "ActEntry_left",
+  "ActEntry_right",
+  "CR_ToDaily",
+  "NavBack",
+  "NavStageNextChapter",
+  "NavStagePrevChapter",
+  "Soc_SkipLike"
+ ],
+ "unused_images": [
+  "activity_act_back.png",
+  "nav_stages_arrows.png",
+  "nav_stages_compass.png",
+  "social_mb_done_toast.png",
+  "social_pf_liked_toast.png"
+ ],
+ "corrupt_images": [
+  "train_ability_title.png",
+  "train_artifact_choice_title.png",
+  "train_artifact_confirm_blue.png",
+  "train_engrave_title.png",
+  "train_engrave_tooltip_title.png",
+  "train_relic_title.png"
+ ]
 }

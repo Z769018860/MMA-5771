@@ -240,42 +240,140 @@
   "OpenAssistPurple": {
     "recognition": "And",
     "all_of": [
-      {"recognition": "TemplateMatch", "template": "investigate.png", "roi": [950, 610, 270, 105], "threshold": 0.82, "method": 10001},
-      {"recognition": "TemplateMatch", "template": "formation_realm_purple.png", "roi": [250, 140, 750, 50], "threshold": 0.90, "method": 10001}
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [
+          950,
+          610,
+          270,
+          105
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_realm_purple.png",
+        "roi": [
+          250,
+          140,
+          750,
+          50
+        ],
+        "threshold": 0.9,
+        "method": 10001
+      }
     ],
     "box_index": 1,
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [1120, 315, 45, 35],
+    "target": [
+      1120,
+      315,
+      45,
+      35
+    ],
     "post_delay": 1300,
-    "next": ["FilterAssistPurple"],
-    "focus": {"Node.Action.Succeeded": "编队中识别到紫色界域，打开助战并切换相同界域。"}
+    "next": [
+      "FilterAssistPurple"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "编队中识别到紫色界域，打开助战并切换相同界域。"
+    }
   },
   "OpenAssistRed": {
     "recognition": "And",
     "all_of": [
-      {"recognition": "TemplateMatch", "template": "investigate.png", "roi": [950, 610, 270, 105], "threshold": 0.82, "method": 10001},
-      {"recognition": "TemplateMatch", "template": "formation_realm_red.png", "roi": [250, 140, 750, 50], "threshold": 0.90, "method": 10001}
+      {
+        "recognition": "TemplateMatch",
+        "template": "investigate.png",
+        "roi": [
+          950,
+          610,
+          270,
+          105
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "formation_realm_red.png",
+        "roi": [
+          250,
+          140,
+          750,
+          50
+        ],
+        "threshold": 0.9,
+        "method": 10001
+      }
     ],
     "box_index": 1,
     "timeout": 60000,
     "rate_limit": 600,
     "action": "Click",
-    "target": [1120, 315, 45, 35],
+    "target": [
+      1120,
+      315,
+      45,
+      35
+    ],
     "post_delay": 1300,
-    "next": ["FilterAssistRed"],
-    "focus": {"Node.Action.Succeeded": "编队中识别到红色界域，打开助战并切换相同界域。"}
+    "next": [
+      "FilterAssistRed"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "编队中识别到红色界域，打开助战并切换相同界域。"
+    }
   },
   "FilterAssistPurple": {
-    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
-    "threshold": 0.62, "method": 10001, "action": "Click", "target": [558, 109, 16, 16],
-    "post_delay": 900, "next": ["ChooseFirstAssist"]
+    "recognition": "TemplateMatch",
+    "template": "select_assist.png",
+    "roi": [
+      0,
+      0,
+      400,
+      110
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      558,
+      109,
+      16,
+      16
+    ],
+    "post_delay": 900,
+    "next": [
+      "ChooseFirstAssist"
+    ]
   },
   "FilterAssistRed": {
-    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
-    "threshold": 0.62, "method": 10001, "action": "Click", "target": [464, 109, 16, 16],
-    "post_delay": 900, "next": ["ChooseFirstAssist"]
+    "recognition": "TemplateMatch",
+    "template": "select_assist.png",
+    "roi": [
+      0,
+      0,
+      400,
+      110
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      464,
+      109,
+      16,
+      16
+    ],
+    "post_delay": 900,
+    "next": [
+      "ChooseFirstAssist"
+    ]
   },
   "OpenAssist": {
     "recognition": "And",
@@ -352,19 +450,76 @@
     }
   },
   "ChooseSecondAssist": {
-    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
-    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 305, 25, 30],
-    "post_delay": 900, "next": ["DeployAssist", "ChooseThirdAssist"]
+    "recognition": "TemplateMatch",
+    "template": "select_assist.png",
+    "roi": [
+      0,
+      0,
+      400,
+      110
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      850,
+      305,
+      25,
+      30
+    ],
+    "post_delay": 900,
+    "next": [
+      "DeployAssist",
+      "ChooseThirdAssist"
+    ]
   },
   "ChooseThirdAssist": {
-    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
-    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 420, 25, 30],
-    "post_delay": 900, "next": ["DeployAssist", "ChooseFourthAssist"]
+    "recognition": "TemplateMatch",
+    "template": "select_assist.png",
+    "roi": [
+      0,
+      0,
+      400,
+      110
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      850,
+      420,
+      25,
+      30
+    ],
+    "post_delay": 900,
+    "next": [
+      "DeployAssist",
+      "ChooseFourthAssist"
+    ]
   },
   "ChooseFourthAssist": {
-    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
-    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 535, 25, 30],
-    "post_delay": 900, "next": ["DeployAssist", "TimeoutExport"]
+    "recognition": "TemplateMatch",
+    "template": "select_assist.png",
+    "roi": [
+      0,
+      0,
+      400,
+      110
+    ],
+    "threshold": 0.62,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      850,
+      535,
+      25,
+      30
+    ],
+    "post_delay": 900,
+    "next": [
+      "DeployAssist",
+      "TimeoutExport"
+    ]
   },
   "CharacterDetailRecovery": {
     "recognition": "TemplateMatch",
@@ -590,26 +745,59 @@
   "InvestigationWarningUnchecked": {
     "recognition": "TemplateMatch",
     "template": "investigation_warning_unchecked.png",
-    "roi": [545, 395, 185, 60],
+    "roi": [
+      545,
+      395,
+      185,
+      60
+    ],
     "threshold": 0.93,
     "method": 10001,
     "action": "Click",
-    "target": [570, 414, 18, 20],
+    "target": [
+      570,
+      414,
+      18,
+      20
+    ],
     "post_delay": 400,
-    "next": ["InvestigationWarningChecked"],
-    "focus": {"Node.Action.Succeeded": "调查等级提醒：已勾选今日不再提醒。"}
+    "next": [
+      "InvestigationWarningChecked"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "调查等级提醒：已勾选今日不再提醒。"
+    }
   },
   "InvestigationWarningChecked": {
     "recognition": "TemplateMatch",
     "template": "investigation_warning_checked.png",
-    "roi": [545, 395, 185, 60],
+    "roi": [
+      545,
+      395,
+      185,
+      60
+    ],
     "threshold": 0.93,
     "method": 10001,
     "action": "Click",
-    "target": [800, 475, 60, 35],
+    "target": [
+      800,
+      475,
+      60,
+      35
+    ],
     "post_delay": 1800,
-    "next": ["HideCards", "BattleStartSignal", "AutoAlreadyOn", "AutoControlReady", "ReviveDecision", "FinishInvestigation"],
-    "focus": {"Node.Action.Succeeded": "调查等级提醒：确认继续调查。"}
+    "next": [
+      "HideCards",
+      "BattleStartSignal",
+      "AutoAlreadyOn",
+      "AutoControlReady",
+      "ReviveDecision",
+      "FinishInvestigation"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "调查等级提醒：确认继续调查。"
+    }
   },
   "BattleStartSignal": {
     "recognition": "TemplateMatch",
@@ -763,16 +951,44 @@
     }
   },
   "AutoControlReady": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
-    "roi": [
-      25,
-      470,
-      85,
-      60
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          95,
+          95,
+          90
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 12,
+        "connected": false
+      }
     ],
-    "threshold": 0.75,
-    "method": 10001,
+    "box_index": 0,
     "timeout": 180000,
     "rate_limit": 650,
     "action": "Click",
@@ -787,40 +1003,62 @@
       "AutoVerifyWait"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "已在独立 ROI 内识别左下角真正的 AUTO 文字按钮，未使用下方算力区域。",
-      "Node.Action.Succeeded": "已点击 AUTO 文字中心；下一步必须确认文字变为白色亮起状态。"
+      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
     }
   },
   "AutoVerifyWait": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "post_delay": 650,
+    "post_delay": 1500,
     "next": [
       "AutoAlreadyOn",
-      "AutoRetryClick"
-    ]
+      "AutoRetryClick",
+      "AutoGiveUp"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "等 AUTO 动画结束：已亮起则不再点；仍未亮起只补点一次。"
+    }
   },
   "AutoAlreadyOn": {
-    "recognition": "ColorMatch",
-    "roi": [
-      42,
-      484,
-      54,
-      30
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          190,
+          190,
+          180
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 24,
+        "connected": false
+      }
     ],
-    "method": 4,
-    "lower": [
-      190,
-      190,
-      180
-    ],
-    "upper": [
-      255,
-      255,
-      255
-    ],
-    "count": 24,
-    "connected": false,
+    "box_index": 0,
     "action": "DoNothing",
     "next": [
       "BattleSpeedOne",
@@ -828,42 +1066,94 @@
       "BattleMonitor"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "确认 AUTO 文字已变为白色亮起状态，进入战斗监控。"
+      "Node.Recognition.Succeeded": "AUTO 按钮在位且文字已亮起：自动已开启，之后不再点击。"
     }
   },
   "BattleSpeedOne": {
     "recognition": "TemplateMatch",
     "template": "battle_speed_one.png",
-    "roi": [120, 635, 60, 60],
+    "roi": [
+      120,
+      635,
+      60,
+      60
+    ],
     "threshold": 0.82,
     "method": 10001,
     "action": "Click",
-    "target": [142, 653, 12, 20],
+    "target": [
+      142,
+      653,
+      12,
+      20
+    ],
     "post_delay": 700,
-    "next": ["BattleSpeedTwo", "BattleMonitor"],
-    "focus": {"Node.Action.Succeeded": "战斗处于一倍速，已点击左下角切换为二倍速。"}
+    "next": [
+      "BattleSpeedTwo",
+      "BattleMonitor"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "战斗处于一倍速，已点击左下角切换为二倍速。"
+    }
   },
   "BattleSpeedTwo": {
     "recognition": "TemplateMatch",
     "template": "battle_speed_two.png",
-    "roi": [120, 635, 60, 60],
-    "threshold": 0.80,
-    "method": 10001,
-    "action": "DoNothing",
-    "next": ["BattleMonitor"],
-    "focus": {"Node.Recognition.Succeeded": "确认战斗左下角显示二倍速状态。"}
-  },
-  "AutoRetryClick": {
-    "recognition": "TemplateMatch",
-    "template": "auto_off_text.png",
     "roi": [
-      25,
-      470,
-      85,
+      120,
+      635,
+      60,
       60
     ],
-    "threshold": 0.72,
+    "threshold": 0.8,
     "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "BattleMonitor"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "确认战斗左下角显示二倍速状态。"
+    }
+  },
+  "AutoRetryClick": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "auto_off_text.png",
+        "roi": [
+          25,
+          470,
+          85,
+          60
+        ],
+        "threshold": 0.75,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          42,
+          484,
+          54,
+          30
+        ],
+        "method": 4,
+        "lower": [
+          95,
+          95,
+          90
+        ],
+        "upper": [
+          255,
+          255,
+          255
+        ],
+        "count": 12,
+        "connected": false
+      }
+    ],
+    "box_index": 0,
     "action": "Click",
     "target": [
       62,
@@ -873,10 +1163,11 @@
     ],
     "post_delay": 700,
     "next": [
-      "AutoVerifyWait"
+      "AutoVerifyWait2"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "AUTO 仍为灰色，重新点击文字中心。"
+      "Node.Recognition.Succeeded": "AUTO 按钮在位（有文字像素）。本节点永远排在“已亮起”判断之后，所以只有没亮起时才会走到这里并点击；轮廓匹配分不出开/关。",
+      "Node.Action.Succeeded": "已点击 AUTO；等待动画后确认是否亮起。"
     }
   },
   "BattleMonitor": {
@@ -1166,6 +1457,27 @@
     "on_error": [],
     "focus": {
       "Node.Action.Starting": "任务已因识别超时停止。请发送最新的 diagnostic_report_auto_*.zip。"
+    }
+  },
+  "AutoVerifyWait2": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1500,
+    "next": [
+      "AutoAlreadyOn",
+      "AutoGiveUp"
+    ]
+  },
+  "AutoGiveUp": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "BattleSpeedOne",
+      "BattleSpeedTwo",
+      "BattleMonitor"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "AUTO 点过两次仍无法确认亮起：不再点击（避免反复开关），继续监控；战斗不结束会由超时处理。"
     }
   }
 }
