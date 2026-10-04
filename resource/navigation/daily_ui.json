@@ -1,0 +1,247 @@
+{
+ "note": "boxes are in the original screenshot pixels (src_size per screen); build with tools/build_daily_pipeline.py",
+ "screens": {
+  "daily": {
+   "sample": "daily.png",
+   "src_size": [
+    1920,
+    1079
+   ]
+  },
+  "weekly": {
+   "sample": "weekly.png",
+   "src_size": [
+    1899,
+    1057
+   ]
+  },
+  "interlude": {
+   "sample": "interlude.png",
+   "src_size": [
+    1902,
+    1068
+   ]
+  },
+  "reward": {
+   "sample": "reward.png",
+   "src_size": [
+    1928,
+    1085
+   ]
+  },
+  "report": {
+   "sample": "report.png",
+   "src_size": [
+    1919,
+    1075
+   ]
+  }
+ },
+ "templates": [
+  {
+   "id": "cr_title",
+   "screen": "daily",
+   "box": [
+    150,
+    36,
+    312,
+    92
+   ],
+   "label": "密境课室标题"
+  },
+  {
+   "id": "cr_daily",
+   "screen": "daily",
+   "box": [
+    318,
+    36,
+    362,
+    92
+   ],
+   "label": "日常试训（“日”字）"
+  },
+  {
+   "id": "cr_weekly",
+   "screen": "weekly",
+   "box": [
+    310,
+    20,
+    354,
+    70
+   ],
+   "label": "周常试训（“周”字）"
+  },
+  {
+   "id": "cr_claim",
+   "screen": "daily",
+   "box": [
+    1596,
+    174,
+    1788,
+    228
+   ],
+   "label": "任务领取按钮",
+   "threshold": 0.75
+  },
+  {
+   "id": "il_title",
+   "screen": "interlude",
+   "box": [
+    143,
+    32,
+    302,
+    80
+   ],
+   "label": "幕间演习标题"
+  },
+  {
+   "id": "il_limit",
+   "screen": "interlude",
+   "box": [
+    185,
+    960,
+    332,
+    998
+   ],
+   "label": "派遣限制"
+  },
+  {
+   "id": "reward_title",
+   "screen": "reward",
+   "box": [
+    858,
+    280,
+    1068,
+    344
+   ],
+   "label": "获得物资"
+  },
+  {
+   "id": "report_title",
+   "screen": "report",
+   "box": [
+    860,
+    134,
+    1058,
+    198
+   ],
+   "label": "调查报告"
+  },
+  {
+   "id": "report_close",
+   "screen": "report",
+   "box": [
+    510,
+    856,
+    840,
+    916
+   ],
+   "label": "关闭",
+   "threshold": 0.75
+  },
+  {
+   "id": "report_again",
+   "screen": "report",
+   "box": [
+    1078,
+    856,
+    1408,
+    916
+   ],
+   "label": "再次派遣",
+   "threshold": 0.75
+  }
+ ],
+ "regions": {
+  "tab_daily": {
+   "screen": "daily",
+   "box": [
+    30,
+    150,
+    106,
+    226
+   ]
+  },
+  "tab_weekly": {
+   "screen": "daily",
+   "box": [
+    30,
+    262,
+    106,
+    338
+   ]
+  },
+  "gift_1": {
+   "screen": "daily",
+   "box": [
+    640,
+    885,
+    712,
+    945
+   ]
+  },
+  "gift_2": {
+   "screen": "daily",
+   "box": [
+    990,
+    885,
+    1062,
+    945
+   ]
+  },
+  "gift_3": {
+   "screen": "daily",
+   "box": [
+    1340,
+    885,
+    1412,
+    945
+   ]
+  },
+  "gift_4": {
+   "screen": "daily",
+   "box": [
+    1689,
+    885,
+    1761,
+    945
+   ]
+  },
+  "safe_blank": {
+   "screen": "daily",
+   "box": [
+    380,
+    1030,
+    560,
+    1062
+   ]
+  },
+  "claim_column": {
+   "screen": "daily",
+   "box": [
+    1560,
+    120,
+    1830,
+    840
+   ]
+  },
+  "il_oneclick": {
+   "screen": "interlude",
+   "box": [
+    560,
+    954,
+    735,
+    998
+   ]
+  },
+  "reward_blank": {
+   "screen": "reward",
+   "box": [
+    760,
+    900,
+    1160,
+    980
+   ]
+  }
+ }
+}

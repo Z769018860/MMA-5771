@@ -117,6 +117,29 @@
       "default_check": false,
       "repeatable": false,
       "description": "从主界面点击调查，在章节选择页拖动选章，进入关卡列表；也可以从章节选择页或关卡列表页开始。"
+    },
+    {
+      "name": "密境课室领取",
+      "label": "密境课室日常/周常领取",
+      "entry": "CR_Start",
+      "option": [
+        "密境课室页签",
+        "进度节点奖励"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从主界面或密境课室页开始：点击所有可见的任务【领取】，关闭【获得物资】弹窗，再依次点击底部进度节点；可只做日常或只做周常。"
+    },
+    {
+      "name": "幕间演习一键派遣",
+      "label": "幕间演习一键领取/派遣",
+      "entry": "IL_Start",
+      "option": [
+        "幕间演习报告"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从主界面或幕间演习【派遣】页开始：点击左下角一键按钮，关闭【获得物资】，在【调查报告】点【再次派遣】或【关闭】。"
     }
   ],
   "option": {
@@ -744,6 +767,98 @@
             "NavStageDone": {
               "next": [
                 "NavStageOpenLatest"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "密境课室页签": {
+      "type": "select",
+      "label": "密境课室范围",
+      "description": "日常试训、周常试训页签；两页都会先点击所有可见的【领取】，再按设置点击底部进度节点。",
+      "default_case": "both",
+      "cases": [
+        {
+          "name": "both",
+          "label": "日常 + 周常（默认）"
+        },
+        {
+          "name": "daily",
+          "label": "仅日常",
+          "pipeline_override": {
+            "CR_D_End": {
+              "next": [
+                "CR_Done"
+              ]
+            }
+          }
+        },
+        {
+          "name": "weekly",
+          "label": "仅周常",
+          "pipeline_override": {
+            "CR_Start": {
+              "next": [
+                "CR_PageWeekly",
+                "CR_ToWeekly",
+                "CR_FromHome"
+              ]
+            },
+            "CR_FromHome": {
+              "next": [
+                "CR_ToWeekly"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "进度节点奖励": {
+      "type": "select",
+      "label": "底部进度节点（250/500/750/1000）",
+      "description": "点击四个礼盒领取进度奖励。礼盒的可领取/未达成/已领取外观没有样本，所以按固定位置依次点击，每次点完会点空白处关闭提示。",
+      "default_case": "click",
+      "cases": [
+        {
+          "name": "click",
+          "label": "依次点击四个节点（默认）"
+        },
+        {
+          "name": "skip",
+          "label": "不点击节点",
+          "pipeline_override": {
+            "CR_D_Nodes": {
+              "next": [
+                "CR_D_End"
+              ]
+            },
+            "CR_W_Nodes": {
+              "next": [
+                "CR_W_End"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "幕间演习报告": {
+      "type": "select",
+      "label": "【调查报告】弹窗",
+      "description": "一键领取后出现调查报告：再次派遣会立即重新派遣；关闭则只领取。",
+      "default_case": "again",
+      "cases": [
+        {
+          "name": "again",
+          "label": "再次派遣（默认）"
+        },
+        {
+          "name": "close",
+          "label": "关闭",
+          "pipeline_override": {
+            "IL_Report": {
+              "next": [
+                "IL_ReportClose"
               ]
             }
           }
