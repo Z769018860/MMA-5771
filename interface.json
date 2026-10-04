@@ -140,6 +140,26 @@
       "default_check": false,
       "repeatable": false,
       "description": "从主界面或幕间演习【派遣】页开始：点击左下角一键按钮，关闭【获得物资】，在【调查报告】点【再次派遣】或【关闭】。"
+    },
+    {
+      "name": "校友会点赞",
+      "label": "校友会：第一位玩家点赞并返回主界面",
+      "entry": "Soc_Start",
+      "option": [
+        "校友会点赞"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从主界面（或关注列表/守密人档案）开始：点击主界面左上角校友会，点击关注列表第一位玩家头像，点赞，再点右上角罗盘逐级返回主界面。"
+    },
+    {
+      "name": "信箱全部领取",
+      "label": "信箱：全部领取并返回主界面",
+      "entry": "MB_Start",
+      "option": [],
+      "default_check": false,
+      "repeatable": false,
+      "description": "从主界面（或信箱页）开始：点击信箱，点击【全部领取】，关闭【获得物资】弹窗，返回主界面。"
     }
   ],
   "option": {
@@ -533,7 +553,7 @@
         },
         {
           "name": "social",
-          "label": "好友",
+          "label": "校友会",
           "pipeline_override": {
             "NavHomeRouter": {
               "next": [
@@ -859,6 +879,29 @@
             "IL_Report": {
               "next": [
                 "IL_ReportClose"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "校友会点赞": {
+      "type": "select",
+      "label": "校友会：点赞",
+      "description": "进入第一位玩家的守密人档案后，是否点击点赞按钮（只在按钮为未点赞样式时点击）。",
+      "default_case": "like",
+      "cases": [
+        {
+          "name": "like",
+          "label": "点赞（默认）"
+        },
+        {
+          "name": "skip",
+          "label": "不点赞，只查看后返回",
+          "pipeline_override": {
+            "Soc_ProfilePage": {
+              "next": [
+                "Soc_AfterLike"
               ]
             }
           }

@@ -1,0 +1,182 @@
+{
+ "note": "boxes in original screenshot pixels (src_size per screen); build with tools/build_social_pipeline.py",
+ "screens": {
+  "alumni_list": {
+   "sample": "alumni_list.png",
+   "src_size": [
+    1888,
+    1064
+   ]
+  },
+  "profile": {
+   "sample": "profile.png",
+   "src_size": [
+    1908,
+    1053
+   ]
+  },
+  "profile_liked": {
+   "sample": "profile_liked.png",
+   "src_size": [
+    1899,
+    1044
+   ]
+  },
+  "mailbox": {
+   "sample": "mailbox.png",
+   "src_size": [
+    1914,
+    1069
+   ]
+  },
+  "mail_reward": {
+   "sample": "mail_reward.png",
+   "src_size": [
+    1912,
+    1057
+   ]
+  }
+ },
+ "templates": [
+  {
+   "id": "al_title",
+   "screen": "alumni_list",
+   "box": [
+    138,
+    22,
+    350,
+    72
+   ],
+   "label": "校友会 关注"
+  },
+  {
+   "id": "pf_title",
+   "screen": "profile",
+   "box": [
+    143,
+    20,
+    343,
+    68
+   ],
+   "label": "守密人档案"
+  },
+  {
+   "id": "pf_like",
+   "screen": "profile",
+   "box": [
+    1128,
+    155,
+    1198,
+    225
+   ],
+   "label": "点赞按钮(未点赞)",
+   "threshold": 0.85
+  },
+  {
+   "id": "pf_liked_toast",
+   "screen": "profile_liked",
+   "box": [
+    855,
+    485,
+    985,
+    525
+   ],
+   "label": "点赞成功"
+  },
+  {
+   "id": "mb_title",
+   "screen": "mailbox",
+   "box": [
+    152,
+    30,
+    232,
+    74
+   ],
+   "label": "信箱"
+  },
+  {
+   "id": "mb_claim_all",
+   "screen": "mailbox",
+   "box": [
+    152,
+    955,
+    424,
+    1016
+   ],
+   "label": "全部领取",
+   "threshold": 0.8
+  },
+  {
+   "id": "mb_reward_title",
+   "screen": "mail_reward",
+   "box": [
+    855,
+    275,
+    1050,
+    328
+   ],
+   "label": "获得物资"
+  },
+  {
+   "id": "mb_done_toast",
+   "screen": "mail_reward",
+   "box": [
+    724,
+    508,
+    1140,
+    545
+   ],
+   "label": "附件已全部领取完成"
+  },
+  {
+   "id": "compass",
+   "screen": "alumni_list",
+   "box": [
+    1800,
+    0,
+    1888,
+    90
+   ],
+   "label": "右上罗盘(返回)",
+   "threshold": 0.7
+  }
+ ],
+ "regions": {
+  "al_first_avatar": {
+   "screen": "alumni_list",
+   "box": [
+    215,
+    150,
+    335,
+    270
+   ]
+  },
+  "mb_blank": {
+   "screen": "mail_reward",
+   "box": [
+    760,
+    930,
+    1160,
+    990
+   ]
+  },
+  "pf_blank": {
+   "screen": "profile_liked",
+   "box": [
+    150,
+    620,
+    500,
+    690
+   ]
+  },
+  "fixed_compass": {
+   "screen": "alumni_list",
+   "box": [
+    1800,
+    0,
+    1888,
+    90
+   ]
+  }
+ }
+}

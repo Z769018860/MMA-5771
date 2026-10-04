@@ -1,0 +1,602 @@
+{
+  "Soc_HomeReached": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "已回到主界面。"
+    }
+  },
+  "Soc_BackFixed1": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_BackFixed2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 1 次）。"
+    }
+  },
+  "Soc_BackFixed2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_BackFixed3"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 2 次）。"
+    }
+  },
+  "Soc_BackFixed3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_BackFixed4"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 3 次）。"
+    }
+  },
+  "Soc_BackFixed4": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_BackFixed5"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 4 次）。"
+    }
+  },
+  "Soc_BackFixed5": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_BackFixed6"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 5 次）。"
+    }
+  },
+  "Soc_BackFixed6": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1230,
+      10,
+      40,
+      41
+    ],
+    "post_delay": 1800,
+    "next": [
+      "Soc_HomeReached"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "按固定位置点击右上角罗盘返回（第 6 次）。"
+    }
+  },
+  "Soc_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "Soc_ListPage",
+      "Soc_ProfilePage",
+      "Soc_FromHome"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "校友会：从关注列表、守密人档案或主界面开始。"
+    }
+  },
+  "Soc_FromHome": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_social.png",
+        "roi": [
+          82,
+          227,
+          67,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Soc_ListPage"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【好友】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【好友】。"
+    },
+    "timeout": 20000
+  },
+  "Soc_ListPage": {
+    "recognition": "TemplateMatch",
+    "template": "social_al_title.png",
+    "roi": [
+      80,
+      1,
+      171,
+      62
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 15000,
+    "next": [
+      "Soc_OpenFirst"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【校友会 关注】列表。"
+    }
+  },
+  "Soc_OpenFirst": {
+    "recognition": "TemplateMatch",
+    "template": "social_al_title.png",
+    "roi": [
+      80,
+      1,
+      171,
+      62
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      152,
+      108,
+      69,
+      69
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Soc_ProfilePage"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击列表第一位玩家的头像。"
+    }
+  },
+  "Soc_ProfilePage": {
+    "recognition": "TemplateMatch",
+    "template": "social_pf_title.png",
+    "roi": [
+      82,
+      0,
+      162,
+      60
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 15000,
+    "next": [
+      "Soc_Like",
+      "Soc_AfterLike"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【守密人档案】。"
+    }
+  },
+  "Soc_Like": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "social_pf_title.png",
+        "roi": [
+          82,
+          0,
+          162,
+          60
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "social_pf_like.png",
+        "roi": [
+          747,
+          96,
+          67,
+          68
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target_offset": [
+      6,
+      6,
+      -12,
+      -12
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Soc_AfterLike"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击点赞按钮。"
+    }
+  },
+  "Soc_AfterLike": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "post_delay": 1800,
+    "next": [
+      "Soc_Back",
+      "Soc_BackFixed1"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "点赞完成（或已点过赞，按钮不是未点赞样式），准备返回主界面。"
+    }
+  },
+  "Soc_Back": {
+    "recognition": "TemplateMatch",
+    "template": "social_compass.png",
+    "roi": [
+      1200,
+      0,
+      80,
+      81
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1800,
+    "timeout": 20000,
+    "next": [
+      "Soc_HomeReached",
+      "Soc_Back",
+      "Soc_BackFixed1"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"
+    }
+  },
+  "Soc_SkipLike": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "Soc_Back"
+    ]
+  },
+  "MB_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "MB_Page",
+      "MB_FromHome"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "信箱：从信箱页或主界面开始。"
+    }
+  },
+  "MB_FromHome": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_mail.png",
+        "roi": [
+          15,
+          227,
+          66,
+          66
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [
+      "MB_Page"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【邮件】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【邮件】。"
+    },
+    "timeout": 20000
+  },
+  "MB_Page": {
+    "recognition": "TemplateMatch",
+    "template": "social_mb_title.png",
+    "roi": [
+      88,
+      6,
+      81,
+      58
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 15000,
+    "next": [
+      "MB_ClaimAll"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【信箱】。"
+    }
+  },
+  "MB_ClaimAll": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "social_mb_title.png",
+        "roi": [
+          88,
+          6,
+          81,
+          58
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "social_mb_claim_all.png",
+        "roi": [
+          82,
+          623,
+          222,
+          81
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target_offset": [
+      12,
+      8,
+      -24,
+      -16
+    ],
+    "post_delay": 2200,
+    "next": [
+      "MB_Popup",
+      "MB_Back"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击【全部领取】。"
+    }
+  },
+  "MB_Popup": {
+    "recognition": "TemplateMatch",
+    "template": "social_mb_reward_title.png",
+    "roi": [
+      552,
+      167,
+      171,
+      76
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      515,
+      639,
+      256,
+      29
+    ],
+    "post_delay": 1500,
+    "next": [
+      "MB_Popup",
+      "MB_Back"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击空白处关闭【获得物资】。"
+    }
+  },
+  "MB_Back": {
+    "recognition": "TemplateMatch",
+    "template": "social_compass.png",
+    "roi": [
+      1200,
+      0,
+      80,
+      81
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1800,
+    "timeout": 20000,
+    "next": [
+      "Soc_HomeReached",
+      "MB_Back",
+      "Soc_BackFixed1"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"
+    }
+  }
+}
