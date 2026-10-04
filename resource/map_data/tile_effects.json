@@ -190,8 +190,8 @@
    "passable": true,
    "cost": 2,
    "effect": "入学仪式：选卡及刻印分支（README 8-2 已核对）。维基事件列表里没有对应的事件条目，不计入事件格",
-   "confidence": "name_only",
-   "source": "README 8-2"
+   "confidence": "confirmed",
+   "source": "8-2 实机验证（VALIDATION.md）：入学仪式的阿利斯泰尔的祝福选项获得极夜微光；其他分支未验证"
   },
   "detention": {
    "role": "special",
@@ -255,7 +255,7 @@
    "cost": 2,
    "effect": "审查会探员：很可能触发「监察点」和「审查会探员」两条事件（监察点选项：离开 / 诈降 / 闯入，见 README 8-2）。依据：10 张含该事件的图与 10 张含审查会探员格的图完全重合；一张图有 2 个探员格时仍只有这一对事件",
    "confidence": "inferred_from_counts",
-   "source": "events.json 与 maps.json 的逐图对照（VALIDATION.md）"
+   "source": "events.json 与 maps.json 的逐图对照（VALIDATION.md）；8-2 实机确认监察点的离开与诈降分支，尚未确认审查会探员后续事件"
   },
   "strange_cyst": {
    "role": "special",
