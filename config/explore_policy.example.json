@@ -1,0 +1,8 @@
+{
+ "preset": "balanced",
+ "route": {"avoid": {"elite": 5.0}, "visit_contact_below_hp": 0.6},
+ "event": {"overrides": {"血污之池": {"prefer": ["呼唤唤醒体"], "avoid": ["插入银钥匙"]}}},
+ "shop": {"mode": "priority", "max_purchases": 2, "reserve_currency": 30, "priority_names": []},
+ "pick": {"artifact": {"priority_names": [], "position_order": [1, 0, 2]}},
+ "contact": {"heal_below_hp": 0.7, "otherwise": "awaken"}
+}

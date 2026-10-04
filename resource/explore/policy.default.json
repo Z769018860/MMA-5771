@@ -1,0 +1,59 @@
+{
+ "version": 1,
+ "preset": "balanced",
+ "route": {
+  "objective": "final_battle",
+  "avoid": {"battle": 1.0, "elite": 3.0, "illusion": 3.0, "purple_rift": 3.0, "red_flesh": 1.5, "event": 1.0},
+  "allow_hazard": true,
+  "use_searchlight": true,
+  "visit_contact_below_hp": 0.5,
+  "must_visit": [],
+  "max_detour_cost": 12,
+  "key_policy": "pick_when_needed",
+  "unknown_map_priority": ["final_battle", "contact", "rusty_key", "event", "battle", "story", "searchlight", "plain"]
+ },
+ "event": {
+  "choice_mode": "best_score",
+  "blind_choice": "last",
+  "tie_break": "leave",
+  "hp_guard": 0.35,
+  "weights": {"gain_artifact": 3.0, "gain_blackseal": 1.0, "heal": 2.0, "remove_threat": 2.0, "teleport": 0.0, "lose_health": -3.0, "gain_symptom": -4.0},
+  "leave_keywords": ["离开", "转身离开", "无视", "拒绝", "撤退"],
+  "risky_keywords": ["闯入", "硬闯", "伏击", "缴械"],
+  "leave_score": 0.2,
+  "risky_score": -0.5,
+  "overrides": {
+   "监察点": {"prefer": ["离开"], "avoid": []},
+   "审查会探员": {"prefer": [], "avoid": []},
+   "血污之池": {"prefer": ["呼唤唤醒体"], "avoid": ["插入银钥匙"]}
+  }
+ },
+ "shop": {
+  "mode": "priority",
+  "max_purchases": 3,
+  "reserve_currency": 0,
+  "buy_when_hp_below": null,
+  "allow_sell": false,
+  "priority_names": [],
+  "skip_names": [],
+  "position_order": [0, 1, 2],
+  "unaffordable": "skip"
+ },
+ "pick": {
+  "artifact": {"priority_names": [], "avoid_names": [], "position_order": [1, 0, 2]},
+  "seal": {"priority_keywords": [], "avoid_keywords": [], "position_order": [0, 1, 2]},
+  "card": {"priority_keywords": [], "avoid_keywords": [], "position_order": [0, 1, 2]}
+ },
+ "contact": {"heal_below_hp": 0.7, "otherwise": "awaken"},
+ "battle": {"use_revive": false, "on_defeat": "retreat", "max_battle_steps": 400},
+ "stuck": {
+  "same_state_retry": 2,
+  "same_state_alternate": 5,
+  "same_state_recover": 8,
+  "max_attempts_per_tile": 4,
+  "max_tile_entries": 8,
+  "max_unknown_steps": 12,
+  "max_steps_per_map": 600,
+  "on_give_up": "stop"
+ }
+}

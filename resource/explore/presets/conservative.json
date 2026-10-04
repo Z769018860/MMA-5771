@@ -1,0 +1,25 @@
+{
+ "preset": "conservative",
+ "route": {
+  "avoid": {
+   "battle": 2.0,
+   "elite": 8.0,
+   "illusion": 8.0,
+   "purple_rift": 8.0,
+   "red_flesh": 3.0
+  },
+  "visit_contact_below_hp": 0.7,
+  "allow_hazard": false
+ },
+ "event": {
+  "hp_guard": 0.5,
+  "tie_break": "leave"
+ },
+ "shop": {
+  "mode": "priority",
+  "max_purchases": 1
+ },
+ "contact": {
+  "heal_below_hp": 0.9
+ }
+}

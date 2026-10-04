@@ -1,0 +1,30 @@
+{
+ "preset": "greedy",
+ "route": {
+  "avoid": {
+   "battle": 0.6,
+   "elite": 1.0,
+   "illusion": 1.5,
+   "purple_rift": 2.0,
+   "red_flesh": 1.0,
+   "event": 0.6
+  },
+  "visit_contact_below_hp": 0.35,
+  "must_visit": [
+   "event",
+   "rusty_key"
+  ],
+  "max_detour_cost": 30
+ },
+ "event": {
+  "hp_guard": 0.2,
+  "tie_break": "first"
+ },
+ "shop": {
+  "mode": "all",
+  "max_purchases": 3
+ },
+ "contact": {
+  "heal_below_hp": 0.5
+ }
+}
