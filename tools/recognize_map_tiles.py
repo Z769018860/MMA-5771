@@ -27,6 +27,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = ROOT / "resource" / "map_data" / "templates"
 RENAME = {"watcher": "inquisitor"}
+NEIGH = ((0, 2), (0, -2), (1, 1), (1, -1), (-1, 1), (-1, -1))
 DX2, DY, YOFF = 104.0, 182.0, 22  # half tile width, row spacing, icon-bbox -> tile-centre offset (px at 3508 wide)
 
 
@@ -80,7 +81,8 @@ def classify_site(hsv, gray, cx, cy):
         return None
     ay, ax = np.ogrid[-135:136, -135:136]
     ring = ((ax ** 2 + ay ** 2) >= 100 ** 2) & ((ax ** 2 + ay ** 2) <= 135 ** 2)
-    if (gray[int(cy) - 135:int(cy) + 136, int(cx) - 135:int(cx) + 136][ring] < 35).mean() < 0.08:
+    fog_level = max(35.0, 0.45 * mean)  # fog is not always pure black
+    if (gray[int(cy) - 135:int(cy) + 136, int(cx) - 135:int(cx) + 136][ring] < fog_level).mean() < 0.08:
         return None  # tiles sit inside the black fog
     hue, sat, val = hp[:, 0], hp[:, 1], hp[:, 2]
     if (((hue < 10) | (hue > 165)) & (sat > 120) & (val > 110)).mean() > 0.45:
@@ -92,68 +94,85 @@ def classify_site(hsv, gray, cx, cy):
         return "unknown_icon"  # an icon exists but no template matched
     if 0.15 < lines < 0.5 and 85 < m_val < 165 and gp.std() > 30 and m_sat < 50:
         return "cracked_rock"
-    if lines < 0.12 and m_sat >= 22 and 20 <= m_hue <= 75 and mean > 85:
+    if lines < 0.12 and m_sat >= 22 and 8 <= m_hue <= 75 and mean > 85:
         return "plain"
+    if lines < 0.12 and mean > 85 and gp.std() < 25:
+        return "plain_weak"  # pale/cream stone; only accepted when >= 2 known neighbours (paper background looks similar)
     return None
 
 
+# Template centre minus true tile centre, per icon type (px at 3508 wide), fitted on the 108 wiki maps.
+TYPE_OFFSETS = {}
+
+
+def assign_lattice(icons, offsets=None):
+    """One hex lattice per map. Returns (ox, oy, {(row, col): icon}); icon positions are corrected by per-type offsets."""
+    offsets = TYPE_OFFSETS if offsets is None else offsets
+    pos = [(i["x"] - offsets.get(i["type"], (0, 0))[0], i["y"] - offsets.get(i["type"], (0, 0))[1]) for i in icons]
+    xa, ya = pos[0]
+    occupied = {}
+    for icon, (px, py) in zip(icons, pos):
+        col, row = int(round((px - xa) / DX2)), int(round((py - ya) / DY))
+        if (col + row) % 2:
+            col += 1 if (px - xa) / DX2 > col else -1
+        occupied[(row, col)] = icon
+    pos_by_key = {k: p for k, p in zip(occupied, [pos[icons.index(v)] for v in occupied.values()])}
+    ox = xa + np.median([p[0] - (xa + c * DX2) for (r, c), p in pos_by_key.items()])
+    oy = ya + np.median([p[1] - (ya + r * DY) for (r, c), p in pos_by_key.items()])
+    return ox, oy, occupied
+
+
 def build_tiles(image, icons):
+    if not icons:
+        return []
     hsv, gray = cv2.cvtColor(image, cv2.COLOR_BGR2HSV), cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    n = len(icons)
-    parent = list(range(n))
+    ox, oy, occupied = assign_lattice(icons)
+    found, frontier, seen, weak = {}, list(occupied), set(occupied), {}
 
-    def find(a):
-        while parent[a] != a:
-            parent[a] = parent[parent[a]]
-            a = parent[a]
-        return a
+    def known_neighbours(k):
+        return sum((k[0] + dr, k[1] + dc) in occupied or (k[0] + dr, k[1] + dc) in found for dr, dc in NEIGH)
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            if (icons[i]["x"] - icons[j]["x"]) ** 2 + (icons[i]["y"] - icons[j]["y"]) ** 2 < (2.3 * DY) ** 2:
-                parent[find(i)] = find(j)
-    groups = {}
-    for i in range(n):
-        groups.setdefault(find(i), []).append(i)
-    tiles = []
-    for island, (_, idx) in enumerate(sorted(groups.items(), key=lambda g: min(icons[i]["x"] for i in g[1]))):
-        xa, ya = icons[idx[0]]["x"], icons[idx[0]]["y"]
-        occupied = {}
-        for i in idx:
-            col, row = int(round((icons[i]["x"] - xa) / DX2)), int(round((icons[i]["y"] - ya) / DY))
-            if (col + row) % 2:
-                col += 1 if (icons[i]["x"] - xa) / DX2 > col else -1
-            occupied[(row, col)] = icons[i]
-        ox = xa + np.median([p["x"] - (xa + c * DX2) for (r, c), p in occupied.items()])
-        oy = ya + np.median([p["y"] - (ya + r * DY) for (r, c), p in occupied.items()])
-        found, frontier, seen = {}, list(occupied), set(occupied)
-        for _ in range(400):
+    for _ in range(4000):
+        if not frontier:  # promote weak (pale) candidates that touch >= 2 known tiles, then keep walking
+            for k in [k for k in weak if known_neighbours(k) >= 2]:
+                found[k] = ("plain", *weak.pop(k))
+                frontier.append(k)
             if not frontier:
                 break
-            r, c = frontier.pop()
-            for dr, dc in ((0, 2), (0, -2), (1, 1), (1, -1), (-1, 1), (-1, -1)):
-                key = (r + dr, c + dc)
-                if key in seen:
-                    continue
-                seen.add(key)
-                cx, cy = ox + key[1] * DX2, oy + key[0] * DY + YOFF
-                kind = classify_site(hsv, gray, cx, cy)
-                if kind:
-                    found[key] = (kind, cx, cy)
-                    frontier.append(key)
-        r0 = min(k[0] for k in list(occupied) + list(found))
-        c0 = min(k[1] for k in list(occupied) + list(found))
-        for (r, c), p in occupied.items():
-            tiles.append({"type": RENAME.get(p["type"], p["type"]), "island": island, "row": r - r0, "col": c - c0,
-                          "x": int(ox + c * DX2), "y": int(oy + r * DY + YOFF), "score": p["score"]})
-        for (r, c), (kind, cx, cy) in found.items():
-            tiles.append({"type": kind, "island": island, "row": r - r0, "col": c - c0,
-                          "x": int(cx), "y": int(cy), "score": None})
-    keep = []  # islands may both claim the same gap tile
-    for t in sorted(tiles, key=lambda t: t["score"] is None):
-        if all((t["x"] - k["x"]) ** 2 + (t["y"] - k["y"]) ** 2 > 90 ** 2 for k in keep):
-            keep.append(t)
-    return sorted(keep, key=lambda t: (t["island"], t["row"], t["col"]))
+        r, c = frontier.pop()
+        for dr, dc in NEIGH:
+            key = (r + dr, c + dc)
+            if key in seen:
+                continue
+            seen.add(key)
+            cx, cy = ox + key[1] * DX2, oy + key[0] * DY + YOFF
+            kind = classify_site(hsv, gray, cx, cy)
+            if kind == "plain_weak":
+                weak[key] = (cx, cy)
+            elif kind:
+                found[key] = (kind, cx, cy)
+                frontier.append(key)
+    cells = {k: (RENAME.get(p["type"], p["type"]), p["score"]) for k, p in occupied.items()}
+    cells.update({k: (kind, None) for k, (kind, cx, cy) in found.items()})
+    # islands = connected components over lattice adjacency
+    island, comp = {}, 0
+    for k in sorted(cells):
+        if k in island:
+            continue
+        stack = [k]
+        island[k] = comp
+        while stack:
+            r, c = stack.pop()
+            for dr, dc in NEIGH:
+                n = (r + dr, c + dc)
+                if n in cells and n not in island:
+                    island[n] = comp
+                    stack.append(n)
+        comp += 1
+    r0, c0 = min(k[0] for k in cells), min(k[1] for k in cells)
+    tiles = [{"type": t, "island": island[(r, c)], "row": r - r0, "col": c - c0,
+              "x": int(ox + c * DX2), "y": int(oy + r * DY + YOFF), "score": s} for (r, c), (t, s) in cells.items()]
+    return sorted(tiles, key=lambda t: (t["island"], t["row"], t["col"]))
 
 
 def recognize(image, templates=None, scale=1.0):

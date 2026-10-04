@@ -1,0 +1,276 @@
+{
+ "note": "planner 使用 passable/blocking/cost/requires_key/gives_key/transport；cost 只是规划权重（越大越想避开），不是游戏数值。confidence: confirmed=已有来源确认; inferred=按名称/图标/数据规律推断; inferred_by_elimination=按排除法; unverified=来源未核实; unknown=不明。",
+ "effects": {
+  "player": {
+   "role": "start",
+   "passable": true,
+   "cost": 0,
+   "effect": "当前位置，路线起点",
+   "confidence": "confirmed",
+   "source": "地图图片"
+  },
+  "battle": {
+   "role": "combat",
+   "passable": true,
+   "cost": 3,
+   "effect": "进入普通战斗，必须打赢才能继续",
+   "confidence": "confirmed",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍"
+  },
+  "elite": {
+   "role": "combat",
+   "passable": true,
+   "cost": 6,
+   "effect": "精英战斗（难度高于普通战斗，奖励未核对）",
+   "confidence": "name_only",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍（战斗分普通/危险/Boss 三档）"
+  },
+  "final_battle": {
+   "role": "goal",
+   "passable": true,
+   "cost": 0,
+   "effect": "本关 Boss 战，打赢即通关；路线终点",
+   "confidence": "name_only",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍"
+  },
+  "event": {
+   "role": "event",
+   "passable": true,
+   "cost": 2,
+   "effect": "触发带选项的事件；选项与结果因事件而异（见 README 8-2 示例），需要实机记录",
+   "confidence": "confirmed",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍",
+   "options_known": false
+  },
+  "story": {
+   "role": "story",
+   "passable": true,
+   "cost": 1,
+   "effect": "触发剧情对话",
+   "confidence": "name_only",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍"
+  },
+  "contact": {
+   "role": "aid",
+   "passable": true,
+   "cost": 1,
+   "heals": true,
+   "optional": true,
+   "effect": "援助点：恢复生命，或改为唤醒一名角色（二选一）",
+   "confidence": "inferred",
+   "source": "https://morimens.fandom.com/wiki/Exploration（healing space: rouse an awakener）；中文介绍中的「援助格」"
+  },
+  "searchlight": {
+   "role": "vision",
+   "passable": true,
+   "cost": 1,
+   "reveals_radius": 2,
+   "optional": true,
+   "effect": "驱散周围迷雾，视野范围 +2 格",
+   "confidence": "confirmed",
+   "source": "https://morimens.fandom.com/wiki/Exploration（Searchlight clears the mist and increases vision by 2 tiles）"
+  },
+  "illusion": {
+   "role": "hazard",
+   "passable": true,
+   "cost": 5,
+   "hazard": true,
+   "effect": "强行通过会给牌组加入一张「症状」牌（需要付出症状作代价）",
+   "confidence": "confirmed",
+   "source": "https://morimens.fandom.com/wiki/Exploration（forcing through an Illusion node infects your deck with a Symptom card）；中文「幻象格」"
+  },
+  "locked_door": {
+   "role": "gate",
+   "passable": "needs_key",
+   "requires_key": true,
+   "effect": "挡住通路，需要锈蚀钥匙才能通过",
+   "confidence": "confirmed",
+   "source": "https://morimens.fandom.com/wiki/Exploration；README 实机确认"
+  },
+  "rusty_key": {
+   "role": "item",
+   "passable": true,
+   "cost": 1,
+   "gives_key": true,
+   "effect": "拾取锈蚀钥匙，用于打开锈蚀门扉。每张图最多 1 把钥匙却有最多 5 扇门，规划默认按「一把钥匙开所有门」处理；是否消耗未核对",
+   "confidence": "confirmed",
+   "source": "https://morimens.fandom.com/wiki/Exploration"
+  },
+  "tunnel": {
+   "role": "transport",
+   "passable": true,
+   "cost": 1,
+   "transport": "pair",
+   "effect": "传送：每张图恰好 0 或 2 个，成对相连（方向性未核对，规划时按双向处理）",
+   "confidence": "inferred",
+   "source": "数据：每张图隧道数只有 0 或 2；中文「通道格：定向传送」"
+  },
+  "oneway_in": {
+   "role": "transport",
+   "passable": true,
+   "cost": 1,
+   "transport": "oneway_entry",
+   "effect": "单向传送入口，传送到同图的密道出口（每张图恰好 0 或 1 对）",
+   "confidence": "inferred",
+   "source": "数据：单行密道与密道出口数量逐图相等；中文「通道格：定向传送」"
+  },
+  "secret_exit": {
+   "role": "transport",
+   "passable": true,
+   "cost": 1,
+   "transport": "oneway_exit",
+   "effect": "单行密道的出口",
+   "confidence": "inferred",
+   "source": "同上"
+  },
+  "meltmark": {
+   "role": "shop?",
+   "passable": true,
+   "cost": 1,
+   "optional": true,
+   "effect": "天平图标；按中文十种格子介绍推断为商店/交换格（用局内货币买增益或卖卡），名称「融痕」未核对",
+   "confidence": "inferred_by_elimination",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍；fandom 提到 exchanges"
+  },
+  "blackseal": {
+   "role": "item?",
+   "passable": true,
+   "cost": 1,
+   "optional": true,
+   "effect": "印章图标；按排除法推断为物资/奖励格（局内外货币），未核对",
+   "confidence": "inferred_by_elimination",
+   "source": "搜索摘要：忘却前夜主线十种特殊格介绍"
+  },
+  "extract": {
+   "role": "item?",
+   "passable": true,
+   "cost": 1,
+   "optional": true,
+   "effect": "菱形宝石图标；功能不明，可能是资源/奖励格",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "plain": {
+   "role": "terrain",
+   "passable": true,
+   "cost": 1,
+   "effect": "无图标的空格，可走",
+   "confidence": "inferred",
+   "source": "地图图片"
+  },
+  "cracked_rock": {
+   "role": "terrain",
+   "passable": true,
+   "cost": 1,
+   "effect": "裂纹石地面。早先推断为障碍，但 2-15、4-15 等图中它是唯一通路，故按可走处理；仍需实机确认",
+   "confidence": "inferred",
+   "source": "地图连通性分析"
+  },
+  "purple_rift": {
+   "role": "hazard?",
+   "passable": true,
+   "cost": 5,
+   "hazard": true,
+   "effect": "紫蓝涡流格；一份未核实的摘要称踩上毒性格会固定扣约 5% 最大生命，是否即此格未确认",
+   "confidence": "unverified",
+   "source": "搜索摘要（未核实）"
+  },
+  "red_flesh": {
+   "role": "hazard?",
+   "passable": true,
+   "cost": 8,
+   "hazard": true,
+   "effect": "红色血肉格；功能不明，规划时按高代价可走处理",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "enrollment": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "入学仪式：选卡及刻印分支（README 8-2）",
+   "confidence": "name_only",
+   "source": "README 8-2"
+  },
+  "detention": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "羁押点：8-2 中监察点的传送目的地（README）",
+   "confidence": "confirmed",
+   "source": "README 8-2"
+  },
+  "honey_wine": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 4 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "unfinished_statue": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 2 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "kind_gift": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 1 章专属格（礼物），功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "mother_of_brood": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 7 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "proxy_rite": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 5 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "white_sail": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 6 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "inquisitor": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 8/9 章专属格，功能不明（可能是遭遇审查会探员）",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "strange_cyst": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "第 3 章专属格，功能不明",
+   "confidence": "unknown",
+   "source": "无"
+  },
+  "unknown_icon": {
+   "role": "special",
+   "passable": true,
+   "cost": 3,
+   "effect": "有图标但没有匹配的模板（多为只出现过 1–2 次的专属格）；按可走、中等代价处理",
+   "confidence": "unknown",
+   "source": "识别结果"
+  }
+ }
+}

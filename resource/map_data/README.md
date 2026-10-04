@@ -1,12 +1,15 @@
 # 地图结构化数据
 
-不再依赖完整地图图片：`maps.json`（每张图的格子类型和位置）+ `templates/`（地块模板）+ `tile_types.json`（类型说明）就够用。识别由 `tools/recognize_map_tiles.py` 完成，整批重建见 `tools/build_map_data.py`。
+不再依赖完整地图图片：`maps.json`（每张图的格子类型和位置）+ `templates/`（地块模板）+ `tile_types.json`（类型说明）就够用。识别由 `tools/recognize_map_tiles.py` 完成，路线规划见 `tools/plan_route.py`，整批重建见 `tools/build_map_data.py`。
 
 ## 文件
 
 | 文件 | 内容 |
 | --- | --- |
-| `maps.json` | 108 张地图（忘却篇第 1–9 章 88 张，特殊活动 20 张），共 2795 个格子 |
+| `maps.json` | 108 张地图（忘却篇第 1–9 章 88 张，特殊活动 20 张），共 2853 个格子 |
+| `tile_effects.json` | 每种地块的规划属性（可否通行、是否需要钥匙、传送、代价权重）、效果说明、可信度和来源 |
+| `route_check.json` | 108 张图的路线可达性检查结果 |
+| `PLANNING.md` | 路线规划信息是否足够的评估和缺口 |
 | `tile_types.json` | 32 种地块的名称、外观、功能说明与可信度、模板文件 |
 | `templates/` | 62 个地块模板图（文件名 `<类型>_<序号>.png`） |
 

@@ -39,7 +39,7 @@ def main():
         for path in sorted(folder.glob("*.[jp][pn]g")):
             name = path.stem.replace("_map", "")
             image = cv2.imdecode(np.fromfile(str(path), np.uint8), cv2.IMREAD_COLOR)
-            tiles = [t for t in R.build_tiles(image, R.detect_icons(image, templates)) if t["type"] != "unknown_icon"]
+            tiles = [t for t in R.build_tiles(image, R.detect_icons(image, templates))]
             maps[name] = {"id": name, **meta(name), "image_size": [image.shape[1], image.shape[0]],
                           "tile_count": len(tiles), "counts": dict(collections.Counter(t["type"] for t in tiles)),
                           "tiles": [{k: t[k] for k in ("type", "island", "row", "col", "x", "y")} for t in tiles]}
