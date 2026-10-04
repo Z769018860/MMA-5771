@@ -104,8 +104,8 @@ def run_node(resource, image, node, override=None, timeout=2500):
     tasker = Tasker()
     tasker.bind(resource, ctrl)
     ov = {node: {"next": [], "timeout": timeout, "post_delay": 0, "pre_delay": 0, "on_error": []}}
-    if override:
-        ov.update(override)
+    for k, v in (override or {}).items():
+        ov.setdefault(k, {}).update(v)
     job = tasker.post_task(node, ov).wait()
     detail = job.get()
     fired = bool(detail and detail.nodes and any(n.recognition and n.recognition.hit for n in detail.nodes))

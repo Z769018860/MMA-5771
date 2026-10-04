@@ -1,0 +1,154 @@
+{
+ "note": "Auto-push main story: stage list -> pick latest stage -> map walking / events / battles (story_demo nodes) -> back on the stage list: resonance red dot -> activate until none -> exit -> next stage. Boxes in original screenshot pixels; build with tools/build_mainline_pipeline.py",
+ "screens": {
+  "main_stages": {
+   "sample": "main_stages.png",
+   "src_size": [
+    1597,
+    889
+   ]
+  },
+  "main_res_a": {
+   "sample": "main_res_a.png",
+   "src_size": [
+    1600,
+    898
+   ]
+  },
+  "main_res_b": {
+   "sample": "main_res_b.png",
+   "src_size": [
+    1591,
+    888
+   ]
+  },
+  "main_res_c": {
+   "sample": "main_res_c.png",
+   "src_size": [
+    1596,
+    868
+   ]
+  },
+  "main_map_a": {
+   "sample": "main_map_a.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  }
+ },
+ "templates": [
+  {
+   "id": "res_title",
+   "screen": "main_res_a",
+   "box": [
+    112,
+    28,
+    222,
+    72
+   ],
+   "label": "共鸣页标题",
+   "threshold": 0.8
+  },
+  {
+   "id": "res_activate",
+   "screen": "main_res_b",
+   "box": [
+    1118,
+    778,
+    1512,
+    848
+   ],
+   "label": "激活按钮",
+   "threshold": 0.8
+  },
+  {
+   "id": "map_marker",
+   "screen": "main_map_a",
+   "box": [
+    17,
+    340,
+    128,
+    372
+   ],
+   "label": "地图页左侧「星级评分」",
+   "threshold": 0.8
+  },
+  {
+   "id": "stage_lbl_star",
+   "screen": "main_stages",
+   "box": [
+    352,
+    768,
+    478,
+    802
+   ],
+   "label": "关卡页底部「星级评分」文字",
+   "threshold": 0.8
+  },
+  {
+   "id": "stage_lbl_ach",
+   "screen": "main_stages",
+   "box": [
+    620,
+    768,
+    745,
+    802
+   ],
+   "label": "关卡页底部「关卡成就」文字",
+   "threshold": 0.8
+  }
+ ],
+ "regions": {
+  "res_icon": {
+   "screen": "main_stages",
+   "box": [
+    10,
+    748,
+    90,
+    835
+   ],
+   "label": "关卡页左下角共鸣图标"
+  },
+  "res_dot_roi": {
+   "screen": "main_stages",
+   "box": [
+    25,
+    745,
+    110,
+    800
+   ],
+   "label": "共鸣图标上的红点所在区域"
+  },
+  "res_graph": {
+   "screen": "main_res_a",
+   "box": [
+    190,
+    100,
+    1100,
+    880
+   ],
+   "label": "共鸣树（不含右侧面板）"
+  },
+  "exit_x": {
+   "screen": "main_res_b",
+   "box": [
+    1490,
+    0,
+    1591,
+    100
+   ],
+   "label": "右上角关闭(罗盘)"
+  },
+  "map_area": {
+   "screen": "main_map_a",
+   "box": [
+    330,
+    130,
+    1450,
+    800
+   ],
+   "label": "地图中可点击格子所在区域"
+  }
+ }
+}

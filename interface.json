@@ -207,6 +207,84 @@
           ]
         }
       }
+    },
+    {
+      "name": "自动推进主线",
+      "label": "自动推进主线（实验）",
+      "entry": "MA_Start",
+      "option": [
+        "主线灵知",
+        "主线战斗超时",
+        "探索选格方式",
+        "目标章节",
+        "剧情购买策略",
+        "剧情造物位置"
+      ],
+      "default_check": false,
+      "repeatable": false,
+      "pipeline_override": {
+        "StoryAfterRoute": {
+          "next": [
+            "StoryCutscene",
+            "StoryEventPage",
+            "StoryFormation",
+            "StoryFinishInvestigation",
+            "StoryReviveDecision",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "MA_Map",
+            "MA_StageList"
+          ],
+          "on_error": [
+            "MA_StuckNotice"
+          ]
+        },
+        "StoryInsideRouter": {
+          "next": [
+            "StoryCutscene",
+            "StoryEventPage",
+            "StoryFirstFormation",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "StoryFinishInvestigation",
+            "StoryReviveDecision",
+            "MA_Map",
+            "MA_StageList"
+          ],
+          "on_error": [
+            "MA_StuckNotice"
+          ]
+        },
+        "StoryBattleMonitor": {
+          "next": [
+            "StoryReviveDecision",
+            "StoryFinishInvestigation",
+            "StoryCutscene",
+            "StoryChoicePage",
+            "StoryShop",
+            "StoryArtifactSelect",
+            "MA_Map",
+            "MA_StageList"
+          ],
+          "timeout": 240000,
+          "on_error": [
+            "MA_ManualNotice"
+          ]
+        },
+        "StoryStopHere": {
+          "next": [
+            "MA_DefeatNotice"
+          ]
+        },
+        "NavStageDone": {
+          "next": [
+            "MA_StageList"
+          ]
+        }
+      },
+      "description": "反复：选最新关卡 → 走格子/事件/商店/战斗/跳过剧情 → 回到关卡列表时检查左下角共鸣红点并全部激活 → 继续下一关。遇到无法自动的 Boss 关（战斗超时）、战斗失败且灵知用完、或画面无法识别时弹出提示并停止。"
     }
   ],
   "option": {
@@ -1214,6 +1292,262 @@
             "Sweep_FromStage": {
               "next": [
                 "SweepNode5"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "主线灵知": {
+      "type": "select",
+      "label": "主线：战斗失败时使用应急灵知体",
+      "description": "使用：失败时确认复活继续；灵知用完或不使用时，失败后弹出练度差距警告并停止。",
+      "default_case": "use",
+      "cases": [
+        {
+          "name": "use",
+          "label": "使用灵知（默认）",
+          "pipeline_override": {
+            "StoryReviveDecision": {
+              "target_offset": [
+                341,
+                343,
+                -292,
+                -92
+              ],
+              "next": [
+                "StoryFinishInvestigation",
+                "StoryAutoControlReady"
+              ]
+            }
+          }
+        },
+        {
+          "name": "skip",
+          "label": "不使用灵知，失败即警告停止"
+        }
+      ]
+    },
+    "主线战斗超时": {
+      "type": "select",
+      "label": "主线：战斗超过多久判定为需要手动",
+      "description": "战斗一直不结束（例如无法自动的 Boss 关）时弹出提示并停止。普通战斗很慢时请调大。",
+      "default_case": "4min",
+      "cases": [
+        {
+          "name": "2min",
+          "label": "2 分钟",
+          "pipeline_override": {
+            "StoryBattleMonitor": {
+              "timeout": 120000
+            }
+          }
+        },
+        {
+          "name": "4min",
+          "label": "4 分钟（默认）"
+        },
+        {
+          "name": "8min",
+          "label": "8 分钟",
+          "pipeline_override": {
+            "StoryBattleMonitor": {
+              "timeout": 480000
+            }
+          }
+        }
+      ]
+    },
+    "探索选格方式": {
+      "type": "select",
+      "label": "主线：地图上选哪个绿色格子",
+      "description": "所有绿色描边（可达且没走过）的格子里按此选一个点击。随机最稳妥：走过的格子会变青色，不会重复。",
+      "default_case": "random",
+      "cases": [
+        {
+          "name": "random",
+          "label": "随机（默认）"
+        },
+        {
+          "name": "top",
+          "label": "最靠上",
+          "pipeline_override": {
+            "MA_Pick": {
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "main_map_marker.png",
+                  "roi": [
+                    0,
+                    256,
+                    118,
+                    58
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "ColorMatch",
+                  "roi": [
+                    264,
+                    104,
+                    896,
+                    536
+                  ],
+                  "method": 40,
+                  "lower": [
+                    40,
+                    90,
+                    40
+                  ],
+                  "upper": [
+                    90,
+                    255,
+                    255
+                  ],
+                  "count": 250,
+                  "connected": true,
+                  "order_by": "Vertical",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "bottom",
+          "label": "最靠下",
+          "pipeline_override": {
+            "MA_Pick": {
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "main_map_marker.png",
+                  "roi": [
+                    0,
+                    256,
+                    118,
+                    58
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "ColorMatch",
+                  "roi": [
+                    264,
+                    104,
+                    896,
+                    536
+                  ],
+                  "method": 40,
+                  "lower": [
+                    40,
+                    90,
+                    40
+                  ],
+                  "upper": [
+                    90,
+                    255,
+                    255
+                  ],
+                  "count": 250,
+                  "connected": true,
+                  "order_by": "Vertical",
+                  "index": -1
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "left",
+          "label": "最靠左",
+          "pipeline_override": {
+            "MA_Pick": {
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "main_map_marker.png",
+                  "roi": [
+                    0,
+                    256,
+                    118,
+                    58
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "ColorMatch",
+                  "roi": [
+                    264,
+                    104,
+                    896,
+                    536
+                  ],
+                  "method": 40,
+                  "lower": [
+                    40,
+                    90,
+                    40
+                  ],
+                  "upper": [
+                    90,
+                    255,
+                    255
+                  ],
+                  "count": 250,
+                  "connected": true,
+                  "order_by": "Horizontal",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "right",
+          "label": "最靠右",
+          "pipeline_override": {
+            "MA_Pick": {
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "main_map_marker.png",
+                  "roi": [
+                    0,
+                    256,
+                    118,
+                    58
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "ColorMatch",
+                  "roi": [
+                    264,
+                    104,
+                    896,
+                    536
+                  ],
+                  "method": 40,
+                  "lower": [
+                    40,
+                    90,
+                    40
+                  ],
+                  "upper": [
+                    90,
+                    255,
+                    255
+                  ],
+                  "count": 250,
+                  "connected": true,
+                  "order_by": "Horizontal",
+                  "index": -1
+                }
               ]
             }
           }

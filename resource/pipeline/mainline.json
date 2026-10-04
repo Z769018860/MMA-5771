@@ -1,0 +1,388 @@
+{
+  "MA_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "MA_Map",
+      "MA_ResPage",
+      "MA_StageList",
+      "MA_Resume"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "自动推进主线：从地图、共鸣页、关卡列表或其他页面开始。"
+    }
+  },
+  "MA_Resume": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryFormation",
+      "StoryFirstFormation",
+      "StoryCutscene",
+      "StoryEventPage",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision",
+      "NavMainEntry"
+    ]
+  },
+  "MA_StageList": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "main_stage_lbl_star.png",
+        "roi": [
+          262,
+          602,
+          141,
+          68
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "main_stage_lbl_ach.png",
+        "roi": [
+          477,
+          602,
+          140,
+          68
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "timeout": 120000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "MA_ResDot",
+      "StorySelectLatestStage"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已在章节关卡列表：先检查左下角【共鸣】红点，再选最新关卡。"
+    }
+  },
+  "MA_ResDot": {
+    "recognition": "ColorMatch",
+    "roi": [
+      20,
+      603,
+      68,
+      45
+    ],
+    "method": 4,
+    "lower": [
+      190,
+      0,
+      0
+    ],
+    "upper": [
+      255,
+      100,
+      115
+    ],
+    "count": 60,
+    "connected": false,
+    "max_hit": 40,
+    "action": "Click",
+    "target": [
+      14,
+      612,
+      52,
+      58
+    ],
+    "post_delay": 2200,
+    "next": [
+      "MA_ResPage"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "【共鸣】图标有红点，进入共鸣页激活。"
+    }
+  },
+  "MA_ResPage": {
+    "recognition": "TemplateMatch",
+    "template": "main_res_title.png",
+    "roi": [
+      74,
+      6,
+      120,
+      68
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 20000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "MA_ResActivate",
+      "MA_ResNode",
+      "MA_ResExit"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入【共鸣】页。"
+    }
+  },
+  "MA_ResNode": {
+    "recognition": "ColorMatch",
+    "roi": [
+      152,
+      80,
+      728,
+      626
+    ],
+    "method": 4,
+    "lower": [
+      190,
+      0,
+      0
+    ],
+    "upper": [
+      255,
+      100,
+      115
+    ],
+    "count": 30,
+    "connected": true,
+    "order_by": "Vertical",
+    "index": 0,
+    "action": "Click",
+    "post_delay": 1300,
+    "next": [
+      "MA_ResActivate",
+      "MA_ResExit"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击有红点的共鸣节点。"
+    }
+  },
+  "MA_ResActivate": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "main_res_title.png",
+        "roi": [
+          74,
+          6,
+          120,
+          68
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "main_res_activate.png",
+        "roi": [
+          869,
+          601,
+          377,
+          117
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target_offset": [
+      20,
+      10,
+      -40,
+      -20
+    ],
+    "post_delay": 2000,
+    "next": [
+      "MA_ResPage"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击【激活】。"
+    }
+  },
+  "MA_ResExit": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1211,
+      12,
+      57,
+      57
+    ],
+    "post_delay": 2000,
+    "next": [
+      "MA_StageList",
+      "MA_ResExitRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "没有可激活的红点：点击右上角退出共鸣页。"
+    }
+  },
+  "MA_ResExitRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1211,
+      12,
+      57,
+      57
+    ],
+    "post_delay": 2000,
+    "timeout": 15000,
+    "next": [
+      "MA_StageList"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
+  },
+  "MA_Map": {
+    "recognition": "TemplateMatch",
+    "template": "main_map_marker.png",
+    "roi": [
+      0,
+      256,
+      118,
+      58
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 120000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "MA_Pick"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已在探索地图页。"
+    }
+  },
+  "MA_Pick": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "main_map_marker.png",
+        "roi": [
+          0,
+          256,
+          118,
+          58
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          264,
+          104,
+          896,
+          536
+        ],
+        "method": 40,
+        "lower": [
+          40,
+          90,
+          40
+        ],
+        "upper": [
+          90,
+          255,
+          255
+        ],
+        "count": 250,
+        "connected": true,
+        "order_by": "Random",
+        "index": 0
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "post_delay": 2200,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击一个绿色描边的可达格子（随机选择；走过的格子变为青色不再选）。"
+    }
+  },
+  "MA_ManualNotice": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAGGKXZX+V9mX0laFsCWfTfl9nGv/Zj4hf71P9gC9m4GXVbOqBqFIYYpdlhHYgAEIAbwBzAHMAIABzUQz/94tLYqhSzWRcTw5UjVEvVKhS+06hUgIwJwAsACcA2F90U01SHFmpUktiJwAsACcATwBLACcALAAnAFcAYQByAG4AaQBuAGcAJwApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAA="
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "战斗超时：可能是需要手动操作的 Boss 关，已弹出提示。",
+      "Node.Action.Failed": "战斗超时：可能是需要手动操作的 Boss 关，已弹出提示。（消息框弹出失败，请看本日志）"
+    }
+  },
+  "MA_DefeatNotice": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAGGKXZTFZJY0UTqFsCWfvUyh1hHaUXiVgdXDld1NPGv/DfqZeDk5zUWFT7l3djSpZJ1kM//eLzZGwZcSJElJNkR+WFmJIUYlswG3DfqZeAjAnACwAJwDYX3RTTVIcWalSS2InACwAJwBPAEsAJwAsACcAVwBhAHIAbgBpAG4AZwAnACkAIAB8ACAATwB1AHQALQBOAHUAbABsAA=="
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "战斗失败（灵知用完或未启用）：已弹出练度警告。",
+      "Node.Action.Failed": "战斗失败（灵知用完或未启用）：已弹出练度警告。（消息框弹出失败，请看本日志）"
+    }
+  },
+  "MA_StuckNotice": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcA6oGoUqhj2487Tr9+XFBPT4ZOGv87dWKXCk6hbAlnxosrUjBS+05VT/Jd5Xd1mGKXDP/3i0tiqFIEWQZ0DlTNkbBlL1SoUgz/dl7dT1l1youtZaViSlQCMCcALAAnANhfdFNNUhxZqVJLYicALAAnAE8ASwAnACwAJwBXAGEAcgBuAGkAbgBnACcAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwA"
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "没有识别到已知页面：已弹出提示。",
+      "Node.Action.Failed": "没有识别到已知页面：已弹出提示。（消息框弹出失败，请看本日志）"
+    }
+  }
+}
