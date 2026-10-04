@@ -39,6 +39,14 @@ def main():
     iface = json.loads((ROOT / "interface.json").read_text(encoding="utf-8-sig"))
     default = json.loads((ROOT / "resource" / "default_pipeline.json").read_text(encoding="utf-8-sig")).get("Default", {})
     roots = {t["entry"] for t in iface["task"]} | set(default.get("on_error", []))
+    for task in iface["task"]:
+        for node, ov in (task.get("pipeline_override") or {}).items():
+            if node not in nodes:
+                errors.append(f"task {task['name']} overrides unknown node {node}")
+            for t in ov.get("next", []):
+                if t not in nodes:
+                    errors.append(f"task {task['name']} override {node} -> missing node {t}")
+            roots.update(ov.get("next", []))
     for opt in iface.get("option", {}).values():
         for case in opt.get("cases", []):
             for node, ov in (case.get("pipeline_override") or {}).items():

@@ -13,6 +13,7 @@ class Screen(str, Enum):
     PICK_SEAL = "pick_seal"           # choose one seal (刻印)
     PICK_CARD = "pick_card"
     CONTACT = "contact"        # 联络点: heal / awaken
+    PICK_AWAKEN = "pick_awaken"  # 联络点「冥想」: choose which awakener to awaken (left to right)
     FORMATION = "formation"    # squad screen before a battle
     BATTLE = "battle"
     DEFEAT = "defeat"          # revive / retreat decision
@@ -73,6 +74,8 @@ class Observation:
     event_title: Optional[str] = None
     options: list = field(default_factory=list)    # option labels, or [None, None, ...] to give only the count
     choices: list = field(default_factory=list)    # artifact/seal/card names or [None]*n
+    choice_enabled: list = field(default_factory=list)  # per choice: can it be taken (e.g. awakener not already awakened)? [] = all
+    contact_awaken_available: Optional[bool] = None     # contact screen: is the awaken option usable?
     shop_items: list = field(default_factory=list)
     # status
     hp_ratio: Optional[float] = None

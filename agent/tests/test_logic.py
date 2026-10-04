@@ -135,10 +135,37 @@ class ShopPickTests(unittest.TestCase):
         self.assertEqual(decisions.choose_pick(p, "seal", ["诅咒之印", "平凡之印"]).index, 1)
         self.assertEqual(decisions.choose_pick(pol(), "card", ["x"]).index, 0)
 
+    def test_contact_prefers_awaken(self):
+        self.assertEqual(decisions.contact_choice(pol(), 0.3)[0], "awaken")           # default: awaken even when hurt
+        self.assertEqual(decisions.contact_choice(pol(), None)[0], "awaken")
+        self.assertEqual(decisions.contact_choice(pol(contact={"heal_below_hp": 0.5}), 0.3)[0], "heal")
+        self.assertEqual(decisions.contact_choice(pol(), 0.9, awaken_available=False)[0], "heal")
+        self.assertEqual(decisions.contact_choice(pol(), 0.9, awaken_blocked=True)[0], "heal")
+        self.assertEqual(policy.load_policy(preset="conservative")["contact"]["heal_below_hp"], 0.25)
+
+    def test_awaken_order(self):
+        names = [None] * 4
+        self.assertEqual(decisions.choose_awaken(pol(), names).index, 0)                             # left to right
+        self.assertEqual(decisions.choose_awaken(pol(), names, [False, True, True, True]).index, 1)  # skips the awakened
+        self.assertEqual(decisions.choose_awaken(pol(pick={"awaken": {"order": [3, 1]}}), names).index, 2)
+        self.assertEqual(decisions.choose_awaken(pol(pick={"awaken": {"order": [3, 1]}}), names, [True, True, False, True]).index, 0)
+        self.assertEqual(decisions.choose_awaken(pol(pick={"awaken": {"order": [9]}}), names).index, 0)  # out of range -> left to right
+        p = pol(pick={"awaken": {"priority_names": ["茉夏"], "order": [4]}})
+        self.assertEqual(decisions.choose_awaken(p, ["甲", "茉夏", "丙", "丁"]).index, 1)            # names beat order
+        self.assertIsNone(decisions.choose_awaken(pol(), names, [False] * 4))
+
+    def test_engine_awakens_then_falls_back_to_heal(self):
+        eng = Engine(pol(pick={"awaken": {"order": [2]}}), KN, "5-6")
+        self.assertEqual(eng.step(Observation(Screen.CONTACT, hp_ratio=0.4, fingerprint="c1")).kind, Do.CHOOSE_AWAKEN)
+        act = eng.step(Observation(Screen.PICK_AWAKEN, choices=[None] * 4, choice_enabled=[True] * 4, fingerprint="a1"))
+        self.assertEqual((act.kind, act.arg), (Do.TAP_CHOICE, 1))
+        self.assertEqual(eng.step(Observation(Screen.PICK_AWAKEN, choices=[None] * 4, choice_enabled=[True] * 4, fingerprint="a2")).kind, Do.CONFIRM)
+        eng2 = Engine(pol(), KN, "5-6")
+        act = eng2.step(Observation(Screen.PICK_AWAKEN, choices=[None] * 4, choice_enabled=[False] * 4, fingerprint="b1"))
+        self.assertEqual(act.kind, Do.BACK)
+        self.assertEqual(eng2.step(Observation(Screen.CONTACT, hp_ratio=0.9, fingerprint="b2")).kind, Do.CHOOSE_HEAL)
+
     def test_contact_and_defeat(self):
-        self.assertEqual(decisions.contact_choice(pol(), 0.3)[0], "heal")
-        self.assertEqual(decisions.contact_choice(pol(), 0.95)[0], "awaken")
-        self.assertEqual(decisions.contact_choice(pol(), None)[0], "heal")
         self.assertEqual(decisions.defeat_choice(pol(), True)[0], "retreat")
         self.assertEqual(decisions.defeat_choice(pol(battle={"use_revive": True}), True)[0], "revive")
         self.assertEqual(decisions.defeat_choice(pol(battle={"use_revive": True}), False)[0], "retreat")

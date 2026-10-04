@@ -20,6 +20,17 @@ import build_nav_pipeline as B  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "sweep.json"
+# battle pages the sync-rate loop already handles (no assist selection: one plain clear)
+CLEAR_ROUTER = ["StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
+                "ReviveDecision", "FailureChoice", "FinishInvestigation", "HideCards", "AutoControlReady", "BattleMonitor", "StopHere"]
+# task-level override (interface.json): after the one-off clear the sync-rate nodes must come back here, not start farming
+TASK_OVERRIDE = {
+    "FinishCurrentButton": {"next": ["Sweep_Page2", "FinishCurrentButton", "FinishAltButton"]},
+    "FinishAltButton": {"next": ["Sweep_Page2", "FinishCurrentButton", "FinishAltButton"]},
+    "FinishButtonClickRetry": {"next": ["Sweep_Page2", "FinishCurrentButton", "FinishAltButton"]},
+    "FailureChoice": {"next": ["StopHere"]},
+    "StopHere": {"next": ["Sweep_GiveUp"]},
+}
 LIST_TITLE = {"recognition": "TemplateMatch", "template": "activity_oath_title.png", "roi": [0, 15, 230, 80],
               "threshold": 0.88, "method": 10001}
 
@@ -68,7 +79,7 @@ def build():
     nodes["Sweep_Scroll"] = {"recognition": "DirectHit", "action": "Swipe", "begin": [185, 585, 20, 20], "end": [185, 165, 20, 20],
                              "duration": 450, "post_delay": 800, "next": ["Sweep_SelectPrev"]}
     nodes["Sweep_SelectPrev"] = {"recognition": "DirectHit", "action": "Click", "target": [185, 505, 30, 30], "post_delay": 900,
-                                 "next": ["Sweep_Replay"],
+                                 "next": ["Sweep_Replay", "Sweep_Challenge"],
                                  "focus": {"Node.Action.Succeeded": "已选中列表最后一项上面的关卡（癫狂的上一个）。"}}
     nodes["Sweep_Replay"] = {"recognition": "And", "all_of": [LIST_TITLE, match("replay_btn")], "box_index": 1, "timeout": 15000,
                              "action": "Click", "target_offset": [20, 8, -40, -16], "post_delay": 1500,
@@ -76,6 +87,20 @@ def build():
                              "focus": {"Node.Action.Succeeded": "已点击【重现】。"}}
     nodes["Sweep_ReplayRetry"] = {**nodes["Sweep_Replay"], "timeout": 10000, "next": ["Sweep_Dialog"],
                                   "focus": {"Node.Action.Succeeded": "【重现】没有打开窗口，再点一次。"}}
+    # no 重现 button (level never cleared): clear it once with 挑战, then come back and look again (only once)
+    nodes["Sweep_Challenge"] = {"recognition": "And", "all_of": [LIST_TITLE, match("challenge_btn")], "box_index": 1, "timeout": 15000,
+                                "action": "Click", "target_offset": [20, 8, -40, -16], "post_delay": 2200,
+                                "next": ["Sweep_ClearRouter"],
+                                "focus": {"Node.Action.Succeeded": "该关卡没有【重现】：点击【挑战】先通关一次。"}}
+    nodes["Sweep_ClearRouter"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 600000, "next": CLEAR_ROUTER}
+    nodes["Sweep_Page2"] = {**LIST_TITLE, "action": "DoNothing", "timeout": 30000, "next": ["Sweep_Scroll2"],
+                            "focus": focus("通关后回到关卡列表，再找一次【重现】。")}
+    nodes["Sweep_Scroll2"] = {**nodes["Sweep_Scroll"], "next": ["Sweep_SelectPrev2"]}
+    nodes["Sweep_SelectPrev2"] = {**nodes["Sweep_SelectPrev"], "next": ["Sweep_Replay", "Sweep_Fail"]}
+    nodes["Sweep_Fail"] = {"recognition": "DirectHit", "action": "DoNothing", "next": [],
+                           "focus": {"Node.Recognition.Succeeded": "通关一次后仍然没有【重现】按钮，停止（请检查选中的关卡）。"}}
+    nodes["Sweep_GiveUp"] = {"recognition": "DirectHit", "action": "DoNothing", "next": [],
+                             "focus": {"Node.Recognition.Succeeded": "先通关一次的挑战失败，停止。"}}
     # count dialog
     nodes["Sweep_Dialog"] = {**match("dlg_title"), "action": "DoNothing", "timeout": 15000, "next": ["Sweep_Max"],
                              "focus": focus("已打开【重现次数】窗口。")}
@@ -85,8 +110,11 @@ def build():
                           "focus": {"Node.Action.Succeeded": "已点击最大次数按钮（↑）。"}}
     nodes["Sweep_Confirm"] = {"recognition": "And", "all_of": [match("dlg_title"), match("dlg_ok")], "box_index": 1,
                               "action": "Click", "target_offset": [20, 10, -40, -20], "post_delay": 2500,
-                              "next": ["Sweep_Reward", "Sweep_Dialog"],
+                              "next": ["Sweep_Reward", "Sweep_ConfirmRetry"],
                               "focus": {"Node.Action.Succeeded": "已点击【确定】。"}}
+    # one retry only: a window that stays open must not loop forever (确定 may be greyed out, e.g. not enough stamina)
+    nodes["Sweep_ConfirmRetry"] = {**nodes["Sweep_Confirm"], "timeout": 10000, "next": ["Sweep_Reward"],
+                                   "focus": {"Node.Action.Succeeded": "窗口还在，再点一次【确定】；之后仍无奖励弹窗则超时停止。"}}
     nodes["Sweep_Reward"] = {**match("reward_title"), "timeout": 20000, "action": "Click", "target": region("reward_blank"),
                              "post_delay": 1500, "next": ["Sweep_Reward", "Sweep_Done"],
                              "focus": {"Node.Action.Succeeded": "已点击空白处关闭【重现奖励】。"}}

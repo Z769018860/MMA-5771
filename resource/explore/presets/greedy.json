@@ -25,6 +25,6 @@
   "max_purchases": 3
  },
  "contact": {
-  "heal_below_hp": 0.5
+  "heal_below_hp": 0.0
  }
 }

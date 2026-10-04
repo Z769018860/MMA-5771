@@ -24,6 +24,7 @@ class Engine:
         self._last_pos = None
         self._shop_buys = 0
         self._pick_pending = False
+        self.awaken_blocked = False
         self.tap_fp = None
         self.cur_tile = None          # tile whose content we are resolving
         self.defeats = {}             # tile -> times a defeat followed it
@@ -63,6 +64,7 @@ class Engine:
             Screen.PICK_ARTIFACT: lambda o, l: self._on_pick(o, l, "artifact"),
             Screen.PICK_SEAL: lambda o, l: self._on_pick(o, l, "seal"),
             Screen.PICK_CARD: lambda o, l: self._on_pick(o, l, "card"),
+            Screen.PICK_AWAKEN: lambda o, l: self._on_pick(o, l, "awaken"),
             Screen.CONTACT: self._on_contact, Screen.FORMATION: self._on_formation,
             Screen.BATTLE: self._on_battle, Screen.DEFEAT: self._on_defeat,
             Screen.DIALOGUE: self._on_dialogue, Screen.POPUP: self._on_popup,
@@ -183,18 +185,32 @@ class Engine:
         if n == 0:
             return self._emit(Do.CONFIRM, None, f"{kind}: no choices visible, confirm")
         if level >= 2:
+            if self._pick_pending:      # a rotated tap was just made: confirm it, otherwise rotation never completes a pick
+                self._pick_pending = False
+                return self._emit(Do.CONFIRM, None, f"{kind} stuck: confirm the rotated choice")
+            cands = [i for i in range(n) if not (kind == "awaken" and obs.choice_enabled and i < len(obs.choice_enabled) and not obs.choice_enabled[i])]
+            if not cands:
+                self.awaken_blocked = True
+                return self._emit(Do.BACK, None, "awaken: nothing can be chosen, going back")
             self.alt_cursor += 1
-            return self._emit(Do.TAP_CHOICE, self.alt_cursor % n, f"{kind} stuck: rotate choices")
+            self._pick_pending = True
+            return self._emit(Do.TAP_CHOICE, cands[self.alt_cursor % len(cands)], f"{kind} stuck: rotate choices")
         if level == 1 or self._pick_pending:
             self._pick_pending = False
             return self._emit(Do.CONFIRM, None, f"{kind}: confirm")
-        dec = decisions.choose_pick(self.policy, kind, obs.choices)
+        if kind == "awaken":
+            dec = decisions.choose_awaken(self.policy, obs.choices, obs.choice_enabled)
+            if dec is None:   # nobody can be awakened: leave and heal at contact points from now on
+                self.awaken_blocked = True
+                return self._emit(Do.BACK, None, "awaken: no character can be awakened, going back to heal instead")
+        else:
+            dec = decisions.choose_pick(self.policy, kind, obs.choices)
         self._pick_pending = True
         return self._emit(Do.TAP_CHOICE, dec.index, dec.reason)
 
     # ------------------------------------------------------------------ CONTACT
     def _on_contact(self, obs, level):
-        which, why = decisions.contact_choice(self.policy, obs.hp_ratio)
+        which, why = decisions.contact_choice(self.policy, obs.hp_ratio, obs.contact_awaken_available, self.awaken_blocked)
         if level >= 2:
             which = "awaken" if which == "heal" else "heal"
             why = "stuck: try the other contact option"

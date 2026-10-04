@@ -43,11 +43,12 @@
   "unaffordable": "skip"
  },
  "pick": {
+  "awaken": {"order": [], "priority_names": []},
   "artifact": {"priority_names": [], "avoid_names": [], "position_order": [1, 0, 2]},
   "seal": {"priority_keywords": [], "avoid_keywords": [], "position_order": [0, 1, 2]},
   "card": {"priority_keywords": [], "avoid_keywords": [], "position_order": [0, 1, 2]}
  },
- "contact": {"heal_below_hp": 0.7, "otherwise": "awaken"},
+ "contact": {"heal_below_hp": 0.0, "otherwise": "awaken"},
  "battle": {"use_revive": false, "on_defeat": "retreat", "max_battle_steps": 400},
  "stuck": {
   "same_state_retry": 2,

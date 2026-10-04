@@ -59,6 +59,13 @@ def main():
     for task in interface.get("task", []):
         if task.get("entry") not in all_nodes:
             errors.append(f"interface task {task.get('name')} -> missing entry {task.get('entry')}")
+    for task in interface.get("task", []):
+        for node, override in (task.get("pipeline_override") or {}).items():
+            if node not in all_nodes:
+                errors.append(f"task {task.get('name')} overrides missing node {node}")
+            for target in override.get("next", []):
+                if target not in all_nodes:
+                    errors.append(f"task {task.get('name')} override {node} -> missing node {target}")
     for opt_name, opt in interface.get("option", {}).items():
         for case in opt.get("cases", []):
             for node, override in (case.get("pipeline_override") or {}).items():

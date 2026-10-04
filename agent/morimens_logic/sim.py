@@ -45,6 +45,8 @@ class MockGame:
         if len(by["oneway_in"]) == 1 and len(by["secret_exit"]) == 1:
             self.links[by["oneway_in"][0]] = by["secret_exit"][0]
         self.hp, self.currency, self.has_key = 1.0, 120, False
+        self.awakened = []
+        self.awake_enabled = [rng.random() < 0.7 for _ in range(4)]   # some characters cannot be awakened (already done)
         self.visited = {self.pos}
         self.screen, self.data = Screen.MAP, {}
         self.events = list(kn.by_map.get(map_id, []))
@@ -87,6 +89,10 @@ class MockGame:
             obs.shop_items = [ShopItem(price=p, affordable=(p <= self.currency), sold=s) for p, s in self.data["items"]]
         elif self.screen in (Screen.PICK_ARTIFACT, Screen.PICK_SEAL, Screen.PICK_CARD):
             obs.choices = ["选项%d" % i if self.text_visible else None for i in range(3)]
+        elif self.screen == Screen.PICK_AWAKEN:
+            obs.choices = ["角色%s" % "ABCD"[i] if self.text_visible else None for i in range(4)]
+            obs.choice_enabled = list(self.data["enabled"])
+        # contact screen: the awaken option's availability is NOT reported (None), the engine must discover it
         return obs
 
     def _neigh(self, pos):
@@ -134,9 +140,23 @@ class MockGame:
             elif k == Do.CONFIRM and "picked" in self.data:
                 self.stats["picks"] += 1
                 self._back_to_map()
+        elif scr == Screen.PICK_AWAKEN:
+            if k == Do.TAP_CHOICE and self.data["enabled"][action.arg % 4]:
+                self.data["picked"] = action.arg
+            elif k == Do.CONFIRM and "picked" in self.data:
+                self.stats["awakened"] += 1
+                self.awakened.append(self.data["picked"])
+                self.awake_enabled[self.data["picked"]] = False
+                self.screen, self.data = Screen.MAP, {}
+            elif k == Do.BACK:
+                self.stats["awaken_cancelled"] += 1
+                self.screen, self.data = Screen.CONTACT, {"awaken_ok": False}
         elif scr == Screen.CONTACT and k in (Do.CHOOSE_HEAL, Do.CHOOSE_AWAKEN):
-            self.hp = min(1.0, self.hp + (0.4 if k == Do.CHOOSE_HEAL else 0.0))
-            self._back_to_map()
+            if k == Do.CHOOSE_HEAL:
+                self.hp = min(1.0, self.hp + 0.4)
+                self._back_to_map()
+            else:
+                self.screen, self.data = Screen.PICK_AWAKEN, {"enabled": list(self.awake_enabled)}
         elif scr == Screen.FORMATION and k == Do.START_BATTLE:
             self.screen, self.data = Screen.BATTLE, {"len": self.rng.randint(2, 6), "tile": self.data["tile"]}
         elif scr == Screen.DEFEAT:

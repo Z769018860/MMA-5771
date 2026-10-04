@@ -56,8 +56,9 @@ def run(resource, script, entry, override=None):
     script.post_connection().wait()
     tasker = Tasker()
     tasker.bind(resource, script)
-    ov = {n: {"on_error": []} for n in D.build()[1]}
-    ov.update({n: {"on_error": []} for n in B.build()[1]})
+    ov = {}
+    for f in (B.ROOT / "resource" / "pipeline").glob("*.json"):       # no diagnostic export (powershell) in tests
+        ov.update({n: {"on_error": []} for n in json.loads(f.read_text(encoding="utf-8-sig"))})
     for k, v in (override or {}).items():
         ov.setdefault(k, {}).update(v)
     job = tasker.post_task(entry, ov).wait()

@@ -14,7 +14,7 @@
 | `morimens_logic/guard.py` | 卡死检测与逐级升级 |
 | `morimens_logic/engine.py` | 把上面组合成 `step(obs) -> Action` |
 | `morimens_logic/sim.py` | 模拟游戏，用来验证引擎 |
-| `tests/test_logic.py` | 单元测试（24 项） |
+| `tests/test_logic.py` | 单元测试（29 项） |
 | `../resource/explore/policy.default.json`、`presets/` | 默认设置和三个预设 |
 | `../config/explore_policy.example.json` | 用户设置示例 |
 
@@ -51,7 +51,9 @@ python -m morimens_logic.policy --show --preset greedy                  # 查看
 | `shop.priority_names`、`skip_names` | 优先买/不买的名称（模糊匹配） |
 | `shop.position_order`、`unaffordable` | 无名称时的位置顺序；价格变红时 `skip` 跳过 / `stop` 停止购买 |
 | `pick.artifact/seal/card` | 三选一的名称优先级、回避词、位置顺序 |
-| `contact.heal_below_hp`、`otherwise` | 血量低于此值回血，否则 `awaken`（觉醒）或 `heal` |
+| `contact.heal_below_hp`、`otherwise` | 联络点**优先觉醒角色**（`otherwise` 默认 `awaken`）；仅当血量低于 `heal_below_hp`（默认 0 = 不因血量回血；保守预设 0.25）、觉醒选项不可用、或觉醒页没有可觉醒的角色时才回血 |
+| `pick.awaken.order` | 觉醒顺序：从左到右第几个角色，**从 1 开始**，如 `[3, 1]`；不填就是从左到右。已觉醒/不可选的角色自动跳过 |
+| `pick.awaken.priority_names` | 按角色名指定优先觉醒（能读到名字时，优先于 `order`） |
 | `battle.use_revive`、`on_defeat` | 失败时是否用灵知复活，否则撤退 |
 | `stuck.*` | 卡死处理阈值，见下 |
 
@@ -86,9 +88,9 @@ python -m morimens_logic.sim --maps all --no-text --unknown-map --noise 2    # �
 | 默认故障率（传送入口强制传送；26 张在该假设下无解的图不计入） | 738 / 738 |
 | 单行密道/隧道不强制传送（108 张全部参与） | 972 / 972 |
 | 读不到选项文字 | 737 / 738 |
-| 不知道是哪一关（边走边探索） | 730 / 738 |
-| 故障率 ×3 | 735 / 738 |
-| 读不到文字 + 不知道哪一关 + 故障率 ×2 | 728 / 738 |
+| 不知道是哪一关（边走边探索） | 725 / 738 |
+| 故障率 ×3 | 728 / 738 |
+| 读不到文字 + 不知道哪一关 + 故障率 ×2 | 712 / 738 |
 
 失败的情形都是引擎在放弃时明确停止（`loop`/`stuck`），没有无限循环。
 
@@ -113,3 +115,9 @@ result = run(MyAdapter(), Engine(map_id="5-6"))   # map_id 可省略
 - 地图格子定位：用 `tools/recognize_map_tiles.py` 识别截图，再对照 `resource/map_data/maps.json` 的行列。实机截图需要缩放到格子宽约 208 像素，这一步没有测试过。
 
 这些都还没有做，所以现在不能直接在 MFAAvalonia 里选择「自动走地图」任务。
+
+## 联络点觉醒（2026-10）
+
+联络点现在优先「冥想 → 觉醒一名唤醒体」。引擎新增 `Screen.PICK_AWAKEN`（适配器在觉醒角色选择页返回，`choices` 是角色名或 `[None]*n`，`choice_enabled` 标出哪些还能觉醒）；选择后与其他三选一一样先点角色再确认。没有可觉醒的角色时返回上一页，之后的联络点改为回血。
+
+注意：**没有联络点和觉醒选择页的实机截图**，所以只有逻辑层和模拟环境，没有 MaaFramework 识别节点；觉醒页有几个角色、已觉醒角色怎么显示都是假设（模拟里是 4 个）。加入觉醒页后模拟成功率略有下降（见上表，每多一个选择页就多一处可能卡住的地方）。

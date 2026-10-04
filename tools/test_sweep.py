@@ -86,6 +86,38 @@ def main():
     scr = Script(images, tr2, "activity_stage")
     got = run(resource, scr, "Sweep_Start")
     expect(got[-1] == "Sweep_Done" and "SweepNode1" in got, f"flow from stage page: {got[-5:]}")
+    # --- no 重现 button (never cleared): 挑战 first, then look again once
+    iface = json.loads((B.ROOT / "interface.json").read_text(encoding="utf-8"))
+    task = next(t for t in iface["task"] if t["name"] == "活动扫荡")
+    override = task.get("pipeline_override", {})
+    expect(override.get("StopHere", {}).get("next") == ["Sweep_GiveUp"] and "Sweep_Page2" in override["FinishCurrentButton"]["next"],
+           "task-level override missing: finish/defeat nodes would fall back into the farming loop")
+    import numpy as np
+    no_replay = images["oath_list"].copy()
+    x, y, w, h = tbox("replay_btn")
+    mask = np.zeros(no_replay.shape[:2], np.uint8)
+    mask[y - 4:y + h + 4, x - 4:x + w + 4] = 255
+    images["oath_list_no_replay"] = cv2.inpaint(no_replay, mask, 9, cv2.INPAINT_TELEA)
+    for node, want in (("Sweep_Replay", False), ("Sweep_Challenge", True)):
+        fired, ev = T.run_node(resource, images["oath_list_no_replay"], node)
+        expect(fired == want, f"{node} on a list without 重现: expected {want}, got {fired}")
+    fired, ev = T.run_node(resource, images["oath_list"], "Sweep_Challenge")
+    expect(fired and T.inside(ev, tbox("challenge_btn"), 3), f"Sweep_Challenge click {ev[:2]}")
+    stop = {k: {"timeout": 1500} for k in ("Sweep_ClearRouter", "Sweep_Challenge", "StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
+                                           "ReviveDecision", "FailureChoice", "FinishInvestigation", "HideCards", "AutoControlReady", "BattleMonitor", "StopHere")}
+    images["formation"] = images["home"]                 # a page nothing in the clear router recognises
+    tr = {"oath_list_no_replay": [(tbox("challenge_btn"), "formation")], "formation": []}
+    scr = Script(images, tr, "oath_list_no_replay")
+    got = run(resource, scr, "Sweep_Start", stop)
+    expect(scr.state == "formation" and "Sweep_Challenge" in got and "Sweep_ClearRouter" in got and "Sweep_Replay" not in got,
+           f"flow without 重现 clicks 挑战: nodes {got[-6:]} state {scr.state}")
+    # after the clear the list shows 重现: normal sweep continues; if it still does not, stop with Sweep_Fail
+    scr = Script(images, dict(tr, **{"oath_list": [(tbox("replay_btn"), "oath_dialog")]}), "oath_list")
+    got = run(resource, scr, "Sweep_Page2")
+    expect("Sweep_Replay" in got and scr.state == "oath_dialog", f"after clear, 重现 present: {got[-5:]} state {scr.state}")
+    scr = Script(images, tr, "oath_list_no_replay")
+    got = run(resource, scr, "Sweep_Page2", {**stop, "Sweep_Replay": {"timeout": 1500}})
+    expect(got[-1] == "Sweep_Fail" and "Sweep_Challenge" not in got, f"still no 重现 after clearing: {got[-4:]}")
     print(f"{checks} checks, {len(failures)} failures")
     for f in failures:
         print("FAIL", f)

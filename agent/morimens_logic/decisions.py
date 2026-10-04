@@ -172,12 +172,37 @@ def choose_pick(policy, kind, names):
     return Decision((ok or [0])[0], "fallback first acceptable")
 
 
-def contact_choice(policy, hp_ratio):
-    if hp_ratio is None:
-        return "heal", "hp unknown: heal"
-    if hp_ratio < get(policy, "contact.heal_below_hp"):
+def contact_choice(policy, hp_ratio, awaken_available=None, awaken_blocked=False):
+    """Contact point: awakening a character is preferred; heal when hp is below contact.heal_below_hp,
+    when the awaken option is unusable, or when a previous awaken attempt found nobody to awaken."""
+    if awaken_blocked or awaken_available is False:
+        return "heal", "nobody can be awakened: heal"
+    if hp_ratio is not None and hp_ratio < get(policy, "contact.heal_below_hp"):
         return "heal", f"hp {hp_ratio:.2f} below threshold"
-    return get(policy, "contact.otherwise"), f"hp {hp_ratio:.2f} ok: {get(policy, 'contact.otherwise')}"
+    pref = get(policy, "contact.otherwise")
+    if hp_ratio is None and pref == "awaken":
+        return "awaken", "hp unknown: awaken (preferred)"
+    return pref, f"hp {hp_ratio if hp_ratio is None else round(hp_ratio, 2)} ok: {pref}"
+
+
+def choose_awaken(policy, names, enabled=None):
+    """Which character to awaken. Priority: contact names -> pick.awaken.order (1-based, left to right) -> left to right.
+    Characters that cannot be awakened (enabled[i] false) are skipped. None when nobody can be awakened."""
+    n = len(names)
+    ok = [i for i in range(n) if not enabled or i >= len(enabled) or enabled[i]]
+    if not ok:
+        return None
+    cfg = get(policy, "pick.awaken") or {}
+    for want in cfg.get("priority_names", []):
+        for i in ok:
+            nm = names[i]
+            if nm and (similar(nm, want) >= 0.8 or norm(want) in norm(nm)):
+                return Decision(i, f"awaken priority name '{want}'")
+    for pos in cfg.get("order", []):
+        i = int(pos) - 1
+        if i in ok:
+            return Decision(i, f"awaken order: position {pos}")
+    return Decision(ok[0], "awaken: left to right")
 
 
 def defeat_choice(policy, revive_available):

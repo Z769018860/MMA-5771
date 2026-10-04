@@ -173,7 +173,40 @@
       ],
       "default_check": false,
       "repeatable": false,
-      "description": "在活动关卡列表（如巨古誓言）：滚到底部，选中最后一项（癫狂）上面的关卡，点【重现】，点最大次数，点【确定】，关闭【重现奖励】。可从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。"
+      "description": "在活动关卡列表（如巨古誓言）：滚到底部，选中最后一项（癫狂）上面的关卡，点【重现】，点最大次数，点【确定】，关闭【重现奖励】。可从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。 若选中的关卡没有【重现】（从未通关），先点【挑战】通关一次（不用助战），回到列表后再重现；挑战失败则停止。",
+      "pipeline_override": {
+        "FinishCurrentButton": {
+          "next": [
+            "Sweep_Page2",
+            "FinishCurrentButton",
+            "FinishAltButton"
+          ]
+        },
+        "FinishAltButton": {
+          "next": [
+            "Sweep_Page2",
+            "FinishCurrentButton",
+            "FinishAltButton"
+          ]
+        },
+        "FinishButtonClickRetry": {
+          "next": [
+            "Sweep_Page2",
+            "FinishCurrentButton",
+            "FinishAltButton"
+          ]
+        },
+        "FailureChoice": {
+          "next": [
+            "StopHere"
+          ]
+        },
+        "StopHere": {
+          "next": [
+            "Sweep_GiveUp"
+          ]
+        }
+      }
     }
   ],
   "option": {

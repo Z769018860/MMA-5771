@@ -1,18 +1,111 @@
 {
  "note": "Activity sweep (重现): oath list -> level above 癫狂 -> 重现 -> max count -> 确定 -> reward. Boxes in original screenshot pixels; build with tools/build_sweep_pipeline.py",
  "screens": {
-  "oath_list": {"sample": "oath_list.png", "src_size": [1606, 912]},
-  "oath_dialog": {"sample": "oath_dialog.png", "src_size": [1579, 900]},
-  "oath_reward": {"sample": "oath_reward.png", "src_size": [1595, 878]}
+  "oath_list": {
+   "sample": "oath_list.png",
+   "src_size": [
+    1606,
+    912
+   ]
+  },
+  "oath_dialog": {
+   "sample": "oath_dialog.png",
+   "src_size": [
+    1579,
+    900
+   ]
+  },
+  "oath_reward": {
+   "sample": "oath_reward.png",
+   "src_size": [
+    1595,
+    878
+   ]
+  }
  },
  "templates": [
-  {"id": "replay_btn", "screen": "oath_list", "box": [1242, 778, 1536, 838], "label": "重现按钮（金色）", "threshold": 0.8},
-  {"id": "dlg_title", "screen": "oath_dialog", "box": [726, 255, 850, 290], "label": "重现次数", "threshold": 0.85},
-  {"id": "dlg_max", "screen": "oath_dialog", "box": [1166, 322, 1230, 356], "label": "最大次数（↑）", "threshold": 0.85},
-  {"id": "dlg_ok", "screen": "oath_dialog", "box": [880, 632, 1166, 696], "label": "确定", "threshold": 0.8},
-  {"id": "reward_title", "screen": "oath_reward", "box": [705, 222, 872, 264], "label": "重现奖励", "threshold": 0.85}
+  {
+   "id": "replay_btn",
+   "screen": "oath_list",
+   "box": [
+    1242,
+    778,
+    1536,
+    838
+   ],
+   "label": "重现按钮（金色）",
+   "threshold": 0.8
+  },
+  {
+   "id": "dlg_title",
+   "screen": "oath_dialog",
+   "box": [
+    726,
+    255,
+    850,
+    290
+   ],
+   "label": "重现次数",
+   "threshold": 0.85
+  },
+  {
+   "id": "dlg_max",
+   "screen": "oath_dialog",
+   "box": [
+    1166,
+    322,
+    1230,
+    356
+   ],
+   "label": "最大次数（↑）",
+   "threshold": 0.85
+  },
+  {
+   "id": "dlg_ok",
+   "screen": "oath_dialog",
+   "box": [
+    880,
+    632,
+    1166,
+    696
+   ],
+   "label": "确定",
+   "threshold": 0.8
+  },
+  {
+   "id": "reward_title",
+   "screen": "oath_reward",
+   "box": [
+    705,
+    222,
+    872,
+    264
+   ],
+   "label": "重现奖励",
+   "threshold": 0.85
+  },
+  {
+   "id": "challenge_btn",
+   "screen": "oath_list",
+   "box": [
+    900,
+    778,
+    1192,
+    838
+   ],
+   "label": "挑战按钮（蓝色）",
+   "threshold": 0.8
+  }
  ],
  "regions": {
-  "reward_blank": {"screen": "oath_reward", "box": [200, 560, 500, 640]}
+  "reward_blank": {
+   "screen": "oath_reward",
+   "box": [
+    200,
+    560,
+    500,
+    640
+   ]
+  }
  }
 }
