@@ -1,5 +1,7 @@
 # 地块目录（读图所得）
 
+> 本文是早期手工读图记录，已被 `resource/map_data/`（程序识别的结构化数据，含全部 108 张图）取代；类型名称以 `resource/map_data/tile_types.json` 为准。
+
 来源：直接查看 `resource/reference_maps_special/images/` 的 20 张特殊地图，以及 `tools/resource/reference_maps/images/` 的主线 1-2、3-5、5-6、7-9、9-3。图中每个格子自带中文标签，下表的**名称与外观为读图确认**；**功能**一栏凡标「推断」的，只是按名称和图标猜测，需要实机核对，不要据此写点击逻辑。主线其余 83 张图未逐张查看，章节差异见末尾。
 
 ## 通用地块

@@ -5,22 +5,13 @@
    "key": "player",
    "name": "当前位置",
    "category": "marker",
-   "appearance": "蓝色发光描边的人物头像水滴",
+   "appearance": "发光描边的人物头像水滴（蓝/粉/橙等光，头像因角色而异）",
    "function": "当前所在格",
    "function_confidence": "confirmed",
    "templates": [
-    "templates/player_1.png"
-   ]
-  },
-  {
-   "key": "other_pin",
-   "name": "其他头像标记",
-   "category": "marker",
-   "appearance": "粉色发光的人物头像水滴",
-   "function": "非主角的头像标记（见于特殊活动图）；用途未核对",
-   "function_confidence": "unknown",
-   "templates": [
-    "templates/other_pin_1.png"
+    "templates/player_1.png",
+    "templates/player_2.png",
+    "templates/player_3.png"
    ]
   },
   {
@@ -55,7 +46,8 @@
    "function_confidence": "name_only",
    "templates": [
     "templates/final_battle_1.png",
-    "templates/final_battle_2.png"
+    "templates/final_battle_2.png",
+    "templates/final_battle_3.png"
    ]
   },
   {
@@ -171,7 +163,8 @@
    "function": "拾取后可开锈蚀门扉",
    "function_confidence": "confirmed",
    "templates": [
-    "templates/rusty_key_1.png"
+    "templates/rusty_key_1.png",
+    "templates/rusty_key_2.png"
    ]
   },
   {
@@ -214,7 +207,7 @@
    "key": "extract",
    "name": "析出点",
    "category": "unknown",
-   "appearance": "菱形宝石 + 标签「析出点」",
+   "appearance": "菱形宝石 + 标签「析出点」（部分图标签为「亮晶晶」）",
    "function": "功能未知",
    "function_confidence": "unknown",
    "templates": [
@@ -334,7 +327,9 @@
    "function": "功能未知",
    "function_confidence": "unknown",
    "templates": [
-    "templates/inquisitor_1.png"
+    "templates/inquisitor_1.png",
+    "templates/inquisitor_2.png",
+    "templates/inquisitor_3.png"
    ]
   },
   {
