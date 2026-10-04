@@ -1,0 +1,4 @@
+{
+ "unreachable": ["ActEntry_left", "ActEntry_right", "CR_ToDaily", "NavBack", "NavStageNextChapter", "NavStagePrevChapter", "Soc_SkipLike"],
+ "unused_images": ["activity_act_back.png", "nav_stages_arrows.png", "nav_stages_compass.png", "social_mb_done_toast.png", "social_pf_liked_toast.png"]
+}

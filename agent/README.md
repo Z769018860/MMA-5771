@@ -44,6 +44,7 @@ python -m morimens_logic.policy --show --preset greedy                  # 查看
 | `event.hp_guard` | 血量低于此值时，受伤和症状的惩罚加重、回血加成翻倍 |
 | `event.overrides` | 按事件名指定偏好/回避选项；8-2 的必经监察点优先选择「诈降」，抵达探员格后默认选择「硬闯」 |
 | `event.blind_choice` | 读不到选项文字时按位置选：`first`/`middle`/`last`（默认最后一项，与原流程一致） |
+| `event.prefer_keywords`、`prefer_score` | 选项文字含这些词时加分（默认「打开开关」，探照灯是事件，选项是开关；不加分会因「离开」优先而浪费探照灯） |
 | `event.tie_break` | 分数相同时选离开/第一项/最后一项 |
 | `shop.mode` | `none` 不买 / `first` 只买第一个 / `all` 买全部 / `priority` 按名称优先级 |
 | `shop.max_purchases`、`reserve_currency` | 最多买几件、至少留多少货币 |

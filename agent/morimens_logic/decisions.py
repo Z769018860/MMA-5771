@@ -54,6 +54,8 @@ def score_option(policy, effects, label, hp_ratio):
     if label:
         if _keyword_hit(label, get(policy, "event.leave_keywords", [])):
             total += get(policy, "event.leave_score", 0.0)
+        if _keyword_hit(label, get(policy, "event.prefer_keywords", [])):
+            total += get(policy, "event.prefer_score", 0.0)
         if _keyword_hit(label, get(policy, "event.risky_keywords", [])):
             total += get(policy, "event.risky_score", 0.0)
     return total

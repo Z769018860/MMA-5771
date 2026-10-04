@@ -17,15 +17,18 @@
   "blind_choice": "last",
   "tie_break": "leave",
   "hp_guard": 0.35,
-  "weights": {"gain_artifact": 3.0, "gain_blackseal": 1.0, "heal": 2.0, "remove_threat": 2.0, "teleport": 0.0, "lose_health": -3.0, "gain_symptom": -4.0},
+  "weights": {"gain_artifact": 3.0, "reveal_map": 1.5, "gain_blackseal": 1.0, "heal": 2.0, "remove_threat": 2.0, "teleport": 0.0, "lose_health": -3.0, "gain_symptom": -4.0},
   "leave_keywords": ["离开", "转身离开", "无视", "拒绝", "撤退"],
   "risky_keywords": ["闯入", "硬闯", "伏击", "缴械"],
   "leave_score": 0.2,
+  "prefer_keywords": ["打开开关", "扩大当前视野"],
+  "prefer_score": 1.0,
   "risky_score": -0.5,
   "overrides": {
    "监察点": {"prefer": ["离开"], "avoid": []},
    "审查会探员": {"prefer": ["硬闯"], "avoid": ["缴械"]},
-   "血污之池": {"prefer": ["呼唤唤醒体"], "avoid": ["插入银钥匙"]}
+   "血污之池": {"prefer": ["呼唤唤醒体"], "avoid": ["插入银钥匙"]},
+   "探照灯": {"prefer": ["打开开关"], "avoid": []}
   }
  },
  "shop": {

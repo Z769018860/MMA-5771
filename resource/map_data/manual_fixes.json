@@ -1,9 +1,30 @@
 {
  "note": "目测核对后的人工修正，build_map_data.py 重建时会再次应用。remove：删除误识别的格子；格子用 (row, col) 定位，行列以重建前的 maps.json 为准。",
  "remove": [
-  {"map": "6-10", "row": 5, "col": 1, "type": "plain", "reason": "目测为背景纸张，不是格子（米色平滑块，自动规则无法与第 7 章米色空白格区分）"}
+  {
+   "map": "6-10",
+   "row": 5,
+   "col": 1,
+   "type": "plain",
+   "reason": "目测为背景纸张，不是格子（米色平滑块，自动规则无法与第 7 章米色空白格区分）"
+  }
  ],
  "confirmed": [
-  {"map": "7-6", "row": 1, "col": 16, "type": "plain", "reason": "目测确认是真实空白格"}
+  {
+   "map": "7-6",
+   "row": 1,
+   "col": 16,
+   "type": "plain",
+   "reason": "目测确认是真实空白格"
+  }
+ ],
+ "annotate": [
+  {
+   "map": "8-2",
+   "row": 3,
+   "col": 4,
+   "hidden_event": "监察点",
+   "reason": "实机：普通格上触发必经监察点，选诈降传送到羁押点（VALIDATION.md）"
+  }
  ]
 }

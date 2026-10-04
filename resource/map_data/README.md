@@ -9,6 +9,7 @@
 | `maps.json` | 108 张地图（忘却篇第 1–9 章 88 张，特殊活动 20 张），共 2879 个格子 |
 | `events.json` | 灰机 Wiki 剧情抄本的 367 条事件名与选项；281 条可关联现有地图，选项结果只抽取可明确识别的事实 |
 | `map_evidence.json` | 108 张地图原图 SHA-1、事件关联覆盖、路线检查状态的逐图证据 |
+| `live_observations.json` | 实机看到的事件选项和结果（目前只有 8-2），由 `tools/apply_live_observations.py` 合并进 `events.json` |
 | `tile_effects.json` | 每种地块的规划属性（可否通行、是否需要钥匙、传送、代价权重）、效果说明、可信度和来源 |
 | `route_check.json` | 108 张图的路线可达性检查结果 |
 | `VALIDATION.md` | 对事件数据、地图证据的校验报告和 5-11 的修复说明 |

@@ -65,6 +65,19 @@ class EventTests(unittest.TestCase):
         self.assertFalse(nav.required_for_goal((0, 1, 8), (0, 0, 7)))
         self.assertFalse(nav.blacklist)
 
+    def test_searchlight_event_is_taken_not_left(self):
+        # live 8-2: the searchlight is an event whose option reveals the map; a "leave" bias must not skip it
+        for title in ("探照灯", None):
+            d = decisions.choose_event_option(pol(), KN, title, ["打开开关", "离开"], 0.9, "8-2")
+            self.assertEqual(d.index, 0, title)
+
+    def test_live_observations_applied(self):
+        ev = {e["event"]: e for e in KN.events if e["map_id"] == "8-2"}
+        opt = next(o for o in ev["监察点"]["options"] if o["label"] == "诈降")
+        self.assertTrue(opt.get("live_verified"))
+        self.assertIn("gain_symptom", [x["type"] for x in opt["effects"]])
+        self.assertEqual(KN.maps["8-2"]["tiles"][[i for i, t in enumerate(KN.maps["8-2"]["tiles"]) if t.get("hidden_event")][0]]["hidden_event"], "监察点")
+
     def test_blind_choice_without_text(self):
         self.assertEqual(decisions.choose_event_option(pol(), KN, None, [None] * 3).index, 2)
         self.assertEqual(decisions.choose_event_option(pol(event={"blind_choice": "first"}), KN, None, [None] * 3).index, 0)

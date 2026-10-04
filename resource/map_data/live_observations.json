@@ -1,0 +1,25 @@
+{
+ "note": "Facts seen directly in the game client (not wiki transcripts). tools/apply_live_observations.py merges them into events.json (idempotent) and marks those options live_verified. Source: 2026-10-04 live run of 8-2 recorded in VALIDATION.md.",
+ "events": [
+  {"map_id": "8-2", "event": "监察点", "trigger": "hidden: stepping on the plain-looking tile (0,3,4); not on an icon tile",
+   "options": [
+    {"label": "离开", "result": "returns to the previous tile; the event shows again on the next entry"},
+    {"label": "诈降", "effects": [{"type": "teleport", "value": "羁押点"}, {"type": "gain_symptom", "value": "2"}], "result": "teleported to 羁押点; deck 17 -> 19"}]},
+  {"map_id": "8-2", "event": "审查会探员", "trigger": "tile (0,2,5) with the person icon; reachable only after the teleport",
+   "options": [
+    {"label": "硬闯", "effects": [{"type": "gain_madness_team", "value": "30"}, {"type": "gain_card", "value": "警觉 x2"}], "result": "tile becomes visited"},
+    {"label": "缴械", "result": "UI text: next battle enemies +60% HP, +30% damage (not chosen)"}],
+   "note": "wiki lists 伏击 as a third option; it was not offered in the live run"},
+  {"map_id": "8-2", "event": "沉入深渊",
+   "options": [
+    {"label": "呼吸", "effects": [{"type": "gain_artifact", "value": "时间之虫"}, {"type": "gain_symptom", "value": "瘾想"}], "result": "silver artifact: a command card entering hyper-dimension gives that character 15 madness"},
+    {"label": "反击"}, {"label": "挣扎"}]},
+  {"map_id": "8-2", "event": "入学仪式", "trigger": "enrollment tile (0,5,2)",
+   "options": [{"label": "阿利斯泰尔的祝福", "effects": [{"type": "gain_card", "value": "极夜微光"}], "result": "deck 16 -> 17; other 共鸣 branches not seen"}]},
+  {"map_id": "8-2", "event": "探照灯", "trigger": "searchlight tile (0,3,2)",
+   "options": [{"label": "打开开关", "effects": [{"type": "reveal_map"}], "result": "fog around the player disappears; radius not measured"}],
+   "note": "the searchlight is an event with an option, not an automatic effect: leaving would waste it"},
+  {"map_id": "8-2", "event": "联络点", "trigger": "contact tile (0,1,8)",
+   "options": [{"label": "接通", "effects": [{"type": "heal", "value": "235"}], "result": "hp 673 -> 908"}]}
+ ]
+}

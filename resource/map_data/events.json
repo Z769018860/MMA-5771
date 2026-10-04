@@ -7,10 +7,11 @@
  },
  "note": "事件名和选项来自维基抄本；效果只保留明确可抽取的事实。地图格上的通用事件图标无法确定会触发哪一个事件。",
  "counts": {
-  "events": 367,
+  "events": 370,
   "linked_to_map": 281,
   "with_options": 367,
-  "with_structured_effects": 236
+  "with_structured_effects": 236,
+  "live_verified_events": 6
  },
  "events": [
   {
@@ -9932,7 +9933,9 @@
     {
      "label": "离开",
      "effects": [],
-     "effect_confidence": "unclassified"
+     "effect_confidence": "unclassified",
+     "live_result": "returns to the previous tile; the event shows again on the next entry",
+     "live_verified": true
     },
     {
      "label": "诈降",
@@ -9946,7 +9949,9 @@
        "value": "2"
       }
      ],
-     "effect_confidence": "explicit_wiki_text"
+     "effect_confidence": "live_verified",
+     "live_result": "teleported to 羁押点; deck 17 -> 19",
+     "live_verified": true
     },
     {
      "label": "闯入",
@@ -9965,7 +9970,8 @@
    ],
    "source": "https://morimens.huijiwiki.com/wiki/%E7%BB%88%E6%9C%AB%E4%BA%A4%E5%93%8D%E6%9B%B2-02%C2%B7%E5%89%A7%E6%83%85",
    "source_kind": "wiki_story_transcript",
-   "source_confidence": "documented_not_live_verified"
+   "source_confidence": "wiki_plus_live",
+   "live_trigger": "hidden: stepping on the plain-looking tile (0,3,4); not on an icon tile"
   },
   {
    "map_id": "8-2",
@@ -9976,13 +9982,26 @@
    "options": [
     {
      "label": "硬闯",
-     "effects": [],
-     "effect_confidence": "unclassified"
+     "effects": [
+      {
+       "type": "gain_madness_team",
+       "value": "30"
+      },
+      {
+       "type": "gain_card",
+       "value": "警觉 x2"
+      }
+     ],
+     "effect_confidence": "live_verified",
+     "live_result": "tile becomes visited",
+     "live_verified": true
     },
     {
      "label": "缴械",
      "effects": [],
-     "effect_confidence": "unclassified"
+     "effect_confidence": "unclassified",
+     "live_result": "UI text: next battle enemies +60% HP, +30% damage (not chosen)",
+     "live_verified": true
     },
     {
      "label": "伏击",
@@ -10000,7 +10019,9 @@
    ],
    "source": "https://morimens.huijiwiki.com/wiki/%E7%BB%88%E6%9C%AB%E4%BA%A4%E5%93%8D%E6%9B%B2-02%C2%B7%E5%89%A7%E6%83%85",
    "source_kind": "wiki_story_transcript",
-   "source_confidence": "documented_not_live_verified"
+   "source_confidence": "wiki_plus_live",
+   "live_trigger": "tile (0,2,5) with the person icon; reachable only after the teleport",
+   "live_note": "wiki lists 伏击 as a third option; it was not offered in the live run"
   },
   {
    "map_id": "8-2",
@@ -10013,10 +10034,17 @@
      "label": "呼吸",
      "effects": [
       {
-       "type": "gain_artifact"
+       "type": "gain_artifact",
+       "value": "时间之虫"
+      },
+      {
+       "type": "gain_symptom",
+       "value": "瘾想"
       }
      ],
-     "effect_confidence": "explicit_wiki_text"
+     "effect_confidence": "live_verified",
+     "live_result": "silver artifact: a command card entering hyper-dimension gives that character 15 madness",
+     "live_verified": true
     },
     {
      "label": "反击",
@@ -10025,7 +10053,8 @@
        "type": "gain_artifact"
       }
      ],
-     "effect_confidence": "explicit_wiki_text"
+     "effect_confidence": "explicit_wiki_text",
+     "live_verified": true
     },
     {
      "label": "挣扎",
@@ -10035,12 +10064,13 @@
        "value": "25"
       }
      ],
-     "effect_confidence": "explicit_wiki_text"
+     "effect_confidence": "explicit_wiki_text",
+     "live_verified": true
     }
    ],
    "source": "https://morimens.huijiwiki.com/wiki/%E7%BB%88%E6%9C%AB%E4%BA%A4%E5%93%8D%E6%9B%B2-02%C2%B7%E5%89%A7%E6%83%85",
    "source_kind": "wiki_story_transcript",
-   "source_confidence": "documented_not_live_verified"
+   "source_confidence": "wiki_plus_live"
   },
   {
    "map_id": "8-3",
@@ -10700,6 +10730,81 @@
    "source": "https://morimens.huijiwiki.com/wiki/%E7%BB%88%E6%9C%AB%E4%BA%A4%E5%93%8D%E6%9B%B2-12%C2%B7%E5%89%A7%E6%83%85",
    "source_kind": "wiki_story_transcript",
    "source_confidence": "documented_not_live_verified"
+  },
+  {
+   "map_id": "8-2",
+   "map_link_confidence": "live_client",
+   "stage_page": null,
+   "event": "入学仪式",
+   "event_image": null,
+   "options": [
+    {
+     "label": "阿利斯泰尔的祝福",
+     "effects": [
+      {
+       "type": "gain_card",
+       "value": "极夜微光"
+      }
+     ],
+     "effect_confidence": "live_verified",
+     "live_result": "deck 16 -> 17; other 共鸣 branches not seen",
+     "live_verified": true
+    }
+   ],
+   "source": "live client",
+   "source_kind": "live_client",
+   "source_confidence": "live_verified",
+   "live_trigger": "enrollment tile (0,5,2)"
+  },
+  {
+   "map_id": "8-2",
+   "map_link_confidence": "live_client",
+   "stage_page": null,
+   "event": "探照灯",
+   "event_image": null,
+   "options": [
+    {
+     "label": "打开开关",
+     "effects": [
+      {
+       "type": "reveal_map"
+      }
+     ],
+     "effect_confidence": "live_verified",
+     "live_result": "fog around the player disappears; radius not measured",
+     "live_verified": true
+    }
+   ],
+   "source": "live client",
+   "source_kind": "live_client",
+   "source_confidence": "live_verified",
+   "live_trigger": "searchlight tile (0,3,2)",
+   "live_note": "the searchlight is an event with an option, not an automatic effect: leaving would waste it"
+  },
+  {
+   "map_id": "8-2",
+   "map_link_confidence": "live_client",
+   "stage_page": null,
+   "event": "联络点",
+   "event_image": null,
+   "options": [
+    {
+     "label": "接通",
+     "effects": [
+      {
+       "type": "heal",
+       "value": "235"
+      }
+     ],
+     "effect_confidence": "live_verified",
+     "live_result": "hp 673 -> 908",
+     "live_verified": true
+    }
+   ],
+   "source": "live client",
+   "source_kind": "live_client",
+   "source_confidence": "live_verified",
+   "live_trigger": "contact tile (0,1,8)"
   }
  ]
 }

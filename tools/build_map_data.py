@@ -45,9 +45,13 @@ def main():
             tiles = [t for t in R.build_tiles(image, R.detect_icons(image, templates))]
             fixes = [f for f in MANUAL["remove"] if f["map"] == name]
             tiles = [t for t in tiles if not any(t["row"] == f["row"] and t["col"] == f["col"] and t["type"] == f["type"] for f in fixes)]
+            for a in (x for x in MANUAL.get("annotate", []) if x["map"] == name):
+                for t in tiles:
+                    if t["row"] == a["row"] and t["col"] == a["col"]:
+                        t["hidden_event"] = a["hidden_event"]
             maps[name] = {"id": name, **meta(name), "image_size": [image.shape[1], image.shape[0]],
                           "tile_count": len(tiles), "counts": dict(collections.Counter(t["type"] for t in tiles)),
-                          "tiles": [{k: t[k] for k in ("type", "island", "row", "col", "x", "y")} for t in tiles]}
+                          "tiles": [{k: t[k] for k in ("type", "island", "row", "col", "x", "y", "hidden_event") if k in t} for t in tiles]}
             print(name, len(tiles), flush=True)
     args.out.write_text(json.dumps({"maps": maps}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
