@@ -3,6 +3,7 @@
     "recognition": "DirectHit",
     "action": "DoNothing",
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "HomeScreen",
       "ActivityScreen",
@@ -11,15 +12,18 @@
       "MaterialPopupRecovery",
       "ChooseFeather",
       "ChooseMadness",
+      "OpenAssistPurple",
+      "OpenAssistRed",
       "OpenAssist",
       "ChooseFirstAssist",
       "CharacterDetailRecovery",
       "DeployAssist",
       "QuickFormationRecovery",
+      "InvestigationWarningUnchecked",
+      "InvestigationWarningChecked",
       "HideCards",
       "BattleStartSignal",
       "ReviveDecision",
-      "FailureChoice",
       "FinishInvestigation",
       "StopHere"
     ]
@@ -226,22 +230,64 @@
     ],
     "post_delay": 1800,
     "next": [
+      "OpenAssistPurple",
+      "OpenAssistRed",
       "OpenAssist"
     ]
+  },
+  "OpenAssistPurple": {
+    "recognition": "And",
+    "all_of": [
+      {"recognition": "TemplateMatch", "template": "investigate.png", "roi": [950, 610, 270, 105], "threshold": 0.82, "method": 10001},
+      {"recognition": "TemplateMatch", "template": "formation_realm_purple.png", "roi": [250, 140, 750, 50], "threshold": 0.90, "method": 10001}
+    ],
+    "box_index": 1,
+    "timeout": 60000,
+    "rate_limit": 600,
+    "action": "Click",
+    "target": [1120, 315, 45, 35],
+    "post_delay": 1300,
+    "next": ["FilterAssistPurple"],
+    "focus": {"Node.Action.Succeeded": "编队中识别到紫色界域，打开助战并切换相同界域。"}
+  },
+  "OpenAssistRed": {
+    "recognition": "And",
+    "all_of": [
+      {"recognition": "TemplateMatch", "template": "investigate.png", "roi": [950, 610, 270, 105], "threshold": 0.82, "method": 10001},
+      {"recognition": "TemplateMatch", "template": "formation_realm_red.png", "roi": [250, 140, 750, 50], "threshold": 0.90, "method": 10001}
+    ],
+    "box_index": 1,
+    "timeout": 60000,
+    "rate_limit": 600,
+    "action": "Click",
+    "target": [1120, 315, 45, 35],
+    "post_delay": 1300,
+    "next": ["FilterAssistRed"],
+    "focus": {"Node.Action.Succeeded": "编队中识别到红色界域，打开助战并切换相同界域。"}
+  },
+  "FilterAssistPurple": {
+    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
+    "threshold": 0.62, "method": 10001, "action": "Click", "target": [558, 109, 16, 16],
+    "post_delay": 900, "next": ["ChooseFirstAssist"]
+  },
+  "FilterAssistRed": {
+    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
+    "threshold": 0.62, "method": 10001, "action": "Click", "target": [464, 109, 16, 16],
+    "post_delay": 900, "next": ["ChooseFirstAssist"]
   },
   "OpenAssist": {
     "recognition": "And",
     "all_of": [
       {
         "recognition": "TemplateMatch",
-        "template": "formation_team_info.png",
+        "template": "investigate.png",
         "roi": [
-          390,
-          10,
-          180,
-          75
+          950,
+          610,
+          270,
+          105
         ],
-        "threshold": 0.78,
+        "threshold": 0.82,
         "method": 10001
       },
       {
@@ -288,19 +334,35 @@
     "rate_limit": 600,
     "action": "Click",
     "target": [
-      815,
-      195,
-      45,
-      35
+      850,
+      190,
+      25,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CharacterDetailRecovery",
-      "DeployAssist"
+      "DeployAssist",
+      "ChooseSecondAssist"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击第一行助战条目中同步率与玩家头像之间的空白区域；仅在【上场】按钮亮起后继续。"
+      "Node.Action.Succeeded": "已选择第一行同界域助战；若上场未亮起，继续尝试下一行。"
     }
+  },
+  "ChooseSecondAssist": {
+    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
+    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 305, 25, 30],
+    "post_delay": 900, "next": ["DeployAssist", "ChooseThirdAssist"]
+  },
+  "ChooseThirdAssist": {
+    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
+    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 420, 25, 30],
+    "post_delay": 900, "next": ["DeployAssist", "ChooseFourthAssist"]
+  },
+  "ChooseFourthAssist": {
+    "recognition": "TemplateMatch", "template": "select_assist.png", "roi": [0, 0, 400, 110],
+    "threshold": 0.62, "method": 10001, "action": "Click", "target": [850, 535, 25, 30],
+    "post_delay": 900, "next": ["DeployAssist", "TimeoutExport"]
   },
   "CharacterDetailRecovery": {
     "recognition": "TemplateMatch",
@@ -395,7 +457,7 @@
           255,
           95
         ],
-        "threshold": 0.78,
+        "threshold": 0.97,
         "method": 10001
       }
     ],
@@ -440,7 +502,7 @@
           255,
           95
         ],
-        "threshold": 0.68,
+        "threshold": 0.97,
         "method": 10001
       }
     ],
@@ -488,34 +550,16 @@
     ]
   },
   "StartInvestigation": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "TemplateMatch",
-        "template": "formation_team_info.png",
-        "roi": [
-          390,
-          10,
-          180,
-          75
-        ],
-        "threshold": 0.78,
-        "method": 10001
-      },
-      {
-        "recognition": "TemplateMatch",
-        "template": "investigate.png",
-        "roi": [
-          950,
-          610,
-          270,
-          105
-        ],
-        "threshold": 0.82,
-        "method": 10001
-      }
+    "recognition": "TemplateMatch",
+    "template": "investigate.png",
+    "roi": [
+      950,
+      610,
+      270,
+      105
     ],
-    "box_index": 1,
+    "threshold": 0.82,
+    "method": 10001,
     "timeout": 90000,
     "rate_limit": 700,
     "action": "Click",
@@ -527,16 +571,41 @@
     ],
     "post_delay": 2000,
     "next": [
+      "InvestigationWarningUnchecked",
+      "InvestigationWarningChecked",
       "HideCards",
       "BattleStartSignal",
       "ReviveDecision",
-      "FailureChoice",
       "FinishInvestigation"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "判定结果：检测到编队界面的【调查】按钮（阈值 0.46）。",
       "Node.Action.Succeeded": "调查按钮已点击，等待最高警报或战斗初始化界面。"
     }
+  },
+  "InvestigationWarningUnchecked": {
+    "recognition": "TemplateMatch",
+    "template": "investigation_warning_unchecked.png",
+    "roi": [545, 395, 185, 60],
+    "threshold": 0.93,
+    "method": 10001,
+    "action": "Click",
+    "target": [570, 414, 18, 20],
+    "post_delay": 400,
+    "next": ["InvestigationWarningChecked"],
+    "focus": {"Node.Action.Succeeded": "调查等级提醒：已勾选今日不再提醒。"}
+  },
+  "InvestigationWarningChecked": {
+    "recognition": "TemplateMatch",
+    "template": "investigation_warning_checked.png",
+    "roi": [545, 395, 185, 60],
+    "threshold": 0.93,
+    "method": 10001,
+    "action": "Click",
+    "target": [800, 475, 60, 35],
+    "post_delay": 1800,
+    "next": ["HideCards", "BattleStartSignal", "ReviveDecision", "FinishInvestigation"],
+    "focus": {"Node.Action.Succeeded": "调查等级提醒：确认继续调查。"}
   },
   "BattleStartSignal": {
     "recognition": "TemplateMatch",
@@ -567,7 +636,6 @@
       "AutoAlreadyOn",
       "AutoControlReady",
       "ReviveDecision",
-      "FailureChoice",
       "FinishInvestigation"
     ],
     "focus": {
@@ -591,7 +659,6 @@
     "next": [
       "BattleWarning",
       "ReviveDecision",
-      "FailureChoice",
       "FinishInvestigation",
       "PostWarningWait"
     ],
@@ -616,7 +683,6 @@
       "AutoAlreadyOn",
       "AutoControlReady",
       "ReviveDecision",
-      "FailureChoice",
       "FinishInvestigation"
     ],
     "focus": {
@@ -625,22 +691,22 @@
   },
   "HideCards": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards_panel_live.png",
+    "template": "battle_hide_cards_live.png",
     "roi": [
-      1080,
-      520,
-      160,
-      125
+      1110,
+      410,
+      170,
+      110
     ],
-    "threshold": 0.72,
+    "threshold": 0.85,
     "timeout": 180000,
     "rate_limit": 700,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1205,
+      475,
+      25,
+      18
     ],
     "post_delay": 900,
     "next": [
@@ -648,7 +714,7 @@
     ],
     "focus": {
       "Node.Recognition.Succeeded": "检测到完整的【隐藏卡牌】文字与眼睛面板，而不是战斗右下角常驻图标。",
-      "Node.Action.Succeeded": "已按原稳定区域点击隐藏卡牌眼睛面板；下一步回查选择页面是否真的消失。"
+      "Node.Action.Succeeded": "已点击右侧隐藏卡牌眼睛按钮；回查面板关闭后再开启 AUTO。"
     },
     "method": 10001
   },
@@ -667,21 +733,21 @@
   },
   "HideCardsRetry": {
     "recognition": "TemplateMatch",
-    "template": "hide_cards_panel_live.png",
+    "template": "battle_hide_cards_live.png",
     "roi": [
-      1080,
-      520,
-      160,
-      125
+      1110,
+      410,
+      170,
+      110
     ],
-    "threshold": 0.72,
+    "threshold": 0.85,
     "method": 10001,
     "action": "Click",
     "target": [
-      1125,
-      585,
-      60,
-      38
+      1205,
+      475,
+      25,
+      18
     ],
     "post_delay": 900,
     "next": [
@@ -753,11 +819,35 @@
     "connected": false,
     "action": "DoNothing",
     "next": [
+      "BattleSpeedOne",
+      "BattleSpeedTwo",
       "BattleMonitor"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "确认 AUTO 文字已变为白色亮起状态，进入战斗监控。"
     }
+  },
+  "BattleSpeedOne": {
+    "recognition": "TemplateMatch",
+    "template": "battle_speed_one.png",
+    "roi": [120, 635, 60, 60],
+    "threshold": 0.82,
+    "method": 10001,
+    "action": "Click",
+    "target": [142, 653, 12, 20],
+    "post_delay": 700,
+    "next": ["BattleSpeedTwo", "BattleMonitor"],
+    "focus": {"Node.Action.Succeeded": "战斗处于一倍速，已点击左下角切换为二倍速。"}
+  },
+  "BattleSpeedTwo": {
+    "recognition": "TemplateMatch",
+    "template": "battle_speed_two.png",
+    "roi": [120, 635, 60, 60],
+    "threshold": 0.80,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": ["BattleMonitor"],
+    "focus": {"Node.Recognition.Succeeded": "确认战斗左下角显示二倍速状态。"}
   },
   "AutoRetryClick": {
     "recognition": "TemplateMatch",
@@ -973,6 +1063,7 @@
     ],
     "post_delay": 2500,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseMadness",
       "FinishCurrentButton",
@@ -1003,6 +1094,7 @@
     ],
     "post_delay": 2500,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseMadness",
       "FinishCurrentButton",
@@ -1024,6 +1116,7 @@
     "pre_delay": 800,
     "post_delay": 2500,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseMadness",
       "FinishCurrentButton",

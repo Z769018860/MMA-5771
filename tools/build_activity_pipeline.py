@@ -14,13 +14,14 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "activity.json"
-AFTER = ["CycleStart", "ChooseFeather", "ChooseMadness", "OpenAssist"]   # pages the old loop already knows how to continue from
+AFTER = ["ActOathDetail", "CycleStart", "ChooseFeather", "ChooseMadness", "OpenAssist"]
 
 
 def build():
@@ -28,9 +29,16 @@ def build():
     images, nodes, rects, thr = {}, {}, {}, {}
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imread(str(NAV / "samples" / sc["sample"]))
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
-        images[f"activity_{t['id']}.png"] = img[y0:y1, x0:x1]
+        sample = NAV / "samples" / sc["sample"]
+        img = cv2.imdecode(np.fromfile(sample, dtype=np.uint8), cv2.IMREAD_COLOR) if sample.is_file() else None
+        output = IMAGE / f"activity_{t['id']}.png"
+        if img is not None:
+            images[output.name] = img[y0:y1, x0:x1]
+        elif output.is_file():
+            images[output.name] = cv2.imdecode(np.fromfile(output, dtype=np.uint8), cv2.IMREAD_COLOR)
+        else:
+            raise FileNotFoundError(f"missing activity sample and template: {sample}, {output}")
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
         thr[t["id"]] = t.get("threshold", 0.8)
 
@@ -78,6 +86,26 @@ def build():
                                 "focus": {"Node.Action.Succeeded": f"已点击活动关卡节点 {i}。"}}
         nodes[f"ActNodeRetry{i}"] = {**nodes[f"ActNode{i}"], "timeout": 15000, "next": AFTER,
                                      "focus": {"Node.Action.Succeeded": f"节点 {i} 没有进入下一页，再点一次。"}}
+    # The current 巨古誓言 activity has a second difficulty list after the event node.
+    # Prefer 癫狂; while locked, clear the immediately preceding 之六 first.
+    nodes["ActOathDetail"] = {"recognition": "TemplateMatch", "template": "activity_oath_title.png",
+                              "roi": [0, 15, 230, 80], "threshold": 0.88, "method": 10001,
+                              "action": "DoNothing", "next": ["ActOathScrollBottom"]}
+    nodes["ActOathScrollBottom"] = {"recognition": "DirectHit", "action": "Swipe",
+                                    "begin": [185, 585, 20, 20], "end": [185, 165, 20, 20], "duration": 450,
+                                    "post_delay": 800,
+                                    "next": ["ActOathMadnessSelected", "ActOathMadnessUnlocked", "ActOathSix"]}
+    nodes["ActOathMadnessSelected"] = {"recognition": "TemplateMatch",
+                                         "template": "activity_oath_madness_selected.png",
+                                         "roi": [400, 85, 300, 95], "threshold": 0.95, "method": 10001,
+                                         "action": "DoNothing", "next": ["CycleStart"]}
+    nodes["ActOathMadnessUnlocked"] = {"recognition": "TemplateMatch",
+                                         "template": "activity_oath_madness_unlocked.png",
+                                         "roi": [40, 575, 380, 95], "threshold": 0.90, "method": 10001,
+                                         **click(200, 610, 15), "post_delay": 700,
+                                         "next": ["ActOathMadnessSelected", "ActOathSix"]}
+    nodes["ActOathSix"] = {"recognition": "DirectHit", **click(200, 520, 15),
+                           "post_delay": 700, "next": ["CycleStart"]}
     return images, nodes
 
 
@@ -96,7 +124,7 @@ def main():
         return
     for name, img in images.items():
         cv2.imwrite(str(IMAGE / name), img)
-    OUT.write_text(text, encoding="utf-8")
+    OUT.write_bytes(text.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 
 

@@ -176,6 +176,7 @@
     "post_delay": 2200,
     "next": [
       "ActStagePage",
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -198,6 +199,7 @@
     "post_delay": 2200,
     "next": [
       "ActStagePage",
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -220,6 +222,7 @@
     "post_delay": 2200,
     "next": [
       "ActStagePage",
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -257,6 +260,7 @@
     "post_delay": 2200,
     "next": [
       "ActStagePage",
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -337,6 +341,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -373,6 +378,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -409,6 +415,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -445,6 +452,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -481,6 +489,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -517,6 +526,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -553,6 +563,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -589,6 +600,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -625,6 +637,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -661,6 +674,7 @@
     ],
     "post_delay": 2200,
     "next": [
+      "ActOathDetail",
       "CycleStart",
       "ChooseFeather",
       "ChooseMadness",
@@ -670,5 +684,98 @@
       "Node.Action.Succeeded": "节点 5 没有进入下一页，再点一次。"
     },
     "timeout": 15000
+  },
+  "ActOathDetail": {
+    "recognition": "TemplateMatch",
+    "template": "activity_oath_title.png",
+    "roi": [
+      0,
+      15,
+      230,
+      80
+    ],
+    "threshold": 0.88,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "ActOathScrollBottom"
+    ]
+  },
+  "ActOathScrollBottom": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      185,
+      585,
+      20,
+      20
+    ],
+    "end": [
+      185,
+      165,
+      20,
+      20
+    ],
+    "duration": 450,
+    "post_delay": 800,
+    "next": [
+      "ActOathMadnessSelected",
+      "ActOathMadnessUnlocked",
+      "ActOathSix"
+    ]
+  },
+  "ActOathMadnessSelected": {
+    "recognition": "TemplateMatch",
+    "template": "activity_oath_madness_selected.png",
+    "roi": [
+      400,
+      85,
+      300,
+      95
+    ],
+    "threshold": 0.95,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "CycleStart"
+    ]
+  },
+  "ActOathMadnessUnlocked": {
+    "recognition": "TemplateMatch",
+    "template": "activity_oath_madness_unlocked.png",
+    "roi": [
+      40,
+      575,
+      380,
+      95
+    ],
+    "threshold": 0.9,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      185,
+      595,
+      30,
+      30
+    ],
+    "post_delay": 700,
+    "next": [
+      "ActOathMadnessSelected",
+      "ActOathSix"
+    ]
+  },
+  "ActOathSix": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      185,
+      505,
+      30,
+      30
+    ],
+    "post_delay": 700,
+    "next": [
+      "CycleStart"
+    ]
   }
 }

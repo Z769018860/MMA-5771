@@ -187,6 +187,7 @@
             },
             "EntryRouter": {
               "next": [
+                "ActOathDetail",
                 "CycleStart",
                 "HomeScreen",
                 "ActivityScreen",
@@ -197,6 +198,8 @@
                 "ChooseMadness",
                 "StartInvestigation",
                 "QuickFormationRecovery",
+                "InvestigationWarningUnchecked",
+                "InvestigationWarningChecked",
                 "BattleWarning",
                 "ReviveDecision",
                 "FailureChoice",
