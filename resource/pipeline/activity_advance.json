@@ -69,7 +69,8 @@
     "method": 10001,
     "action": "DoNothing",
     "next": [
-      "AA_CurrentEvent"
+      "AA_CurrentEvent",
+      "ActSlot"
     ]
   },
   "AA_CurrentEvent": {
@@ -92,7 +93,8 @@
     ],
     "post_delay": 900,
     "next": [
-      "AA_GoldEntry"
+      "AA_GoldEntry",
+      "ActEntry"
     ]
   },
   "AA_GoldEntry": {

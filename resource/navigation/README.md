@@ -169,3 +169,18 @@ python tools/test_daily.py
 - 共鸣石不足时点【激活】会怎样没有样本；通关结算页回关卡列表的流程也没有样本。
 - 弹窗命令只在测试里验证了编码内容，没在 Windows 上实跑。
 - 付费复活弹窗（应急灵知体耗尽后的材料兑换）：主线任务把 `AA_PaidRevive`（来自活动推进的实机验证）排在 `StoryReviveDecision` 前面，出现时弹窗预警并停止，不会点击兑换确认。该组合只在合并后的资源里做了结构校验和流程测试，没有在主线里实机触发过。
+
+## 活动推进（可配置，适配其他活动）
+
+「自动活动推进」由 `resource/navigation/activity_profiles/*.json`（每个活动一份）经 `tools/build_activity_advance.py` 生成，当前自带 `aa.json`（倘若荣光不复，9 关；重构前后生成的流水线逐字一致，只多了下面的通用兜底）。
+
+合并与通用化：
+- 入口：原来只认「倘若荣光不复」专属的列表项/金色入口图；现在认不到就落到同调率循环用的通用节点（`ActSlot` 选活动列表第几项、`ActEntry` 点左/右玩法入口），任务里带了「活动列表项」「活动玩法入口」两个选项。通用入口落到的关卡页也会被识别为本活动的关卡页。
+- 关卡序列由配置决定：关卡数、每关点击位置、点击前的滚动（`reset_swipes` + 每关 `swipes`）。
+- 不再要求每关都有标题模板：没有 `title` 的关卡按顺序结算（`AA_CompletedN` 只能命中一次），有 `title` 的仍按标题+癫狂选中判断。
+- 付费复活预警、战败即停、应急灵知体选项、之六→癫狂的难度策略对所有活动共用。
+- 多个活动互不冲突：每份配置有自己的节点前缀和流水线文件。
+
+适配新活动：复制 `_template.json` 为 `<id>.json`，改 `id`/`prefix`/任务名/`stages`/模板图名，把需要的模板截图放进 `resource/image/`，运行 `python tools/build_activity_advance.py`，再跑 `python tools/test_activity_advance.py` 做结构检查，最后用 `tools/verify_activity_advance.py` 实机验证。
+
+没有验证的部分：新增的通用入口兜底、按顺序结算（`max_hit`）都只做了结构测试，没有实机跑过；换活动时关卡页模板、关卡坐标和滚动方式必须按新活动的截图重新填。

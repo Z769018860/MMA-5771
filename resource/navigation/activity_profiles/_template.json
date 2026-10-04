@@ -1,0 +1,170 @@
+{
+ "_doc": "新活动模板：复制为 <id>.json（不要以下划线开头），改 id/prefix(2-4 个大写字母，必须唯一)/label/任务名/stages/templates 图片名后运行 python tools/build_activity_advance.py。stages 每项：label、click=[x,y]（关卡在列表里的点击位置，1280x720）、swipes=[[起点x,终点x],…]（点击前要做的滚动，在 reset_swipes 之后执行）、title（可选，详情页标题模板；不给则按顺序结算）。",
+ "id": "new",
+ "prefix": "AB",
+ "label": "新活动名",
+ "pipeline": "activity_advance_new.json",
+ "task_all": {
+  "name": "自动活动推进[新活动]全部",
+  "label": "新活动：第 1–{n} 关",
+  "description": "依次挑战第 1–{n} 关。"
+ },
+ "task_stage": {
+  "name": "自动活动推进[新活动]第{i}关",
+  "label": "新活动第 {i} 关：{title}",
+  "description": "仅挑战这一关。"
+ },
+ "templates": {
+  "stage_page": {
+   "image": "activity_advance_stage_page.png",
+   "roi": [
+    0,
+    15,
+    310,
+    85
+   ],
+   "threshold": 0.86
+  },
+  "gold_entry": {
+   "image": "activity_advance_gold_entry.png",
+   "roi": [
+    930,
+    610,
+    320,
+    80
+   ],
+   "threshold": 0.78,
+   "click": [
+    1095,
+    647,
+    22
+   ]
+  },
+  "current_item": {
+   "image": "activity_advance_current_item.png",
+   "roi": [
+    0,
+    340,
+    250,
+    320
+   ],
+   "threshold": 0.8,
+   "click": [
+    90,
+    450,
+    15
+   ]
+  },
+  "locked": {
+   "image": "activity_advance_locked.png",
+   "roi": [
+    40,
+    560,
+    390,
+    105
+   ],
+   "threshold": 0.88
+  },
+  "paid_revival": {
+   "image": "activity_advance_paid_revival.png",
+   "roi": [
+    350,
+    245,
+    600,
+    120
+   ],
+   "threshold": 0.85
+  },
+  "detail_back": {
+   "image": "challenge.png",
+   "roi": [
+    930,
+    550,
+    340,
+    160
+   ],
+   "threshold": 0.53,
+   "click": [
+    1238,
+    38,
+    10
+   ]
+  },
+  "home": {
+   "image": "home_marker.png",
+   "roi": [
+    1040,
+    70,
+    235,
+    210
+   ],
+   "threshold": 0.48,
+   "click": [
+    160,
+    477,
+    12
+   ]
+  },
+  "activity_page": {
+   "image": "activity_act_title.png",
+   "roi": [
+    65,
+    0,
+    210,
+    80
+   ],
+   "threshold": 0.79
+  }
+ },
+ "title_default": {
+  "roi": [
+   0,
+   20,
+   310,
+   80
+  ],
+  "threshold": 0.87
+ },
+ "swipe_y": 512,
+ "reset_swipes": [
+  [
+   240,
+   1040
+  ],
+  [
+   240,
+   1040
+  ]
+ ],
+ "stages": [
+  {
+   "label": "第一关",
+   "click": [
+    168,
+    512
+   ],
+   "swipes": []
+  },
+  {
+   "label": "第二关",
+   "click": [
+    438,
+    512
+   ],
+   "swipes": []
+  },
+  {
+   "label": "第三关",
+   "click": [
+    708,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     560
+    ]
+   ]
+  }
+ ]
+}

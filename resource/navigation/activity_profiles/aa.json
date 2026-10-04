@@ -1,0 +1,281 @@
+{
+ "_doc": "活动推进配置。换一个活动时复制本文件改 id/prefix/stages，并准备对应模板图，见 resource/navigation/README.md「活动推进（可配置）」。",
+ "id": "aa",
+ "prefix": "AA",
+ "label": "倘若荣光不复",
+ "pipeline": "activity_advance.json",
+ "task_all": {
+  "name": "自动活动推进全部",
+  "label": "活动自动推进：第 1–{n} 关",
+  "description": "倘若荣光不复：依次挑战第 1–{n} 关癫狂；未解锁则先打之六。战败即停止。"
+ },
+ "task_stage": {
+  "name": "自动活动推进第{i}关",
+  "label": "活动第 {i} 关：{title}",
+  "description": "仅挑战这一关；癫狂未解锁时先打之六。"
+ },
+ "templates": {
+  "stage_page": {
+   "image": "activity_advance_stage_page.png",
+   "roi": [
+    0,
+    15,
+    310,
+    85
+   ],
+   "threshold": 0.86
+  },
+  "gold_entry": {
+   "image": "activity_advance_gold_entry.png",
+   "roi": [
+    930,
+    610,
+    320,
+    80
+   ],
+   "threshold": 0.78,
+   "click": [
+    1095,
+    647,
+    22
+   ]
+  },
+  "current_item": {
+   "image": "activity_advance_current_item.png",
+   "roi": [
+    0,
+    340,
+    250,
+    320
+   ],
+   "threshold": 0.8,
+   "click": [
+    90,
+    450,
+    15
+   ]
+  },
+  "locked": {
+   "image": "activity_advance_locked.png",
+   "roi": [
+    40,
+    560,
+    390,
+    105
+   ],
+   "threshold": 0.88
+  },
+  "paid_revival": {
+   "image": "activity_advance_paid_revival.png",
+   "roi": [
+    350,
+    245,
+    600,
+    120
+   ],
+   "threshold": 0.85
+  },
+  "detail_back": {
+   "image": "challenge.png",
+   "roi": [
+    930,
+    550,
+    340,
+    160
+   ],
+   "threshold": 0.53,
+   "click": [
+    1238,
+    38,
+    10
+   ]
+  },
+  "home": {
+   "image": "home_marker.png",
+   "roi": [
+    1040,
+    70,
+    235,
+    210
+   ],
+   "threshold": 0.48,
+   "click": [
+    160,
+    477,
+    12
+   ]
+  },
+  "activity_page": {
+   "image": "activity_act_title.png",
+   "roi": [
+    65,
+    0,
+    210,
+    80
+   ],
+   "threshold": 0.79
+  }
+ },
+ "title_default": {
+  "roi": [
+   0,
+   20,
+   310,
+   80
+  ],
+  "threshold": 0.87
+ },
+ "swipe_y": 512,
+ "reset_swipes": [
+  [
+   240,
+   1040
+  ],
+  [
+   240,
+   1040
+  ]
+ ],
+ "stages": [
+  {
+   "label": "危险席位",
+   "click": [
+    168,
+    512
+   ],
+   "swipes": [],
+   "title": {
+    "image": "activity_advance_title_1.png"
+   }
+  },
+  {
+   "label": "向怨朝圣",
+   "click": [
+    438,
+    512
+   ],
+   "swipes": [],
+   "title": {
+    "image": "activity_advance_title_2.png"
+   }
+  },
+  {
+   "label": "战余的枯骨",
+   "click": [
+    708,
+    512
+   ],
+   "swipes": [],
+   "title": {
+    "image": "activity_advance_title_3.png"
+   }
+  },
+  {
+   "label": "妖影的诱惑",
+   "click": [
+    978,
+    512
+   ],
+   "swipes": [],
+   "title": {
+    "image": "activity_advance_title_4.png"
+   }
+  },
+  {
+   "label": "荒原尽头",
+   "click": [
+    456,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     560
+    ]
+   ],
+   "title": {
+    "image": "activity_advance_title_5.png"
+   }
+  },
+  {
+   "label": "未赴之约",
+   "click": [
+    230,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     280
+    ],
+    [
+     1080,
+     280
+    ]
+   ],
+   "title": {
+    "image": "activity_advance_title_6.png"
+   }
+  },
+  {
+   "label": "暗塔",
+   "click": [
+    500,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     280
+    ],
+    [
+     1080,
+     280
+    ]
+   ],
+   "title": {
+    "image": "activity_advance_title_7.png"
+   }
+  },
+  {
+   "label": "归于光中",
+   "click": [
+    770,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     280
+    ],
+    [
+     1080,
+     280
+    ]
+   ],
+   "title": {
+    "image": "activity_advance_title_8.png"
+   }
+  },
+  {
+   "label": "无形的骑士",
+   "click": [
+    1040,
+    512
+   ],
+   "swipes": [
+    [
+     1080,
+     280
+    ],
+    [
+     1080,
+     280
+    ]
+   ],
+   "title": {
+    "image": "activity_advance_title_9.png"
+   }
+  }
+ ]
+}

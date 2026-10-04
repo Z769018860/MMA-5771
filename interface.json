@@ -214,7 +214,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -262,6 +264,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         }
       },
@@ -273,7 +322,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -321,6 +372,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -340,7 +438,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -388,6 +488,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -407,7 +554,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -455,6 +604,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -474,7 +670,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -522,6 +720,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -541,7 +786,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -589,6 +836,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -608,7 +902,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -656,6 +952,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -675,7 +1018,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -723,6 +1068,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -742,7 +1134,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -790,6 +1184,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
@@ -809,7 +1250,9 @@
       "entry": "AA_Start",
       "option": [
         "同调率助战",
-        "活动应急灵知体"
+        "活动应急灵知体",
+        "活动列表项",
+        "活动玩法入口"
       ],
       "default_check": false,
       "repeatable": false,
@@ -857,6 +1300,53 @@
         "StopHere": {
           "next": [
             "AA_BattleFailed"
+          ]
+        },
+        "ActEntry_right": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry_left": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist",
+            "ActEntryRetry"
+          ]
+        },
+        "ActEntryRetry": {
+          "next": [
+            "AA_StagePage",
+            "ActStagePage",
+            "ActOathDetail",
+            "CycleStart",
+            "ChooseFeather",
+            "ChooseMadness",
+            "OpenAssist"
           ]
         },
         "AA_StagePage": {
