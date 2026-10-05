@@ -1,0 +1,8560 @@
+{
+ "_doc": "由 tools/build_event_rules.py 从 resource/map_data/events.json 生成，请不要手改；要改某个事件的选择，在 config/explore_policy.json 的 event.overrides 里写同名事件（硬规则，优先于这里的软规则）。关闭这些规则：event.use_known_rules=false。",
+ "weights_used": {
+  "gain_artifact": 3.0,
+  "reveal_map": 1.5,
+  "gain_blackseal": 1.0,
+  "heal": 2.0,
+  "remove_threat": 2.0,
+  "teleport": 0.0,
+  "lose_health": -3.0,
+  "gain_symptom": -4.0
+ },
+ "rules": {
+  "N的寄语": {
+   "basis": "effects",
+   "prefer": [
+    "还是算了"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "赌一把",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "还是算了",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "「主体融合」": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [],
+   "options": [
+    {
+     "label": "闪亮的记忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "暗淡的记忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "「催眠蛇」": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [],
+   "options": [
+    {
+     "label": "进入催眠",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "「清醒梦」": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [],
+   "options": [
+    {
+     "label": "拒绝尝试",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "砸碎溶剂",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "接受实验",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "「自性觉知」": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [],
+   "options": [
+    {
+     "label": "回应声音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "「莎莎姐姐」": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-10"
+   ],
+   "options": [
+    {
+     "label": "静静听着",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "她在这儿",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "一路向北": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-3"
+   ],
+   "options": [
+    {
+     "label": "向北狂奔",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "忽略声音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "三枚祭品": {
+   "basis": "effects",
+   "prefer": [
+    "消灭祭品"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-16"
+   ],
+   "options": [
+    {
+     "label": "消灭祭品",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "解开绳索",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "继续前进",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "不可视的黑暗": {
+   "basis": "effects",
+   "prefer": [
+    "同她商量"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "诸事如常02"
+   ],
+   "options": [
+    {
+     "label": "听从她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "反对她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "同她商量",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "不安的胸针": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-5"
+   ],
+   "options": [
+    {
+     "label": "检查碎片",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "询问朵尔",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "无视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "不应存在之物": {
+   "basis": "effects",
+   "prefer": [
+    "挥手驱赶"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-6"
+   ],
+   "options": [
+    {
+     "label": "任由停留",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "挥手驱赶",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "迎接蝴蝶",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "不请自来的警告": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-9"
+   ],
+   "options": [
+    {
+     "label": "把纸抽出来",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "现在不是时候",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "不速来信": {
+   "basis": "effects",
+   "prefer": [
+    "阅读书信"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-8"
+   ],
+   "options": [
+    {
+     "label": "阅读书信",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "关好箱子",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "临终嘱托": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "答应它",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "拒绝它",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "保持沉默",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "乔治的幽灵": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "向它道歉",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "嘲讽它",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "习作": {
+   "basis": "effects",
+   "prefer": [
+    "主动迎战"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-14"
+   ],
+   "options": [
+    {
+     "label": "主动迎战",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "放弃抵抗",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "赶紧开溜",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "于消散中绽放": {
+   "basis": "effects",
+   "prefer": [
+    "反对蝴蝶"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "赞同蝴蝶",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "反对蝴蝶",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "亡佚神国": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "骑士的愿望03"
+   ],
+   "options": [
+    {
+     "label": "了然于心",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "一无所知",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "亮晶晶": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "获得银芯",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "人偶的眼泪": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-3"
+   ],
+   "options": [
+    {
+     "label": "呼唤",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "触碰",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "他人之耳": {
+   "basis": "effects",
+   "prefer": [
+    "侧耳倾听"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-10"
+   ],
+   "options": [
+    {
+     "label": "侧耳倾听",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "上前查看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "直接离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "以假乱真": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-5"
+   ],
+   "options": [
+    {
+     "label": "公主的侍卫",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "沉思者",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "仰望": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "抬头",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "休眠火山": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "点燃",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "等待",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "封存",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "余温": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-14"
+   ],
+   "options": [
+    {
+     "label": "走过",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "抚摸",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "你不会想要找到": {
+   "basis": "effects",
+   "prefer": [
+    "我一定要找到"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "1-13",
+    "1-7"
+   ],
+   "options": [
+    {
+     "label": "低头看",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "我一定要找到",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "你的答案": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-2"
+   ],
+   "options": [
+    {
+     "label": "金钥匙",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "铁钥匙",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "银钥匙",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "侧耳倾听": {
+   "basis": "effects",
+   "prefer": [
+    "收下耳朵"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-14"
+   ],
+   "options": [
+    {
+     "label": "收下耳朵",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "拒绝请求",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "倒错的命运": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-2"
+   ],
+   "options": [
+    {
+     "label": "自嘲",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "追问到底",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "不再想",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "催眠疗法": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-9"
+   ],
+   "options": [
+    {
+     "label": "欣然同意",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "抱有戒心",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "入学仪式": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-2"
+   ],
+   "options": [
+    {
+     "label": "阿利斯泰尔的祝福",
+     "effects": [
+      "gain_card"
+     ],
+     "evidence": "live_verified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "再见，伊卡洛斯": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-14"
+   ],
+   "options": [
+    {
+     "label": "那是泪水",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "那是鲜血",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "凝望之眼": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 6,
+   "maps": [
+    "3-5",
+    "蔷薇礼赞01",
+    "蔷薇礼赞03"
+   ],
+   "options": [
+    {
+     "label": "握住银钥",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "闭上双眼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "出路": {
+   "basis": "effects",
+   "prefer": [
+    "书写自己的路"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-6"
+   ],
+   "options": [
+    {
+     "label": "阅读前人的路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "书写自己的路",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "目视黑暗",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "分岔的小径": {
+   "basis": "effects",
+   "prefer": [
+    "放过她"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-13"
+   ],
+   "options": [
+    {
+     "label": "放过她",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "帮助她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "我要走自己的路",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "列车来电": {
+   "basis": "effects",
+   "prefer": [
+    "接起电话"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-7"
+   ],
+   "options": [
+    {
+     "label": "搁置听筒",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "接起电话",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "初见赠礼": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "友谊",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "帮助",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "制作陷阱": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 3,
+   "maps": [
+    "3-5"
+   ],
+   "options": [
+    {
+     "label": "放置捕兽夹",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拴好母鸡",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "大功告成",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "前人遗物": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-10"
+   ],
+   "options": [
+    {
+     "label": "维修电报机",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "掩埋电报机",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "友情的呼唤": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-11"
+   ],
+   "options": [
+    {
+     "label": "安抚库姆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "帮库姆呼喊",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "双面古币": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "不碰硬币",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "触碰硬币",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "吞噬者": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞10"
+   ],
+   "options": [
+    {
+     "label": "告诉他真相",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "隐瞒真相",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "启示录": {
+   "basis": "effects",
+   "prefer": [
+    "开启锁孔"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "开启锁孔",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "封闭锁孔",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "命运之锁": {
+   "basis": "effects",
+   "prefer": [
+    "守护的力量"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "守护的力量",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "逃离的自由",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拒绝回答",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "命运抉择": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-13"
+   ],
+   "options": [
+    {
+     "label": "交换力量",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "交换幸运",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "命运的味道": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "咀嚼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拒绝",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "善意窥探": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-11"
+   ],
+   "options": [
+    {
+     "label": "注视它们",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "向它们求助",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "器官登记": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-13"
+   ],
+   "options": [
+    {
+     "label": "继续翻阅",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "噩梦倒影": {
+   "basis": "effects",
+   "prefer": [
+    "施以怜悯"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "保持距离",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "施以怜悯",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "噩梦行者": {
+   "basis": "effects",
+   "prefer": [
+    "随意走动"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-5"
+   ],
+   "options": [
+    {
+     "label": "原地不动",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "随意走动",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "噩梦重现": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "闪避",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "阻止",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "囚徒": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "燃烧的群宴02"
+   ],
+   "options": [
+    {
+     "label": "与之握手",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "回忆碎片·威士忌": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-9"
+   ],
+   "options": [
+    {
+     "label": "是谁在说话？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "什么威士忌，给我也尝尝",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "回忆碎片·旧梦重现": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-9"
+   ],
+   "options": [
+    {
+     "label": "您愿意付出怎样的代价呢？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "请他们喝一杯过期的血腥玛丽吧",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "夜色精灵": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-2"
+   ],
+   "options": [
+    {
+     "label": "观察它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "抚摸它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "失落沙洲": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-6"
+   ],
+   "options": [
+    {
+     "label": "寻求救援",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "【共同前进",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "失落的幻影": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-12"
+   ],
+   "options": [
+    {
+     "label": "搀扶她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "看着她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "失落的快乐": {
+   "basis": "effects",
+   "prefer": [
+    "讲述学校的趣事"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "诸事如常02"
+   ],
+   "options": [
+    {
+     "label": "讲述学校的趣事",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "没有上过学",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "她的叮咛": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-16"
+   ],
+   "options": [
+    {
+     "label": "阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "收起",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "她的选择": {
+   "basis": "effects",
+   "prefer": [
+    "主人"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-11"
+   ],
+   "options": [
+    {
+     "label": "主人",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "带走它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拆开它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "好戏开场": {
+   "basis": "effects",
+   "prefer": [
+    "给祂一拳"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-7"
+   ],
+   "options": [
+    {
+     "label": "接受挑战",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "给祂一拳",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "好运侦探": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-15"
+   ],
+   "options": [
+    {
+     "label": "相信莱克",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "担忧莱克",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "存在的证明": {
+   "basis": "effects",
+   "prefer": [
+    "尝试唤醒"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-14"
+   ],
+   "options": [
+    {
+     "label": "拾起银芯",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "尝试唤醒",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "置之不理",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "孤旅 I": {
+   "basis": "effects",
+   "prefer": [
+    "担忧"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-18"
+   ],
+   "options": [
+    {
+     "label": "安心",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "担忧",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "孤旅 Ⅱ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-18"
+   ],
+   "options": [
+    {
+     "label": "挣脱回忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "捕捉回忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "孤旅 Ⅲ": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-18"
+   ],
+   "options": [
+    {
+     "label": "他还会来",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "他不会来了",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "孤独银芯": {
+   "basis": "effects",
+   "prefer": [
+    "收起银芯"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-1"
+   ],
+   "options": [
+    {
+     "label": "使用银芯",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "收起银芯",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "放回抽屉",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "宁静": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "思考破局",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "顺其自然",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "浮出水面",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "安全撤离点": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "民众撤离",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "审查会探员": {
+   "basis": "effects",
+   "prefer": [
+    "伏击"
+   ],
+   "avoid": [],
+   "seen": 10,
+   "maps": [
+    "8-10",
+    "8-11",
+    "8-12",
+    "8-13",
+    "8-2",
+    "8-3",
+    "8-5",
+    "8-7",
+    "8-9",
+    "9-1"
+   ],
+   "options": [
+    {
+     "label": "硬闯",
+     "effects": [
+      "gain_card",
+      "gain_madness_team"
+     ],
+     "evidence": "live_verified",
+     "score": 0.0
+    },
+    {
+     "label": "缴械",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "伏击",
+     "effects": [
+      "gain_blackseal",
+      "remove_threat"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": true
+  },
+  "宿命囚笼": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "接受命运",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "反抗命运",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "寄生上流": {
+   "basis": "effects",
+   "prefer": [
+    "接受生长"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "割开手掌",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "接受生长",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "密令・上": {
+   "basis": "effects",
+   "prefer": [
+    "收入手提箱"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-12"
+   ],
+   "options": [
+    {
+     "label": "阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "收入手提箱",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "密令・下": {
+   "basis": "effects",
+   "prefer": [
+    "拼合纸张"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-12"
+   ],
+   "options": [
+    {
+     "label": "拼合纸张",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "丢弃它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "小风铃": {
+   "basis": "effects",
+   "prefer": [
+    "什么也不做"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞08"
+   ],
+   "options": [
+    {
+     "label": "按住它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "摇晃一下",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "什么也不做",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "左心房": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-6"
+   ],
+   "options": [
+    {
+     "label": "安慰它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "忽视它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "巨兽足印": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-3"
+   ],
+   "options": [
+    {
+     "label": "不做处理",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拂去掌印",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "幻化易形": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "抚摸",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "解释",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "破解",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "幻象": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "无声蒸发",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "幽灵油墨": {
+   "basis": "effects",
+   "prefer": [
+    "阅读"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "阅读",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "继续打字",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "异常联络": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-2"
+   ],
+   "options": [
+    {
+     "label": "遵从指示",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "影子的一百张面孔": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-10"
+   ],
+   "options": [
+    {
+     "label": "忽视怀疑",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "独断专行",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "往世之水": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "蔷薇礼赞10"
+   ],
+   "options": [
+    {
+     "label": "大声喊叫",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "感受寂静",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "浮出水面",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "往日之影": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "继续观察",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "移开目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "待死的羔羊": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-1"
+   ],
+   "options": [
+    {
+     "label": "否定",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "辩驳",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "沉默",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "微暗的火": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "蔷薇礼赞07"
+   ],
+   "options": [
+    {
+     "label": "加点燃料",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "熄灭它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "心理评估": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-2"
+   ],
+   "options": [
+    {
+     "label": "如实填写",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "乱写一气",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "思念的回音": {
+   "basis": "effects",
+   "prefer": [
+    "呼喊"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-7"
+   ],
+   "options": [
+    {
+     "label": "聆听",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "呼喊",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "思维迷宫": {
+   "basis": "effects",
+   "prefer": [
+    "翻过高墙"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞12"
+   ],
+   "options": [
+    {
+     "label": "翻过高墙",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "进入迷宫",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 I": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-1"
+   ],
+   "options": [
+    {
+     "label": "没听说过",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "听说过",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 IV": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-7"
+   ],
+   "options": [
+    {
+     "label": "请他让开道路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "询问身份",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 V": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-12"
+   ],
+   "options": [
+    {
+     "label": "表示肯定",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "表示否定",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "不置可否",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 VI": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-13"
+   ],
+   "options": [
+    {
+     "label": "可怜的生物？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "进化的人类？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "你究竟是谁？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 Ⅱ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-4"
+   ],
+   "options": [
+    {
+     "label": "请你让让，我有急事",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "愿闻其详",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "怪异旅伴 Ⅲ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-5"
+   ],
+   "options": [
+    {
+     "label": "你究竟是什么人？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "要怎么转变思路？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "情感结晶": {
+   "basis": "effects",
+   "prefer": [
+    "捏碎星星"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-2"
+   ],
+   "options": [
+    {
+     "label": "捕捉星星",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "捏碎星星",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "沉默观看",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "我们的回忆": {
+   "basis": "effects",
+   "prefer": [
+    "尝试聆听"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-7"
+   ],
+   "options": [
+    {
+     "label": "仔细查看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "尝试聆听",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "小心收好",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "我的半身": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-9"
+   ],
+   "options": [
+    {
+     "label": "许下承诺",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "拒绝",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "转身离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "我的自答": {
+   "basis": "effects",
+   "prefer": [
+    "以牺牲"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-12"
+   ],
+   "options": [
+    {
+     "label": "以牺牲",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "以勇敢",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "以直视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "我的自问": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-12"
+   ],
+   "options": [
+    {
+     "label": "寻找答案",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "放弃",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "我的融合": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-12"
+   ],
+   "options": [
+    {
+     "label": "擦拭血泪",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "坚持睁眼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "扑面而来": {
+   "basis": "effects",
+   "prefer": [
+    "撕扯"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-4"
+   ],
+   "options": [
+    {
+     "label": "撕扯",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "穿刺",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "打字机": {
+   "basis": "effects",
+   "prefer": [
+    "仔细看看"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-5"
+   ],
+   "options": [
+    {
+     "label": "随便看看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "仔细看看",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "打字机的低语": {
+   "basis": "effects",
+   "prefer": [
+    "清理打字机"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-7"
+   ],
+   "options": [
+    {
+     "label": "清理打字机",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "尝试辨识文字",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "指引之声": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-9"
+   ],
+   "options": [
+    {
+     "label": "追溯声音源头",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "呼唤莉莉和库姆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "探照灯": {
+   "basis": "effects",
+   "prefer": [
+    "打开开关"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-2"
+   ],
+   "options": [
+    {
+     "label": "打开开关",
+     "effects": [
+      "reveal_map"
+     ],
+     "evidence": "live_verified",
+     "score": 1.5
+    }
+   ],
+   "hard_override_in_default_policy": true
+  },
+  "提灯黑鸦": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "4-14",
+    "5-8"
+   ],
+   "options": [
+    {
+     "label": "呼唤乌鸦",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "远远离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "驱赶乌鸦",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "无视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "提示时间": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-15"
+   ],
+   "options": [
+    {
+     "label": "关于莉莉",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "关于地狱犬",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "支援通讯": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 3,
+   "maps": [
+    "4-10",
+    "4-13",
+    "8-4"
+   ],
+   "options": [
+    {
+     "label": "交给她吧",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "需要支援",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "有点情况",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "斗兽场": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-7"
+   ],
+   "options": [
+    {
+     "label": "拉开库姆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "攻击实验体",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无名之音": {
+   "basis": "effects",
+   "prefer": [
+    "聆听喜悦"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-4"
+   ],
+   "options": [
+    {
+     "label": "聆听悲伤",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "聆听喜悦",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无声告白": {
+   "basis": "effects",
+   "prefer": [
+    "聆听"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "聆听",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无尽的折磨": {
+   "basis": "effects",
+   "prefer": [
+    "开始「工作」"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "开始「工作」",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "抽回双手",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无尽的赌局": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "燃烧的群宴04"
+   ],
+   "options": [
+    {
+     "label": "询问身份",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无尽门扉": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-7"
+   ],
+   "options": [
+    {
+     "label": "推开左侧的门",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "推开右侧的门",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "无知之目": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-3"
+   ],
+   "options": [
+    {
+     "label": "坚定指挥",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "共同商谈",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "旧日的阴影": {
+   "basis": "effects",
+   "prefer": [
+    "闭上双眼"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-9"
+   ],
+   "options": [
+    {
+     "label": "斩杀人影",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "碾碎胚胎",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "闭上双眼",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "时间灰烬": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "绕开幻影",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "穿过幻影",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "春天的赠礼": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "创作献诗",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "暗夜荧光": {
+   "basis": "effects",
+   "prefer": [
+    "触摸光辉"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-11"
+   ],
+   "options": [
+    {
+     "label": "端详光辉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "触摸光辉",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "转身离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "最终的钥匙": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-15"
+   ],
+   "options": [
+    {
+     "label": "获得钥匙",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "未接来电": {
+   "basis": "effects",
+   "prefer": [
+    "拿起听筒"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [],
+   "options": [
+    {
+     "label": "无视铃声",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拿起听筒",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "未来定格": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-13"
+   ],
+   "options": [
+    {
+     "label": "勇气",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "决心",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "未来预警": {
+   "basis": "effects",
+   "prefer": [
+    "无视它"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-3"
+   ],
+   "options": [
+    {
+     "label": "解读它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "成为它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视它",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "末日狂欢曲": {
+   "basis": "effects",
+   "prefer": [
+    "打乱节奏"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-1"
+   ],
+   "options": [
+    {
+     "label": "打乱节奏",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "保持自我",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "来自角度": {
+   "basis": "effects",
+   "prefer": [
+    "直视地狱犬来源"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-14"
+   ],
+   "options": [
+    {
+     "label": "直视地狱犬来源",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "专注战斗",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "桶中浮物": {
+   "basis": "effects",
+   "prefer": [
+    "拾起"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-5"
+   ],
+   "options": [
+    {
+     "label": "拾起",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "犹豫",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "梦境祷文": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-3"
+   ],
+   "options": [
+    {
+     "label": "加入祈祷",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "沉入大海",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "浮出水面",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "梦的启示": {
+   "basis": "effects",
+   "prefer": [
+    "尝试解读"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "投于炉火",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "尝试解读",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "死亡幻影": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-4"
+   ],
+   "options": [
+    {
+     "label": "努力辨认",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "伸手触碰",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "揉揉眼睛",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "死生边缘": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-1"
+   ],
+   "options": [
+    {
+     "label": "无法抽身",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "拥抱现实",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "死路": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-5"
+   ],
+   "options": [
+    {
+     "label": "寻找暗道",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "毒蛛": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-2"
+   ],
+   "options": [
+    {
+     "label": "看向拉蒙娜",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "看向莱克",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "水中祭典": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "蔷薇礼赞05"
+   ],
+   "options": [
+    {
+     "label": "表示赞同",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "送上礼物",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "转身离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "水晶的秘密": {
+   "basis": "effects",
+   "prefer": [
+    "凝视"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "感知",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "凝视",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "永生之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-12"
+   ],
+   "options": [
+    {
+     "label": "眺望",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "跪伏",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "求知的贪婪": {
+   "basis": "effects",
+   "prefer": [
+    "搜寻"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-5"
+   ],
+   "options": [
+    {
+     "label": "搜寻",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "闭眼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "沉入深渊": {
+   "basis": "effects",
+   "prefer": [
+    "反击"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-2"
+   ],
+   "options": [
+    {
+     "label": "呼吸",
+     "effects": [
+      "gain_artifact",
+      "gain_symptom"
+     ],
+     "evidence": "live_verified",
+     "score": -1.0
+    },
+    {
+     "label": "反击",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "挣扎",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "沉海": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-10"
+   ],
+   "options": [
+    {
+     "label": "为什么呢",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "向深海下坠",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "沉湎旧日": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞07"
+   ],
+   "options": [
+    {
+     "label": "挣扎着醒来",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "纵容自己沉眠",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "沉溺": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-9"
+   ],
+   "options": [
+    {
+     "label": "挣扎",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "沉沦",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "沙尘巨物": {
+   "basis": "effects",
+   "prefer": [
+    "凝视"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-12"
+   ],
+   "options": [
+    {
+     "label": "凝视",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "洞穴深处": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "进入洞穴",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "流放王国": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "加入",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "驱赶",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "漠视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "海市蜃楼": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-14"
+   ],
+   "options": [
+    {
+     "label": "靠近幻影",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "打散幻影",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "海洋歌谣": {
+   "basis": "effects",
+   "prefer": [
+    "辨认歌词"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-10"
+   ],
+   "options": [
+    {
+     "label": "辨认歌词",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "轻轻哼唱",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "涂字信件": {
+   "basis": "effects",
+   "prefer": [
+    "贴身放好"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "如歌的雕琢03"
+   ],
+   "options": [
+    {
+     "label": "扔掉信纸",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "贴身放好",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "消逝的思念": {
+   "basis": "effects",
+   "prefer": [
+    "打开信封"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "打开信封",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "放回原处",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "深埋之物": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-6"
+   ],
+   "options": [
+    {
+     "label": "仔细观察",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "挖掘",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "深陷": {
+   "basis": "effects",
+   "prefer": [
+    "全力挣扎"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "扭曲核心02"
+   ],
+   "options": [
+    {
+     "label": "全力挣扎",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "点燃蛛网",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "安静等待",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "混沌之灵": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 3,
+   "maps": [
+    "蔷薇礼赞06",
+    "蔷薇礼赞12",
+    "骑士的愿望03"
+   ],
+   "options": [
+    {
+     "label": "留下供奉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "带它离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "带祂离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "混沌哀嚎": {
+   "basis": "effects",
+   "prefer": [
+    "感到恐惧"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-13"
+   ],
+   "options": [
+    {
+     "label": "感到恐惧",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "坚定意志",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "游走的住民": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-5"
+   ],
+   "options": [
+    {
+     "label": "上前握住",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "友好回应",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "潜行之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-10"
+   ],
+   "options": [
+    {
+     "label": "朝上看去",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "走向泰旖丝",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "火山追忆": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-11"
+   ],
+   "options": [
+    {
+     "label": "艾尔沃斯的火山？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "努力回忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "灵感迸发": {
+   "basis": "effects",
+   "prefer": [
+    "放弃抵抗"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-10"
+   ],
+   "options": [
+    {
+     "label": "放弃抵抗",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "抽回双手",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "灵知丰碑": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-8"
+   ],
+   "options": [
+    {
+     "label": "触碰它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "加入旋转",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "灵知风暴": {
+   "basis": "effects",
+   "prefer": [
+    "迎向蝴蝶"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "迎向蝴蝶",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "不再流连",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "灵魂尽头": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "另辟蹊径",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "任其存在",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "熟悉且陌生的身影": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "一步之遥02"
+   ],
+   "options": [
+    {
+     "label": "出声安慰",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "试图靠近",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "转身离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "燃烧肖像": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "解放肖像",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "接受空白",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "爬行裂痕": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞04"
+   ],
+   "options": [
+    {
+     "label": "置若罔闻",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "谨慎检查",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "转身离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "牛津鞋": {
+   "basis": "effects",
+   "prefer": [
+    "继续前行"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-3"
+   ],
+   "options": [
+    {
+     "label": "转身",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "继续前行",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "犄角之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-7"
+   ],
+   "options": [
+    {
+     "label": "询问真假",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "请求抚摸",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "猫之城": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "学猫叫",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "投喂食物",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "猫的呢喃": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "揉揉眼睛",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "闭上眼睛",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "猫的诱惑": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-11"
+   ],
+   "options": [
+    {
+     "label": "上前握住",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "友好回应",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "理智与情感": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-8"
+   ],
+   "options": [
+    {
+     "label": "选择老鼠",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "选择蜡烛",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "疯狂的绅士": {
+   "basis": "effects",
+   "prefer": [
+    "质问"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-10"
+   ],
+   "options": [
+    {
+     "label": "说服",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "质问",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "疼痛管理": {
+   "basis": "effects",
+   "prefer": [
+    "出声关心"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-3"
+   ],
+   "options": [
+    {
+     "label": "握住她的手",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "出声关心",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "注视她",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "病历本": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-7"
+   ],
+   "options": [
+    {
+     "label": "厚实的病历本",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "薄薄的病历本",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "白色眼罩": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "拾起",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "回想",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "白裙少女": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-4"
+   ],
+   "options": [
+    {
+     "label": "出声问好",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "寻求帮助",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "监察点": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [
+    "诈降",
+    "闯入"
+   ],
+   "seen": 10,
+   "maps": [
+    "8-10",
+    "8-11",
+    "8-12",
+    "8-13",
+    "8-2",
+    "8-3",
+    "8-5",
+    "8-7",
+    "8-9",
+    "9-1"
+   ],
+   "options": [
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "诈降",
+     "effects": [
+      "gain_symptom",
+      "teleport"
+     ],
+     "evidence": "live_verified",
+     "score": -4.0
+    },
+    {
+     "label": "闯入",
+     "effects": [
+      "lose_health",
+      "teleport"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": -3.0
+    }
+   ],
+   "hard_override_in_default_policy": true
+  },
+  "盲目注视": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-8"
+   ],
+   "options": [
+    {
+     "label": "问它是谁",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "与它对视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "眼睛的迷宫": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "向左走",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "向右走",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "祂的注视": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-9"
+   ],
+   "options": [
+    {
+     "label": "回避目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "直视目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "祂的目光": {
+   "basis": "effects",
+   "prefer": [
+    "直视"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-11"
+   ],
+   "options": [
+    {
+     "label": "直视",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "逃避",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "祂的质问": {
+   "basis": "effects",
+   "prefer": [
+    "应答"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-2"
+   ],
+   "options": [
+    {
+     "label": "应答",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "沉默",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "祈愿之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-6"
+   ],
+   "options": [
+    {
+     "label": "注视她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "呼唤她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "禁忌音色": {
+   "basis": "effects",
+   "prefer": [
+    "侧耳聆听"
+   ],
+   "avoid": [],
+   "seen": 3,
+   "maps": [
+    "如歌的雕琢03",
+    "蔷薇礼赞08"
+   ],
+   "options": [
+    {
+     "label": "侧耳聆听",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "堵住耳朵",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "秘密呢喃": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-12"
+   ],
+   "options": [
+    {
+     "label": "怀疑",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "不屑",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "穷追不舍": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-12"
+   ],
+   "options": [
+    {
+     "label": "袭击持匕者",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "埋伏持刀者",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "绊倒持矛者",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "穹顶之瞳": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "扭曲核心02"
+   ],
+   "options": [
+    {
+     "label": "感到惶恐",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "感到满足",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "窗中倒影": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-3"
+   ],
+   "options": [
+    {
+     "label": "谨慎查看",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "避让人影",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "窥视": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "5-7",
+    "8-7"
+   ],
+   "options": [
+    {
+     "label": "注视光芒",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "触碰胸口",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "继续奔跑",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "对视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "闭眼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "背对",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "童年的旋律": {
+   "basis": "effects",
+   "prefer": [
+    "弹几个音"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-13"
+   ],
+   "options": [
+    {
+     "label": "弹几个音",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "将盖子盖上",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "符文狂意": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-5"
+   ],
+   "options": [
+    {
+     "label": "领悟它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "管风琴的祷告": {
+   "basis": "effects",
+   "prefer": [
+    "指示方向"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "指示方向",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "一同祷告",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "糟糕的品味": {
+   "basis": "effects",
+   "prefer": [
+    "华丽的赋格"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "2-10",
+    "2-6"
+   ],
+   "options": [
+    {
+     "label": "华丽的赋格",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "简单的小夜曲",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "毫无意义的噪音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "素材12号": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "再找找看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "素材45号": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "再找找看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "素材4号": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "再找找看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "索纳尼尔号的主人": {
+   "basis": "effects",
+   "prefer": [
+    "绕路而行"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-10"
+   ],
+   "options": [
+    {
+     "label": "绕路而行",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "询问为何沉没",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "向船员问好",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "索纳尼尔号的沉没": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-8"
+   ],
+   "options": [
+    {
+     "label": "询问船长",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "询问图鲁",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "紧急通讯": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-9"
+   ],
+   "options": [
+    {
+     "label": "我们一切平安",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "你是谁？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 I": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-1"
+   ],
+   "options": [
+    {
+     "label": "尾随他",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "打招呼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 Ⅱ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-4"
+   ],
+   "options": [
+    {
+     "label": "领路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 Ⅲ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-6"
+   ],
+   "options": [
+    {
+     "label": "帮助他",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "冷眼旁观",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 Ⅳ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-9"
+   ],
+   "options": [
+    {
+     "label": "大声喝彩",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "昏昏欲睡",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 Ⅴ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-12"
+   ],
+   "options": [
+    {
+     "label": "紧闭双眼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "逃离现场",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终幕礼 Ⅵ": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-14"
+   ],
+   "options": [
+    {
+     "label": "接过礼物",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "婉言谢绝",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "终焉的目视": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "移开视线",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "保持注视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "绞缠之绸": {
+   "basis": "effects",
+   "prefer": [
+    "切断红绸"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-11"
+   ],
+   "options": [
+    {
+     "label": "切断红绸",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "对抗",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "呼唤拉蒙娜",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "维度幻象": {
+   "basis": "effects",
+   "prefer": [
+    "抵抗幻觉"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-15"
+   ],
+   "options": [
+    {
+     "label": "抵抗幻觉",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "汲取狂气",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "维度电报": {
+   "basis": "effects",
+   "prefer": [
+    "无视"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "无视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "缚命之网": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "挣扎",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "思考",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "歇息",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "缪斯的眷顾": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "斩断荆棘",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拨开荆棘",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开荆棘",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "罗格斯定则": {
+   "basis": "effects",
+   "prefer": [
+    "是对成功的渴望"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-11"
+   ],
+   "options": [
+    {
+     "label": "是坚定的决心",
+     "effects": [
+      "heal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 2.0
+    },
+    {
+     "label": "是对成功的渴望",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "群星岔路": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-10"
+   ],
+   "options": [
+    {
+     "label": "选择星河之路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "选择虹彩之路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "群鸦之声": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "2-13",
+    "3-5"
+   ],
+   "options": [
+    {
+     "label": "一起离开",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "拒绝离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "放下捂耳的双手",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "继续捂住耳朵",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "群鸦盛宴": {
+   "basis": "effects",
+   "prefer": [
+    "抬头注释"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "抬头注释",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "低头离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "翻覆魔爪": {
+   "basis": "effects",
+   "prefer": [
+    "低头查看"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "如歌的雕琢01"
+   ],
+   "options": [
+    {
+     "label": "我又不在水面上",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "低头查看",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "联络点": {
+   "basis": "effects",
+   "prefer": [
+    "效益至上"
+   ],
+   "avoid": [],
+   "seen": 5,
+   "maps": [
+    "8-2"
+   ],
+   "options": [
+    {
+     "label": "补给兑换",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 2.0
+    },
+    {
+     "label": "援救承诺",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "效益至上",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "接通",
+     "effects": [
+      "heal"
+     ],
+     "evidence": "live_verified",
+     "score": 2.0
+    },
+    {
+     "label": "冥想",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "肉体苦痛": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-14"
+   ],
+   "options": [
+    {
+     "label": "拥抱疼痛",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "拒绝疼痛",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视疼痛",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "肖像回廊": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-8"
+   ],
+   "options": [
+    {
+     "label": "女士肖像画",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "蜡像全家福",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "胸口空洞": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-9"
+   ],
+   "options": [
+    {
+     "label": "慌张寻找",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "尝试填充",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "脚步声": {
+   "basis": "effects",
+   "prefer": [
+    "继续前行"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-13"
+   ],
+   "options": [
+    {
+     "label": "转身",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "继续前行",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "腐蚀之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-18"
+   ],
+   "options": [
+    {
+     "label": "剖开树瘤",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "回忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "自海中": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-14"
+   ],
+   "options": [
+    {
+     "label": "拒绝同频",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "加入同频",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "自然沙暴": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-12"
+   ],
+   "options": [
+    {
+     "label": "偷袭",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "攻击",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "致敬爱的夫人": {
+   "basis": "effects",
+   "prefer": [
+    "无视信件"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "燃烧的群宴04"
+   ],
+   "options": [
+    {
+     "label": "撕掉信件",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视信件",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "回信",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "航前典仪": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-5"
+   ],
+   "options": [
+    {
+     "label": "为她落泪",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "向她祈祷",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "航船圣女的庇佑": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-14"
+   ],
+   "options": [
+    {
+     "label": "深入黑暗",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "细细聆听",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "船歌": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-12"
+   ],
+   "options": [
+    {
+     "label": "看向远处",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "细细聆听",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "船猫": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-11"
+   ],
+   "options": [
+    {
+     "label": "跟上它们",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "抚摸它们",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "不去惊扰",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "苦痛蔓延": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "忍受痛苦",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "反驳痛苦",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "蒸汽迷城": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "关闭闸门",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "仓皇远离",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "蝴蝶效应": {
+   "basis": "effects",
+   "prefer": [
+    "成为蝴蝶"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-6"
+   ],
+   "options": [
+    {
+     "label": "放飞蝴蝶",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "成为蝴蝶",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "吞回肚子",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "蝴蝶篇目": {
+   "basis": "effects",
+   "prefer": [
+    "继续阅读"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "3-5",
+    "如歌的雕琢03"
+   ],
+   "options": [
+    {
+     "label": "撕碎信纸",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "继续阅读",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "蝶影重重": {
+   "basis": "effects",
+   "prefer": [
+    "继续书写"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "终止记录",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "继续书写",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "血污之池": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 20,
+   "maps": [
+    "7-1",
+    "7-10",
+    "7-11",
+    "7-12",
+    "7-16",
+    "7-18",
+    "7-2",
+    "7-4",
+    "7-6",
+    "7-7",
+    "7-9",
+    "8-10",
+    "8-12",
+    "8-13",
+    "8-3",
+    "8-5",
+    "9-1",
+    "9-12",
+    "9-2"
+   ],
+   "options": [
+    {
+     "label": "呼唤唤醒体",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "奋力挣扎",
+     "effects": [
+      "heal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 2.0
+    },
+    {
+     "label": "插入银钥匙",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "吸收血池",
+     "effects": [
+      "heal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 2.0
+    }
+   ],
+   "hard_override_in_default_policy": true
+  },
+  "街头赌局": {
+   "basis": "effects",
+   "prefer": [
+    "还是算了"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "赌一把",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "还是算了",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "被操纵的双手": {
+   "basis": "effects",
+   "prefer": [
+    "挣扎向前"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-13"
+   ],
+   "options": [
+    {
+     "label": "挣扎向前",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "扯断丝线",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "隐忍不发",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "被禁锢的生命": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "5-11"
+   ],
+   "options": [
+    {
+     "label": "指出问题",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "咽下疑问",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "被缚的灵魂": {
+   "basis": "effects",
+   "prefer": [
+    "扔掉它们"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-9"
+   ],
+   "options": [
+    {
+     "label": "收集起来",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "扔掉它们",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "仔细观察",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "见字如晤": {
+   "basis": "effects",
+   "prefer": [
+    "保留信纸"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-14"
+   ],
+   "options": [
+    {
+     "label": "收起信纸",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "保留信纸",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "观众": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "回避目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "直视目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "记忆光影": {
+   "basis": "effects",
+   "prefer": [
+    "弯腰探出"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-15"
+   ],
+   "options": [
+    {
+     "label": "弯腰探出",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "放弃查看",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "记忆影厅": {
+   "basis": "effects",
+   "prefer": [
+    "弯腰探出"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "弯腰探出",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "放弃查看",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "记忆碎片·啤酒": {
+   "basis": "effects",
+   "prefer": [
+    "你还好吗？"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-10"
+   ],
+   "options": [
+    {
+     "label": "俯瞰倒影",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "你还好吗？",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "记忆解离": {
+   "basis": "effects",
+   "prefer": [
+    "默默接受"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "9-2"
+   ],
+   "options": [
+    {
+     "label": "努力回想",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "品味悲伤",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "默默接受",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "许愿星": {
+   "basis": "effects",
+   "prefer": [
+    "吞下"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-12"
+   ],
+   "options": [
+    {
+     "label": "镶嵌",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "吞下",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "收起",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "诅咒怪鸦": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-2"
+   ],
+   "options": [
+    {
+     "label": "展示诅咒",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拒绝乌鸦",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "诡异音阶": {
+   "basis": "effects",
+   "prefer": [
+    "捂住耳朵"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-10"
+   ],
+   "options": [
+    {
+     "label": "仔细聆听",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "捂住耳朵",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "查看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "请接电话": {
+   "basis": "effects",
+   "prefer": [
+    "无视铃声"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞06"
+   ],
+   "options": [
+    {
+     "label": "接起电话",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视铃声",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "谁的目光": {
+   "basis": "effects",
+   "prefer": [
+    "回应目光"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-13"
+   ],
+   "options": [
+    {
+     "label": "回应目光",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "躲开目光",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "谜团输入法": {
+   "basis": "effects",
+   "prefer": [
+    "他们在寻找某个人"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-2"
+   ],
+   "options": [
+    {
+     "label": "他们在寻找某个人",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "他们在寻找某件物品",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "赏味佳肴": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "享用",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "婉拒",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "路灯下的身影": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-1"
+   ],
+   "options": [
+    {
+     "label": "向他问路",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "躁乱鸦群": {
+   "basis": "effects",
+   "prefer": [
+    "接住"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-10"
+   ],
+   "options": [
+    {
+     "label": "接住",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "低头查看",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "过去，未来": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "拥抱过去",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "迎接未来",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "近乎正常": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "我在做梦",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "这不正常",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "进化的蜕变": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-12"
+   ],
+   "options": [
+    {
+     "label": "尝试呼唤他",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "迷幻的回音": {
+   "basis": "effects",
+   "prefer": [
+    "戳破"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-9"
+   ],
+   "options": [
+    {
+     "label": "追问",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "戳破",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "迷梦中的呼唤": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "如实回答",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拒绝回答",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "迷走网路": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "1-11",
+    "1-5"
+   ],
+   "options": [
+    {
+     "label": "说自己没有钱包",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "将网打破",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "迷踪留声": {
+   "basis": "effects",
+   "prefer": [
+    "寻找源头"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "蔷薇礼赞04"
+   ],
+   "options": [
+    {
+     "label": "寻找源头",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "重播唱片",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拆掉留声机",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "追寻之物": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-11"
+   ],
+   "options": [
+    {
+     "label": "我在寻找",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "我在回避",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "选择的代价": {
+   "basis": "effects",
+   "prefer": [
+    "拒绝选择"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "情感",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "理智",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拒绝选择",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "逐光": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-6"
+   ],
+   "options": [
+    {
+     "label": "握紧火种",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "直面内心",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "遗憾的奏鸣": {
+   "basis": "effects",
+   "prefer": [
+    "聆听琴声"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "为他演奏",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "聆听琴声",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "离开",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "遗言呓语": {
+   "basis": "effects",
+   "prefer": [
+    "分辨老人的声音"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "分辨男人的声音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "分辨女人的声音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "分辨老人的声音",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "酒中倒影": {
+   "basis": "effects",
+   "prefer": [
+    "谁也不是"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "自己",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "威廉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "谁也不是",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "钟楼上的异响": {
+   "basis": "effects",
+   "prefer": [
+    "寻找声源"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "寻找声源",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "回忆",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视噪音",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "钢桥的幻觉": {
+   "basis": "effects",
+   "prefer": [
+    "否认幻觉"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-13"
+   ],
+   "options": [
+    {
+     "label": "接受幻觉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "否认幻觉",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "铁路的幻觉": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-13"
+   ],
+   "options": [
+    {
+     "label": "接受幻觉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "否认幻觉",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "铁门之后": {
+   "basis": "effects",
+   "prefer": [
+    "打开铁门"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-13"
+   ],
+   "options": [
+    {
+     "label": "打开铁门",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "不做理会",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "铭牌": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-7"
+   ],
+   "options": [
+    {
+     "label": "交给朵尔",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "阅读铭牌",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "银月碎片": {
+   "basis": "effects",
+   "prefer": [
+    "银月的祷告"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "蔷薇礼赞03"
+   ],
+   "options": [
+    {
+     "label": "银月的葬礼",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "银月的祷告",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "银钥使": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "2-5",
+    "5-14"
+   ],
+   "options": [
+    {
+     "label": "继续盘问",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "抓住影子",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "谨慎应对",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "迎上前",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "镜中镜": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-10"
+   ],
+   "options": [
+    {
+     "label": "这不是真的",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "下坠、下坠……",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "长明灯火": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-5"
+   ],
+   "options": [
+    {
+     "label": "倾听她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "门扉之后": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-13"
+   ],
+   "options": [
+    {
+     "label": "克制",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "注视",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "闪烁": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-2"
+   ],
+   "options": [
+    {
+     "label": "追上去",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视它",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "闲散的看门人": {
+   "basis": "effects",
+   "prefer": [
+    "包围二人"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-9"
+   ],
+   "options": [
+    {
+     "label": "逐一击破",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "包围二人",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "偷听谈话",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "阴霾之都": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "前进",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "歇息",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    },
+    {
+     "label": "回望",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "陌生且熟悉的存在": {
+   "basis": "effects",
+   "prefer": [
+    "离开"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "一步之遥02"
+   ],
+   "options": [
+    {
+     "label": "她是谁？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "她为什么变成这样？",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "陨落的星": {
+   "basis": "effects",
+   "prefer": [
+    "拾起星辰"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "招架怪物",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "拾起星辰",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "无视",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "陷入地底": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-5"
+   ],
+   "options": [
+    {
+     "label": "接纳黑暗",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "尝试游泳",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "呼喊幽灵",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "隔墙有耳": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "2-3"
+   ],
+   "options": [
+    {
+     "label": "继续偷听",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "大声咳嗽",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "雪": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "3-2"
+   ],
+   "options": [
+    {
+     "label": "定睛细看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "无视",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "雾气中的身影": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "1-8"
+   ],
+   "options": [
+    {
+     "label": "出声试探",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "偷偷跟上",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "鞠水之人": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-1"
+   ],
+   "options": [
+    {
+     "label": "回应她",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "犹豫",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "风暴中央": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "6-10"
+   ],
+   "options": [
+    {
+     "label": "靠近灯塔",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "远离灯塔",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "饥饿游戏": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [],
+   "options": [
+    {
+     "label": "触摸大脑",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "触摸心脏",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "魔术之眼": {
+   "basis": "effects",
+   "prefer": [
+    "回瞪"
+   ],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-11"
+   ],
+   "options": [
+    {
+     "label": "回瞪",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "撕裂幕布",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "魔鬼指挥家": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "8-4"
+   ],
+   "options": [
+    {
+     "label": "准备迎战",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "仔细观察",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "黄色书卷": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "4-1"
+   ],
+   "options": [
+    {
+     "label": "适可而止",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "坚持阅读",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "黑暗中的笑声": {
+   "basis": "labels",
+   "prefer": [],
+   "avoid": [],
+   "seen": 3,
+   "maps": [
+    "2-13",
+    "2-14",
+    "2-6"
+   ],
+   "options": [
+    {
+     "label": "仔细看看",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "撕下海报",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "黑暗洞窟": {
+   "basis": "effects",
+   "prefer": [],
+   "avoid": [],
+   "seen": 1,
+   "maps": [
+    "7-7"
+   ],
+   "options": [
+    {
+     "label": "在洞口探索",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "深入岩洞",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  },
+  "黑液蝴蝶": {
+   "basis": "effects",
+   "prefer": [
+    "任由停留"
+   ],
+   "avoid": [],
+   "seen": 2,
+   "maps": [
+    "如歌的雕琢01"
+   ],
+   "options": [
+    {
+     "label": "挥手驱赶",
+     "effects": [],
+     "evidence": "unclassified",
+     "score": 0.0
+    },
+    {
+     "label": "任由停留",
+     "effects": [
+      "gain_artifact"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 3.0
+    },
+    {
+     "label": "离开",
+     "effects": [
+      "gain_blackseal"
+     ],
+     "evidence": "explicit_wiki_text",
+     "score": 1.0
+    }
+   ],
+   "hard_override_in_default_policy": false
+  }
+ }
+}

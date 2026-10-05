@@ -20,6 +20,8 @@
   "weights": {"gain_artifact": 3.0, "reveal_map": 1.5, "gain_blackseal": 1.0, "heal": 2.0, "remove_threat": 2.0, "teleport": 0.0, "lose_health": -3.0, "gain_symptom": -4.0},
   "leave_keywords": ["离开", "转身离开", "无视", "拒绝", "撤退"],
   "risky_keywords": ["闯入", "硬闯", "伏击", "缴械"],
+  "use_known_rules": true,
+  "known_rule_score": 2.0,
   "leave_score": 0.2,
   "prefer_keywords": ["打开开关", "扩大当前视野"],
   "prefer_score": 1.0,

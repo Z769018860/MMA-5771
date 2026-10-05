@@ -45,7 +45,7 @@ def _walk(d, prefix=""):
             yield from _walk(v, prefix + k + ".")
 
 
-FREE_FORM = ("route.avoid", "event.weights", "event.overrides")
+FREE_FORM = ("route.avoid", "event.weights", "event.overrides", "event.known_rules")
 
 
 def validate(policy, default=None):
@@ -93,6 +93,16 @@ def load_default():
     return json.loads((EXPLORE_DIR / "policy.default.json").read_text(encoding="utf-8"))
 
 
+def load_known_rules():
+    """Soft per-event rules generated from the known events (tools/build_event_rules.py): {event: {prefer, avoid}}."""
+    f = EXPLORE_DIR / "event_rules.json"
+    if not f.is_file():
+        return {}
+    rules = json.loads(f.read_text(encoding="utf-8")).get("rules", {})
+    return {name: {"prefer": r.get("prefer", []), "avoid": r.get("avoid", [])} for name, r in rules.items()
+            if r.get("prefer") or r.get("avoid")}
+
+
 def load_policy(user_path=None, preset=None, overrides=None):
     """Effective policy. user_path defaults to config/explore_policy.json when it exists."""
     policy = load_default()
@@ -109,6 +119,8 @@ def load_policy(user_path=None, preset=None, overrides=None):
     if overrides:
         policy = deep_merge(policy, overrides)
     policy["preset"] = name
+    if get(policy, "event.use_known_rules", True):
+        policy["event"]["known_rules"] = load_known_rules()
     errors, _ = validate(policy)
     if errors:
         raise ValueError("设置无效：\n  " + "\n  ".join(errors))

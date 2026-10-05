@@ -4,6 +4,7 @@ All of them work without any text (OCR unavailable): pass None labels/names and 
 settings (event.blind_choice, *.position_order) decide. Every function always returns a valid choice.
 """
 
+import difflib
 from dataclasses import dataclass, field
 
 from .knowledge import norm, similar
@@ -32,6 +33,27 @@ def _override_for(policy, name):
         s = similar(name, key)
         if s > score:
             best, score = rule, s
+    return best if score >= 0.8 else None
+
+
+def _same_label(a, b):
+    """Exact or near-exact match (difflib, no substring shortcut: '离开' must not match '带它离开')."""
+    a, b = norm(a), norm(b)
+    return bool(a) and (a == b or difflib.SequenceMatcher(None, a, b).ratio() >= 0.85)
+
+
+def _known_rule_for(policy, name):
+    """Soft rule generated from the known events; only used when no hard override exists for this event."""
+    rules = get(policy, "event.known_rules") or {}
+    if not name:
+        return None
+    if name in rules:
+        return rules[name]
+    best, score = None, 0.0
+    for key, rule in rules.items():
+        sc = similar(name, key)
+        if sc > score:
+            best, score = rule, sc
     return best if score >= 0.8 else None
 
 
@@ -80,6 +102,8 @@ def choose_event_option(policy, kn, title, options, hp_ratio=None, map_id=None, 
         return Decision(n - 1, "choice_mode=last")
     ev = kn.match_event(title, map_id) if (kn and title) else None
     rule = _override_for(policy, ev["event"] if ev else (title or ""))
+    soft = None if rule else _known_rule_for(policy, ev["event"] if ev else (title or ""))
+    soft_score = get(policy, "event.known_rule_score", 2.0)
     ranked = []
     for i, label in enumerate(labels):
         opt = kn.match_option(ev, label) if (kn and ev) else None
@@ -94,6 +118,15 @@ def choose_event_option(policy, kn, title, options, hp_ratio=None, map_id=None, 
                 if similar(label, want) >= 0.8 or norm(want) in norm(label):
                     s -= 100
                     note = f"override avoid '{want}'"
+        if soft and label:
+            for want in soft.get("prefer", []):
+                if _same_label(label, want):
+                    s += soft_score
+                    note = f"known event rule: prefer '{want}'"
+            for want in soft.get("avoid", []):
+                if _same_label(label, want):
+                    s -= soft_score
+                    note = f"known event rule: avoid '{want}'"
         ranked.append((s, i, note))
     if mode == "leave":
         for _, i, _ in ranked:

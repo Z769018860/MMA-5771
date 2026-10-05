@@ -1,4 +1,5 @@
 import copy
+import json
 import random
 import sys
 import unittest
@@ -226,6 +227,64 @@ class EngineTests(unittest.TestCase):
         for mid in ("5-6", "8-2", "2-8"):
             r = sim.run_one(KN, mid, pol(), 3, text_visible=False, known_map=False, forced_teleport=False)
             self.assertTrue(r["success"] or r["stopped"], (mid, r))   # may give up, must never hang
+
+
+class KnownEventRules(unittest.TestCase):
+    """Every known event (resource/map_data/events.json) is wired into the event decision settings."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rules = json.loads((policy.EXPLORE_DIR / "event_rules.json").read_text(encoding="utf-8"))["rules"]
+        cls.events = json.loads((policy.ROOT / "resource" / "map_data" / "events.json").read_text(encoding="utf-8"))["events"]
+
+    def test_every_known_event_has_a_rule_entry(self):
+        names = {e["event"] for e in self.events if e["event"] not in ("未知", "")}
+        self.assertEqual(names, set(self.rules))
+        for name, rule in self.rules.items():
+            labels = {o["label"] for o in rule["options"]}
+            for want in rule["prefer"] + rule["avoid"]:
+                self.assertIn(want, labels, name)
+
+    def test_rules_are_loaded_only_when_enabled(self):
+        on = policy.load_policy()
+        off = policy.load_policy(overrides={"event": {"use_known_rules": False}})
+        self.assertTrue(policy.get(on, "event.known_rules"))
+        self.assertFalse(policy.get(off, "event.known_rules"))
+
+    def test_every_known_event_decides_with_a_valid_option(self):
+        pol_on = pol()
+        for name, rule in self.rules.items():
+            labels = [o["label"] for o in rule["options"]]
+            d = decisions.choose_event_option(pol_on, KN, name, labels, 0.9)
+            self.assertTrue(0 <= d.index < len(labels), name)
+
+    def test_preferred_option_is_chosen_without_hard_override(self):
+        pol_on = pol()
+        checked = 0
+        for name, rule in self.rules.items():
+            if rule["hard_override_in_default_policy"] or not rule["prefer"]:
+                continue
+            labels = [o["label"] for o in rule["options"]]
+            d = decisions.choose_event_option(pol_on, KN, name, labels, 0.9)
+            self.assertEqual(labels[d.index], rule["prefer"][0], f"{name}: {d.reason}")
+            checked += 1
+        self.assertGreater(checked, 100)
+
+    def test_hard_override_beats_known_rule(self):
+        labels = ["离开", "诈降", "闯入"]
+        d = decisions.choose_event_option(pol(event={"overrides": {"监察点": {"prefer": ["闯入"]}}}), KN, "监察点", labels, 0.9)
+        self.assertEqual(labels[d.index], "闯入")
+
+    def test_user_can_turn_the_rules_off(self):
+        name = next(n for n, r in self.rules.items() if r["prefer"] and not r["hard_override_in_default_policy"] and len(r["options"]) > 2)
+        rule = self.rules[name]
+        labels = [o["label"] for o in rule["options"]]
+        flipped = [l for l in labels if l not in rule["prefer"]]
+        d_on = decisions.choose_event_option(pol(), KN, name, labels, 0.9)
+        self.assertIn("known event rule", d_on.ranked and [r[2] for r in d_on.ranked if r[1] == d_on.index][0])
+        d_off = decisions.choose_event_option(pol(event={"use_known_rules": False}), KN, name, labels, 0.9)
+        self.assertNotIn("known event rule", [r[2] for r in d_off.ranked if r[1] == d_off.index][0])
+        self.assertTrue(flipped)
 
 
 if __name__ == "__main__":

@@ -121,3 +121,15 @@ result = run(MyAdapter(), Engine(map_id="5-6"))   # map_id 可省略
 联络点现在优先「冥想 → 觉醒一名唤醒体」。引擎新增 `Screen.PICK_AWAKEN`（适配器在觉醒角色选择页返回，`choices` 是角色名或 `[None]*n`，`choice_enabled` 标出哪些还能觉醒）；选择后与其他三选一一样先点角色再确认。没有可觉醒的角色时返回上一页，之后的联络点改为回血。
 
 注意：**没有联络点和觉醒选择页的实机截图**，所以只有逻辑层和模拟环境，没有 MaaFramework 识别节点；觉醒页有几个角色、已觉醒角色怎么显示都是假设（模拟里是 4 个）。加入觉醒页后模拟成功率略有下降（见上表，每多一个选择页就多一处可能卡住的地方）。
+
+## 已知事件接入事件判定设置
+
+`resource/explore/event_rules.json` 由 `python tools/build_event_rules.py` 从 `resource/map_data/events.json`（292 个已知事件、含实机验证的）生成，每个事件一条规则：合并出现过的选项，按 `policy.default.json` 的 `event.weights` 给选项效果打分（造物/刻印/治疗/掉血/症状…）。
+
+- 有效果数据的事件（179 个）：`prefer` = 效果分最高且唯一的选项（共 125 个事件有），`avoid` = 效果分 ≤ −3 的选项；没有效果数据的事件（其余）只对"闯入/硬闯/伏击/缴械"这类高风险文字做 `avoid`，不编造偏好。每个选项带 `evidence`（`live_verified` / `explicit_wiki_text` / `unclassified`）。
+- 加载进有效设置的 `event.known_rules`，是**软规则**：命中的选项 ±`event.known_rule_score`（默认 2.0）。`policy.default.json` 里实机验证过的硬规则（监察点、审查会探员、血污之池、探照灯）和你在 `config/explore_policy.json` 的 `event.overrides` 里写的同名事件是**硬规则（±100）**，优先于软规则。
+- 想关掉：`"event": {"use_known_rules": false}`；想改某个事件：在 `event.overrides` 里写同名事件 `{"prefer": [...], "avoid": [...]}`。
+- 查看全部：`python tools/build_event_rules.py --list`；数据更新后重新运行脚本，`--check` 检查是否过期。
+- 选项文字匹配只认完全一致或高度相似（不做子串匹配，避免"离开"命中"带它离开"）。
+
+没有验证的部分：除 6 个实机验证事件外，其余选项的效果来自 wiki 文字（`explicit_wiki_text`），没有逐个实机核对；没有效果数据的事件（约 113 个）只能按风险文字和默认的"平分时离开"处理。需要 OCR 才能读出选项文字，目前 Maa 流水线本身（主线/记忆回廊）读不出文字，这些规则只作用于能提供选项文字的 Python 代理。
