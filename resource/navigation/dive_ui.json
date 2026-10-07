@@ -1,0 +1,46 @@
+{
+ "note": "幻梦深潜：入口页(挑战) -> 难度列表(左侧 I–VII/癫狂，需要滚动) -> 挑战 -> 编队页(选队伍、助战/直接调查) -> 地图/事件/商店/战斗（主线节点）。框坐标为原截图像素，用 tools/build_dive_pipeline.py 生成。",
+ "screens": {
+  "dd_entry": {"sample": "dd_entry.png", "src_size": [1580, 894]},
+  "dd_list_top": {"sample": "dd_list_top.png", "src_size": [1583, 882]},
+  "dd_list_bottom": {"sample": "dd_list_bottom.png", "src_size": [1583, 892]},
+  "dd_formation": {"sample": "dd_formation.png", "src_size": [1604, 899]}
+ },
+ "templates": [
+  {"id": "entry_title", "screen": "dd_entry", "box": [5, 38, 200, 95], "label": "入口页大标题「幻梦深潜」", "threshold": 0.8},
+  {"id": "list_marker", "screen": "dd_list_top", "box": [125, 95, 290, 130], "label": "难度列表页左上「本赛季最高分」", "threshold": 0.8},
+  {"id": "team_header", "screen": "dd_formation", "box": [395, 38, 562, 78], "label": "编队页「队伍信息」按钮", "threshold": 0.8}
+ ],
+ "regions": {
+  "entry_challenge": {"screen": "dd_entry", "box": [1140, 773, 1437, 835], "label": "入口页「挑战」"},
+  "list_challenge": {"screen": "dd_list_top", "box": [1228, 782, 1512, 840], "label": "列表页「挑战」"},
+  "list_area": {"screen": "dd_list_top", "box": [130, 140, 610, 810], "label": "难度列表可视区"},
+  "card_top_1": {"screen": "dd_list_top", "box": [135, 150, 605, 252], "label": "列表顶部状态：I"},
+  "card_top_2": {"screen": "dd_list_top", "box": [135, 272, 605, 374], "label": "列表顶部状态：II"},
+  "card_top_3": {"screen": "dd_list_top", "box": [135, 394, 605, 496], "label": "列表顶部状态：III"},
+  "card_top_4": {"screen": "dd_list_top", "box": [135, 515, 605, 617], "label": "列表顶部状态：IV"},
+  "card_top_5": {"screen": "dd_list_top", "box": [135, 637, 605, 739], "label": "列表顶部状态：V"},
+  "edge_top_1": {"screen": "dd_list_top", "box": [135, 140, 605, 154], "label": "I 选中金边条带"},
+  "edge_top_2": {"screen": "dd_list_top", "box": [135, 262, 605, 276], "label": "II 选中金边条带"},
+  "edge_top_3": {"screen": "dd_list_top", "box": [135, 384, 605, 398], "label": "III 选中金边条带"},
+  "edge_top_4": {"screen": "dd_list_top", "box": [135, 505, 605, 519], "label": "IV 选中金边条带"},
+  "edge_top_5": {"screen": "dd_list_top", "box": [135, 627, 605, 641], "label": "V 选中金边条带"},
+  "card_bot_4": {"screen": "dd_list_bottom", "box": [127, 214, 603, 316], "label": "列表底部状态：IV"},
+  "card_bot_5": {"screen": "dd_list_bottom", "box": [127, 335, 603, 438], "label": "列表底部状态：V"},
+  "card_bot_6": {"screen": "dd_list_bottom", "box": [127, 457, 603, 560], "label": "列表底部状态：VI"},
+  "card_bot_7": {"screen": "dd_list_bottom", "box": [127, 578, 603, 681], "label": "列表底部状态：VII"},
+  "card_bot_8": {"screen": "dd_list_bottom", "box": [127, 700, 603, 803], "label": "列表底部状态：癫狂"},
+  "edge_bot_4": {"screen": "dd_list_bottom", "box": [127, 203, 603, 217], "label": "IV 选中金边条带"},
+  "edge_bot_5": {"screen": "dd_list_bottom", "box": [127, 325, 603, 339], "label": "V 选中金边条带"},
+  "edge_bot_6": {"screen": "dd_list_bottom", "box": [127, 447, 603, 461], "label": "VI 选中金边条带"},
+  "edge_bot_7": {"screen": "dd_list_bottom", "box": [127, 568, 603, 582], "label": "VII 选中金边条带"},
+  "edge_bot_8": {"screen": "dd_list_bottom", "box": [127, 690, 603, 704], "label": "癫狂 选中金边条带"},
+  "tab_3": {"screen": "dd_formation", "box": [22, 103, 82, 163], "label": "编队页左侧队伍 III"},
+  "tab_4": {"screen": "dd_formation", "box": [22, 203, 82, 263], "label": "队伍 IV"},
+  "tab_5": {"screen": "dd_formation", "box": [22, 303, 82, 363], "label": "队伍 V"},
+  "tab_6": {"screen": "dd_formation", "box": [22, 403, 82, 463], "label": "队伍 VI"},
+  "tab_7": {"screen": "dd_formation", "box": [22, 503, 82, 563], "label": "队伍 VII"},
+  "tab_8": {"screen": "dd_formation", "box": [22, 603, 82, 663], "label": "队伍 VIII"},
+  "tab_9": {"screen": "dd_formation", "box": [22, 703, 82, 763], "label": "队伍 IX"}
+ }
+}

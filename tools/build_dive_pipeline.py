@@ -1,0 +1,212 @@
+"""Generate the 幻梦深潜 (dream dive) pipeline and its task in interface.json.
+
+    python tools/build_dive_pipeline.py [--check]
+
+Entry page (挑战) -> difficulty list (option 幻梦深潜难度: I–VII / 癫狂; the list is scrolled to its top or bottom first so
+card positions are fixed, then the card is clicked and the gold glow verified) -> 挑战 -> formation page (option
+幻梦深潜编队 picks team tab III–IX, option 幻梦深潜助战 uses the assist chain of the sync-rate loop or goes straight to 调查) ->
+map / events / shops / battles with the main-story nodes (MA_Map picks green tiles, Story* handle everything else) ->
+result -> back on the list/entry page = finished. Stop notices are the mainline's MA_*Notice nodes.
+
+Spec: resource/navigation/dive_ui.json. Output: resource/pipeline/dive.json, resource/image/dive_*.png.
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+import cv2
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_mainline_pipeline as M  # noqa: E402
+import build_nav_pipeline as B  # noqa: E402
+
+ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
+OUT = ROOT / "resource" / "pipeline" / "dive.json"
+INTERFACE = ROOT / "interface.json"
+TASK = "幻梦深潜"
+GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}      # selected-card glow (RGB)
+RING = {"method": 4, "lower": [85, 110, 130], "upper": [255, 255, 255]}       # lit team-tab circle (RGB)
+# difficulty key -> (list state, position in that state, label)
+DIFFS = {"d1": ("top", 1, "幻梦深潜 I"), "d2": ("top", 2, "II"), "d3": ("top", 3, "III"), "d4": ("top", 4, "IV"),
+         "d5": ("top", 5, "V"), "d6": ("bot", 6, "VI"), "d7": ("bot", 7, "VII"), "d8": ("bot", 8, "癫狂")}
+TEAMS = {3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII", 8: "VIII", 9: "IX"}
+
+
+def build():
+    ui = json.loads((NAV / "dive_ui.json").read_text(encoding="utf-8"))
+    images, nodes, rects, thr = {}, {}, {}, {}
+    for t in ui["templates"]:
+        sc = ui["screens"][t["screen"]]
+        x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
+        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
+        images[f"dive_{t['id']}.png"] = img[y0:y1, x0:x1]
+        rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
+        thr[t["id"]] = t.get("threshold", 0.8)
+
+    def match(tid, grow=16):
+        return {"recognition": "TemplateMatch", "template": f"dive_{tid}.png", "roi": B.grow(rects[tid], grow),
+                "threshold": thr[tid], "method": 10001}
+
+    def region(name):
+        return region_of(ui, name)
+
+    def inner(name, m=10):
+        x, y, w, h = region(name)
+        return [x + m, y + m // 2, max(4, w - 2 * m), max(4, h - m)]
+
+    def focus(text):
+        return {"Node.Recognition.Succeeded": text}
+
+    nodes["DD_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
+                         "next": ["DD_Entry", "DD_List", "DD_FormationReady", "DD_Resume"], "on_error": ["MA_StuckNotice"],
+                         "focus": focus("幻梦深潜：从入口页、难度列表、编队页或调查中的页面开始。")}
+    nodes["DD_Resume"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["StoryAfterRoute"]}
+    nodes["DD_Entry"] = {**match("entry_title"), "timeout": 20000, "rate_limit": 700, "action": "Click",
+                         "target": inner("entry_challenge"), "post_delay": 2000, "next": ["DD_List", "DD_EntryRetry"],
+                         "focus": {"Node.Action.Succeeded": "已点击入口页的【挑战】。"}}
+    nodes["DD_EntryRetry"] = {"recognition": "DirectHit", "action": "Click", "target": inner("entry_challenge"),
+                              "post_delay": 2000, "timeout": 15000, "next": ["DD_List"], "on_error": ["MA_StuckNotice"]}
+    # ---- difficulty list: scroll to a fixed state, click the card, verify the glow, 挑战
+    nodes["DD_List"] = {**match("list_marker"), "timeout": 30000, "rate_limit": 700, "action": "DoNothing",
+                        "next": ["DD_Scroll"], "on_error": ["MA_StuckNotice"], "focus": focus("已进入幻梦深潜难度列表。")}
+    x, y, w, h = region("list_area")
+    cx, top, bot = x + w // 2, y + int(h * 0.12), y + int(h * 0.88)
+    swipe = {"recognition": "DirectHit", "action": "Swipe", "duration": 500, "post_delay": 700}
+    nodes["DD_Scroll"] = {**swipe, "begin": [cx, top, 10, 10], "end": [cx, bot, 10, 10], "next": ["DD_Scroll2"],
+                          "focus": {"Node.Action.Succeeded": "把难度列表滚到固定位置（第一次）。"}}
+    nodes["DD_Scroll2"] = {**swipe, "begin": [cx, top, 10, 10], "end": [cx, bot, 10, 10], "next": ["DD_Select"]}
+    nodes["DD_Select"] = {"recognition": "DirectHit", "action": "Click", "target": inner("card_top_1"), "post_delay": 700,
+                          "next": ["DD_Selected", "DD_SelectRetry"], "focus": {"Node.Action.Succeeded": "已点击目标难度卡片。"}}
+    nodes["DD_SelectRetry"] = {"recognition": "DirectHit", "action": "Click", "target": inner("card_top_1"), "post_delay": 900,
+                               "next": ["DD_Selected", "DD_Locked"]}
+    nodes["DD_Selected"] = {"recognition": "ColorMatch", "roi": region("edge_top_1"), **GOLD, "count": 300, "connected": False,
+                            "action": "Click", "target": inner("list_challenge"), "post_delay": 2500,
+                            "next": ["DD_FormationReady", "DD_ChallengeRetry"],
+                            "focus": {"Node.Action.Succeeded": "目标难度已选中（金边），点击【挑战】。"}}
+    nodes["DD_ChallengeRetry"] = {"recognition": "DirectHit", "action": "Click", "target": inner("list_challenge"),
+                                  "post_delay": 2500, "timeout": 20000, "next": ["DD_FormationReady"], "on_error": ["MA_StuckNotice"]}
+    args, _ = M.msgbox_args("幻梦深潜：选择的难度没有选中（可能尚未解锁）。请手动选一个可用难度，或在任务选项里改成较低难度。")
+    nodes["DD_Locked"] = {"recognition": "DirectHit", "action": "Command", "exec": "powershell.exe", "args": args,
+                          "timeout": 30000, "next": [], "on_error": [],
+                          "focus": {"Node.Action.Starting": "难度未能选中：已弹出提示并停止。"}}
+    # ---- formation page: team tab, then assist chain (sync-rate nodes) or straight to 调查
+    nodes["DD_FormationReady"] = {**match("team_header"), "timeout": 30000, "rate_limit": 700, "action": "DoNothing",
+                                  "next": ["DD_TeamStep"], "on_error": ["MA_StuckNotice"], "focus": focus("已进入编队页。")}
+    nodes["DD_TeamStep"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["DD_AfterTeam"],
+                            "focus": {"Node.Action.Succeeded": "沿用当前队伍（设置「幻梦深潜编队」可改）。"}}
+    nodes["DD_TeamOk"] = {"recognition": "ColorMatch", "roi": region("tab_3"), **RING, "count": 300, "connected": False,
+                          "action": "DoNothing", "next": ["DD_AfterTeam"], "focus": focus("目标队伍标签已亮起。")}
+    nodes["DD_TeamClick"] = {"recognition": "DirectHit", "action": "Click", "target": inner("tab_3", 14), "post_delay": 900,
+                             "next": ["DD_TeamOk", "DD_TeamClickRetry"]}
+    nodes["DD_TeamClickRetry"] = {"recognition": "DirectHit", "action": "Click", "target": inner("tab_3", 14), "post_delay": 1200,
+                                  "next": ["DD_TeamOk", "DD_TeamLocked"]}
+    args, _ = M.msgbox_args("幻梦深潜：没能切换到设置里的队伍。请手动选好队伍后再启动任务，或把「幻梦深潜编队」改成沿用当前队伍。")
+    nodes["DD_TeamLocked"] = {"recognition": "DirectHit", "action": "Command", "exec": "powershell.exe", "args": args,
+                              "timeout": 30000, "next": [], "on_error": [],
+                              "focus": {"Node.Action.Starting": "队伍没能切换：已弹出提示并停止。"}}
+    nodes["DD_AfterTeam"] = {"recognition": "DirectHit", "action": "DoNothing",
+                             "next": ["OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
+    nodes["DD_FinishedList"] = {**match("list_marker"), "action": "DoNothing", "next": [],
+                                "focus": focus("回到难度列表：幻梦深潜任务完成。")}
+    nodes["DD_FinishedEntry"] = {**match("entry_title"), "action": "DoNothing", "next": [],
+                                 "focus": focus("回到入口页：幻梦深潜任务完成。")}
+    return images, nodes, ui
+
+
+def region_of(ui, name):
+    r = ui["regions"][name]
+    x0, y0, x1, y1 = B.scale_box(r["box"], ui["screens"][r["screen"]]["src_size"])
+    return [x0, y0, x1 - x0, y1 - y0]
+
+
+def inner(ui, name, m=10):
+    x, y, w, h = region_of(ui, name)
+    return [x + m, y + m // 2, max(4, w - 2 * m), max(4, h - m)]
+
+
+def difficulty_overrides(ui, nodes):
+    out = {}
+    for key, (state, pos, _) in DIFFS.items():
+        card, edge = f"card_{state}_{pos}", f"edge_{state}_{pos}"
+        ov = {"DD_Select": {"target": inner(ui, card)}, "DD_SelectRetry": {"target": inner(ui, card)},
+              "DD_Selected": {"roi": region_of(ui, edge)}}
+        if state == "bot":                    # scroll the other way: down to the bottom of the list
+            for name in ("DD_Scroll", "DD_Scroll2"):
+                ov[name] = {"begin": nodes[name]["end"], "end": nodes[name]["begin"]}
+        out[key] = ov
+    return out
+
+
+def team_overrides(ui):
+    out = {"keep": {}}
+    for n in TEAMS:
+        tab = f"tab_{n}"
+        out[f"t{n}"] = {"DD_TeamStep": {"next": ["DD_TeamOk", "DD_TeamClick"]},
+                        "DD_TeamOk": {"roi": region_of(ui, tab)},
+                        "DD_TeamClick": {"target": inner(ui, tab, 14)}, "DD_TeamClickRetry": {"target": inner(ui, tab, 14)}}
+    return out
+
+
+def update_interface(orig, ui, nodes):
+    d = json.loads(INTERFACE.read_text(encoding="utf-8-sig"))
+    ov = difficulty_overrides(ui, nodes)
+    d["option"]["幻梦深潜难度"] = {
+        "type": "select", "label": "幻梦深潜：挑战难度",
+        "description": "进入难度列表后先把列表滚到顶部/底部（位置固定），再点选难度并确认金边。未解锁的难度选不中时弹窗提示并停止。",
+        "default_case": "d1", "cases": [{"name": k, "label": lab + ("（默认）" if k == "d1" else ""), "pipeline_override": ov[k]}
+                                       for k, (_, _, lab) in DIFFS.items()]}
+    tov = team_overrides(ui)
+    d["option"]["幻梦深潜编队"] = {
+        "type": "select", "label": "幻梦深潜：默认编队",
+        "description": "编队页先切换到这个队伍再挑战。目前能切换左侧可见的队伍 III–IX（队伍 I、II 在列表上方，还没有截图）。",
+        "default_case": "keep", "cases": [{"name": "keep", "label": "沿用当前队伍（默认）"}] + [
+            {"name": f"t{n}", "label": f"队伍 {roman}", "pipeline_override": tov[f"t{n}"]} for n, roman in TEAMS.items()]}
+    d["option"]["幻梦深潜助战"] = {
+        "type": "select", "label": "幻梦深潜：是否使用助战",
+        "description": "使用助战沿用同调率循环的助战流程（助战→选择角色→上场→调查）；不使用则直接点击调查。",
+        "default_case": "use", "cases": [{"name": "use", "label": "使用助战（默认）"},
+                                         {"name": "skip", "label": "不使用助战，直接调查",
+                                          "pipeline_override": {"DD_AfterTeam": {"next": ["StartInvestigation"]}}}]}
+    override = M.task_definition(orig, extra=("DD_FinishedList", "DD_FinishedEntry", "MA_Map"), done_next=())
+    # the sync-rate 调查 button leads on into the map / story nodes instead of the sync-rate battle chain
+    override["StartInvestigation"] = {"next": ["InvestigationWarningUnchecked", "InvestigationWarningChecked", "StoryAfterRoute"]}
+    override["InvestigationWarningChecked"] = {"next": ["StoryAfterRoute"]}
+    entry = {"name": TASK, "label": "幻梦深潜（走格子打首领）", "entry": "DD_Start",
+             "option": ["幻梦深潜难度", "幻梦深潜编队", "幻梦深潜助战", "主线灵知", "主线战斗超时", "探索选格方式", "剧情购买策略", "剧情造物位置"],
+             "default_check": False, "repeatable": False, "pipeline_override": override,
+             "description": "入口页挑战 → 选难度 → 挑战 → 编队页（切队伍、助战或直接调查）→ 走格子、事件、商店、战斗直到首领通关，回到列表/入口页即完成。首领战斗超时、战败且灵知用完、画面无法识别时弹窗提示并停止。"}
+    tasks = [t for t in d["task"] if t["name"] != TASK]
+    at = next((i for i, t in enumerate(tasks) if t["name"] == "记忆回廊列车"), len(tasks))
+    tasks.insert(at, entry)
+    d["task"] = tasks
+    return d
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--check", action="store_true")
+    args = ap.parse_args()
+    images, nodes, ui = build()
+    orig = {k: v for k, v in M.load_pipelines().items() if not k.startswith(("DD_", "TR_"))}
+    d = update_interface(orig, ui, nodes)
+    text, itext = json.dumps(nodes, ensure_ascii=False, indent=2) + "\n", json.dumps(d, ensure_ascii=False, indent=2) + "\n"
+    if args.check:
+        stale = [] if OUT.is_file() and OUT.read_bytes() == text.encode("utf-8") else [str(OUT)]
+        stale += [] if INTERFACE.read_bytes() == itext.encode("utf-8") else [str(INTERFACE)]
+        stale += [str(IMAGE / n) for n in images if not (IMAGE / n).is_file()]
+        if stale:
+            sys.exit("out of date: " + ", ".join(stale))
+        print("dive pipeline is up to date")
+        return
+    for name, img in images.items():
+        cv2.imwrite(str(IMAGE / name), img)
+    OUT.write_bytes(text.encode("utf-8"))
+    INTERFACE.write_bytes(itext.encode("utf-8"))
+    print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}; interface.json updated")
+
+
+if __name__ == "__main__":
+    main()

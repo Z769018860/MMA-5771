@@ -240,7 +240,7 @@ def update_interface(profiles):
     data["task"] = [t for t in data["task"] if t["name"] not in mine and not t["name"].startswith("自动活动推进")
                     and not t["name"].startswith("活动自动推进")]
     tasks = [profile_task(p) for p in profiles]
-    mainline = next((j for j, t in enumerate(data["task"]) if t["name"] in ("记忆回廊列车", "自动推进主线")), len(data["task"]))
+    mainline = next((j for j, t in enumerate(data["task"]) if t["name"] in ("幻梦深潜", "记忆回廊列车", "自动推进主线")), len(data["task"]))
     data["task"][mainline:mainline] = tasks
     return data
 

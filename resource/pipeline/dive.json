@@ -1,0 +1,404 @@
+{
+  "DD_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "timeout": 30000,
+    "next": [
+      "DD_Entry",
+      "DD_List",
+      "DD_FormationReady",
+      "DD_Resume"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "幻梦深潜：从入口页、难度列表、编队页或调查中的页面开始。"
+    }
+  },
+  "DD_Resume": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_Entry": {
+    "recognition": "TemplateMatch",
+    "template": "dive_entry_title.png",
+    "roi": [
+      0,
+      15,
+      178,
+      78
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 20000,
+    "rate_limit": 700,
+    "action": "Click",
+    "target": [
+      934,
+      628,
+      220,
+      39
+    ],
+    "post_delay": 2000,
+    "next": [
+      "DD_List",
+      "DD_EntryRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击入口页的【挑战】。"
+    }
+  },
+  "DD_EntryRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      934,
+      628,
+      220,
+      39
+    ],
+    "post_delay": 2000,
+    "timeout": 15000,
+    "next": [
+      "DD_List"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
+  },
+  "DD_List": {
+    "recognition": "TemplateMatch",
+    "template": "dive_list_marker.png",
+    "roi": [
+      85,
+      62,
+      165,
+      60
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 30000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "DD_Scroll"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入幻梦深潜难度列表。"
+    }
+  },
+  "DD_Scroll": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "duration": 500,
+    "post_delay": 700,
+    "begin": [
+      299,
+      179,
+      10,
+      10
+    ],
+    "end": [
+      299,
+      595,
+      10,
+      10
+    ],
+    "next": [
+      "DD_Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "把难度列表滚到固定位置（第一次）。"
+    }
+  },
+  "DD_Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "duration": 500,
+    "post_delay": 700,
+    "begin": [
+      299,
+      179,
+      10,
+      10
+    ],
+    "end": [
+      299,
+      595,
+      10,
+      10
+    ],
+    "next": [
+      "DD_Select"
+    ]
+  },
+  "DD_Select": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      119,
+      127,
+      360,
+      74
+    ],
+    "post_delay": 700,
+    "next": [
+      "DD_Selected",
+      "DD_SelectRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击目标难度卡片。"
+    }
+  },
+  "DD_SelectRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      119,
+      127,
+      360,
+      74
+    ],
+    "post_delay": 900,
+    "next": [
+      "DD_Selected",
+      "DD_Locked"
+    ]
+  },
+  "DD_Selected": {
+    "recognition": "ColorMatch",
+    "roi": [
+      109,
+      114,
+      380,
+      12
+    ],
+    "method": 4,
+    "lower": [
+      225,
+      215,
+      100
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 300,
+    "connected": false,
+    "action": "Click",
+    "target": [
+      1003,
+      643,
+      210,
+      38
+    ],
+    "post_delay": 2500,
+    "next": [
+      "DD_FormationReady",
+      "DD_ChallengeRetry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "目标难度已选中（金边），点击【挑战】。"
+    }
+  },
+  "DD_ChallengeRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1003,
+      643,
+      210,
+      38
+    ],
+    "post_delay": 2500,
+    "timeout": 20000,
+    "next": [
+      "DD_FormationReady"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ]
+  },
+  "DD_Locked": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAe16maPFtXG8a/wmQ6WKEdr6Wpl6hbAlnCZAtTgj/71P9gBpcKmfjiQGVCf8CMPeLS2KoUgmQAE4qTu9TKHW+lqZeDP8WYihX+06hUgmQeZjMkTllEGKDj05PvpamXgIwJwAsACcA2F90U01SHFmpUktiJwAsACcATwBLACcALAAnAFcAYQByAG4AaQBuAGcAJwApACAAfAAgAE8AdQB0AC0ATgB1AGwAbAA="
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "难度未能选中：已弹出提示并停止。"
+    }
+  },
+  "DD_FormationReady": {
+    "recognition": "TemplateMatch",
+    "template": "dive_team_header.png",
+    "roi": [
+      299,
+      14,
+      165,
+      64
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 30000,
+    "rate_limit": 700,
+    "action": "DoNothing",
+    "next": [
+      "DD_TeamStep"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入编队页。"
+    }
+  },
+  "DD_TeamStep": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "DD_AfterTeam"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "沿用当前队伍（设置「幻梦深潜编队」可改）。"
+    }
+  },
+  "DD_TeamOk": {
+    "recognition": "ColorMatch",
+    "roi": [
+      18,
+      82,
+      47,
+      49
+    ],
+    "method": 4,
+    "lower": [
+      85,
+      110,
+      130
+    ],
+    "upper": [
+      255,
+      255,
+      255
+    ],
+    "count": 300,
+    "connected": false,
+    "action": "DoNothing",
+    "next": [
+      "DD_AfterTeam"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "目标队伍标签已亮起。"
+    }
+  },
+  "DD_TeamClick": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      32,
+      89,
+      19,
+      35
+    ],
+    "post_delay": 900,
+    "next": [
+      "DD_TeamOk",
+      "DD_TeamClickRetry"
+    ]
+  },
+  "DD_TeamClickRetry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      32,
+      89,
+      19,
+      35
+    ],
+    "post_delay": 1200,
+    "next": [
+      "DD_TeamOk",
+      "DD_TeamLocked"
+    ]
+  },
+  "DD_TeamLocked": {
+    "recognition": "DirectHit",
+    "action": "Command",
+    "exec": "powershell.exe",
+    "args": [
+      "-NoLogo",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-EncodedCommand",
+      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAe16maPFtXG8a/6Fs/YAHUmJjMFK+i25/zJGEdh+WDU8CMPeLS2KoUgmQfVkflg1PDlSNUS9UqFL7TqFSDP8WYopiDDB7XqZo8W1cbxZ/H5YNMDllEGK/bCh1U19NUh+WDU8CMCcALAAnANhfdFNNUhxZqVJLYicALAAnAE8ASwAnACwAJwBXAGEAcgBuAGkAbgBnACcAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwA"
+    ],
+    "timeout": 30000,
+    "next": [],
+    "on_error": [],
+    "focus": {
+      "Node.Action.Starting": "队伍没能切换：已弹出提示并停止。"
+    }
+  },
+  "DD_AfterTeam": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "OpenAssistPurple",
+      "OpenAssistRed",
+      "OpenAssist"
+    ]
+  },
+  "DD_FinishedList": {
+    "recognition": "TemplateMatch",
+    "template": "dive_list_marker.png",
+    "roi": [
+      85,
+      62,
+      165,
+      60
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "回到难度列表：幻梦深潜任务完成。"
+    }
+  },
+  "DD_FinishedEntry": {
+    "recognition": "TemplateMatch",
+    "template": "dive_entry_title.png",
+    "roi": [
+      0,
+      15,
+      178,
+      78
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [],
+    "focus": {
+      "Node.Recognition.Succeeded": "回到入口页：幻梦深潜任务完成。"
+    }
+  }
+}
