@@ -21,7 +21,7 @@ import build_nav_pipeline as B  # noqa: E402
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "sweep.json"
 # battle pages the sync-rate loop already handles (no assist selection: one plain clear)
-CLEAR_ROUTER = ["StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
+CLEAR_ROUTER = ["TeamA_Fix", "StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
                 "ReviveDecision", "FailureChoice", "FinishInvestigation", "HideCards", "AutoControlReady", "BattleMonitor", "StopHere"]
 # task-level override (interface.json): after the one-off clear the sync-rate nodes must come back here, not start farming
 TASK_OVERRIDE = {

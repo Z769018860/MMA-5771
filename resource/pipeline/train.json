@@ -255,6 +255,7 @@
     "recognition": "DirectHit",
     "action": "DoNothing",
     "next": [
+      "TeamB_Fix",
       "StoryFormation"
     ],
     "on_error": [

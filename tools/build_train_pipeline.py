@@ -20,6 +20,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_mainline_pipeline as M  # noqa: E402
 import build_nav_pipeline as B  # noqa: E402
+from team_options import TEAM_OPTIONS  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "train.json"
@@ -164,7 +165,7 @@ def update_interface(orig, ui, nodes):
             {"name": "middle", "label": "中间", "pipeline_override": {"TR_ArtifactChoice": {"target": [565, 340, 150, 90]}}},
             {"name": "right", "label": "右边", "pipeline_override": {"TR_ArtifactChoice": {"target": [890, 340, 75, 90]}}}]}
     entry = {"name": TASK, "label": "记忆回廊：疾驰的欢愉专列（星辰篇）", "entry": "TR_Start",
-             "option": ["记忆回廊难度", "记忆回廊灵知", "记忆回廊事件选项", "记忆回廊造物位置", "主线战斗超时", "剧情购买策略", "剧情造物位置"],
+             "option": ["记忆回廊难度", "记忆回廊灵知", "记忆回廊事件选项", "记忆回廊造物位置", "主线战斗超时", "剧情购买策略", "剧情造物位置", *TEAM_OPTIONS],
              "default_check": False, "repeatable": False, "pipeline_override": override,
              "description": "入口页点启程 → 选难度 → 挑战 → 编队页点调查 → 事件/商店/战斗按主线逻辑自动处理，直到调查结束回到入口页。Boss 超时、战败且灵知用完、或画面无法识别时弹窗提示并停止。"}
     tasks = [t for t in d["task"] if t["name"] != TASK]

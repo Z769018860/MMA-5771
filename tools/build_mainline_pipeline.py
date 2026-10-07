@@ -22,6 +22,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
+from team_options import TEAM_OPTIONS  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "mainline.json"
@@ -196,7 +197,7 @@ def main():
         if c["name"] in picks:
             c["pipeline_override"] = picks[c["name"]]
     entry = {"name": TASK, "label": "自动推进主线（实验）", "entry": "MA_Start",
-             "option": ["主线灵知", "主线战斗超时", "探索选格方式", "目标章节", "剧情购买策略", "剧情造物位置"],
+             "option": ["主线灵知", "主线战斗超时", "探索选格方式", "目标章节", "剧情购买策略", "剧情造物位置", *TEAM_OPTIONS],
              "default_check": False, "repeatable": False, "pipeline_override": task_definition(orig),
              "description": "反复：选最新关卡 → 走格子/事件/商店/战斗/跳过剧情 → 回到关卡列表时检查左下角共鸣红点并全部激活 → 继续下一关。遇到无法自动的 Boss 关（战斗超时）、战斗失败且灵知用完、或画面无法识别时弹出提示并停止。"}
     d["task"] = [t for t in d["task"] if t["name"] != TASK] + [entry]

@@ -12,6 +12,7 @@
       "MaterialPopupRecovery",
       "ChooseFeather",
       "ChooseMadness",
+      "TeamA_Fix",
       "OpenAssistPurple",
       "OpenAssistRed",
       "OpenAssist",
@@ -232,6 +233,7 @@
     ],
     "post_delay": 1800,
     "next": [
+      "TeamA_Fix",
       "OpenAssistPurple",
       "OpenAssistRed",
       "OpenAssist"

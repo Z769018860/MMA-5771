@@ -8,7 +8,11 @@ with the all-stage task.
 import argparse
 import base64
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from team_options import TEAM_OPTIONS  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 INTERFACE = ROOT / "interface.json"
@@ -214,7 +218,7 @@ def profile_task(prof):
     P, count = prof["prefix"], len(prof["stages"])
     ta, so = prof["task_all"], prof["scope_option"]
     return {"name": ta["name"], "label": ta["label"], "entry": f"{P}_Start",
-            "option": [so["name"], "同调率助战", "活动应急灵知体", "活动列表项", "活动玩法入口"], "default_check": False,
+            "option": [so["name"], "同调率助战", "活动应急灵知体", "活动列表项", "活动玩法入口", *TEAM_OPTIONS], "default_check": False,
             "repeatable": False, "pipeline_override": task_overrides(prof),
             "description": ta["description"].format(n=count)}
 

@@ -3,8 +3,7 @@
     python tools/build_dive_pipeline.py [--check]
 
 Entry page (挑战) -> difficulty list (option 幻梦深潜难度: I–VII / 癫狂; the list is scrolled to its top or bottom first so
-card positions are fixed, then the card is clicked and the gold glow verified) -> 挑战 -> formation page (option
-幻梦深潜编队 picks team tab III–IX, option 幻梦深潜助战 uses the assist chain of the sync-rate loop or goes straight to 调查) ->
+card positions are fixed, then the card is clicked and the gold glow verified) -> 挑战 -> formation page (通用队伍选项 picks the team (build_team_pipeline.py), option 幻梦深潜助战 uses the assist chain of the sync-rate loop or goes straight to 调查) ->
 map / events / shops / battles with the main-story nodes (MA_Map picks green tiles, Story* handle everything else) ->
 result -> back on the list/entry page = finished. Stop notices are the mainline's MA_*Notice nodes.
 
@@ -22,17 +21,16 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_mainline_pipeline as M  # noqa: E402
 import build_nav_pipeline as B  # noqa: E402
+from team_options import TEAM_OPTIONS  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "dive.json"
 INTERFACE = ROOT / "interface.json"
 TASK = "幻梦深潜"
 GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}      # selected-card glow (RGB)
-RING = {"method": 4, "lower": [85, 110, 130], "upper": [255, 255, 255]}       # lit team-tab circle (RGB)
 # difficulty key -> (list state, position in that state, label)
 DIFFS = {"d1": ("top", 1, "幻梦深潜 I"), "d2": ("top", 2, "II"), "d3": ("top", 3, "III"), "d4": ("top", 4, "IV"),
          "d5": ("top", 5, "V"), "d6": ("bot", 6, "VI"), "d7": ("bot", 7, "VII"), "d8": ("bot", 8, "癫狂")}
-TEAMS = {3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII", 8: "VIII", 9: "IX"}
 
 
 def build():
@@ -94,21 +92,10 @@ def build():
                           "focus": {"Node.Action.Starting": "难度未能选中：已弹出提示并停止。"}}
     # ---- formation page: team tab, then assist chain (sync-rate nodes) or straight to 调查
     nodes["DD_FormationReady"] = {**match("team_header"), "timeout": 30000, "rate_limit": 700, "action": "DoNothing",
-                                  "next": ["DD_TeamStep"], "on_error": ["MA_StuckNotice"], "focus": focus("已进入编队页。")}
-    nodes["DD_TeamStep"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["DD_AfterTeam"],
-                            "focus": {"Node.Action.Succeeded": "沿用当前队伍（设置「幻梦深潜编队」可改）。"}}
-    nodes["DD_TeamOk"] = {"recognition": "ColorMatch", "roi": region("tab_3"), **RING, "count": 300, "connected": False,
-                          "action": "DoNothing", "next": ["DD_AfterTeam"], "focus": focus("目标队伍标签已亮起。")}
-    nodes["DD_TeamClick"] = {"recognition": "DirectHit", "action": "Click", "target": inner("tab_3", 14), "post_delay": 900,
-                             "next": ["DD_TeamOk", "DD_TeamClickRetry"]}
-    nodes["DD_TeamClickRetry"] = {"recognition": "DirectHit", "action": "Click", "target": inner("tab_3", 14), "post_delay": 1200,
-                                  "next": ["DD_TeamOk", "DD_TeamLocked"]}
-    args, _ = M.msgbox_args("幻梦深潜：没能切换到设置里的队伍。请手动选好队伍后再启动任务，或把「幻梦深潜编队」改成沿用当前队伍。")
-    nodes["DD_TeamLocked"] = {"recognition": "DirectHit", "action": "Command", "exec": "powershell.exe", "args": args,
-                              "timeout": 30000, "next": [], "on_error": [],
-                              "focus": {"Node.Action.Starting": "队伍没能切换：已弹出提示并停止。"}}
+                                  "next": ["DD_AfterTeam"], "on_error": ["MA_StuckNotice"], "focus": focus("已进入编队页。")}
+    # TeamA_Fix (tools/build_team_pipeline.py) switches the team first when an option asks for it, then the assist chain
     nodes["DD_AfterTeam"] = {"recognition": "DirectHit", "action": "DoNothing",
-                             "next": ["OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
+                             "next": ["TeamA_Fix", "OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
     nodes["DD_FinishedList"] = {**match("list_marker"), "action": "DoNothing", "next": [],
                                 "focus": focus("回到难度列表：幻梦深潜任务完成。")}
     nodes["DD_FinishedEntry"] = {**match("entry_title"), "action": "DoNothing", "next": [],
@@ -140,42 +127,28 @@ def difficulty_overrides(ui, nodes):
     return out
 
 
-def team_overrides(ui):
-    out = {"keep": {}}
-    for n in TEAMS:
-        tab = f"tab_{n}"
-        out[f"t{n}"] = {"DD_TeamStep": {"next": ["DD_TeamOk", "DD_TeamClick"]},
-                        "DD_TeamOk": {"roi": region_of(ui, tab)},
-                        "DD_TeamClick": {"target": inner(ui, tab, 14)}, "DD_TeamClickRetry": {"target": inner(ui, tab, 14)}}
-    return out
-
-
 def update_interface(orig, ui, nodes):
     d = json.loads(INTERFACE.read_text(encoding="utf-8-sig"))
+    d["option"].pop("幻梦深潜编队", None)                      # replaced by the generic 默认编队 / 本任务编队 options
     ov = difficulty_overrides(ui, nodes)
     d["option"]["幻梦深潜难度"] = {
         "type": "select", "label": "幻梦深潜：挑战难度",
         "description": "进入难度列表后先把列表滚到顶部/底部（位置固定），再点选难度并确认金边。未解锁的难度选不中时弹窗提示并停止。",
         "default_case": "d1", "cases": [{"name": k, "label": lab + ("（默认）" if k == "d1" else ""), "pipeline_override": ov[k]}
                                        for k, (_, _, lab) in DIFFS.items()]}
-    tov = team_overrides(ui)
-    d["option"]["幻梦深潜编队"] = {
-        "type": "select", "label": "幻梦深潜：默认编队",
-        "description": "编队页先切换到这个队伍再挑战。目前能切换左侧可见的队伍 III–IX（队伍 I、II 在列表上方，还没有截图）。",
-        "default_case": "keep", "cases": [{"name": "keep", "label": "沿用当前队伍（默认）"}] + [
-            {"name": f"t{n}", "label": f"队伍 {roman}", "pipeline_override": tov[f"t{n}"]} for n, roman in TEAMS.items()]}
     d["option"]["幻梦深潜助战"] = {
         "type": "select", "label": "幻梦深潜：是否使用助战",
         "description": "使用助战沿用同调率循环的助战流程（助战→选择角色→上场→调查）；不使用则直接点击调查。",
         "default_case": "use", "cases": [{"name": "use", "label": "使用助战（默认）"},
                                          {"name": "skip", "label": "不使用助战，直接调查",
-                                          "pipeline_override": {"DD_AfterTeam": {"next": ["StartInvestigation"]}}}]}
+                                          "pipeline_override": {"DD_AfterTeam": {"next": ["TeamA_Fix", "StartInvestigation"]},
+                                                                   "TeamA_Resume": {"next": ["StartInvestigation"]}}}]}
     override = M.task_definition(orig, extra=("DD_FinishedList", "DD_FinishedEntry", "MA_Map"), done_next=())
     # the sync-rate 调查 button leads on into the map / story nodes instead of the sync-rate battle chain
     override["StartInvestigation"] = {"next": ["InvestigationWarningUnchecked", "InvestigationWarningChecked", "StoryAfterRoute"]}
     override["InvestigationWarningChecked"] = {"next": ["StoryAfterRoute"]}
     entry = {"name": TASK, "label": "幻梦深潜（走格子打首领）", "entry": "DD_Start",
-             "option": ["幻梦深潜难度", "幻梦深潜编队", "幻梦深潜助战", "主线灵知", "主线战斗超时", "探索选格方式", "剧情购买策略", "剧情造物位置"],
+             "option": ["幻梦深潜难度", "幻梦深潜助战", "主线灵知", "主线战斗超时", "探索选格方式", "剧情购买策略", "剧情造物位置", *TEAM_OPTIONS],
              "default_check": False, "repeatable": False, "pipeline_override": override,
              "description": "入口页挑战 → 选难度 → 挑战 → 编队页（切队伍、助战或直接调查）→ 走格子、事件、商店、战斗直到首领通关，回到列表/入口页即完成。首领战斗超时、战败且灵知用完、画面无法识别时弹窗提示并停止。"}
     tasks = [t for t in d["task"] if t["name"] != TASK]

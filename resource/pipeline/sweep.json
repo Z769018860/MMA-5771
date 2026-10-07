@@ -385,6 +385,7 @@
     "action": "DoNothing",
     "timeout": 600000,
     "next": [
+      "TeamA_Fix",
       "StartInvestigation",
       "InvestigationWarningUnchecked",
       "InvestigationWarningChecked",

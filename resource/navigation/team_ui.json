@@ -1,0 +1,98 @@
+{
+ "note": "通用队伍切换：编队页左侧队伍标签 III–IX（样本 dd_formation.png）。框坐标为原截图像素，用 tools/build_team_pipeline.py 生成。",
+ "screens": {
+  "dd_formation": {
+   "sample": "dd_formation.png",
+   "src_size": [
+    1604,
+    899
+   ]
+  }
+ },
+ "templates": [
+  {
+   "id": "header",
+   "screen": "dd_formation",
+   "box": [
+    395,
+    38,
+    562,
+    78
+   ],
+   "label": "编队页「队伍信息」按钮",
+   "threshold": 0.8
+  }
+ ],
+ "regions": {
+  "tab_3": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    103,
+    82,
+    163
+   ],
+   "label": "编队页左侧队伍 III"
+  },
+  "tab_4": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    203,
+    82,
+    263
+   ],
+   "label": "队伍 IV"
+  },
+  "tab_5": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    303,
+    82,
+    363
+   ],
+   "label": "队伍 V"
+  },
+  "tab_6": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    403,
+    82,
+    463
+   ],
+   "label": "队伍 VI"
+  },
+  "tab_7": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    503,
+    82,
+    563
+   ],
+   "label": "队伍 VII"
+  },
+  "tab_8": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    603,
+    82,
+    663
+   ],
+   "label": "队伍 VIII"
+  },
+  "tab_9": {
+   "screen": "dd_formation",
+   "box": [
+    22,
+    703,
+    82,
+    763
+   ],
+   "label": "队伍 IX"
+  }
+ }
+}

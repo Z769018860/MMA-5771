@@ -17,11 +17,12 @@ import test_navigation as T  # noqa: E402
 from test_daily import Script, run  # noqa: E402
 
 UI = json.loads((B.NAV / "dive_ui.json").read_text(encoding="utf-8"))
+TEAM_UI = json.loads((B.NAV / "team_ui.json").read_text(encoding="utf-8"))
 IFACE = json.loads((B.ROOT / "interface.json").read_text(encoding="utf-8"))
 
 
 def region(name):
-    return D.region_of(UI, name)
+    return D.region_of(TEAM_UI if name.startswith("tab_") else UI, name)
 
 
 def option(name, case):
@@ -91,13 +92,6 @@ def main():
         fired, ev = T.run_node(resource, images["dd_list_top"], "DD_Scroll", ov, timeout=300)
         moves = [e for e in ev if e[0] in ("down", "move")]
         expect(fired and moves and ((moves[-1][2] > moves[0][2]) == (state == "top")), f"DD_Scroll[{key}] direction {moves[:1]}..{moves[-1:]}")
-    # team tabs: only the lit one (VI in the real screenshot) is recognised
-    for n in D.TEAMS:
-        ov = option("幻梦深潜编队", f"t{n}")
-        fired, _ = T.run_node(resource, images["dd_formation"], "DD_TeamOk", ov, timeout=300)
-        expect(fired == (n == 6), f"DD_TeamOk[t{n}] on the real formation page: got {fired}")
-        fired, ev = T.run_node(resource, images["dd_formation"], "DD_TeamClick", ov, timeout=300)
-        expect(fired and T.inside(ev, region(f"tab_{n}"), 2), f"DD_TeamClick[t{n}] click {ev[:1]}")
     # whole flow: entry -> list (scroll) -> card II -> 挑战 -> formation -> switch to team IV -> (no assist) 调查
     images["list_ii"] = synthetic["top_2"]
     images["formation_iv"] = move_patch(images["dd_formation"], "tab_6", "tab_4", "tab_5")
@@ -111,21 +105,20 @@ def main():
           "formation_iv": [([830, 625, 360, 60], "started")]}
     scr = Script(images, tr, "dd_entry")
     quick = {k: {"timeout": 1500, "on_error": []} for k in list(tasks["pipeline_override"]) + [
-        "DD_Start", "DD_Entry", "DD_List", "DD_Select", "DD_Selected", "DD_FormationReady", "DD_TeamStep", "DD_TeamOk",
-        "DD_TeamClick", "DD_AfterTeam", "StartInvestigation", "StoryAfterRoute"]}
-    for k in ("MA_ManualNotice", "MA_DefeatNotice", "MA_StuckNotice", "DD_Locked", "DD_TeamLocked"):
+        "DD_Start", "DD_Entry", "DD_List", "DD_Select", "DD_Selected", "DD_FormationReady", "DD_AfterTeam", "TeamA_Fix", "TeamA_Fix2", "TeamA_Lit", "TeamA_Resume", "StartInvestigation", "StoryAfterRoute"]}
+    for k in ("MA_ManualNotice", "MA_DefeatNotice", "MA_StuckNotice", "DD_Locked", "Team_Locked"):
         quick[k] = {"action": "DoNothing"}
     for k in ("DD_Scroll", "DD_Scroll2"):
         quick[k] = {"post_delay": 50}
     merged = {}
-    for src in (tasks["pipeline_override"], option("幻梦深潜难度", "d2"), option("幻梦深潜编队", "t4"), option("幻梦深潜助战", "skip"), quick):
+    for src in (tasks["pipeline_override"], option("幻梦深潜难度", "d2"), option("默认编队", "t4"), option("幻梦深潜助战", "skip"), quick):
         for k, v in src.items():
             merged.setdefault(k, {}).update(v)
     got = run(resource, scr, "DD_Start", merged)
     taps = [t[0] for t in scr.taps]
     expect(taps[:5] == ["dd_entry", "dd_list_top", "list_ii", "dd_formation", "formation_iv"] and scr.state == "started",
            f"flow: taps {scr.taps}, state {scr.state}, nodes {got}")
-    expect("DD_Locked" not in got and "DD_TeamLocked" not in got, f"flow reported a lock: {got}")
+    expect("DD_Locked" not in got and "Team_Locked" not in got, f"flow reported a lock: {got}")
     ov = tasks["pipeline_override"]
     expect(ov["StartInvestigation"]["next"][-1] == "StoryAfterRoute" and "DD_FinishedList" in ov["StoryAfterRoute"]["next"]
            and "MA_Map" in ov["StoryAfterRoute"]["next"] and ov["StoryStopHere"]["next"] == ["MA_DefeatNotice"], "task override incomplete")

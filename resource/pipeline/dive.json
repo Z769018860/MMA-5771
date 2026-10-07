@@ -261,7 +261,7 @@
     "rate_limit": 700,
     "action": "DoNothing",
     "next": [
-      "DD_TeamStep"
+      "DD_AfterTeam"
     ],
     "on_error": [
       "MA_StuckNotice"
@@ -270,98 +270,11 @@
       "Node.Recognition.Succeeded": "已进入编队页。"
     }
   },
-  "DD_TeamStep": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "next": [
-      "DD_AfterTeam"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "沿用当前队伍（设置「幻梦深潜编队」可改）。"
-    }
-  },
-  "DD_TeamOk": {
-    "recognition": "ColorMatch",
-    "roi": [
-      18,
-      82,
-      47,
-      49
-    ],
-    "method": 4,
-    "lower": [
-      85,
-      110,
-      130
-    ],
-    "upper": [
-      255,
-      255,
-      255
-    ],
-    "count": 300,
-    "connected": false,
-    "action": "DoNothing",
-    "next": [
-      "DD_AfterTeam"
-    ],
-    "focus": {
-      "Node.Recognition.Succeeded": "目标队伍标签已亮起。"
-    }
-  },
-  "DD_TeamClick": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": [
-      32,
-      89,
-      19,
-      35
-    ],
-    "post_delay": 900,
-    "next": [
-      "DD_TeamOk",
-      "DD_TeamClickRetry"
-    ]
-  },
-  "DD_TeamClickRetry": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": [
-      32,
-      89,
-      19,
-      35
-    ],
-    "post_delay": 1200,
-    "next": [
-      "DD_TeamOk",
-      "DD_TeamLocked"
-    ]
-  },
-  "DD_TeamLocked": {
-    "recognition": "DirectHit",
-    "action": "Command",
-    "exec": "powershell.exe",
-    "args": [
-      "-NoLogo",
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-EncodedCommand",
-      "QQBkAGQALQBUAHkAcABlACAALQBBAHMAcwBlAG0AYgBsAHkATgBhAG0AZQAgAFAAcgBlAHMAZQBuAHQAYQB0AGkAbwBuAEYAcgBhAG0AZQB3AG8AcgBrADsAIABbAFMAeQBzAHQAZQBtAC4AVwBpAG4AZABvAHcAcwAuAE0AZQBzAHMAYQBnAGUAQgBvAHgAXQA6ADoAUwBoAG8AdwAoACcAe16maPFtXG8a/6Fs/YAHUmJjMFK+i25/zJGEdh+WDU8CMPeLS2KoUgmQfVkflg1PDlSNUS9UqFL7TqFSDP8WYopiDDB7XqZo8W1cbxZ/H5YNMDllEGK/bCh1U19NUh+WDU8CMCcALAAnANhfdFNNUhxZqVJLYicALAAnAE8ASwAnACwAJwBXAGEAcgBuAGkAbgBnACcAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwA"
-    ],
-    "timeout": 30000,
-    "next": [],
-    "on_error": [],
-    "focus": {
-      "Node.Action.Starting": "队伍没能切换：已弹出提示并停止。"
-    }
-  },
   "DD_AfterTeam": {
     "recognition": "DirectHit",
     "action": "DoNothing",
     "next": [
+      "TeamA_Fix",
       "OpenAssistPurple",
       "OpenAssistRed",
       "OpenAssist"
