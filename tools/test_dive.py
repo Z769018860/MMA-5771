@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 from maa.resource import Resource
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -54,7 +55,7 @@ def main():
     S = B.NAV / "samples"
     names = ("dd_entry", "dd_list_top", "dd_list_bottom", "dd_formation", "star_entry", "star_difficulty", "home", "chapters",
              "main_stages", "activity_stage")
-    images = {n: cv2.imread(str(S / f"{n}.png")) for n in names}
+    images = {n: cv2.imdecode(np.fromfile(S / f"{n}.png", dtype=np.uint8), cv2.IMREAD_COLOR) for n in names}
     matrix = {"DD_Entry": {"dd_entry"}, "DD_FinishedEntry": {"dd_entry"},
               "DD_List": {"dd_list_top", "dd_list_bottom"}, "DD_FinishedList": {"dd_list_top", "dd_list_bottom"},
               "DD_FormationReady": {"dd_formation"}}
@@ -95,7 +96,7 @@ def main():
     # whole flow: entry -> list (scroll) -> card II -> 挑战 -> formation -> switch to team IV -> (no assist) 调查
     images["list_ii"] = synthetic["top_2"]
     images["formation_iv"] = move_patch(images["dd_formation"], "tab_6", "tab_4", "tab_5")
-    images["started"] = images["star_start"] = cv2.imread(str(S / "star_start.png"))
+    images["started"] = images["star_start"] = cv2.imdecode(np.fromfile(S / "star_start.png", dtype=np.uint8), cv2.IMREAD_COLOR)
     tasks = next(t for t in IFACE["task"] if t["name"] == D.TASK)
     assert tasks["entry"] == "DD_Start"
     tr = {"dd_entry": [(region("entry_challenge"), "dd_list_top")],

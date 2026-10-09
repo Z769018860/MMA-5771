@@ -21,6 +21,13 @@
     1595,
     878
    ]
+  },
+  "current_list": {
+   "sample": "sweep_current_list.png",
+   "src_size": [
+    1600,
+    900
+   ]
   }
  },
  "templates": [
@@ -95,6 +102,18 @@
    ],
    "label": "挑战按钮（蓝色）",
    "threshold": 0.8
+  },
+  {
+   "id": "list_marker",
+   "screen": "current_list",
+   "box": [
+    1260,
+    120,
+    1410,
+    180
+   ],
+   "label": "关卡页右上星辰篇公共标记",
+   "threshold": 0.78
   }
  ],
  "regions": {

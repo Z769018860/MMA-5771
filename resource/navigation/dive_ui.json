@@ -28,6 +28,76 @@
     1604,
     899
    ]
+  },
+  "dd_map_live": {
+   "sample": "dd_map_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_reward_live": {
+   "sample": "dd_reward_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_item_live": {
+   "sample": "dd_item_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_ability_live": {
+   "sample": "dd_ability_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_locked_door_live": {
+   "sample": "dd_locked_door_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_illusion_live": {
+   "sample": "dd_illusion_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_artifact_live": {
+   "sample": "dd_artifact_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_secret_live": {
+   "sample": "dd_secret_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_shop_live": {
+   "sample": "dd_shop_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
+  },
+  "dd_seal_card_live": {
+   "sample": "dd_seal_card_live.png",
+   "src_size": [
+    1600,
+    900
+   ]
   }
  },
  "templates": [
@@ -78,6 +148,126 @@
    ],
    "label": "编队页「队伍信息」按钮",
    "threshold": 0.8
+  },
+  {
+   "id": "map_title",
+   "screen": "dd_map_live",
+   "box": [
+    30,
+    176,
+    171,
+    212
+   ],
+   "label": "地图页固定标题「幻梦深潜」",
+   "threshold": 0.78
+  },
+  {
+   "id": "reward_title",
+   "screen": "dd_reward_live",
+   "box": [
+    732,
+    138,
+    866,
+    174
+   ],
+   "label": "开场「获得造物」弹窗",
+   "threshold": 0.78
+  },
+  {
+   "id": "item_title",
+   "screen": "dd_item_live",
+   "box": [
+    736,
+    150,
+    865,
+    191
+   ],
+   "label": "获得物品弹窗",
+   "threshold": 0.78
+  },
+  {
+   "id": "ability_title",
+   "screen": "dd_ability_live",
+   "box": [
+    738,
+    105,
+    872,
+    149
+   ],
+   "label": "选择能力弹窗",
+   "threshold": 0.78
+  },
+  {
+   "id": "locked_door_title",
+   "screen": "dd_locked_door_live",
+   "box": [
+    724,
+    131,
+    873,
+    180
+   ],
+   "label": "锈蚀门扉事件",
+   "threshold": 0.78
+  },
+  {
+   "id": "illusion_title",
+   "screen": "dd_illusion_live",
+   "box": [
+    747,
+    130,
+    845,
+    178
+   ],
+   "label": "幻象事件",
+   "threshold": 0.78
+  },
+  {
+   "id": "artifact_title",
+   "screen": "dd_artifact_live",
+   "box": [
+    710,
+    140,
+    910,
+    184
+   ],
+   "label": "选择1个造物",
+   "threshold": 0.78
+  },
+  {
+   "id": "secret_title",
+   "screen": "dd_secret_live",
+   "box": [
+    721,
+    132,
+    879,
+    181
+   ],
+   "label": "单行密道事件",
+   "threshold": 0.78
+  },
+  {
+   "id": "shop_title",
+   "screen": "dd_shop_live",
+   "box": [
+    730,
+    130,
+    860,
+    188
+   ],
+   "label": "幻梦深潜融痕商店标题",
+   "threshold": 0.78
+  },
+  {
+   "id": "seal_card_title",
+   "screen": "dd_seal_card_live",
+   "box": [
+    644,
+    142,
+    973,
+    188
+   ],
+   "label": "战后选择卡牌镶嵌刻印",
+   "threshold": 0.78
   }
  ],
  "regions": {
@@ -310,6 +500,16 @@
     704
    ],
    "label": "癫狂 选中金边条带"
+  },
+  "map_area": {
+   "screen": "dd_map_live",
+   "box": [
+    430,
+    245,
+    1150,
+    680
+   ],
+   "label": "地图六角格范围"
   }
  }
 }

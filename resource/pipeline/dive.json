@@ -7,19 +7,58 @@
       "DD_Entry",
       "DD_List",
       "DD_FormationReady",
-      "DD_Resume"
+      "DD_Map",
+      "DD_FromHome"
     ],
     "on_error": [
       "MA_StuckNotice"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "幻梦深潜：从入口页、难度列表、编队页或调查中的页面开始。"
+      "Node.Recognition.Succeeded": "幻梦深潜：从入口页、难度列表或编队页开始。调查中续跑请指定 DD_Resume。"
     }
+  },
+  "DD_FromHome": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_dream_dive.png",
+    "roi": [
+      940,
+      435,
+      101,
+      94
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DD_Entry"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "主界面按钮【幻梦深潜】已识别。",
+      "Node.Action.Succeeded": "已点击主界面按钮【幻梦深潜】。"
+    },
+    "timeout": 20000
   },
   "DD_Resume": {
     "recognition": "DirectHit",
     "action": "DoNothing",
     "next": [
+      "DD_EnterSecret",
+      "DD_ArtifactPick",
+      "DD_UseRustKey",
+      "DD_DispelIllusion",
+      "DD_AbilityPick",
+      "DD_ItemDismiss",
+      "DD_RewardDismiss",
+      "DD_SealCardPick",
+      "DD_ShopExit",
+      "DD_Map",
       "StoryAfterRoute"
     ]
   },
@@ -279,6 +318,504 @@
       "OpenAssistRed",
       "OpenAssist"
     ]
+  },
+  "DD_RewardDismiss": {
+    "recognition": "TemplateMatch",
+    "template": "dive_reward_title.png",
+    "roi": [
+      570,
+      94,
+      139,
+      61
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      310,
+      280,
+      80,
+      60
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已关闭开场获得造物弹窗。"
+    }
+  },
+  "DD_ItemDismiss": {
+    "recognition": "TemplateMatch",
+    "template": "dive_item_title.png",
+    "roi": [
+      573,
+      104,
+      135,
+      65
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      610,
+      580,
+      60,
+      43
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已确认地图获得物品弹窗。"
+    }
+  },
+  "DD_AbilityPick": {
+    "recognition": "TemplateMatch",
+    "template": "dive_ability_title.png",
+    "roi": [
+      574,
+      68,
+      140,
+      67
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      160,
+      255,
+      90,
+      105
+    ],
+    "post_delay": 500,
+    "next": [
+      "DD_AbilityTooltipDismiss"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选择能力卡牌。"
+    }
+  },
+  "DD_AbilityTooltipDismiss": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      810,
+      570,
+      40,
+      35
+    ],
+    "post_delay": 300,
+    "next": [
+      "DD_AbilityConfirm"
+    ]
+  },
+  "DD_AbilityConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      605,
+      577,
+      70,
+      44
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_UseRustKey": {
+    "recognition": "TemplateMatch",
+    "template": "dive_locked_door_title.png",
+    "roi": [
+      563,
+      89,
+      151,
+      71
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      760,
+      490,
+      80,
+      45
+    ],
+    "post_delay": 1100,
+    "next": [
+      "DD_DoorStillClosed",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "锈蚀门扉：已选择使用钥匙。"
+    }
+  },
+  "DD_DoorStillClosed": {
+    "recognition": "TemplateMatch",
+    "template": "dive_locked_door_title.png",
+    "roi": [
+      563,
+      89,
+      151,
+      71
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      760,
+      555,
+      80,
+      45
+    ],
+    "post_delay": 1100,
+    "next": [
+      "DD_MapAvoidDoor"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "钥匙不足，离开门扉并改走另一格。"
+    }
+  },
+  "DD_DispelIllusion": {
+    "recognition": "TemplateMatch",
+    "template": "dive_illusion_title.png",
+    "roi": [
+      582,
+      88,
+      110,
+      70
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      760,
+      490,
+      80,
+      45
+    ],
+    "post_delay": 1100,
+    "next": [
+      "DD_IllusionConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "幻象：选择驱散，避免离开后重进同一格。"
+    }
+  },
+  "DD_IllusionConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      760,
+      555,
+      80,
+      45
+    ],
+    "post_delay": 1100,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_ArtifactPick": {
+    "recognition": "TemplateMatch",
+    "template": "dive_artifact_title.png",
+    "roi": [
+      552,
+      96,
+      192,
+      67
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      880,
+      245,
+      90,
+      95
+    ],
+    "post_delay": 1400,
+    "next": [
+      "DD_ArtifactConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选择右侧造物。"
+    }
+  },
+  "DD_ArtifactConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      635,
+      610,
+      10,
+      14
+    ],
+    "post_delay": 1500,
+    "next": [
+      "DD_ArtifactRetry",
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_ArtifactRetry": {
+    "recognition": "TemplateMatch",
+    "template": "dive_artifact_title.png",
+    "roi": [
+      552,
+      96,
+      192,
+      67
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      635,
+      610,
+      10,
+      14
+    ],
+    "post_delay": 1500,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_EnterSecret": {
+    "recognition": "TemplateMatch",
+    "template": "dive_secret_title.png",
+    "roi": [
+      561,
+      90,
+      158,
+      71
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      760,
+      490,
+      80,
+      45
+    ],
+    "post_delay": 1400,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "单行密道：已选择进入。"
+    }
+  },
+  "DD_ShopExit": {
+    "recognition": "TemplateMatch",
+    "template": "dive_shop_title.png",
+    "roi": [
+      568,
+      88,
+      136,
+      78
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1100,
+      105,
+      48,
+      42
+    ],
+    "post_delay": 1200,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已离开幻梦深潜融痕商店。"
+    }
+  },
+  "DD_SealCardPick": {
+    "recognition": "TemplateMatch",
+    "template": "dive_seal_card_title.png",
+    "roi": [
+      499,
+      98,
+      295,
+      68
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      625,
+      295,
+      30,
+      95
+    ],
+    "post_delay": 700,
+    "next": [
+      "DD_SealCardConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "战后选择中间的刻印卡牌。"
+    }
+  },
+  "DD_SealCardConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      612,
+      592,
+      58,
+      43
+    ],
+    "post_delay": 1400,
+    "next": [
+      "StoryAfterRoute"
+    ]
+  },
+  "DD_Map": {
+    "recognition": "TemplateMatch",
+    "template": "dive_map_title.png",
+    "roi": [
+      8,
+      125,
+      145,
+      61
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "DD_Pick"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已进入幻梦深潜地图。"
+    }
+  },
+  "DD_Pick": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "dive_map_title.png",
+        "roi": [
+          8,
+          125,
+          145,
+          61
+        ],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          344,
+          196,
+          576,
+          348
+        ],
+        "method": 40,
+        "lower": [
+          75,
+          80,
+          120
+        ],
+        "upper": [
+          105,
+          255,
+          255
+        ],
+        "count": 250,
+        "connected": true,
+        "order_by": "Horizontal",
+        "index": -1
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "post_delay": 2200,
+    "max_hit": 80,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击青色描边的可走六角格。"
+    }
+  },
+  "DD_MapAvoidDoor": {
+    "recognition": "TemplateMatch",
+    "template": "dive_map_title.png",
+    "roi": [
+      8,
+      125,
+      145,
+      61
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "DD_PickAvoidDoor"
+    ]
+  },
+  "DD_PickAvoidDoor": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "dive_map_title.png",
+        "roi": [
+          8,
+          125,
+          145,
+          61
+        ],
+        "threshold": 0.78,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "roi": [
+          344,
+          196,
+          576,
+          348
+        ],
+        "method": 40,
+        "lower": [
+          75,
+          80,
+          120
+        ],
+        "upper": [
+          105,
+          255,
+          255
+        ],
+        "count": 250,
+        "connected": true,
+        "order_by": "Vertical",
+        "index": -1
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "post_delay": 2200,
+    "max_hit": 80,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "on_error": [
+      "MA_StuckNotice"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击青色描边的可走六角格。"
+    }
   },
   "DD_FinishedList": {
     "recognition": "TemplateMatch",

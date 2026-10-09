@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 from maa.resource import Resource
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -43,7 +44,7 @@ def main():
             failures.append(text)
 
     names = ["oath_list", "oath_dialog", "oath_reward", "activity_stage", "activity", "home", "daily", "interlude"]
-    images = {n: cv2.imread(str(B.NAV / "samples" / f"{n}.png")) for n in names}
+    images = {n: cv2.imdecode(np.fromfile(B.NAV / "samples" / f"{n}.png", dtype=np.uint8), cv2.IMREAD_COLOR) for n in names}
     matrix = {"Sweep_Page": {"oath_list"}, "Sweep_Replay": {"oath_list"}, "Sweep_Dialog": {"oath_dialog"},
               "Sweep_Max": {"oath_dialog"}, "Sweep_Confirm": {"oath_dialog"}, "Sweep_Reward": {"oath_reward"},
               "Sweep_Done": {"oath_list"}, "SweepNode1": {"activity_stage"}, "SweepNode4": {"activity_stage"}}
@@ -92,7 +93,6 @@ def main():
     override = task.get("pipeline_override", {})
     expect(override.get("StopHere", {}).get("next") == ["Sweep_GiveUp"] and "Sweep_Page2" in override["FinishCurrentButton"]["next"],
            "task-level override missing: finish/defeat nodes would fall back into the farming loop")
-    import numpy as np
     no_replay = images["oath_list"].copy()
     x, y, w, h = tbox("replay_btn")
     mask = np.zeros(no_replay.shape[:2], np.uint8)

@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
@@ -31,8 +32,8 @@ TASK_OVERRIDE = {
     "FailureChoice": {"next": ["StopHere"]},
     "StopHere": {"next": ["Sweep_GiveUp"]},
 }
-LIST_TITLE = {"recognition": "TemplateMatch", "template": "activity_oath_title.png", "roi": [0, 15, 230, 80],
-              "threshold": 0.88, "method": 10001}
+LIST_TITLE = {"recognition": "TemplateMatch", "template": "sweep_list_marker.png", "roi": [990, 85, 165, 70],
+              "threshold": 0.78, "method": 10001}
 
 
 def build():
@@ -40,7 +41,7 @@ def build():
     images, nodes, rects, thr = {}, {}, {}, {}
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imread(str(NAV / "samples" / sc["sample"]))
+        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
         images[f"sweep_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
@@ -137,7 +138,7 @@ def main():
         print("sweep pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
     OUT.write_bytes(text.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 

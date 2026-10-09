@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 from maa.resource import Resource
 from maa.tasker import Tasker
 
@@ -33,7 +34,7 @@ def tbox(tid):
 
 
 def img(name):
-    return cv2.imread(str(NAV / "samples" / f"{name}.png"))
+    return cv2.imdecode(np.fromfile(NAV / "samples" / f"{name}.png", dtype=np.uint8), cv2.IMREAD_COLOR)
 
 
 class Script(T.FakeScreen):

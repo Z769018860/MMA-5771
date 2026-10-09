@@ -187,14 +187,14 @@
   },
   "Sweep_Page": {
     "recognition": "TemplateMatch",
-    "template": "activity_oath_title.png",
+    "template": "sweep_list_marker.png",
     "roi": [
-      0,
-      15,
-      230,
-      80
+      990,
+      85,
+      165,
+      70
     ],
-    "threshold": 0.88,
+    "threshold": 0.78,
     "method": 10001,
     "action": "DoNothing",
     "timeout": 20000,
@@ -249,14 +249,14 @@
     "all_of": [
       {
         "recognition": "TemplateMatch",
-        "template": "activity_oath_title.png",
+        "template": "sweep_list_marker.png",
         "roi": [
-          0,
-          15,
-          230,
-          80
+          990,
+          85,
+          165,
+          70
         ],
-        "threshold": 0.88,
+        "threshold": 0.78,
         "method": 10001
       },
       {
@@ -295,14 +295,14 @@
     "all_of": [
       {
         "recognition": "TemplateMatch",
-        "template": "activity_oath_title.png",
+        "template": "sweep_list_marker.png",
         "roi": [
-          0,
-          15,
-          230,
-          80
+          990,
+          85,
+          165,
+          70
         ],
-        "threshold": 0.88,
+        "threshold": 0.78,
         "method": 10001
       },
       {
@@ -340,14 +340,14 @@
     "all_of": [
       {
         "recognition": "TemplateMatch",
-        "template": "activity_oath_title.png",
+        "template": "sweep_list_marker.png",
         "roi": [
-          0,
-          15,
-          230,
-          80
+          990,
+          85,
+          165,
+          70
         ],
-        "threshold": 0.88,
+        "threshold": 0.78,
         "method": 10001
       },
       {
@@ -401,14 +401,14 @@
   },
   "Sweep_Page2": {
     "recognition": "TemplateMatch",
-    "template": "activity_oath_title.png",
+    "template": "sweep_list_marker.png",
     "roi": [
-      0,
-      15,
-      230,
-      80
+      990,
+      85,
+      165,
+      70
     ],
-    "threshold": 0.88,
+    "threshold": 0.78,
     "method": 10001,
     "action": "DoNothing",
     "timeout": 30000,
@@ -658,14 +658,14 @@
   },
   "Sweep_Done": {
     "recognition": "TemplateMatch",
-    "template": "activity_oath_title.png",
+    "template": "sweep_list_marker.png",
     "roi": [
-      0,
-      15,
-      230,
-      80
+      990,
+      85,
+      165,
+      70
     ],
-    "threshold": 0.88,
+    "threshold": 0.78,
     "method": 10001,
     "action": "DoNothing",
     "next": [],

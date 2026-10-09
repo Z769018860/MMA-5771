@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
@@ -37,7 +38,7 @@ def build():
 
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imread(str(NAV / "samples" / sc["sample"]))
+        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
         images[f"daily_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
@@ -67,7 +68,7 @@ def build():
                          "focus": focus("密境课室：从日常/周常页或主界面开始。")}
     home = json.loads((ROOT / "resource" / "pipeline" / "navigation.json").read_text(encoding="utf-8"))
     nodes["CR_FromHome"] = {**home["NavHome_secret_classroom"], "next": ["CR_PageDaily"], "timeout": 20000}
-    nodes["CR_FromHomeInterlude"] = {**home["NavHome_interlude"], "next": ["IL_Page"], "timeout": 20000}
+    nodes["CR_FromHomeInterlude"] = {**home["NavHome_interlude"], "next": ["IL_SelectDispatch"], "timeout": 20000}
     for kind, tid in tabs.items():
         K = kind[0].upper()
         nodes[f"CR_Page{kind.capitalize()}"] = {
@@ -80,7 +81,9 @@ def build():
             "all_of": [match("cr_title"), {**match("cr_claim", roi=region("claim_column")), "order_by": "Vertical", "index": 0}],
             "box_index": 1,
             "action": "Click", "target_offset": [8, 6, -16, -12], "post_delay": 1500,
-            "next": [f"CR_{K}_Popup", f"CR_{K}_Claim", f"CR_{K}_Nodes"],
+            # Retry only after a real reward popup. A claimed task can still resemble
+            # the old button template; retrying it without a popup loops forever.
+            "next": [f"CR_{K}_Popup", f"CR_{K}_Nodes"],
             "focus": {"Node.Action.Succeeded": "已点击一个任务的【领取】。"}}
         nodes[f"CR_{K}_Popup"] = {
             **match("reward_title", roi=B.grow([480, 150, 320, 90], 0)), "action": "Click",
@@ -115,6 +118,9 @@ def build():
     nodes["IL_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
                          "next": ["IL_Page", "CR_FromHomeInterlude"],
                          "focus": focus("幕间演习：从派遣页或主界面开始。")}
+    nodes["IL_SelectDispatch"] = {"recognition": "DirectHit", "action": "Click", "target": [20, 398, 45, 52],
+                                   "post_delay": 1600, "next": ["IL_Page"], "on_error": ["TimeoutExport"],
+                                   "focus": {"Node.Action.Succeeded": "已点击幕间演习左侧派遣页签。"}}
     nodes["IL_Page"] = {"recognition": "And", "all_of": [match("il_title"), match("il_limit")], "box_index": 0,
                         "action": "DoNothing", "timeout": 15000, "next": ["IL_OneClick"],
                         "focus": focus("已进入幕间演习【派遣】页。")}
@@ -159,8 +165,8 @@ def main():
         print("daily pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
-    OUT.write_text(text, encoding="utf-8")
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
+    OUT.write_bytes(text.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 
 

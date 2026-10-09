@@ -350,6 +350,19 @@
       "pipeline_override": {
         "StoryAfterRoute": {
           "next": [
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
+            "DD_EnterSecret",
+            "DD_ArtifactPick",
+            "DD_UseRustKey",
+            "DD_DispelIllusion",
+            "DD_AbilityPick",
+            "DD_ItemDismiss",
+            "DD_RewardDismiss",
+            "StoryChoiceSealPopup",
+            "DD_SealCardPick",
+            "DD_ShopExit",
+            "DD_Map",
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
@@ -370,6 +383,17 @@
         },
         "StoryInsideRouter": {
           "next": [
+            "DD_EnterSecret",
+            "DD_ArtifactPick",
+            "DD_UseRustKey",
+            "DD_DispelIllusion",
+            "DD_AbilityPick",
+            "DD_ItemDismiss",
+            "DD_RewardDismiss",
+            "StoryChoiceSealPopup",
+            "DD_SealCardPick",
+            "DD_ShopExit",
+            "DD_Map",
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
@@ -390,6 +414,17 @@
         },
         "StoryBattleMonitor": {
           "next": [
+            "DD_EnterSecret",
+            "DD_ArtifactPick",
+            "DD_UseRustKey",
+            "DD_DispelIllusion",
+            "DD_AbilityPick",
+            "DD_ItemDismiss",
+            "DD_RewardDismiss",
+            "StoryChoiceSealPopup",
+            "DD_SealCardPick",
+            "DD_ShopExit",
+            "DD_Map",
             "AA_PaidRevive",
             "StoryReviveDecision",
             "StoryFinishInvestigation",
@@ -452,15 +487,47 @@
             "StoryBattleMonitor"
           ]
         },
+        "StoryChoicePostSelectWait": {
+          "next": [
+            "DD_Map",
+            "StoryChoiceSealPopup",
+            "StoryChoiceArtifactPopup",
+            "StoryAfterRoute"
+          ]
+        },
+        "StoryChoiceArtifactPopup": {
+          "next": [
+            "DD_Map",
+            "StoryChoiceSealPopup",
+            "StoryChoiceArtifactPopup",
+            "StoryChoicePage",
+            "StoryAfterRoute"
+          ]
+        },
+        "StoryChoiceSealPopup": {
+          "next": [
+            "DD_Map",
+            "StoryChoiceSealPopup",
+            "StoryChoiceArtifactPopup",
+            "StoryChoicePage",
+            "StoryAfterRoute"
+          ]
+        },
         "StartInvestigation": {
           "next": [
             "InvestigationWarningUnchecked",
             "InvestigationWarningChecked",
+            "DD_ItemDismiss",
+            "DD_RewardDismiss",
+            "DD_Map",
             "StoryAfterRoute"
           ]
         },
         "InvestigationWarningChecked": {
           "next": [
+            "DD_ItemDismiss",
+            "DD_RewardDismiss",
+            "DD_Map",
             "StoryAfterRoute"
           ]
         }

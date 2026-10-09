@@ -28,6 +28,7 @@ OUT = ROOT / "resource" / "pipeline" / "dive.json"
 INTERFACE = ROOT / "interface.json"
 TASK = "幻梦深潜"
 GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}      # selected-card glow (RGB)
+CYAN = {"method": 40, "lower": [75, 80, 120], "upper": [105, 255, 255]}  # reachable hex outline (HSV)
 # difficulty key -> (list state, position in that state, label)
 DIFFS = {"d1": ("top", 1, "幻梦深潜 I"), "d2": ("top", 2, "II"), "d3": ("top", 3, "III"), "d4": ("top", 4, "IV"),
          "d5": ("top", 5, "V"), "d6": ("bot", 6, "VI"), "d7": ("bot", 7, "VII"), "d8": ("bot", 8, "癫狂")}
@@ -40,6 +41,9 @@ def build():
         sc = ui["screens"][t["screen"]]
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
         img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
+        if t["id"] in ("item_title", "ability_title", "locked_door_title", "illusion_title", "artifact_title", "secret_title"):
+            # The live ADB screenshot is 1600x900; recognition uses 1280x720.
+            img = cv2.resize(img, (1280, 720))
         images[f"dive_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
         thr[t["id"]] = t.get("threshold", 0.8)
@@ -59,9 +63,11 @@ def build():
         return {"Node.Recognition.Succeeded": text}
 
     nodes["DD_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
-                         "next": ["DD_Entry", "DD_List", "DD_FormationReady", "DD_Resume"], "on_error": ["MA_StuckNotice"],
-                         "focus": focus("幻梦深潜：从入口页、难度列表、编队页或调查中的页面开始。")}
-    nodes["DD_Resume"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["StoryAfterRoute"]}
+                         "next": ["DD_Entry", "DD_List", "DD_FormationReady", "DD_Map", "DD_FromHome"], "on_error": ["MA_StuckNotice"],
+                         "focus": focus("幻梦深潜：从入口页、难度列表或编队页开始。调查中续跑请指定 DD_Resume。")}
+    home = json.loads((ROOT / "resource" / "pipeline" / "navigation.json").read_text(encoding="utf-8"))
+    nodes["DD_FromHome"] = {**home["NavHome_dream_dive"], "next": ["DD_Entry"], "timeout": 20000}
+    nodes["DD_Resume"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["DD_EnterSecret", "DD_ArtifactPick", "DD_UseRustKey", "DD_DispelIllusion", "DD_AbilityPick", "DD_ItemDismiss", "DD_RewardDismiss", "DD_SealCardPick", "DD_ShopExit", "DD_Map", "StoryAfterRoute"]}
     nodes["DD_Entry"] = {**match("entry_title"), "timeout": 20000, "rate_limit": 700, "action": "Click",
                          "target": inner("entry_challenge"), "post_delay": 2000, "next": ["DD_List", "DD_EntryRetry"],
                          "focus": {"Node.Action.Succeeded": "已点击入口页的【挑战】。"}}
@@ -96,6 +102,61 @@ def build():
     # TeamA_Fix (tools/build_team_pipeline.py) switches the team first when an option asks for it, then the assist chain
     nodes["DD_AfterTeam"] = {"recognition": "DirectHit", "action": "DoNothing",
                              "next": ["TeamA_Fix", "OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
+    nodes["DD_RewardDismiss"] = {**match("reward_title"), "action": "Click", "target": [310, 280, 80, 60],
+                                  "post_delay": 900, "next": ["StoryAfterRoute"],
+                                  "focus": {"Node.Action.Succeeded": "已关闭开场获得造物弹窗。"}}
+    nodes["DD_ItemDismiss"] = {**match("item_title"), "action": "Click", "target": [610, 580, 60, 43],
+                                "post_delay": 900, "next": ["StoryAfterRoute"],
+                                "focus": {"Node.Action.Succeeded": "已确认地图获得物品弹窗。"}}
+    nodes["DD_AbilityPick"] = {**match("ability_title"), "action": "Click", "target": [160, 255, 90, 105],
+                                "post_delay": 500, "next": ["DD_AbilityTooltipDismiss"],
+                                "focus": {"Node.Action.Succeeded": "已选择能力卡牌。"}}
+    nodes["DD_AbilityTooltipDismiss"] = {"recognition": "DirectHit", "action": "Click", "target": [810, 570, 40, 35],
+                                          "post_delay": 300, "next": ["DD_AbilityConfirm"]}
+    nodes["DD_AbilityConfirm"] = {"recognition": "DirectHit", "action": "Click", "target": [605, 577, 70, 44],
+                                   "post_delay": 1000, "next": ["StoryAfterRoute"]}
+    nodes["DD_UseRustKey"] = {**match("locked_door_title"), "action": "Click", "target": [760, 490, 80, 45],
+                               "post_delay": 1100, "next": ["DD_DoorStillClosed", "StoryAfterRoute"],
+                               "focus": {"Node.Action.Succeeded": "锈蚀门扉：已选择使用钥匙。"}}
+    nodes["DD_DoorStillClosed"] = {**match("locked_door_title"), "action": "Click", "target": [760, 555, 80, 45],
+                                    "post_delay": 1100, "next": ["DD_MapAvoidDoor"],
+                                    "focus": {"Node.Action.Succeeded": "钥匙不足，离开门扉并改走另一格。"}}
+    nodes["DD_DispelIllusion"] = {**match("illusion_title"), "action": "Click", "target": [760, 490, 80, 45],
+                                   "post_delay": 1100, "next": ["DD_IllusionConfirm"],
+                                   "focus": {"Node.Action.Succeeded": "幻象：选择驱散，避免离开后重进同一格。"}}
+    nodes["DD_IllusionConfirm"] = {"recognition": "DirectHit", "action": "Click", "target": [760, 555, 80, 45],
+                                    "post_delay": 1100, "next": ["StoryAfterRoute"]}
+    nodes["DD_ArtifactPick"] = {**match("artifact_title"), "action": "Click", "target": [880, 245, 90, 95],
+                                 "post_delay": 1400, "next": ["DD_ArtifactConfirm"],
+                                 "focus": {"Node.Action.Succeeded": "已选择右侧造物。"}}
+    nodes["DD_ArtifactConfirm"] = {"recognition": "DirectHit", "action": "Click", "target": [635, 610, 10, 14],
+                                    "post_delay": 1500, "next": ["DD_ArtifactRetry", "StoryAfterRoute"]}
+    nodes["DD_ArtifactRetry"] = {**match("artifact_title"), "action": "Click", "target": [635, 610, 10, 14],
+                                  "post_delay": 1500, "next": ["StoryAfterRoute"]}
+    nodes["DD_EnterSecret"] = {**match("secret_title"), "action": "Click", "target": [760, 490, 80, 45],
+                               "post_delay": 1400, "next": ["StoryAfterRoute"],
+                               "focus": {"Node.Action.Succeeded": "单行密道：已选择进入。"}}
+    nodes["DD_ShopExit"] = {**match("shop_title"), "action": "Click", "target": [1100, 105, 48, 42],
+                            "post_delay": 1200, "next": ["StoryAfterRoute"],
+                            "focus": {"Node.Action.Succeeded": "已离开幻梦深潜融痕商店。"}}
+    nodes["DD_SealCardPick"] = {**match("seal_card_title"), "action": "Click", "target": [625, 295, 30, 95],
+                                 "post_delay": 700, "next": ["DD_SealCardConfirm"],
+                                 "focus": {"Node.Action.Succeeded": "战后选择中间的刻印卡牌。"}}
+    nodes["DD_SealCardConfirm"] = {"recognition": "DirectHit", "action": "Click", "target": [612, 592, 58, 43],
+                                    "post_delay": 1400, "next": ["StoryAfterRoute"]}
+    nodes["DD_Map"] = {**match("map_title"), "action": "DoNothing", "next": ["DD_Pick"],
+                       "focus": focus("已进入幻梦深潜地图。")}
+    nodes["DD_Pick"] = {"recognition": "And", "all_of": [match("map_title"),
+                         {"recognition": "ColorMatch", "roi": region("map_area"), **CYAN, "count": 250,
+                          "connected": True, "order_by": "Horizontal", "index": -1}],
+                        "box_index": 1, "action": "Click", "post_delay": 2200, "max_hit": 80, "next": ["StoryAfterRoute"],
+                        "on_error": ["MA_StuckNotice"],
+                        "focus": {"Node.Action.Succeeded": "已点击青色描边的可走六角格。"}}
+    nodes["DD_MapAvoidDoor"] = {**match("map_title"), "action": "DoNothing", "next": ["DD_PickAvoidDoor"]}
+    avoid = json.loads(json.dumps(nodes["DD_Pick"], ensure_ascii=False))
+    avoid["all_of"][1]["order_by"] = "Vertical"
+    avoid["all_of"][1]["index"] = -1
+    nodes["DD_PickAvoidDoor"] = avoid
     nodes["DD_FinishedList"] = {**match("list_marker"), "action": "DoNothing", "next": [],
                                 "focus": focus("回到难度列表：幻梦深潜任务完成。")}
     nodes["DD_FinishedEntry"] = {**match("entry_title"), "action": "DoNothing", "next": [],
@@ -143,10 +204,16 @@ def update_interface(orig, ui, nodes):
                                          {"name": "skip", "label": "不使用助战，直接调查",
                                           "pipeline_override": {"DD_AfterTeam": {"next": ["TeamA_Fix", "StartInvestigation"]},
                                                                    "TeamA_Resume": {"next": ["StartInvestigation"]}}}]}
-    override = M.task_definition(orig, extra=("DD_FinishedList", "DD_FinishedEntry", "MA_Map"), done_next=())
+    override = M.task_definition(orig, extra=("DD_FinishedList", "DD_FinishedEntry", "DD_EnterSecret", "DD_ArtifactPick", "DD_UseRustKey", "DD_DispelIllusion", "DD_AbilityPick", "DD_ItemDismiss", "DD_SealCardPick", "DD_ShopExit", "DD_Map", "MA_Map"), done_next=())
+    for name in ("StoryAfterRoute", "StoryInsideRouter", "StoryBattleMonitor"):
+        front = ("DD_EnterSecret", "DD_ArtifactPick", "DD_UseRustKey", "DD_DispelIllusion", "DD_AbilityPick", "DD_ItemDismiss", "DD_RewardDismiss", "StoryChoiceSealPopup", "DD_SealCardPick", "DD_ShopExit", "DD_Map")
+        override[name]["next"] = [*front, *[n for n in override[name]["next"] if n not in front]]
+    override["StoryAfterRoute"]["next"] = ["StoryAutoAlreadyOn", "StoryAutoControlReady", *override["StoryAfterRoute"]["next"]]
+    for name in ("StoryChoicePostSelectWait", "StoryChoiceArtifactPopup", "StoryChoiceSealPopup"):
+        override[name] = {"next": ["DD_Map", *[n for n in orig[name]["next"] if n != "DD_Map"]]}
     # the sync-rate 调查 button leads on into the map / story nodes instead of the sync-rate battle chain
-    override["StartInvestigation"] = {"next": ["InvestigationWarningUnchecked", "InvestigationWarningChecked", "StoryAfterRoute"]}
-    override["InvestigationWarningChecked"] = {"next": ["StoryAfterRoute"]}
+    override["StartInvestigation"] = {"next": ["InvestigationWarningUnchecked", "InvestigationWarningChecked", "DD_ItemDismiss", "DD_RewardDismiss", "DD_Map", "StoryAfterRoute"]}
+    override["InvestigationWarningChecked"] = {"next": ["DD_ItemDismiss", "DD_RewardDismiss", "DD_Map", "StoryAfterRoute"]}
     entry = {"name": TASK, "label": "幻梦深潜（走格子打首领）", "entry": "DD_Start",
              "option": ["幻梦深潜难度", "幻梦深潜助战", "主线灵知", "主线战斗超时", "探索选格方式", "剧情购买策略", "剧情造物位置", *TEAM_OPTIONS],
              "default_check": False, "repeatable": False, "pipeline_override": override,
@@ -175,7 +242,7 @@ def main():
         print("dive pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
     OUT.write_bytes(text.encode("utf-8"))
     INTERFACE.write_bytes(itext.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}; interface.json updated")
