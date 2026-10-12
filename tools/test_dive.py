@@ -63,6 +63,17 @@ def main():
         for n in images:
             fired, _ = T.run_node(resource, images[n], node, timeout=300)
             expect(fired == (n in hits), f"{node} on {n}: expected {'hit' if n in hits else 'miss'}, got {fired}")
+    # live dive screenshots (忘却篇 run on the device)
+    live = {n: cv2.imdecode(np.fromfile(S / f"dive_live_{n}.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+            for n in ("entry", "formation", "result", "reward")}
+    fired, _ = T.run_node(resource, live["entry"], "DD_Entry", timeout=300)
+    expect(fired, "DD_Entry on the live dive entry")
+    fired, _ = T.run_node(resource, live["formation"], "DD_FormationReady", timeout=300)
+    expect(fired, "DD_FormationReady on the live formation page")
+    fired, _ = T.run_node(resource, live["reward"], "MA_RewardPopup", timeout=300)
+    expect(fired, "MA_RewardPopup on the live reward popup")
+    fired, _ = T.run_node(resource, live["entry"], "MA_RewardPopup", timeout=300)
+    expect(not fired, "MA_RewardPopup must not hit the entry page")
     # the sync-rate 调查 button template also matches other blue bottom-right buttons (挑战); it only has to hit here
     fired, ev = T.run_node(resource, images["dd_formation"], "StartInvestigation", timeout=300)
     expect(fired and T.inside(ev, [830, 625, 360, 60], 2), f"StartInvestigation on the dive formation page: {ev[:1]}")
@@ -106,8 +117,8 @@ def main():
           "formation_iv": [([830, 625, 360, 60], "started")]}
     scr = Script(images, tr, "dd_entry")
     quick = {k: {"timeout": 1500, "on_error": []} for k in list(tasks["pipeline_override"]) + [
-        "DD_Start", "DD_Entry", "DD_List", "DD_Select", "DD_Selected", "DD_FormationReady", "DD_AfterTeam", "TeamA_Fix", "TeamA_Fix2", "TeamA_Lit", "TeamA_Resume", "StartInvestigation", "StoryAfterRoute"]}
-    for k in ("MA_ManualNotice", "MA_DefeatNotice", "MA_StuckNotice", "DD_Locked", "Team_Locked"):
+        "DD_Start", "DD_Entry", "DD_List", "DD_Select", "DD_Selected", "DD_FormationReady", "DD_AfterTeam", "TeamA_Fix", "TeamA_FixLo", "TeamA_FixHi", "TeamA_Resume", "StartInvestigation", "StoryAfterRoute"]}
+    for k in ("MA_ManualNotice", "MA_DefeatNotice", "MA_StuckNotice", "DD_Locked"):
         quick[k] = {"action": "DoNothing"}
     for k in ("DD_Scroll", "DD_Scroll2"):
         quick[k] = {"post_delay": 50}
@@ -119,7 +130,7 @@ def main():
     taps = [t[0] for t in scr.taps]
     expect(taps[:5] == ["dd_entry", "dd_list_top", "list_ii", "dd_formation", "formation_iv"] and scr.state == "started",
            f"flow: taps {scr.taps}, state {scr.state}, nodes {got}")
-    expect("DD_Locked" not in got and "Team_Locked" not in got, f"flow reported a lock: {got}")
+    expect("DD_Locked" not in got, f"flow reported a lock: {got}")
     ov = tasks["pipeline_override"]
     expect(ov["StartInvestigation"]["next"][-1] == "StoryAfterRoute" and "DD_FinishedList" in ov["StoryAfterRoute"]["next"]
            and "MA_Map" in ov["StoryAfterRoute"]["next"] and ov["StoryStopHere"]["next"] == ["MA_DefeatNotice"], "task override incomplete")

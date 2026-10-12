@@ -1,11 +1,18 @@
 {
- "note": "通用队伍切换：编队页左侧队伍标签 III–IX（样本 dd_formation.png）。框坐标为原截图像素，用 tools/build_team_pipeline.py 生成。",
+ "note": "通用队伍切换：编队页左侧队伍标签列表（当前队伍总在正中间，上下各显示 3 个，数字是罗马数字）。用数字图形模板找目标标签再点它。样本 dd_formation.png（当前 VI：III–IX 可见）、dive_live_formation.png（当前 XI：VIII–XIV 可见，幻梦深潜实机截图）。框坐标为原截图像素，用 tools/build_team_pipeline.py 生成。",
  "screens": {
   "dd_formation": {
    "sample": "dd_formation.png",
    "src_size": [
     1604,
     899
+   ]
+  },
+  "dive_formation": {
+   "sample": "dive_live_formation.png",
+   "src_size": [
+    1600,
+    900
    ]
   }
  },
@@ -21,6 +28,126 @@
    ],
    "label": "编队页「队伍信息」按钮",
    "threshold": 0.8
+  },
+  {
+   "id": "glyph_3",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    107,
+    82,
+    159
+   ],
+   "label": "队伍标签数字 3（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_4",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    207,
+    82,
+    259
+   ],
+   "label": "队伍标签数字 4（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_5",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    307,
+    82,
+    359
+   ],
+   "label": "队伍标签数字 5（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_7",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    507,
+    82,
+    559
+   ],
+   "label": "队伍标签数字 7（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_8",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    607,
+    82,
+    659
+   ],
+   "label": "队伍标签数字 8（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_9",
+   "screen": "dd_formation",
+   "box": [
+    24,
+    707,
+    82,
+    759
+   ],
+   "label": "队伍标签数字 9（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_10",
+   "screen": "dive_formation",
+   "box": [
+    24,
+    304,
+    82,
+    356
+   ],
+   "label": "队伍标签数字 10（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_12",
+   "screen": "dive_formation",
+   "box": [
+    24,
+    504,
+    82,
+    556
+   ],
+   "label": "队伍标签数字 12（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_13",
+   "screen": "dive_formation",
+   "box": [
+    24,
+    604,
+    82,
+    656
+   ],
+   "label": "队伍标签数字 13（未选中样式）",
+   "threshold": 0.85
+  },
+  {
+   "id": "glyph_14",
+   "screen": "dive_formation",
+   "box": [
+    24,
+    704,
+    82,
+    756
+   ],
+   "label": "队伍标签数字 14（未选中样式）",
+   "threshold": 0.85
   }
  ],
  "regions": {

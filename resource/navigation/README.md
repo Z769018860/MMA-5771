@@ -286,3 +286,11 @@ python tools/test_daily.py
 任务「活动扫荡（重现）」新增「镜像囚徒·复刻：关卡」与「镜像囚徒·复刻：扫荡难度」选项。可从主界面、活动页、横排关卡页或某关难度列表启动。难度可选择之一至之六；癫狂页只见挑战按钮，不作为扫荡目标。点击各关卡前会核对其标题，避免横排未滚到目标位置时点错关卡。
 
 已实机查看第一关和第五关的难度列表、第一关之六的重现按钮；第六、第七关的自动滑动及完整扫荡尚未实机通过。
+
+## Team switching by numeral glyph; reward popup (live dive findings)
+
+The team tab column always centres the current team, so fixed tab positions only work for one team. `Team{A,B}_Fix`
+matches the roman-numeral glyph of the wanted team (`team_glyph_*`); `_FixLo` / `_FixHi` find the neighbour glyph and
+click with a ±80 px offset (used for VI and XI, whose glyphs are not unique). Teams further than 3 slots from the current
+one, and teams I/II, cannot be switched. `MA_RewardPopup` closes the reward popup seen after dive/mainline battles
+(`dive_live_reward.png`). Samples `dive_live_*.png` come from the live dive run.

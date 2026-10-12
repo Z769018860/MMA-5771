@@ -35,6 +35,13 @@
     1600,
     900
    ]
+  },
+  "live_reward": {
+   "sample": "dive_live_reward.png",
+   "src_size": [
+    1600,
+    900
+   ]
   }
  },
  "templates": [
@@ -96,6 +103,18 @@
     802
    ],
    "label": "关卡页底部「关卡成就」文字",
+   "threshold": 0.8
+  },
+  {
+   "id": "reward_title",
+   "screen": "live_reward",
+   "box": [
+    715,
+    232,
+    885,
+    290
+   ],
+   "label": "「获得物资」弹窗标题（幻梦深潜实机）",
    "threshold": 0.8
   }
  ],

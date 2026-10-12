@@ -24,7 +24,7 @@ OUT = ROOT / "resource" / "pipeline" / "sweep.json"
 INTERFACE = ROOT / "interface.json"
 STAGES = ("破开囚笼", "昨日之梦", "传烛者", "愚者", "孤独之旅", "无尽沙", "自由与死亡")
 # battle pages the sync-rate loop already handles (no assist selection: one plain clear)
-CLEAR_ROUTER = ["TeamA_Fix", "StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
+CLEAR_ROUTER = ["TeamA_Fix", "TeamA_FixLo", "TeamA_FixHi", "StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
                 "ReviveDecision", "FailureChoice", "FinishInvestigation", "HideCards", "AutoControlReady", "BattleMonitor", "StopHere"]
 # task-level override (interface.json): after the one-off clear the sync-rate nodes must come back here, not start farming
 TASK_OVERRIDE = {

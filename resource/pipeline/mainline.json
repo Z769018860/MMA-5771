@@ -325,6 +325,32 @@
       "Node.Action.Succeeded": "已点击一个绿色描边的可达格子（随机选择；走过的格子变为青色不再选）。"
     }
   },
+  "MA_RewardPopup": {
+    "recognition": "TemplateMatch",
+    "template": "main_reward_title.png",
+    "roi": [
+      556,
+      170,
+      168,
+      78
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      440,
+      560,
+      400,
+      90
+    ],
+    "post_delay": 1000,
+    "next": [
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "「获得物资」弹窗：点下方空白处收起。"
+    }
+  },
   "MA_ManualNotice": {
     "recognition": "DirectHit",
     "action": "Command",

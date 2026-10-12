@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from morimens_logic import decisions, policy, sim
+from morimens_logic import decisions, knowledge, policy, sim
 from morimens_logic.contract import Do, Observation, Screen, ShopItem
 from morimens_logic.engine import Engine
 from morimens_logic.guard import StuckGuard
@@ -379,3 +379,31 @@ class ClientMaps(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class DiveLayouts(unittest.TestCase):
+    """Dive layout catalogue and layout identification from observed tiles."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.d = json.loads((policy.ROOT / "resource" / "map_data" / "dive_layouts.json").read_text(encoding="utf-8"))
+        cls.kn = knowledge.Knowledge()
+
+    def test_catalogue_has_24_layouts_per_pian(self):
+        self.assertEqual(self.d["count"], {"忘却篇": 24, "星辰篇": 24})
+        for e in self.d["layouts"]:
+            self.assertIn("1", e["difficulties"])
+            self.assertIn("癫狂", e["difficulties"])
+
+    def test_identify_map_finds_the_layout_from_a_few_tiles(self):
+        e = self.d["layouts"][0]
+        tiles = self.kn.maps[e["map"]]["tiles"] if e["map"] in self.kn.maps else None
+        if not tiles:
+            self.skipTest("map not in knowledge")
+        obs = {(t["row"], t["col"]): t["type"] for t in tiles if t.get("type") not in (None, "plain")}
+        found = self.kn.identify_map(obs, min_typed=3)
+        self.assertTrue(found)
+        hit = [f for f in found if f[1] == e["map"]]
+        self.assertTrue(hit, found)
+        self.assertEqual(hit[0][2], (0, 0))
+

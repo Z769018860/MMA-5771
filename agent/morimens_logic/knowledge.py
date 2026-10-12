@@ -46,6 +46,7 @@ class Knowledge:
                     self.stage_maps[name].append(mid)
         self.effects = read("tile_effects.json")["effects"]
         self.events = read("events.json")["events"] if (data_dir / "events.json").is_file() else []
+        self._ident_index = None
         self.by_title = defaultdict(list)
         self.by_map = defaultdict(list)
         for ev in self.events:
@@ -83,6 +84,42 @@ class Knowledge:
         if ref in self.maps:
             return ref
         return self.stage_maps[ref][0] if self.stage_maps.get(ref) else None
+
+    def identify_map(self, observed, min_typed=5, pool=None):
+        """Which client map(s) show these tiles? observed: {(row, col): type} in any lattice frame (types as in maps;
+        plain / unknown tiles are ignored). Returns [(typed matches, client map id, (dr, dc))], best first, where
+        client position = observed position + (dr, dc), keeping only maps in which EVERY observed typed tile agrees.
+        Maps with the same layout (normal / hard / crazy versions) are reported once."""
+        typed = {k: t for k, t in observed.items() if t not in ("plain", "unknown", "player", None)}
+        if len(typed) < min_typed:
+            return []
+        if self._ident_index is None:
+            self._ident_index = {}
+            seen = {}
+            for key, m in self.maps.items():
+                if not key.isdigit():
+                    continue
+                cells = {(t["row"], t["col"]): {t["type"], *t.get("alts", ())} for t in m["tiles"]}
+                sig = tuple(sorted((k, tuple(sorted(v))) for k, v in cells.items()))
+                if sig in seen:
+                    continue
+                seen[sig] = key
+                self._ident_index[key] = (cells, defaultdict(list))
+                for k, types_ in cells.items():
+                    for ty in types_:
+                        self._ident_index[key][1][ty].append(k)
+        pool = set(pool) if pool else None
+        a0, t0 = min(typed.items())
+        out = []
+        for key, (cells, by_type) in self._ident_index.items():
+            if pool is not None and key not in pool:
+                continue
+            for cand in by_type.get(t0, ()):
+                dr, dc = cand[0] - a0[0], cand[1] - a0[1]
+                if all(t in cells.get((r + dr, c + dc), ()) for (r, c), t in typed.items()):
+                    out.append((len(typed), key, (dr, dc)))
+        out.sort(key=lambda x: (x[1].isdigit() and int(x[1]), x[1]))
+        return out
 
     def tile_effect(self, tile_type):
         return self.effects.get(tile_type, {"passable": True, "cost": 3})

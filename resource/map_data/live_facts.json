@@ -1,0 +1,25 @@
+{
+ "_doc": "实机直接看到的事实（不是 wiki 转写）。tools/build_event_catalog.py 把它们并进 events_all.json。来源：docs/verification/dive60-verification.md 及其截图（2026-10 幻梦深潜 VI 实机验证，一次通关、第二次中途停止）和 8-2 实机（VALIDATION.md）。",
+ "facts": [
+  {"id": "dive-random-layout", "scope": "幻梦深潜", "category": "map", "confidence": "live",
+   "text": "幻梦深潜的地图是随机的：同一难度每次进入的布局不同。客户端配置里忘却篇 24 种、星辰篇 24 种布局，见 dive_layouts.json。"},
+  {"id": "dive-assist-slot", "scope": "幻梦深潜", "category": "formation", "confidence": "live",
+   "text": "编队里借用的助战角色占第四位，编队页该位置右侧显示「助战」。"},
+  {"id": "dive-team-window", "scope": "编队页", "category": "ui", "confidence": "live",
+   "text": "左侧队伍标签列：当前队伍永远在正中间，上下各显示 3 个（当前 VI 时显示 III–IX，当前 XI 时显示 VIII–XIV），所以标签位置不固定，要按数字找。"},
+  {"id": "reward-popup", "scope": "地图", "category": "popup", "confidence": "live",
+   "text": "走格子中会弹出「获得物资」（例：银芯 ×200），自动流程需要收起它才能继续；点弹窗下方空白处即可。"},
+  {"id": "door-reopen", "scope": "锈蚀门扉", "category": "tile", "confidence": "live",
+   "text": "取得锈蚀钥匙后点门扉会触发开门事件；事件结束后还要再点一次门扉所在的格才能走过去。"},
+  {"id": "oneway-passage", "scope": "单行密道", "category": "tile", "confidence": "live",
+   "text": "单行密道可以正常使用，进入后出现在出口，不能原路折返。"},
+  {"id": "meltmark-shop", "scope": "融痕", "category": "shop", "confidence": "live",
+   "text": "融痕是商店，用黑印购买（本次一轮累计花了 253/260 黑印，余 7）。"},
+  {"id": "dive-result", "scope": "幻梦深潜", "category": "result", "confidence": "live",
+   "text": "首领通关后出现「调查完成」结算页（总评分、评分统计、唤醒体同调率提升、结算获得深潜经验），点【完成调查】回到入口页；入口页赛季目标「通关 3 次『幻梦深潜』」计数 +1。"},
+  {"id": "dive-opening-popup", "scope": "幻梦深潜", "category": "popup", "confidence": "live_unverified_image",
+   "text": "开场的造物 / 奖励弹窗曾让自动流程停住（没有保存这个弹窗的截图，现有节点认不出）。"},
+  {"id": "checkpoint-no-passage", "scope": "监察点", "category": "tile", "confidence": "live",
+   "text": "监察点不能走过去：离开会回到上一格，诈降才会传送到羁押点（8-2）。"}
+ ]
+}

@@ -1,0 +1,4522 @@
+{
+ "schema": 1,
+ "note": "Each run draws one layout of its 篇 at random (live-verified, live_facts.dive_random_layout); identify it from the first screens, then route on the exact client map.",
+ "count": {
+  "忘却篇": 24,
+  "星辰篇": 24
+ },
+ "layouts": [
+  {
+   "pian": "忘却篇",
+   "map": "70",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7891,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7892,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7893,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7894,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7895,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7896,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7897,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20887,
+      "lv": 70
+     },
+     {
+      "stage": 20888,
+      "lv": 66
+     },
+     {
+      "stage": 20889,
+      "lv": 68
+     },
+     {
+      "stage": 20920,
+      "lv": 80
+     },
+     {
+      "stage": 20945,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战13",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 2,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 13,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "71",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8202,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8201,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8200,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8207,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8206,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8205,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8204,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20864,
+      "lv": 70
+     },
+     {
+      "stage": 20865,
+      "lv": 68
+     },
+     {
+      "stage": 20910,
+      "lv": 66
+     },
+     {
+      "stage": 20955,
+      "lv": 64
+     },
+     {
+      "stage": 20956,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战12",
+   "tiles": 23,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 2,
+    "elite": 1,
+    "event": 3,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 10,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "75",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7647,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7646,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7645,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7644,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7643,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7642,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7641,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20872,
+      "lv": 64
+     },
+     {
+      "stage": 20876,
+      "lv": 70
+     },
+     {
+      "stage": 20877,
+      "lv": 68
+     },
+     {
+      "stage": 20878,
+      "lv": 66
+     },
+     {
+      "stage": 20924,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战16",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 14,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "77",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7742,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7944,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7943,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7938,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7937,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7940,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7939,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20874,
+      "lv": 64
+     },
+     {
+      "stage": 20875,
+      "lv": 80
+     },
+     {
+      "stage": 20927,
+      "lv": 68
+     },
+     {
+      "stage": 20928,
+      "lv": 66
+     },
+     {
+      "stage": 20929,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战14",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "contact": 2,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 16,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "79",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7673,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7671,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7672,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7669,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7670,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7667,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7668,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20879,
+      "lv": 66
+     },
+     {
+      "stage": 20880,
+      "lv": 68
+     },
+     {
+      "stage": 20881,
+      "lv": 70
+     },
+     {
+      "stage": 20904,
+      "lv": 80
+     },
+     {
+      "stage": 20905,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战19",
+   "tiles": 26,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 3,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "122",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7676,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7953,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7674,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7887,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7956,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7679,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7678,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20858,
+      "lv": 70
+     },
+     {
+      "stage": 20859,
+      "lv": 68
+     },
+     {
+      "stage": 20860,
+      "lv": 66
+     },
+     {
+      "stage": 20907,
+      "lv": 64
+     },
+     {
+      "stage": 20908,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战8",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 3,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 4,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 10,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "127",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7799,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8051,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8052,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8056,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8057,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8054,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8055,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20890,
+      "lv": 66
+     },
+     {
+      "stage": 20891,
+      "lv": 68
+     },
+     {
+      "stage": 20892,
+      "lv": 70
+     },
+     {
+      "stage": 20957,
+      "lv": 80
+     },
+     {
+      "stage": 20958,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战3",
+   "tiles": 37,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "contact": 2,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 5,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 3,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 24,
+    "keys": 1,
+    "doors": 2,
+    "islands": 2
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "129",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8189,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8190,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8191,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8192,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8050,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8194,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8195,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20944,
+      "lv": 70
+     },
+     {
+      "stage": 20946,
+      "lv": 66
+     },
+     {
+      "stage": 20947,
+      "lv": 68
+     },
+     {
+      "stage": 20950,
+      "lv": 80
+     },
+     {
+      "stage": 20951,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战1",
+   "tiles": 32,
+   "nodes": {
+    "battle": 5,
+    "contact": 4,
+    "elite": 1,
+    "event": 14,
+    "final_battle": 1,
+    "meltmark": 3,
+    "oneway_in": 1,
+    "player": 1,
+    "searchlight": 1,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "bridged",
+    "steps": 10,
+    "keys": 0,
+    "doors": 0,
+    "islands": 5
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "130",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7833,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7831,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7832,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8193,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7830,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7800,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7920,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20853,
+      "lv": 66
+     },
+     {
+      "stage": 20854,
+      "lv": 68
+     },
+     {
+      "stage": 20855,
+      "lv": 70
+     },
+     {
+      "stage": 20896,
+      "lv": 80
+     },
+     {
+      "stage": 20897,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战7",
+   "tiles": 32,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 4,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 3,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 1,
+    "doors": 4,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "132",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7792,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7793,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7794,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7788,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7789,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7790,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7791,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20856,
+      "lv": 80
+     },
+     {
+      "stage": 20857,
+      "lv": 64
+     },
+     {
+      "stage": 20867,
+      "lv": 70
+     },
+     {
+      "stage": 20868,
+      "lv": 66
+     },
+     {
+      "stage": 20869,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战5",
+   "tiles": 22,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 11,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "133",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8135,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8134,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8133,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8132,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8131,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8130,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8129,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20901,
+      "lv": 64
+     },
+     {
+      "stage": 20902,
+      "lv": 80
+     },
+     {
+      "stage": 20916,
+      "lv": 70
+     },
+     {
+      "stage": 20917,
+      "lv": 68
+     },
+     {
+      "stage": 20918,
+      "lv": 66
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战4",
+   "tiles": 19,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 16,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "209",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8075,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8076,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8077,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8078,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8079,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8080,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8081,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20861,
+      "lv": 80
+     },
+     {
+      "stage": 20862,
+      "lv": 64
+     },
+     {
+      "stage": 20863,
+      "lv": 70
+     },
+     {
+      "stage": 20866,
+      "lv": 68
+     },
+     {
+      "stage": 20909,
+      "lv": 66
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战22",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "contact": 3,
+    "elite": 1,
+    "event": 6,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "swamp": 3
+   },
+   "route": {
+    "status": "ok",
+    "steps": 1,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "286",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8090,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8088,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8089,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8086,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8087,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8084,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8085,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20922,
+      "lv": 80
+     },
+     {
+      "stage": 20923,
+      "lv": 66
+     },
+     {
+      "stage": 20925,
+      "lv": 68
+     },
+     {
+      "stage": 20926,
+      "lv": 70
+     },
+     {
+      "stage": 20971,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战20",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "287",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8063,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8065,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8064,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8067,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8066,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8069,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8068,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20935,
+      "lv": 68
+     },
+     {
+      "stage": 20936,
+      "lv": 66
+     },
+     {
+      "stage": 20937,
+      "lv": 70
+     },
+     {
+      "stage": 20965,
+      "lv": 64
+     },
+     {
+      "stage": 20966,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战21",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "swamp": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 0,
+    "doors": 0,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "289",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8145,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8197,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8198,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8124,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8196,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8122,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8123,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20948,
+      "lv": 80
+     },
+     {
+      "stage": 20949,
+      "lv": 64
+     },
+     {
+      "stage": 20962,
+      "lv": 66
+     },
+     {
+      "stage": 20963,
+      "lv": 68
+     },
+     {
+      "stage": 20964,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战11",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "illusion": 2,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "searchlight": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 0,
+    "doors": 0,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "290",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7926,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7924,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7925,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7929,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7930,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7927,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7928,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20932,
+      "lv": 66
+     },
+     {
+      "stage": 20933,
+      "lv": 68
+     },
+     {
+      "stage": 20934,
+      "lv": 70
+     },
+     {
+      "stage": 20967,
+      "lv": 80
+     },
+     {
+      "stage": 20968,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战24",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "illusion": 3,
+    "locked_door": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "swamp": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 19,
+    "keys": 1,
+    "doors": 1,
+    "islands": 2
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "297",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7784,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7787,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7786,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7781,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7780,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7783,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7782,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20870,
+      "lv": 68
+     },
+     {
+      "stage": 20871,
+      "lv": 66
+     },
+     {
+      "stage": 20873,
+      "lv": 70
+     },
+     {
+      "stage": 20969,
+      "lv": 64
+     },
+     {
+      "stage": 20970,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战2",
+   "tiles": 37,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 7,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 12,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "299",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8171,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8172,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8181,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8167,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7890,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8169,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8170,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20898,
+      "lv": 70
+     },
+     {
+      "stage": 20899,
+      "lv": 66
+     },
+     {
+      "stage": 20900,
+      "lv": 68
+     },
+     {
+      "stage": 20938,
+      "lv": 80
+     },
+     {
+      "stage": 20939,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战17",
+   "tiles": 25,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 13,
+    "keys": 1,
+    "doors": 2,
+    "islands": 2
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "310",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7737,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7735,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7736,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7740,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7741,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7738,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7739,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20852,
+      "lv": 68
+     },
+     {
+      "stage": 20919,
+      "lv": 66
+     },
+     {
+      "stage": 20921,
+      "lv": 70
+     },
+     {
+      "stage": 20940,
+      "lv": 80
+     },
+     {
+      "stage": 20941,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战15",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 2,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "316",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 8002,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 8004,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 8003,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 8006,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 8005,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 8008,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 8007,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20911,
+      "lv": 68
+     },
+     {
+      "stage": 20912,
+      "lv": 66
+     },
+     {
+      "stage": 20913,
+      "lv": 70
+     },
+     {
+      "stage": 20930,
+      "lv": 64
+     },
+     {
+      "stage": 20931,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战6",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 2,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 17,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "321",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7691,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7692,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7693,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7694,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7695,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7696,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7697,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20914,
+      "lv": 80
+     },
+     {
+      "stage": 20915,
+      "lv": 64
+     },
+     {
+      "stage": 20959,
+      "lv": 70
+     },
+     {
+      "stage": 20960,
+      "lv": 66
+     },
+     {
+      "stage": 20961,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战9",
+   "tiles": 32,
+   "nodes": {
+    "battle": 4,
+    "contact": 3,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "locked_door": 5,
+    "meltmark": 2,
+    "plain": 6,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 13,
+    "keys": 1,
+    "doors": 5,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "328",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7807,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7809,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7808,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7811,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7810,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7813,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7812,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20885,
+      "lv": 64
+     },
+     {
+      "stage": 20886,
+      "lv": 80
+     },
+     {
+      "stage": 20893,
+      "lv": 68
+     },
+     {
+      "stage": 20894,
+      "lv": 66
+     },
+     {
+      "stage": 20895,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战18",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "contact": 2,
+    "elite": 1,
+    "event": 8,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "356",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7770,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7769,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7768,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7774,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7773,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7772,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7771,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20882,
+      "lv": 70
+     },
+     {
+      "stage": 20883,
+      "lv": 68
+     },
+     {
+      "stage": 20884,
+      "lv": 66
+     },
+     {
+      "stage": 20903,
+      "lv": 64
+     },
+     {
+      "stage": 20906,
+      "lv": 80
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战23",
+   "tiles": 25,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 4,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "swamp": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "忘却篇",
+   "map": "357",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 7728,
+      "lv": 10
+     }
+    ],
+    "2": [
+     {
+      "stage": 7730,
+      "lv": 20
+     }
+    ],
+    "3": [
+     {
+      "stage": 7729,
+      "lv": 30
+     }
+    ],
+    "4": [
+     {
+      "stage": 7732,
+      "lv": 40
+     }
+    ],
+    "5": [
+     {
+      "stage": 7731,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 7734,
+      "lv": 60
+     }
+    ],
+    "7": [
+     {
+      "stage": 7733,
+      "lv": 70
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 20942,
+      "lv": 64
+     },
+     {
+      "stage": 20943,
+      "lv": 80
+     },
+     {
+      "stage": 20952,
+      "lv": 68
+     },
+     {
+      "stage": 20953,
+      "lv": 66
+     },
+     {
+      "stage": 20954,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@日常挑战10",
+   "tiles": 33,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "contact": 3,
+    "elite": 1,
+    "event": 3,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 3,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 6,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 11,
+    "keys": 1,
+    "doors": 3,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74951",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75019,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75021,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75022,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75227,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75228,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75229,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75230,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74984,
+      "lv": 70
+     },
+     {
+      "stage": 74986,
+      "lv": 66
+     },
+     {
+      "stage": 74987,
+      "lv": 68
+     },
+     {
+      "stage": 75037,
+      "lv": 65
+     },
+     {
+      "stage": 75046,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战10",
+   "tiles": 33,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 6,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 3,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 6,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 3,
+    "keys": 1,
+    "doors": 3,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74952",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 74990,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75036,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 74988,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 74995,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 74994,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 74993,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 74992,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74997,
+      "lv": 64
+     },
+     {
+      "stage": 75069,
+      "lv": 65
+     },
+     {
+      "stage": 75070,
+      "lv": 70
+     },
+     {
+      "stage": 75071,
+      "lv": 68
+     },
+     {
+      "stage": 75072,
+      "lv": 66
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战11",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 8,
+    "final_battle": 1,
+    "illusion": 2,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "searchlight": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 2,
+    "keys": 0,
+    "doors": 0,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74953",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75100,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75080,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75099,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75103,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75104,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75101,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75211,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75077,
+      "lv": 70
+     },
+     {
+      "stage": 75093,
+      "lv": 65
+     },
+     {
+      "stage": 75094,
+      "lv": 64
+     },
+     {
+      "stage": 75185,
+      "lv": 66
+     },
+     {
+      "stage": 75186,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战12",
+   "tiles": 25,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 6,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74954",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75220,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75222,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75221,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75224,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75223,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 74998,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75225,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75136,
+      "lv": 68
+     },
+     {
+      "stage": 75137,
+      "lv": 66
+     },
+     {
+      "stage": 75138,
+      "lv": 70
+     },
+     {
+      "stage": 75216,
+      "lv": 64
+     },
+     {
+      "stage": 75217,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战13",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 4,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74955",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75123,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75124,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75125,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75126,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75127,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75128,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75129,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75052,
+      "lv": 66
+     },
+     {
+      "stage": 75091,
+      "lv": 70
+     },
+     {
+      "stage": 75130,
+      "lv": 65
+     },
+     {
+      "stage": 75131,
+      "lv": 64
+     },
+     {
+      "stage": 75254,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战14",
+   "tiles": 27,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "elite": 1,
+    "event": 9,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 3,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74956",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75240,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75239,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75238,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75237,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75236,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75235,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75234,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74996,
+      "lv": 66
+     },
+     {
+      "stage": 75073,
+      "lv": 70
+     },
+     {
+      "stage": 75232,
+      "lv": 64
+     },
+     {
+      "stage": 75233,
+      "lv": 65
+     },
+     {
+      "stage": 75261,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战15",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74957",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75009,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 74979,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75243,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 74985,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 74991,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 74975,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 74981,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74999,
+      "lv": 66
+     },
+     {
+      "stage": 75026,
+      "lv": 65
+     },
+     {
+      "stage": 75068,
+      "lv": 64
+     },
+     {
+      "stage": 75083,
+      "lv": 68
+     },
+     {
+      "stage": 75121,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战16",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 9,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74958",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75109,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75163,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75134,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75106,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75105,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75108,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75107,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75117,
+      "lv": 64
+     },
+     {
+      "stage": 75118,
+      "lv": 65
+     },
+     {
+      "stage": 75182,
+      "lv": 68
+     },
+     {
+      "stage": 75183,
+      "lv": 66
+     },
+     {
+      "stage": 75184,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战17",
+   "tiles": 25,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 8,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 13,
+    "keys": 1,
+    "doors": 2,
+    "islands": 2
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74959",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75226,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75033,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75067,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75060,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75214,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75215,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75219,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75075,
+      "lv": 68
+     },
+     {
+      "stage": 75095,
+      "lv": 70
+     },
+     {
+      "stage": 75096,
+      "lv": 66
+     },
+     {
+      "stage": 75190,
+      "lv": 65
+     },
+     {
+      "stage": 75195,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战18",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 10,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74960",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75191,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75259,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75189,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75132,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75194,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75193,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75192,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75139,
+      "lv": 70
+     },
+     {
+      "stage": 75164,
+      "lv": 66
+     },
+     {
+      "stage": 75187,
+      "lv": 64
+     },
+     {
+      "stage": 75188,
+      "lv": 65
+     },
+     {
+      "stage": 75231,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战19",
+   "tiles": 26,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 6,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74961",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75262,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 74980,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 74983,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75166,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75167,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75258,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75169,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75076,
+      "lv": 70
+     },
+     {
+      "stage": 75078,
+      "lv": 66
+     },
+     {
+      "stage": 75079,
+      "lv": 68
+     },
+     {
+      "stage": 75177,
+      "lv": 65
+     },
+     {
+      "stage": 75178,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战8",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 6,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 4,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 10,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74962",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75149,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75148,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75147,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75153,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75152,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75151,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75150,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75110,
+      "lv": 70
+     },
+     {
+      "stage": 75111,
+      "lv": 68
+     },
+     {
+      "stage": 75112,
+      "lv": 66
+     },
+     {
+      "stage": 75154,
+      "lv": 64
+     },
+     {
+      "stage": 75181,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战9",
+   "tiles": 33,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 9,
+    "final_battle": 1,
+    "illusion": 1,
+    "locked_door": 4,
+    "meltmark": 2,
+    "plain": 6,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 4,
+    "keys": 1,
+    "doors": 4,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74963",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75249,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75198,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75027,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75013,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75241,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75257,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75038,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75010,
+      "lv": 65
+     },
+     {
+      "stage": 75014,
+      "lv": 64
+     },
+     {
+      "stage": 75016,
+      "lv": 66
+     },
+     {
+      "stage": 75017,
+      "lv": 68
+     },
+     {
+      "stage": 75018,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战6",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 5,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 6,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74964",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75203,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75159,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75204,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75207,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75206,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75209,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75208,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74982,
+      "lv": 70
+     },
+     {
+      "stage": 75031,
+      "lv": 66
+     },
+     {
+      "stage": 75196,
+      "lv": 64
+     },
+     {
+      "stage": 75197,
+      "lv": 65
+     },
+     {
+      "stage": 75244,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战7",
+   "tiles": 32,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 2,
+    "locked_door": 4,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 3,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 1,
+    "doors": 4,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74965",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75255,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75168,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75256,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75170,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75171,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75172,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75173,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75025,
+      "lv": 70
+     },
+     {
+      "stage": 75035,
+      "lv": 68
+     },
+     {
+      "stage": 75122,
+      "lv": 66
+     },
+     {
+      "stage": 75174,
+      "lv": 65
+     },
+     {
+      "stage": 75175,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战4",
+   "tiles": 19,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "locked_door": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 1,
+    "keys": 1,
+    "doors": 1,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74966",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75066,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75065,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75064,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75063,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75062,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75061,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75210,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75058,
+      "lv": 64
+     },
+     {
+      "stage": 75059,
+      "lv": 65
+     },
+     {
+      "stage": 75250,
+      "lv": 70
+     },
+     {
+      "stage": 75251,
+      "lv": 68
+     },
+     {
+      "stage": 75252,
+      "lv": 66
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战5",
+   "tiles": 22,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "ok",
+    "steps": 11,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74967",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75007,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75114,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75120,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75102,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75050,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75092,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75097,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75028,
+      "lv": 66
+     },
+     {
+      "stage": 75029,
+      "lv": 68
+     },
+     {
+      "stage": 75030,
+      "lv": 70
+     },
+     {
+      "stage": 75140,
+      "lv": 65
+     },
+     {
+      "stage": 75142,
+      "lv": 64
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战2",
+   "tiles": 37,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 8,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 7,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 12,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74968",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75160,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75162,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75161,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75157,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75156,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75212,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75158,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75024,
+      "lv": 64
+     },
+     {
+      "stage": 75049,
+      "lv": 68
+     },
+     {
+      "stage": 75051,
+      "lv": 70
+     },
+     {
+      "stage": 75135,
+      "lv": 66
+     },
+     {
+      "stage": 75165,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战3",
+   "tiles": 37,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "elite": 1,
+    "event": 9,
+    "final_battle": 1,
+    "illusion": 5,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "plain": 3,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74969",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75176,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75144,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 74989,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75180,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75179,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75213,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75008,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75023,
+      "lv": 64
+     },
+     {
+      "stage": 75143,
+      "lv": 70
+     },
+     {
+      "stage": 75145,
+      "lv": 66
+     },
+     {
+      "stage": 75253,
+      "lv": 68
+     },
+     {
+      "stage": 75260,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战1",
+   "tiles": 32,
+   "nodes": {
+    "battle": 5,
+    "elite": 1,
+    "event": 18,
+    "final_battle": 1,
+    "meltmark": 3,
+    "oneway_in": 1,
+    "player": 1,
+    "searchlight": 1,
+    "secret_exit": 1
+   },
+   "route": {
+    "status": "bridged",
+    "steps": 10,
+    "keys": 0,
+    "doors": 0,
+    "islands": 5
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74970",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75146,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75119,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75155,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75113,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75141,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75115,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75116,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75020,
+      "lv": 65
+     },
+     {
+      "stage": 75133,
+      "lv": 64
+     },
+     {
+      "stage": 75199,
+      "lv": 70
+     },
+     {
+      "stage": 75201,
+      "lv": 66
+     },
+     {
+      "stage": 75202,
+      "lv": 68
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战21",
+   "tiles": 21,
+   "nodes": {
+    "battle": 4,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "swamp": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 8,
+    "keys": 0,
+    "doors": 0,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74971",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75086,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75085,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75084,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75090,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75089,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75088,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75087,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75015,
+      "lv": 68
+     },
+     {
+      "stage": 75032,
+      "lv": 70
+     },
+     {
+      "stage": 75034,
+      "lv": 66
+     },
+     {
+      "stage": 75081,
+      "lv": 64
+     },
+     {
+      "stage": 75082,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战20",
+   "tiles": 29,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 4,
+    "locked_door": 2,
+    "meltmark": 2,
+    "oneway_in": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "secret_exit": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74972",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75041,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75039,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75040,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75044,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75045,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75042,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75043,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75047,
+      "lv": 65
+     },
+     {
+      "stage": 75048,
+      "lv": 64
+     },
+     {
+      "stage": 75246,
+      "lv": 66
+     },
+     {
+      "stage": 75247,
+      "lv": 68
+     },
+     {
+      "stage": 75248,
+      "lv": 70
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战23",
+   "tiles": 25,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 1,
+    "swamp": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 5,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74973",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75053,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75055,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75054,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75057,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75056,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75205,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75200,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 75074,
+      "lv": 64
+     },
+     {
+      "stage": 75098,
+      "lv": 65
+     },
+     {
+      "stage": 75218,
+      "lv": 70
+     },
+     {
+      "stage": 75242,
+      "lv": 68
+     },
+     {
+      "stage": 75245,
+      "lv": 66
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战22",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 2,
+    "elite": 1,
+    "event": 9,
+    "final_battle": 1,
+    "locked_door": 2,
+    "meltmark": 2,
+    "plain": 2,
+    "player": 1,
+    "rusty_key": 1,
+    "swamp": 3
+   },
+   "route": {
+    "status": "ok",
+    "steps": 1,
+    "keys": 1,
+    "doors": 2,
+    "islands": 1
+   }
+  },
+  {
+   "pian": "星辰篇",
+   "map": "74974",
+   "difficulties": {
+    "1": [
+     {
+      "stage": 75006,
+      "lv": 15
+     }
+    ],
+    "2": [
+     {
+      "stage": 75005,
+      "lv": 25
+     }
+    ],
+    "3": [
+     {
+      "stage": 75004,
+      "lv": 35
+     }
+    ],
+    "4": [
+     {
+      "stage": 75003,
+      "lv": 45
+     }
+    ],
+    "5": [
+     {
+      "stage": 75002,
+      "lv": 50
+     }
+    ],
+    "6": [
+     {
+      "stage": 75001,
+      "lv": 55
+     }
+    ],
+    "7": [
+     {
+      "stage": 75000,
+      "lv": 60
+     }
+    ],
+    "癫狂": [
+     {
+      "stage": 74976,
+      "lv": 70
+     },
+     {
+      "stage": 74977,
+      "lv": 68
+     },
+     {
+      "stage": 74978,
+      "lv": 66
+     },
+     {
+      "stage": 75011,
+      "lv": 64
+     },
+     {
+      "stage": 75012,
+      "lv": 65
+     }
+    ]
+   },
+   "cn": "新地图@星辰日常挑战24",
+   "tiles": 28,
+   "nodes": {
+    "battle": 4,
+    "blackseal": 1,
+    "elite": 1,
+    "event": 7,
+    "final_battle": 1,
+    "illusion": 3,
+    "locked_door": 1,
+    "meltmark": 2,
+    "plain": 1,
+    "player": 1,
+    "rusty_key": 1,
+    "searchlight": 2,
+    "swamp": 1,
+    "tunnel": 2
+   },
+   "route": {
+    "status": "ok",
+    "steps": 19,
+    "keys": 1,
+    "doors": 1,
+    "islands": 2
+   }
+  }
+ ]
+}

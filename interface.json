@@ -367,6 +367,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFormation",
             "StoryFinishInvestigation",
             "AA_PaidRevive",
@@ -374,6 +376,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "DD_FinishedList",
             "DD_FinishedEntry",
             "MA_Map"
@@ -398,6 +401,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFirstFormation",
             "StoryChoicePage",
             "StoryShop",
@@ -405,6 +410,7 @@
             "StoryFinishInvestigation",
             "AA_PaidRevive",
             "StoryReviveDecision",
+            "MA_RewardPopup",
             "DD_FinishedList",
             "DD_FinishedEntry",
             "MA_Map"
@@ -433,6 +439,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "DD_FinishedList",
             "DD_FinishedEntry",
             "MA_Map"
@@ -564,6 +571,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFormation",
             "StoryFinishInvestigation",
             "AA_PaidRevive",
@@ -571,6 +580,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "TR_Finished"
           ],
           "on_error": [
@@ -588,6 +598,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFirstFormation",
             "StoryChoicePage",
             "StoryShop",
@@ -595,6 +607,7 @@
             "StoryFinishInvestigation",
             "AA_PaidRevive",
             "StoryReviveDecision",
+            "MA_RewardPopup",
             "TR_Finished"
           ],
           "on_error": [
@@ -616,6 +629,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "TR_Finished"
           ],
           "timeout": 240000,
@@ -701,6 +715,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFormation",
             "StoryFinishInvestigation",
             "AA_PaidRevive",
@@ -708,6 +724,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "MA_Map",
             "MA_StageList"
           ],
@@ -720,6 +737,8 @@
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
+            "TeamB_FixLo",
+            "TeamB_FixHi",
             "StoryFirstFormation",
             "StoryChoicePage",
             "StoryShop",
@@ -727,6 +746,7 @@
             "StoryFinishInvestigation",
             "AA_PaidRevive",
             "StoryReviveDecision",
+            "MA_RewardPopup",
             "MA_Map",
             "MA_StageList"
           ],
@@ -743,6 +763,7 @@
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
+            "MA_RewardPopup",
             "MA_Map",
             "MA_StageList"
           ],
@@ -824,6 +845,8 @@
             "CycleStart": {
               "next": [
                 "TeamA_Fix",
+                "TeamA_FixLo",
+                "TeamA_FixHi",
                 "StartInvestigation"
               ]
             },
@@ -839,6 +862,8 @@
                 "ChooseFeather",
                 "ChooseMadness",
                 "TeamA_Fix",
+                "TeamA_FixLo",
+                "TeamA_FixHi",
                 "StartInvestigation",
                 "QuickFormationRecovery",
                 "InvestigationWarningUnchecked",
@@ -2822,6 +2847,8 @@
             "DD_AfterTeam": {
               "next": [
                 "TeamA_Fix",
+                "TeamA_FixLo",
+                "TeamA_FixHi",
                 "StartInvestigation"
               ]
             },
@@ -2837,7 +2864,7 @@
     "默认编队": {
       "type": "select",
       "label": "默认编队（所有任务共用的默认队伍）",
-      "description": "编队页先切换到这个队伍再继续。每个任务各有一份这个选项，请在要用的任务里设置；任务里的「本任务编队」不改时就用它。目前只能切换左侧可见的队伍 III–IX（I、II 在标签列表上方，还没有截图）。",
+      "description": "编队页先切换到这个队伍再继续。每个任务各有一份这个选项，请在要用的任务里设置；任务里的「本任务编队」不改时就用它。目标队伍的标签在左侧列表里看得到时才会点（当前队伍总在正中间，上下各显示 3 个）；已经是当前队伍则不动；相差超过 3 个的看不到，请先手动切到附近一次。队伍 I、II 还没有样本。",
       "default_case": "keep",
       "cases": [
         {
@@ -2847,7 +2874,19 @@
             "TeamA_Fix": {
               "enabled": false
             },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
             "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
               "enabled": false
             }
           }
@@ -2872,86 +2911,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_3.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                82,
-                47,
-                49
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -2969,86 +2946,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_3.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                82,
-                47,
-                49
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -3072,86 +2987,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_4.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                163,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -3169,86 +3022,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_4.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                163,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -3272,86 +3063,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                243,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -3369,86 +3098,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                243,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -3457,6 +3124,9 @@
           "label": "队伍 VI",
           "pipeline_override": {
             "TeamA_Fix": {
+              "enabled": false
+            },
+            "TeamA_FixLo": {
               "enabled": true,
               "all_of": [
                 {
@@ -3472,36 +3142,21 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
               ]
             },
-            "TeamA_Fix2": {
+            "TeamA_FixHi": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -3516,44 +3171,23 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    150,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
-              ]
-            },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                323,
-                47,
-                48
               ]
             },
             "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
               "enabled": true,
               "all_of": [
                 {
@@ -3569,36 +3203,21 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
               ]
             },
-            "TeamB_Fix2": {
+            "TeamB_FixHi": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -3613,41 +3232,17 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    150,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
-              ]
-            },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                323,
-                47,
-                48
               ]
             }
           }
@@ -3672,86 +3267,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                403,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -3769,86 +3302,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                403,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -3872,86 +3343,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_8.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                483,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -3969,86 +3378,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_8.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                483,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -4072,86 +3419,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_9.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                563,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -4169,36 +3454,33 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_9.png",
                   "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    540
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamB_Fix2": {
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t10",
+          "label": "队伍 X",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -4213,42 +3495,415 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
                   "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    540
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                563,
-                47,
-                48
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
               ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t11",
+          "label": "队伍 XI",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": false
+            },
+            "TeamA_FixLo": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixHi": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    150,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixHi": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    150,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "t12",
+          "label": "队伍 XII",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t13",
+          "label": "队伍 XIII",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_13.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_13.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t14",
+          "label": "队伍 XIV",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_14.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_14.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         }
@@ -4257,7 +3912,7 @@
     "本任务编队": {
       "type": "select",
       "label": "本任务编队（不选就用默认编队）",
-      "description": "只给这个任务指定队伍。「跟随默认编队」= 使用「默认编队」选项的设置。",
+      "description": "只给这个任务指定队伍。「跟随默认编队」= 使用「默认编队」选项的设置。目标队伍的标签在左侧列表里看得到时才会点（当前队伍总在正中间，上下各显示 3 个）；已经是当前队伍则不动；相差超过 3 个的看不到，请先手动切到附近一次。队伍 I、II 还没有样本。",
       "default_case": "follow",
       "cases": [
         {
@@ -4272,7 +3927,19 @@
             "TeamA_Fix": {
               "enabled": false
             },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
             "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
               "enabled": false
             }
           }
@@ -4297,86 +3964,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_3.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                82,
-                47,
-                49
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -4394,86 +3999,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_3.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    82,
-                    47,
-                    49
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                96,
-                19,
-                21
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                82,
-                47,
-                49
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -4497,86 +4040,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_4.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                163,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -4594,86 +4075,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_4.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    163,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                177,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                163,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -4697,86 +4116,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                243,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -4794,86 +4151,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    243,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                257,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                243,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -4882,6 +4177,9 @@
           "label": "队伍 VI",
           "pipeline_override": {
             "TeamA_Fix": {
+              "enabled": false
+            },
+            "TeamA_FixLo": {
               "enabled": true,
               "all_of": [
                 {
@@ -4897,36 +4195,21 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
               ]
             },
-            "TeamA_Fix2": {
+            "TeamA_FixHi": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -4941,44 +4224,23 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    150,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
-              ]
-            },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                323,
-                47,
-                48
               ]
             },
             "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
               "enabled": true,
               "all_of": [
                 {
@@ -4994,36 +4256,21 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_5.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
               ]
             },
-            "TeamB_Fix2": {
+            "TeamB_FixHi": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -5038,41 +4285,17 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    18,
-                    323,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    150,
                     80,
-                    80,
-                    80
+                    390
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                337,
-                19,
-                20
-              ]
-            },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                323,
-                47,
-                48
               ]
             }
           }
@@ -5097,86 +4320,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                403,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -5194,86 +4355,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_7.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    403,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                417,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                403,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -5297,86 +4396,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_8.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                483,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -5394,86 +4431,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
-              ]
-            },
-            "TeamB_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_8.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    483,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                497,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                483,
-                47,
-                48
-              ]
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         },
@@ -5497,86 +4472,24 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
-                }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
-              ]
-            },
-            "TeamA_Fix2": {
-              "all_of": [
-                {
                   "recognition": "TemplateMatch",
-                  "template": "team_header.png",
+                  "template": "team_glyph_9.png",
                   "roi": [
-                    250,
-                    15,
-                    360,
-                    70
+                    8,
+                    70,
+                    80,
+                    540
                   ],
-                  "threshold": 0.8,
+                  "threshold": 0.85,
                   "method": 10001
-                },
-                {
-                  "recognition": "ColorMatch",
-                  "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
-                    80,
-                    80,
-                    80
-                  ],
-                  "count": 1200,
-                  "connected": false
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamA_Lit": {
-              "roi": [
-                18,
-                563,
-                47,
-                48
-              ]
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
             },
             "TeamB_Fix": {
               "enabled": true,
@@ -5594,36 +4507,33 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_9.png",
                   "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    540
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamB_Fix2": {
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t10",
+          "label": "队伍 X",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
               "all_of": [
                 {
                   "recognition": "TemplateMatch",
@@ -5638,42 +4548,415 @@
                   "method": 10001
                 },
                 {
-                  "recognition": "ColorMatch",
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
                   "roi": [
-                    18,
-                    563,
-                    47,
-                    48
-                  ],
-                  "method": 4,
-                  "lower": [
-                    0,
-                    0,
-                    0
-                  ],
-                  "upper": [
+                    8,
+                    70,
                     80,
-                    80,
-                    80
+                    540
                   ],
-                  "count": 1200,
-                  "connected": false
+                  "threshold": 0.85,
+                  "method": 10001
                 }
-              ],
-              "target": [
-                32,
-                577,
-                19,
-                20
               ]
             },
-            "TeamB_Lit": {
-              "roi": [
-                18,
-                563,
-                47,
-                48
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
               ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t11",
+          "label": "队伍 XI",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": false
+            },
+            "TeamA_FixLo": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixHi": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    150,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_Fix": {
+              "enabled": false
+            },
+            "TeamB_FixLo": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_10.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixHi": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    150,
+                    80,
+                    390
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "t12",
+          "label": "队伍 XII",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_12.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t13",
+          "label": "队伍 XIII",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_13.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_13.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "t14",
+          "label": "队伍 XIV",
+          "pipeline_override": {
+            "TeamA_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_14.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamA_FixLo": {
+              "enabled": false
+            },
+            "TeamA_FixHi": {
+              "enabled": false
+            },
+            "TeamB_Fix": {
+              "enabled": true,
+              "all_of": [
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_header.png",
+                  "roi": [
+                    250,
+                    15,
+                    360,
+                    70
+                  ],
+                  "threshold": 0.8,
+                  "method": 10001
+                },
+                {
+                  "recognition": "TemplateMatch",
+                  "template": "team_glyph_14.png",
+                  "roi": [
+                    8,
+                    70,
+                    80,
+                    540
+                  ],
+                  "threshold": 0.85,
+                  "method": 10001
+                }
+              ]
+            },
+            "TeamB_FixLo": {
+              "enabled": false
+            },
+            "TeamB_FixHi": {
+              "enabled": false
             }
           }
         }

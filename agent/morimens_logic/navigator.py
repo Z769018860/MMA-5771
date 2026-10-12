@@ -21,6 +21,8 @@ class Navigator:
         self.tiles = {(t["island"], t["row"], t["col"]): t["type"] for t in entry["tiles"]} if entry else {}
         self.alts = {(t["island"], t["row"], t["col"]): t["alts"] for t in entry["tiles"] if t.get("alts")} if entry else {}
         self._version = 0
+        self.identified = None        # client map id adopted after recognising the layout (dynamic mode)
+        self._typed_at_last_try = 0
         self.visited, self.blacklist = set(), set()
         self.attempts = Counter()
         self.entries = Counter()      # how often each tile was entered: loop detection
@@ -59,6 +61,52 @@ class Navigator:
                 self.tiles[key] = ty
             else:
                 self.tiles.setdefault(key, "unknown")
+        self.try_identify()
+
+    def try_identify(self, min_typed=6, pool=None):
+        """Dynamic mode: once enough typed tiles are on screen, look for the client map that shows exactly these tiles.
+        A unique layout (or only twins of one layout) is adopted: from then on the whole map, walls and the goal are known.
+        Observation keys are (island, row, col) in the observation's own lattice frame; returns the adopted map id or None."""
+        if not self.dynamic or self.identified:
+            return self.identified
+        observed = {(k[1], k[2]): t for k, t in self.tiles.items() if t != "unknown"}
+        typed = sum(1 for t in observed.values() if t not in ("plain", "player"))
+        if typed < min_typed or typed <= self._typed_at_last_try:
+            return None
+        self._typed_at_last_try = typed
+        hits = self.kn.identify_map(observed, min_typed=min_typed, pool=pool)
+        if len(hits) != 1:
+            return None
+        _, mid, (dr, dc) = hits[0]
+        entry = self.kn.maps[mid]
+        # island labels: a client island that already has an observed tile keeps the observation's label, the others get new ones
+        obs_island = {(k[1], k[2]): k[0] for k in self.tiles}
+        label, next_label = {}, max([k[0] for k in self.tiles] + [-1]) + 1
+        for t in entry["tiles"]:
+            seen = obs_island.get((t["row"] - dr, t["col"] - dc))
+            if seen is not None:
+                label.setdefault(t["island"], seen)
+        for t in entry["tiles"]:
+            if t["island"] not in label:
+                label[t["island"]] = next_label
+                next_label += 1
+        for t in entry["tiles"]:
+            key = (label[t["island"]], t["row"] - dr, t["col"] - dc)
+            if self.tiles.get(key) in (None, "unknown"):
+                self.tiles[key] = t["type"]
+            if t.get("alts"):
+                self.alts[key] = t["alts"]
+        self.identified, self.dynamic = mid, False
+        by = self.by_type
+        tun = sorted(by.get("tunnel", []))
+        if len(tun) == 2:
+            self.links[tun[0]], self.links[tun[1]] = tun[1], tun[0]
+        one, out = by.get("oneway_in", []), by.get("secret_exit", [])
+        if len(one) == 1 and len(out) == 1:
+            self.links[one[0]] = out[0]
+        if by.get("detention"):
+            self.optional = {c: sorted(by["detention"]) for c in by.get("checkpoint", [])}
+        return mid
 
     def arrive(self, pos):
         """The player now stands on pos (after any teleport)."""

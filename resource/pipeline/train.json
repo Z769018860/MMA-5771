@@ -256,6 +256,8 @@
     "action": "DoNothing",
     "next": [
       "TeamB_Fix",
+      "TeamB_FixLo",
+      "TeamB_FixHi",
       "StoryFormation"
     ],
     "on_error": [

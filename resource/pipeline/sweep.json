@@ -982,6 +982,8 @@
     "timeout": 600000,
     "next": [
       "TeamA_Fix",
+      "TeamA_FixLo",
+      "TeamA_FixHi",
       "StartInvestigation",
       "InvestigationWarningUnchecked",
       "InvestigationWarningChecked",

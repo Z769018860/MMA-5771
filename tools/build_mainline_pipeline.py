@@ -116,6 +116,10 @@ def build():
                                     "order_by": "Random", "index": 0}],
                         "box_index": 1, "action": "Click", "post_delay": 2200, "next": ["StoryAfterRoute"],
                         "focus": {"Node.Action.Succeeded": "已点击一个绿色描边的可达格子（随机选择；走过的格子变为青色不再选）。"}}
+    # ------------------------------------------------------------------ 「获得物资」popup (dive live run: stopped the run when nothing dismissed it)
+    nodes["MA_RewardPopup"] = {**match("reward_title"), "action": "Click", "target": [440, 560, 400, 90], "post_delay": 1000,
+                               "next": ["StoryAfterRoute"],
+                               "focus": {"Node.Recognition.Succeeded": "「获得物资」弹窗：点下方空白处收起。"}}
     # ------------------------------------------------------------------ stop notices (Windows message box)
     for name, text, note in (
             ("MA_ManualNotice", "战斗长时间没有结束：这很可能是无法自动战斗的 Boss 关，请手动操作后再启动任务。", "战斗超时：可能是需要手动操作的 Boss 关，已弹出提示。"),
@@ -130,6 +134,7 @@ def build():
 
 def task_definition(orig, extra=("MA_Map", "MA_StageList"), done_next=("MA_StageList",)):
     """Task-level overrides: extend the story_demo nodes so they cooperate with map walking and the stop conditions."""
+    extra = ("MA_RewardPopup", *[x for x in extra if x != "MA_RewardPopup"])
     after = [x for x in orig["StoryAfterRoute"]["next"]] + [n for n in extra if n not in orig["StoryAfterRoute"]["next"]]
     inside = [x for x in orig["StoryInsideRouter"]["next"]] + list(extra)
     monitor = [x for x in orig["StoryBattleMonitor"]["next"]] + list(extra)

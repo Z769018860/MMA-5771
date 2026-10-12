@@ -122,3 +122,15 @@
 没有的数据：
 - 节点的效果表（传送去向、事件选项、扣血数值）不在导出的子集里，所以传送配对只能按「每图至多一对隧道/一对单行密道」推断（全部 1171 张图都满足），监察点→羁押点按 8-2 实机处理。
 - 有 19 张图（幻梦深潜部分难度、祭礼、布朗出击、无妄的皈依等）的起点和终点在互不相连的岛上，数据里没有它们之间的连接（应当是事件传送）；规划器会按最近格加推测桥接并标记。
+
+## 幻梦深潜 layouts, live facts and the event catalogue
+
+- `dive_layouts.json` (`tools/build_dive_layouts.py`): the 24 layout styles of each 篇 (忘却篇 / 星辰篇) with client map id,
+  node counts, the stages (difficulty I–VII, 癫狂 at lv 64–80) that use each and the route-check status. A run draws one
+  layout at random (live fact `dive_random_layout`), so the agent identifies it from the first screens
+  (`Knowledge.identify_map` / `Navigator.try_identify`) and then routes on the exact map. In the unknown-map simulation
+  this lifted the success rate from 75.7% to 90.0%.
+- `live_facts.json`: what the live dive runs showed (door re-tap, one-way passages, reward popup, 融痕 shop prices, result
+  page, checkpoint has no passage; the opening popup is still unverified).
+- `events_all.json` (`tools/build_event_catalog.py`): every known event merged with its client node kind, maps and live
+  evidence, plus all 51 tile kinds and the 24 event kinds that have no wiki text yet.

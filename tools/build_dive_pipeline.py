@@ -97,11 +97,12 @@ def build():
                           "timeout": 30000, "next": [], "on_error": [],
                           "focus": {"Node.Action.Starting": "难度未能选中：已弹出提示并停止。"}}
     # ---- formation page: team tab, then assist chain (sync-rate nodes) or straight to 调查
-    nodes["DD_FormationReady"] = {**match("team_header"), "timeout": 30000, "rate_limit": 700, "action": "DoNothing",
+    nodes["DD_FormationReady"] = {**{**match("team_header"), "roi": [250, 15, 360, 70]},   # live: the button moves right with the title length
+                                   "timeout": 30000, "rate_limit": 700, "action": "DoNothing",
                                   "next": ["DD_AfterTeam"], "on_error": ["MA_StuckNotice"], "focus": focus("已进入编队页。")}
     # TeamA_Fix (tools/build_team_pipeline.py) switches the team first when an option asks for it, then the assist chain
     nodes["DD_AfterTeam"] = {"recognition": "DirectHit", "action": "DoNothing",
-                             "next": ["TeamA_Fix", "OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
+                             "next": ["TeamA_Fix", "TeamA_FixLo", "TeamA_FixHi", "OpenAssistPurple", "OpenAssistRed", "OpenAssist"]}
     nodes["DD_RewardDismiss"] = {**match("reward_title"), "action": "Click", "target": [310, 280, 80, 60],
                                   "post_delay": 900, "next": ["StoryAfterRoute"],
                                   "focus": {"Node.Action.Succeeded": "已关闭开场获得造物弹窗。"}}
@@ -202,7 +203,7 @@ def update_interface(orig, ui, nodes):
         "description": "使用助战沿用同调率循环的助战流程（助战→选择角色→上场→调查）；不使用则直接点击调查。",
         "default_case": "use", "cases": [{"name": "use", "label": "使用助战（默认）"},
                                          {"name": "skip", "label": "不使用助战，直接调查",
-                                          "pipeline_override": {"DD_AfterTeam": {"next": ["TeamA_Fix", "StartInvestigation"]},
+                                          "pipeline_override": {"DD_AfterTeam": {"next": ["TeamA_Fix", "TeamA_FixLo", "TeamA_FixHi", "StartInvestigation"]},
                                                                    "TeamA_Resume": {"next": ["StartInvestigation"]}}}]}
     override = M.task_definition(orig, extra=("DD_FinishedList", "DD_FinishedEntry", "DD_EnterSecret", "DD_ArtifactPick", "DD_UseRustKey", "DD_DispelIllusion", "DD_AbilityPick", "DD_ItemDismiss", "DD_SealCardPick", "DD_ShopExit", "DD_Map", "MA_Map"), done_next=())
     for name in ("StoryAfterRoute", "StoryInsideRouter", "StoryBattleMonitor"):

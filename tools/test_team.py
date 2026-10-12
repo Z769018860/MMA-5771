@@ -24,10 +24,16 @@ for f in (B.ROOT / "resource" / "pipeline").glob("*.json"):
     PIPE.update(json.loads(f.read_text(encoding="utf-8-sig")))
 
 
-def region(name):
-    r = UI["regions"][name]
-    x0, y0, x1, y1 = B.scale_box(r["box"], UI["screens"]["dd_formation"]["src_size"])
-    return [x0, y0, x1 - x0, y1 - y0]
+SLOT_Y = {  # centre of each numeral's slot in the original screenshot (dd_formation 1604x899, dive_live_formation 1600x900)
+    "dd_formation": ({3: 133, 4: 233, 5: 333, 6: 433, 7: 533, 8: 633, 9: 733}, (1604, 899), 6),
+    "dive_live_formation": ({8: 130, 9: 230, 10: 330, 11: 430, 12: 530, 13: 630, 14: 730}, (1600, 900), 11),
+}
+
+
+def slot_rect(sample, team):
+    ys, (w, h), _ = SLOT_Y[sample]
+    sx, sy = 1280 / w, 720 / h
+    return [round(22 * sx), round((ys[team] - 30) * sy), round(62 * sx), round(60 * sy)]
 
 
 def option(name, case):
@@ -64,44 +70,57 @@ def main():
     for fam, items in TM.LIST_PATCHES.items():
         for fname, node, before in items:
             nxt = PIPE[node]["next"]
-            expect(f"Team{fam}_Fix" in nxt and (not before or nxt.index(f"Team{fam}_Fix") < nxt.index(before)), f"{node}: Fix not in front of {before or 'list'}: {nxt}")
+            fixes = [f"Team{fam}_{x}" for x in TM.FIXES]
+            expect(all(f in nxt for f in fixes) and (not before or nxt.index(fixes[-1]) < nxt.index(before)), f"{node}: Fix nodes not in front of {before or 'list'}: {nxt}")
     for node, fam in (("Sweep_ClearRouter", "A"), ("DD_AfterTeam", "A"), ("TR_FormationRouter", "B")):
-        expect(f"Team{fam}_Fix" in PIPE[node]["next"], f"{node} lacks Team{fam}_Fix")
+        expect(all(f"Team{fam}_{x}" in PIPE[node]["next"] for x in TM.FIXES), f"{node} lacks the Team{fam} Fix nodes")
     for case in IFACE["option"]["同调率助战"]["cases"]:
         ov = case.get("pipeline_override")
         if ov:
-            expect("TeamA_Fix" in ov["CycleStart"]["next"] and "TeamA_Fix" in ov["EntryRouter"]["next"]
+            expect("TeamA_Fix" in ov["CycleStart"]["next"] and "TeamA_FixHi" in ov["EntryRouter"]["next"]
                    and ov["TeamA_Resume"]["next"] == ["StartInvestigation"], "no-assist option must carry the team handlers")
-    expect(set(c["name"] for c in IFACE["option"]["默认编队"]["cases"]) == {"keep", *[f"t{n}" for n in TM.TEAMS]}, "默认编队 cases")
-    expect(set(c["name"] for c in IFACE["option"]["本任务编队"]["cases"]) == {"follow", "keep", *[f"t{n}" for n in TM.TEAMS]}, "本任务编队 cases")
-    # ---- recognition: the real screenshots have team VI lit, III-V and VII-IX dark
+    expect(set(c["name"] for c in IFACE["option"]["默认编队"]["cases"]) == {"keep", *[f"t{n}" for n in TM.ROMAN]}, "默认编队 cases")
+    expect(set(c["name"] for c in IFACE["option"]["本任务编队"]["cases"]) == {"follow", "keep", *[f"t{n}" for n in TM.ROMAN]}, "本任务编队 cases")
+    # ---- recognition: the column shows the current team in the middle and three teams on each side
+    images["dive_live_formation"] = cv2.imread(str(S / "dive_live_formation.png"))
     for fam in TM.FAMILIES:
-        for n in TM.TEAMS:
-            ov = option("默认编队", f"t{n}")
-            for sname in ("dd_formation", "star_formation"):
-                fired, ev = T.run_node(resource, images[sname], f"Team{fam}_Fix", ov, timeout=300)
-                expect(fired == (n != 6), f"Team{fam}_Fix[t{n}] on {sname}: got {fired}")
-                if fired:
-                    expect(T.inside(ev, region(f"tab_{n}"), 2), f"Team{fam}_Fix[t{n}] must click tab {n}: {ev[:1]}")
-                fired, _ = T.run_node(resource, images[sname], f"Team{fam}_Lit", ov, timeout=300)
-                expect(fired == (n == 6), f"Team{fam}_Lit[t{n}] on {sname}: got {fired}")
+        for sample, (ys, _, current) in SLOT_Y.items():
+            visible = set(ys) - {current}
+            for n in TM.ROMAN:
+                ov = option("默认编队", f"t{n}")
+                fix_hits = {}
+                for node in ("Fix", "FixLo", "FixHi"):
+                    fired, ev = T.run_node(resource, images[sample], f"Team{fam}_{node}", ov, timeout=300)
+                    fix_hits[node] = (fired, ev)
+                if n in TM.GLYPHS:
+                    want = n in visible
+                    expect(fix_hits["Fix"][0] == want, f"Team{fam}_Fix[t{n}] on {sample}: expected {want}, got {fix_hits['Fix'][0]}")
+                    if want:
+                        expect(T.inside(fix_hits["Fix"][1], slot_rect(sample, n), 2), f"Team{fam}_Fix[t{n}] must click slot of {n} on {sample}: {fix_hits['Fix'][1][:1]}")
+                    expect(not fix_hits["FixLo"][0] and not fix_hits["FixHi"][0], f"Team{fam}_FixLo/Hi must be off for t{n}")
+                else:
+                    lower, higher = TM.VIA[n]
+                    for node, nb, offset_slot in (("FixLo", lower, +1), ("FixHi", higher, -1)):
+                        # the neighbour glyph must be visible and not in the last / first slot (so the offset stays in the column)
+                        ys_ = ys
+                        want = nb in visible and (ys_[nb] < max(ys_.values()) if offset_slot > 0 else ys_[nb] > min(ys_.values()))
+                        fired, ev = fix_hits[node]
+                        expect(fired == want, f"Team{fam}_{node}[t{n}] on {sample}: expected {want}, got {fired}")
+                        if fired:
+                            expect(T.inside(ev, slot_rect(sample, nb + offset_slot), 2), f"Team{fam}_{node}[t{n}] must click the slot of {nb + offset_slot}: {ev[:1]}")
+                    expect(not fix_hits["Fix"][0], f"Team{fam}_Fix must be off for t{n}")
         ov = option("默认编队", "t4")
         for sname in ("dd_entry", "dd_list_top", "star_difficulty", "home", "main_stages", "daily", "chapters"):
-            fired, _ = T.run_node(resource, images[sname], f"Team{fam}_Fix", ov, timeout=300)
-            expect(not fired, f"Team{fam}_Fix must not fire on {sname}")
+            for node in ("Fix", "FixLo", "FixHi"):
+                fired, _ = T.run_node(resource, images[sname], f"Team{fam}_{node}", ov, timeout=300)
+                expect(not fired, f"Team{fam}_{node} must not fire on {sname}")
     # ---- flows
-    formation_iv = images["dd_formation"].copy()
-    (sx, sy, sw, sh), (dx, dy, dw, dh), (fx, fy, fw, fh) = region("tab_6"), region("tab_4"), region("tab_5")
-    w, h = min(sw, dw, fw), min(sh, dh, fh)
-    lit = formation_iv[sy:sy + h, sx:sx + w].copy()
-    formation_iv[sy:sy + h, sx:sx + w] = formation_iv[fy:fy + h, fx:fx + w]
-    formation_iv[dy:dy + h, dx:dx + w] = lit
+    formation_iv = images["dd_formation"].copy()          # looks the same; only the position of the next tap matters
     shots = {**images, "formation_iv": formation_iv, "started": cv2.imread(str(S / "star_start.png"))}
     invest = [830, 625, 360, 60]
     quick = {k: {"timeout": 1500, "on_error": []} for k in ("CycleStart", "StartInvestigation", "StoryAfterRoute", "StoryFormation",
-                                                           "StoryFirstFormation", "TeamA_Fix", "TeamA_Lit", "TeamA_Resume", "TeamA_Fix2",
-                                                           "TeamB_Fix", "TeamB_Lit", "TeamB_Resume", "TeamB_Fix2")}
-    quick["Team_Locked"] = {"action": "DoNothing"}
+                                                           "StoryFirstFormation", "TeamA_Fix", "TeamA_FixLo", "TeamA_FixHi", "TeamA_Resume",
+                                                           "TeamB_Fix", "TeamB_FixLo", "TeamB_FixHi", "TeamB_Resume")}
     for k in ("OpenAssistPurple", "OpenAssistRed", "OpenAssist", "InvestigationWarningUnchecked", "InvestigationWarningChecked"):
         quick[k] = {"timeout": 800, "on_error": []}
     quick["StartInvestigation"]["next"] = []
@@ -121,7 +140,7 @@ def main():
     ]
     for label, entry, screen, opts, want in cases:
         tr = {"dd_list_top": [(region_list_challenge(), "dd_formation")],
-              "dd_formation": [(region("tab_4"), "formation_iv"), (invest, "started")],
+              "dd_formation": [(slot_rect("dd_formation", 4), "formation_iv"), (invest, "started")],
               "formation_iv": [(invest, "started")]}
         scr = Script(shots, tr, screen)
         # the tab click must win over the investigate click only because the Fix node runs first

@@ -289,10 +289,10 @@
     "recognition": "TemplateMatch",
     "template": "dive_team_header.png",
     "roi": [
-      299,
-      14,
-      165,
-      64
+      250,
+      15,
+      360,
+      70
     ],
     "threshold": 0.8,
     "method": 10001,
@@ -314,6 +314,8 @@
     "action": "DoNothing",
     "next": [
       "TeamA_Fix",
+      "TeamA_FixLo",
+      "TeamA_FixHi",
       "OpenAssistPurple",
       "OpenAssistRed",
       "OpenAssist"
