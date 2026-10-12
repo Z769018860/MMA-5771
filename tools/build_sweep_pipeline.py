@@ -21,6 +21,8 @@ import build_nav_pipeline as B  # noqa: E402
 
 ROOT, NAV, IMAGE = B.ROOT, B.NAV, B.IMAGE
 OUT = ROOT / "resource" / "pipeline" / "sweep.json"
+INTERFACE = ROOT / "interface.json"
+STAGES = ("破开囚笼", "昨日之梦", "传烛者", "愚者", "孤独之旅", "无尽沙", "自由与死亡")
 # battle pages the sync-rate loop already handles (no assist selection: one plain clear)
 CLEAR_ROUTER = ["TeamA_Fix", "StartInvestigation", "InvestigationWarningUnchecked", "InvestigationWarningChecked", "BattleWarning",
                 "ReviveDecision", "FailureChoice", "FinishInvestigation", "HideCards", "AutoControlReady", "BattleMonitor", "StopHere"]
@@ -46,6 +48,15 @@ def build():
         images[f"sweep_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
         thr[t["id"]] = t.get("threshold", 0.8)
+    left_view = cv2.imdecode(np.fromfile(NAV / "samples" / "mirror_prisoner_stage_left.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+    left_view = cv2.resize(left_view, (1280, 720))
+    right_view = cv2.imdecode(np.fromfile(NAV / "samples" / "mirror_prisoner_stage_right.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+    right_view = cv2.resize(right_view, (1280, 720))
+    for i, (x0, x1) in enumerate(((95, 245), (350, 525), (635, 770), (905, 1055)), 1):
+        images[f"sweep_stage{i}_title.png"] = left_view[495:535, x0:x1]
+    images["sweep_stage5_title.png"] = right_view[495:535, 430:590]
+    images["sweep_stage6_title.png"] = right_view[495:535, 720:835]
+    images["sweep_stage7_title.png"] = right_view[495:535, 960:1140]
 
     def match(tid, grow=16):
         return {"recognition": "TemplateMatch", "template": f"sweep_{tid}.png", "roi": B.grow(rects[tid], grow),
@@ -60,20 +71,51 @@ def build():
         return {"Node.Recognition.Succeeded": text}
 
     nodes["Sweep_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
-                            "next": ["Sweep_Reward", "Sweep_Dialog", "Sweep_Page", "Sweep_FromStage"],
-                            "focus": focus("活动扫荡：从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。")}
+                            "next": ["Sweep_Reward", "Sweep_Dialog", "Sweep_Page", "Sweep_StagePage", "Sweep_FromActivity", "Sweep_FromHome"],
+                            "focus": focus("镜像囚徒·复刻扫荡：从主界面、活动页、横排关卡页或难度列表开始。")}
     # from the activity stage page: open node N (default 1), arriving at the level list
     act = json.loads((NAV / "activity_ui.json").read_text(encoding="utf-8"))
     asc = act["screens"][act["nodes"]["screen"]]["src_size"]
     drop = {"recognition": "TemplateMatch", "template": "activity_act_drop.png", "roi": [0, 440, 1280, 160],
             "threshold": 0.8, "method": 10001}
+    nodes["Sweep_StagePage"] = {**drop, "action": "DoNothing", "next": ["Sweep_FromStage"]}
     nodes["Sweep_FromStage"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["SweepNode1"]}
-    for i, x in enumerate(act["nodes"]["x"], 1):
-        cx, cy = x * 1280 / asc[0], act["nodes"]["y"] * 720 / asc[1]
-        nodes[f"SweepNode{i}"] = {"recognition": "And", "all_of": [drop], "box_index": 0, "timeout": 15000,
-                                  "action": "Click", "target": [int(cx) - 22, int(cy) - 22, 44, 44], "post_delay": 2200,
-                                  "next": ["Sweep_Page"],
-                                  "focus": {"Node.Action.Succeeded": f"已点击活动关卡节点 {i}。"}}
+    nodes["Sweep_FromActivity"] = {
+        "recognition": "TemplateMatch", "template": "sweep_mirror_prisoner_banner.png",
+        "roi": [0, 65, 270, 110], "threshold": 0.78, "method": 10001,
+        "action": "Click", "target_offset": [20, 12, -40, -24], "post_delay": 800,
+        "next": ["Sweep_ActivityEntry"],
+        "focus": {"Node.Action.Succeeded": "已识别并选择【镜像囚徒·复刻】活动。"},
+    }
+    nodes["Sweep_ActivityEntry"] = {
+        "recognition": "DirectHit", "action": "Click", "target": [1070, 625, 50, 48],
+        "post_delay": 2200, "next": ["Sweep_StagePage"],
+        "focus": {"Node.Action.Succeeded": "已点击【飞跃青空】进入该活动横排关卡页。"},
+    }
+    home = json.loads((ROOT / "resource" / "pipeline" / "navigation.json").read_text(encoding="utf-8"))
+    nodes["Sweep_FromHome"] = {**home["NavHome_banner_event"], "next": ["Sweep_FromActivity"]}
+    # First normalize the carousel to its left/right end; then verify the
+    # chapter title. A failed swipe must not result in tapping another chapter.
+    title_boxes = ((75, 245), (330, 525), (615, 780), (885, 1070),
+                   (410, 610), (700, 855), (940, 1160))
+    for i, cx in enumerate((168, 436, 704, 972, 508, 781, 1059), 1):
+        right_end = i >= 5
+        start_x, end_x = (1080, 280) if right_end else (280, 1080)
+        nodes[f"SweepNode{i}"] = {"recognition": "DirectHit", "action": "Swipe",
+                                  "begin": [start_x, 520, 20, 20], "end": [end_x, 520, 20, 20],
+                                  "duration": 550, "post_delay": 850,
+                                  "next": [f"SweepNode{i}Scroll2"],
+                                  "focus": {"Node.Action.Succeeded": f"滑动到镜像囚徒·复刻关卡 {i} 所在一端。"}}
+        nodes[f"SweepNode{i}Scroll2"] = {**nodes[f"SweepNode{i}"],
+                                         "next": [f"SweepNode{i}Click"]}
+        x0, x1 = title_boxes[i-1]
+        title = {"recognition": "TemplateMatch", "template": f"sweep_stage{i}_title.png",
+                 "roi": [x0, 475, x1-x0, 75], "threshold": 0.85, "method": 10001}
+        nodes[f"SweepNode{i}Click"] = {"recognition": "And", "all_of": [drop, title],
+                                      "box_index": 1, "action": "Click",
+                                      "target": [cx - 25, 505, 50, 50],
+                                      "post_delay": 2200, "next": ["Sweep_Page"],
+                                      "focus": {"Node.Action.Succeeded": f"已点击活动关卡节点 {i}：{STAGES[i-1]}。"}}
     # level list: scroll to the bottom, select the level above the last one (癫狂)
     nodes["Sweep_Page"] = {**LIST_TITLE, "action": "DoNothing", "timeout": 20000, "next": ["Sweep_Scroll"],
                            "focus": focus("已进入活动关卡列表。")}
@@ -124,14 +166,56 @@ def build():
     return images, nodes
 
 
+def update_interface(data):
+    """Expose all seven current event chapters and their replayable difficulties."""
+    options = data["option"]
+    options["扫荡节点"] = {
+        "type": "select", "label": "镜像囚徒·复刻：关卡",
+        "description": "从飞跃青空横排关卡页进入时选择；已进入某关的难度列表时，此项不再切换关卡。",
+        "default_case": "node1",
+        "cases": [
+            {"name": f"node{i}", "label": f"{i}. {name}" + ("（默认）" if i == 1 else ""),
+             "pipeline_override": {"Sweep_FromStage": {"next": [f"SweepNode{i}"]}}}
+            for i, name in enumerate(STAGES, 1)
+        ],
+    }
+    options["扫荡难度"] = {
+        "type": "select", "label": "镜像囚徒·复刻：扫荡难度",
+        "description": "每关可选之一至之六；癫狂页只有挑战，无法重现。未通关的所选难度会先挑战一次。",
+        "default_case": "level6", "cases": [],
+    }
+    labels = ("之一（20级）", "之二（30级）", "之三（40级）", "之四（50级）", "之五（60级）", "之六（65级）")
+    for level, label in enumerate(labels, 1):
+        # Top of the seven-row list shows levels 1–6; the bottom shows 2–6 and 癫狂.
+        # Level 6 is selected from the bottom to preserve the verified default path.
+        to_bottom = level == 6
+        swipe = {"begin": [185, 585 if to_bottom else 165, 20, 20],
+                 "end": [185, 165 if to_bottom else 585, 20, 20]}
+        y = 505 if to_bottom else 145 + (level - 1) * 100
+        override = {"Sweep_Scroll": swipe, "Sweep_Scroll2": swipe,
+                    "Sweep_SelectPrev": {"target": [185, y, 30, 30]},
+                    "Sweep_SelectPrev2": {"target": [185, y, 30, 30]}}
+        options["扫荡难度"]["cases"].append({
+            "name": f"level{level}", "label": label + ("（默认）" if level == 6 else ""),
+            "pipeline_override": override,
+        })
+    task = next(task for task in data["task"] if task["name"] == "活动扫荡")
+    task["option"] = ["扫荡节点", "扫荡难度", *[x for x in task["option"] if x not in ("扫荡节点", "扫荡难度")]]
+    task["description"] = "镜像囚徒·复刻：可从飞跃青空选择七个关卡之一，并选择之一至之六扫荡；已有重现则直接扫荡，否则先挑战解锁。癫狂不提供重现。"
+    return data
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
     images, nodes = build()
     text = json.dumps(nodes, ensure_ascii=False, indent=2) + "\n"
+    interface = update_interface(json.loads(INTERFACE.read_text(encoding="utf-8-sig")))
+    itext = json.dumps(interface, ensure_ascii=False, indent=2) + "\n"
     if args.check:
         stale = [] if OUT.is_file() and OUT.read_bytes() == text.encode("utf-8") else [str(OUT)]
+        stale += [] if INTERFACE.read_bytes() == itext.encode("utf-8") else [str(INTERFACE)]
         stale += [str(IMAGE / n) for n in images if not (IMAGE / n).is_file()]
         if stale:
             sys.exit("out of date: " + ", ".join(stale))
@@ -140,6 +224,7 @@ def main():
     for name, img in images.items():
         cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
     OUT.write_bytes(text.encode("utf-8"))
+    INTERFACE.write_bytes(itext.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 
 

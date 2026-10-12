@@ -7,11 +7,29 @@
       "Sweep_Reward",
       "Sweep_Dialog",
       "Sweep_Page",
-      "Sweep_FromStage"
+      "Sweep_StagePage",
+      "Sweep_FromActivity",
+      "Sweep_FromHome"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "活动扫荡：从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。"
+      "Node.Recognition.Succeeded": "镜像囚徒·复刻扫荡：从主界面、活动页、横排关卡页或难度列表开始。"
     }
+  },
+  "Sweep_StagePage": {
+    "recognition": "TemplateMatch",
+    "template": "activity_act_drop.png",
+    "roi": [
+      0,
+      440,
+      1280,
+      160
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "Sweep_FromStage"
+    ]
   },
   "Sweep_FromStage": {
     "recognition": "DirectHit",
@@ -20,7 +38,154 @@
       "SweepNode1"
     ]
   },
+  "Sweep_FromActivity": {
+    "recognition": "TemplateMatch",
+    "template": "sweep_mirror_prisoner_banner.png",
+    "roi": [
+      0,
+      65,
+      270,
+      110
+    ],
+    "threshold": 0.78,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      20,
+      12,
+      -40,
+      -24
+    ],
+    "post_delay": 800,
+    "next": [
+      "Sweep_ActivityEntry"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已识别并选择【镜像囚徒·复刻】活动。"
+    }
+  },
+  "Sweep_ActivityEntry": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      1070,
+      625,
+      50,
+      48
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_StagePage"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击【飞跃青空】进入该活动横排关卡页。"
+    }
+  },
+  "Sweep_FromHome": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_awakener.png",
+        "roi": [
+          844,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_formation.png",
+        "roi": [
+          940,
+          271,
+          101,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "nav_home_supplies.png",
+        "roi": [
+          1037,
+          271,
+          100,
+          92
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      34,
+      449,
+      225,
+      72
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_FromActivity"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击主界面【限时活动横幅】（活动内容每天变化，只按固定位置点击，不做图像识别）。"
+    }
+  },
   "SweepNode1": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode1Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 1 所在一端。"
+    }
+  },
+  "SweepNode1Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode1Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 1 所在一端。"
+    }
+  },
+  "SweepNode1Click": {
     "recognition": "And",
     "all_of": [
       {
@@ -34,26 +199,85 @@
         ],
         "threshold": 0.8,
         "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage1_title.png",
+        "roi": [
+          75,
+          475,
+          170,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
       }
     ],
-    "box_index": 0,
-    "timeout": 15000,
+    "box_index": 1,
     "action": "Click",
     "target": [
-      146,
-      495,
-      44,
-      44
+      143,
+      505,
+      50,
+      50
     ],
     "post_delay": 2200,
     "next": [
       "Sweep_Page"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击活动关卡节点 1。"
+      "Node.Action.Succeeded": "已点击活动关卡节点 1：破开囚笼。"
     }
   },
   "SweepNode2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode2Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 2 所在一端。"
+    }
+  },
+  "SweepNode2Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode2Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 2 所在一端。"
+    }
+  },
+  "SweepNode2Click": {
     "recognition": "And",
     "all_of": [
       {
@@ -67,26 +291,85 @@
         ],
         "threshold": 0.8,
         "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage2_title.png",
+        "roi": [
+          330,
+          475,
+          195,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
       }
     ],
-    "box_index": 0,
-    "timeout": 15000,
+    "box_index": 1,
     "action": "Click",
     "target": [
-      418,
-      495,
-      44,
-      44
+      411,
+      505,
+      50,
+      50
     ],
     "post_delay": 2200,
     "next": [
       "Sweep_Page"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击活动关卡节点 2。"
+      "Node.Action.Succeeded": "已点击活动关卡节点 2：昨日之梦。"
     }
   },
   "SweepNode3": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode3Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 3 所在一端。"
+    }
+  },
+  "SweepNode3Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode3Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 3 所在一端。"
+    }
+  },
+  "SweepNode3Click": {
     "recognition": "And",
     "all_of": [
       {
@@ -100,26 +383,85 @@
         ],
         "threshold": 0.8,
         "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage3_title.png",
+        "roi": [
+          615,
+          475,
+          165,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
       }
     ],
-    "box_index": 0,
-    "timeout": 15000,
+    "box_index": 1,
     "action": "Click",
     "target": [
-      690,
-      495,
-      44,
-      44
+      679,
+      505,
+      50,
+      50
     ],
     "post_delay": 2200,
     "next": [
       "Sweep_Page"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击活动关卡节点 3。"
+      "Node.Action.Succeeded": "已点击活动关卡节点 3：传烛者。"
     }
   },
   "SweepNode4": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode4Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 4 所在一端。"
+    }
+  },
+  "SweepNode4Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode4Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 4 所在一端。"
+    }
+  },
+  "SweepNode4Click": {
     "recognition": "And",
     "all_of": [
       {
@@ -133,26 +475,85 @@
         ],
         "threshold": 0.8,
         "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage4_title.png",
+        "roi": [
+          885,
+          475,
+          185,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
       }
     ],
-    "box_index": 0,
-    "timeout": 15000,
+    "box_index": 1,
     "action": "Click",
     "target": [
-      963,
-      495,
-      44,
-      44
+      947,
+      505,
+      50,
+      50
     ],
     "post_delay": 2200,
     "next": [
       "Sweep_Page"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击活动关卡节点 4。"
+      "Node.Action.Succeeded": "已点击活动关卡节点 4：愚者。"
     }
   },
   "SweepNode5": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode5Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 5 所在一端。"
+    }
+  },
+  "SweepNode5Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode5Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 5 所在一端。"
+    }
+  },
+  "SweepNode5Click": {
     "recognition": "And",
     "all_of": [
       {
@@ -166,23 +567,218 @@
         ],
         "threshold": 0.8,
         "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage5_title.png",
+        "roi": [
+          410,
+          475,
+          200,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
       }
     ],
-    "box_index": 0,
-    "timeout": 15000,
+    "box_index": 1,
     "action": "Click",
     "target": [
-      1232,
-      495,
-      44,
-      44
+      483,
+      505,
+      50,
+      50
     ],
     "post_delay": 2200,
     "next": [
       "Sweep_Page"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击活动关卡节点 5。"
+      "Node.Action.Succeeded": "已点击活动关卡节点 5：孤独之旅。"
+    }
+  },
+  "SweepNode6": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode6Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 6 所在一端。"
+    }
+  },
+  "SweepNode6Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode6Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 6 所在一端。"
+    }
+  },
+  "SweepNode6Click": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage6_title.png",
+        "roi": [
+          700,
+          475,
+          155,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      756,
+      505,
+      50,
+      50
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 6：无尽沙。"
+    }
+  },
+  "SweepNode7": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode7Scroll2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 7 所在一端。"
+    }
+  },
+  "SweepNode7Scroll2": {
+    "recognition": "DirectHit",
+    "action": "Swipe",
+    "begin": [
+      1080,
+      520,
+      20,
+      20
+    ],
+    "end": [
+      280,
+      520,
+      20,
+      20
+    ],
+    "duration": 550,
+    "post_delay": 850,
+    "next": [
+      "SweepNode7Click"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "滑动到镜像囚徒·复刻关卡 7 所在一端。"
+    }
+  },
+  "SweepNode7Click": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "activity_act_drop.png",
+        "roi": [
+          0,
+          440,
+          1280,
+          160
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_stage7_title.png",
+        "roi": [
+          940,
+          475,
+          220,
+          75
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      1034,
+      505,
+      50,
+      50
+    ],
+    "post_delay": 2200,
+    "next": [
+      "Sweep_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击活动关卡节点 7：自由与死亡。"
     }
   },
   "Sweep_Page": {

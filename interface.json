@@ -174,12 +174,13 @@
       "entry": "Sweep_Start",
       "option": [
         "扫荡节点",
+        "扫荡难度",
         "默认编队",
         "本任务编队"
       ],
       "default_check": false,
       "repeatable": false,
-      "description": "在活动关卡列表（如巨古誓言）：滚到底部，选中最后一项（癫狂）上面的关卡，点【重现】，点最大次数，点【确定】，关闭【重现奖励】。可从关卡列表、重现窗口、奖励弹窗或活动关卡页开始。 若选中的关卡没有【重现】（从未通关），先点【挑战】通关一次（不用助战），回到列表后再重现；挑战失败则停止。",
+      "description": "镜像囚徒·复刻：可从飞跃青空选择七个关卡之一，并选择之一至之六扫荡；已有重现则直接扫荡，否则先挑战解锁。癫狂不提供重现。",
       "pipeline_override": {
         "FinishCurrentButton": {
           "next": [
@@ -1761,13 +1762,13 @@
     },
     "扫荡节点": {
       "type": "select",
-      "label": "活动扫荡：从活动关卡页进入的节点",
-      "description": "仅当任务从活动关卡页（横排节点）开始时使用；从关卡列表开始则忽略。",
+      "label": "镜像囚徒·复刻：关卡",
+      "description": "从飞跃青空横排关卡页进入时选择；已进入某关的难度列表时，此项不再切换关卡。",
       "default_case": "node1",
       "cases": [
         {
           "name": "node1",
-          "label": "节点 1（默认）",
+          "label": "1. 破开囚笼（默认）",
           "pipeline_override": {
             "Sweep_FromStage": {
               "next": [
@@ -1778,7 +1779,7 @@
         },
         {
           "name": "node2",
-          "label": "节点 2",
+          "label": "2. 昨日之梦",
           "pipeline_override": {
             "Sweep_FromStage": {
               "next": [
@@ -1789,7 +1790,7 @@
         },
         {
           "name": "node3",
-          "label": "节点 3",
+          "label": "3. 传烛者",
           "pipeline_override": {
             "Sweep_FromStage": {
               "next": [
@@ -1800,7 +1801,7 @@
         },
         {
           "name": "node4",
-          "label": "节点 4",
+          "label": "4. 愚者",
           "pipeline_override": {
             "Sweep_FromStage": {
               "next": [
@@ -1811,11 +1812,33 @@
         },
         {
           "name": "node5",
-          "label": "节点 5",
+          "label": "5. 孤独之旅",
           "pipeline_override": {
             "Sweep_FromStage": {
               "next": [
                 "SweepNode5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node6",
+          "label": "6. 无尽沙",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode6"
+              ]
+            }
+          }
+        },
+        {
+          "name": "node7",
+          "label": "7. 自由与死亡",
+          "pipeline_override": {
+            "Sweep_FromStage": {
+              "next": [
+                "SweepNode7"
               ]
             }
           }
@@ -5650,6 +5673,314 @@
                 563,
                 47,
                 48
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "扫荡难度": {
+      "type": "select",
+      "label": "镜像囚徒·复刻：扫荡难度",
+      "description": "每关可选之一至之六；癫狂页只有挑战，无法重现。未通关的所选难度会先挑战一次。",
+      "default_case": "level6",
+      "cases": [
+        {
+          "name": "level1",
+          "label": "之一（20级）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                145,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                145,
+                30,
+                30
+              ]
+            }
+          }
+        },
+        {
+          "name": "level2",
+          "label": "之二（30级）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                245,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                245,
+                30,
+                30
+              ]
+            }
+          }
+        },
+        {
+          "name": "level3",
+          "label": "之三（40级）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                345,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                345,
+                30,
+                30
+              ]
+            }
+          }
+        },
+        {
+          "name": "level4",
+          "label": "之四（50级）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                445,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                445,
+                30,
+                30
+              ]
+            }
+          }
+        },
+        {
+          "name": "level5",
+          "label": "之五（60级）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                165,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                585,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                545,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                545,
+                30,
+                30
+              ]
+            }
+          }
+        },
+        {
+          "name": "level6",
+          "label": "之六（65级）（默认）",
+          "pipeline_override": {
+            "Sweep_Scroll": {
+              "begin": [
+                185,
+                585,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                165,
+                20,
+                20
+              ]
+            },
+            "Sweep_Scroll2": {
+              "begin": [
+                185,
+                585,
+                20,
+                20
+              ],
+              "end": [
+                185,
+                165,
+                20,
+                20
+              ]
+            },
+            "Sweep_SelectPrev": {
+              "target": [
+                185,
+                505,
+                30,
+                30
+              ]
+            },
+            "Sweep_SelectPrev2": {
+              "target": [
+                185,
+                505,
+                30,
+                30
               ]
             }
           }
