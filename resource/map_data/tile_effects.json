@@ -272,6 +272,64 @@
    "effect": "有图标但没有匹配的模板（多为只出现过 1–2 次的专属格）；按可走、中等代价处理",
    "confidence": "unknown",
    "source": "识别结果"
+  },
+  "artifact": {
+   "role": "reward",
+   "passable": true,
+   "cost": 1,
+   "effect": "造物：获得造物",
+   "confidence": "confirmed",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
+  },
+  "silver_core": {
+   "role": "reward",
+   "passable": true,
+   "cost": 1,
+   "effect": "银芯：获取游离的银芯",
+   "confidence": "confirmed",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
+  },
+  "shadow_pool": {
+   "role": "reward",
+   "passable": true,
+   "cost": 1,
+   "effect": "影池：暗影的池水深不可测，触发后可以获得随机奖励",
+   "confidence": "confirmed",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
+  },
+  "swamp": {
+   "role": "hazard",
+   "passable": true,
+   "cost": 5,
+   "hazard": true,
+   "effect": "恶沼：危险的融蚀地带，不要轻易踏入（客户端节点说明）；是否固定扣血未核实",
+   "confidence": "confirmed_name",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
+  },
+  "checkpoint": {
+   "role": "special",
+   "passable": true,
+   "cost": 2,
+   "effect": "监察点：外观是没有遮挡物的普通格（8-2 实机：踩上去触发事件，选「诈降」传送到羁押点，选「离开」回到上一格）",
+   "confidence": "confirmed_8_2",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）；8-2 实机"
+  },
+  "random": {
+   "role": "unknown",
+   "passable": true,
+   "cost": 2,
+   "effect": "随机节点：进入时才决定是战斗还是事件",
+   "confidence": "confirmed_name",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
+  },
+  "wall": {
+   "role": "terrain",
+   "passable": false,
+   "blocking": true,
+   "cost": 1000,
+   "effect": "虚无：精神的迷雾无形却坚硬，不允许任何物体穿透（墙）",
+   "confidence": "confirmed",
+   "source": "游戏客户端配置（Z769018860/qdby_chinese data/morimens/local-config，节点类型表）"
   }
  }
 }

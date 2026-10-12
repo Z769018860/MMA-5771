@@ -19,6 +19,7 @@ class Navigator:
         entry = kn.maps.get(map_id) if map_id else None
         self.dynamic = entry is None            # no prior map: learn tiles from what the screen shows
         self.tiles = {(t["island"], t["row"], t["col"]): t["type"] for t in entry["tiles"]} if entry else {}
+        self.alts = {(t["island"], t["row"], t["col"]): t["alts"] for t in entry["tiles"] if t.get("alts")} if entry else {}
         self._version = 0
         self.visited, self.blacklist = set(), set()
         self.attempts = Counter()
@@ -33,6 +34,8 @@ class Navigator:
         one, out = by.get("oneway_in", []), by.get("secret_exit", [])
         if len(one) == 1 and len(out) == 1:
             self.links[one[0]] = out[0]
+        # 监察点 cannot be walked through (8-2 live): its only way on is the optional 诈降 teleport to a 羁押点
+        self.optional = {c: sorted(by["detention"]) for c in by.get("checkpoint", [])} if by.get("detention") else {}
 
     # ------------------------------------------------------------------ bookkeeping
     @property
@@ -69,6 +72,10 @@ class Navigator:
             if pos == b and a in self.tiles:
                 self.visited.add(a)
         if self.tiles.get(pos) == "rusty_key" and get(self.policy, "route.key_policy") != "never":
+            if not self.has_key:                                       # doors that were refused earlier get a fresh chance
+                for k in self.by_type.get("locked_door", []):
+                    self.blacklist.discard(k)
+                    self.attempts.pop(k, None)
             self.has_key = True
 
     def learn_teleport(self, entered, landed):
@@ -81,6 +88,8 @@ class Navigator:
             self.teleport_forced = False
 
     def mark_failed(self, tile):
+        if self.tiles.get(tile) == "locked_door" and not self.has_key:
+            return False          # refused for lack of a key, not a broken tile: never blacklist it for that (the key may come later)
         self.attempts[tile] += 1
         if self.tiles.get(tile) == "locked_door" and self.has_key and self.attempts[tile] >= 2:
             # we believed we held a key but the door refuses: revise the belief and go and fetch one again
@@ -100,12 +109,15 @@ class Navigator:
         ty = self.tiles[key]
         if key in self.visited:
             return 1.0 + 2.0 * max(0, self.entries[key] - 2)   # discourage walking in circles
-        eff = self.kn.tile_effect(ty)
-        base = float(eff.get("cost", 1))
-        mult = float((get(self.policy, "route.avoid") or {}).get(ty, 1.0))
-        if eff.get("hazard") and not get(self.policy, "route.allow_hazard", True):
-            mult *= 1000
-        return max(base * mult, 0.1)
+        avoid = get(self.policy, "route.avoid") or {}
+        costs = []
+        for t in [ty, *self.alts.get(key, ())]:            # a cell with random variants costs the mean of them
+            eff = self.kn.tile_effect(t)
+            mult = float(avoid.get(t, 1.0))
+            if eff.get("hazard") and not get(self.policy, "route.allow_hazard", True):
+                mult *= 1000
+            costs.append(float(eff.get("cost", 1)) * mult)
+        return max(sum(costs) / len(costs), 0.1)
 
     def _passable(self, key, has_key):
         ty = self.tiles.get(key)
@@ -136,25 +148,44 @@ class Navigator:
             if d > dist.get(state, 1e18):
                 continue
             tile, hk = state
-            steps = [(n, False) for n in self._neighbours(tile) if n in self.tiles]
-            if tile in self.links and (tile != start or self.teleport_forced is not True):
-                if self.teleport_forced and tile != start:
-                    steps = []                                # learnt: stepping on an entry tile always teleports
-                steps.append((self.links[tile], True))
-            for nxt, is_link in steps:
+            steps = []
+            for n in self._neighbours(tile):
+                if n not in self.tiles:
+                    continue
+                # learnt: stepping on an entry tile always teleports -> the walk continues from its partner, which you
+                # stand on afterwards and can leave normally (the old model treated the landing tile as another entry)
+                landing = self.links[n] if (self.teleport_forced and n in self.links) else None
+                steps.append((n, False, landing))
+            if tile in self.optional:
+                steps = [(d, False, None) for d in self.optional[tile] if d in self.tiles]   # leaving a checkpoint returns to the previous tile
+            if tile in self.links and self.teleport_forced is not True:
+                steps.append((self.links[tile], True, None))                                  # optional teleport from where we stand
+            for nxt, is_link, landing in steps:
                 if not self._passable(nxt, hk):
                     continue
-                nhk = hk or (key_ok and self.tiles[nxt] == "rusty_key")
-                nstate = (nxt, nhk)
+                end = landing or nxt
+                if landing and not self._passable(landing, hk):
+                    continue
+                nhk = hk or (key_ok and (self.tiles[nxt] == "rusty_key" or self.tiles[end] == "rusty_key"))
+                nstate = (end, nhk)
                 nd = d + (0.0 if is_link else self._cost(nxt))
+                if nxt in self.optional.get(tile, ()):
+                    nd += get(self.policy, "route.checkpoint_penalty", 4.0)     # 诈降 costs a symptom
                 if nd < dist.get(nstate, 1e18):
                     dist[nstate], parent[nstate] = nd, state
+                    if landing:
+                        parent[("via", nstate)] = nxt        # the entry tile to tap before the teleport lands us on `end`
+                    else:
+                        parent.pop(("via", nstate), None)
                     heapq.heappush(heap, (nd, next(counter), nstate))
         return dist, parent
 
     def _path(self, parent, state):
         out = [state[0]]
         while state in parent:
+            via = parent.get(("via", state))
+            if via is not None:
+                out.append(via)
             state = parent[state]
             out.append(state[0])
         return out[::-1]

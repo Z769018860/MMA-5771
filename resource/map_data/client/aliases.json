@@ -1,0 +1,3973 @@
+{
+ "_doc": "我们识别出来的地图（maps.json 的 key）→ 客户端地图 id；score 是格子类型吻合度，shift 是两套格点的偏移。由 tools/compare_client_maps.py 生成。",
+ "aliases": {
+  "1-10": {
+   "client_map": "352",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "甜蜜的艺术"
+   ]
+  },
+  "1-11": {
+   "client_map": "145",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "良心之重"
+   ]
+  },
+  "1-13": {
+   "client_map": "358",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "飞鸟不在的夜"
+   ]
+  },
+  "1-2": {
+   "client_map": "354",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "人不可貌相"
+   ]
+  },
+  "1-5": {
+   "client_map": "366",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "病"
+   ]
+  },
+  "1-7": {
+   "client_map": "365",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "谁杀死了知更鸟"
+   ]
+  },
+  "1-8": {
+   "client_map": "81",
+   "diffs": [],
+   "same_layout_maps": [
+    "144"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "内在的危险"
+   ]
+  },
+  "1-9": {
+   "client_map": "360",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "我们的秘密"
+   ]
+  },
+  "2-1": {
+   "client_map": "259",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "伽拉忒亚"
+   ]
+  },
+  "2-10": {
+   "client_map": "359",
+   "diffs": [],
+   "same_layout_maps": [
+    "196"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "解剖的忧郁"
+   ]
+  },
+  "2-12": {
+   "client_map": "62",
+   "diffs": [],
+   "same_layout_maps": [
+    "195"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "少女和眼泪"
+   ]
+  },
+  "2-13": {
+   "client_map": "245",
+   "diffs": [],
+   "same_layout_maps": [
+    "269"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "不朽的低语"
+   ]
+  },
+  "2-14": {
+   "client_map": "213",
+   "diffs": [],
+   "same_layout_maps": [
+    "268"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "面纱之下"
+   ]
+  },
+  "2-15": {
+   "client_map": "128",
+   "diffs": [
+    {
+     "at": [
+      0,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      15
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      7,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      7,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      7,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.577,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "寂静的坍塌"
+   ]
+  },
+  "2-3": {
+   "client_map": "183",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "娃娃馆"
+   ]
+  },
+  "2-4": {
+   "client_map": "343",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "二十四"
+   ]
+  },
+  "2-5": {
+   "client_map": "243",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "斯卡伯勒之夏"
+   ]
+  },
+  "2-6": {
+   "client_map": "320",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "烟与紫罗兰"
+   ]
+  },
+  "2-8": {
+   "client_map": "89",
+   "diffs": [
+    {
+     "at": [
+      2,
+      17
+     ],
+     "client": "story",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      7,
+      0
+     ],
+     "client": "event",
+     "ours": "player"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.893,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "布朗出击"
+   ]
+  },
+  "2-9": {
+   "client_map": "118",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "雪松木"
+   ]
+  },
+  "3-1": {
+   "client_map": "238",
+   "diffs": [
+    {
+     "at": [
+      1,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "160"
+   ],
+   "score": 0.846,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "三思而后行"
+   ]
+  },
+  "3-10": {
+   "client_map": "215",
+   "diffs": [
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.914,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "藏于帽檐下"
+   ]
+  },
+  "3-12": {
+   "client_map": "212",
+   "diffs": [
+    {
+     "at": [
+      1,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.889,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "昨日重现"
+   ]
+  },
+  "3-13": {
+   "client_map": "274",
+   "diffs": [
+    {
+     "at": [
+      0,
+      21
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      2
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      22
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.897,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "船到桥头自然直"
+   ]
+  },
+  "3-2": {
+   "client_map": "236",
+   "diffs": [
+    {
+     "at": [
+      3,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.952,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "好消息，坏消息"
+   ]
+  },
+  "3-4": {
+   "client_map": "233",
+   "diffs": [
+    {
+     "at": [
+      1,
+      8
+     ],
+     "client": null,
+     "ours": "event"
+    },
+    {
+     "at": [
+      2,
+      7
+     ],
+     "client": null,
+     "ours": "event"
+    },
+    {
+     "at": [
+      5,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.824,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "欢迎来到拉伊"
+   ]
+  },
+  "3-5": {
+   "client_map": "291",
+   "diffs": [
+    {
+     "at": [
+      1,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      23
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      2,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      20
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      2,
+      22
+     ],
+     "client": null,
+     "ours": "final_battle"
+    },
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      23
+     ],
+     "client": null,
+     "ours": "plain"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.882,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "袖中王牌"
+   ]
+  },
+  "3-7": {
+   "client_map": "255",
+   "diffs": [
+    {
+     "at": [
+      1,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      15
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.931,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "旅途愉快"
+   ]
+  },
+  "3-8": {
+   "client_map": "78",
+   "diffs": [],
+   "same_layout_maps": [
+    "165"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "人生无友"
+   ]
+  },
+  "3-9": {
+   "client_map": "288",
+   "diffs": [
+    {
+     "at": [
+      3,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.917,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "公平交易"
+   ]
+  },
+  "4-1": {
+   "client_map": "42",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "疯人之口"
+   ]
+  },
+  "4-10": {
+   "client_map": "49",
+   "diffs": [
+    {
+     "at": [
+      1,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "294"
+   ],
+   "score": 0.893,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "神秘河"
+   ]
+  },
+  "4-11": {
+   "client_map": "50",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "房间"
+   ]
+  },
+  "4-13": {
+   "client_map": "99",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "超脱"
+   ]
+  },
+  "4-14": {
+   "client_map": "100",
+   "diffs": [
+    {
+     "at": [
+      1,
+      23
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      23
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      6,
+      24
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "362"
+   ],
+   "score": 0.868,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "壳中裂缝"
+   ]
+  },
+  "4-15": {
+   "client_map": "135",
+   "diffs": [
+    {
+     "at": [
+      0,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      19
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.914,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "日落"
+   ]
+  },
+  "4-2": {
+   "client_map": "43",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "飞越疯人院"
+   ]
+  },
+  "4-3": {
+   "client_map": "325",
+   "diffs": [
+    {
+     "at": [
+      2,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.941,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "精神病院"
+   ]
+  },
+  "4-5": {
+   "client_map": "45",
+   "diffs": [
+    {
+     "at": [
+      3,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.9,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "记忆碎片"
+   ]
+  },
+  "4-6": {
+   "client_map": "46",
+   "diffs": [
+    {
+     "at": [
+      1,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      6,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.929,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "28天"
+   ]
+  },
+  "4-7": {
+   "client_map": "113",
+   "diffs": [
+    {
+     "at": [
+      3,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      7,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.923,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "不要回头"
+   ]
+  },
+  "4-9": {
+   "client_map": "115",
+   "diffs": [
+    {
+     "at": [
+      4,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "331"
+   ],
+   "score": 0.963,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "秘窗"
+   ]
+  },
+  "5-10": {
+   "client_map": "304",
+   "diffs": [
+    {
+     "at": [
+      0,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "177"
+   ],
+   "score": 0.923,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "命运的种子"
+   ]
+  },
+  "5-11": {
+   "client_map": "60",
+   "diffs": [
+    {
+     "at": [
+      2,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "275"
+   ],
+   "score": 0.829,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "另一个奇迹"
+   ]
+  },
+  "5-12": {
+   "client_map": "292",
+   "diffs": [
+    {
+     "at": [
+      0,
+      15
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      0,
+      19
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      0,
+      23
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      23
+     ],
+     "client": "event",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      3,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.81,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "追逐繁星"
+   ]
+  },
+  "5-14": {
+   "client_map": "190",
+   "diffs": [
+    {
+     "at": [
+      0,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "210"
+   ],
+   "score": 0.881,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "失落之光"
+   ]
+  },
+  "5-3": {
+   "client_map": "298",
+   "diffs": [
+    {
+     "at": [
+      4,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "175"
+   ],
+   "score": 0.917,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "十面埋伏"
+   ]
+  },
+  "5-4": {
+   "client_map": "301",
+   "diffs": [
+    {
+     "at": [
+      4,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.962,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "无路可逃"
+   ]
+  },
+  "5-5": {
+   "client_map": "300",
+   "diffs": [
+    {
+     "at": [
+      2,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "174"
+   ],
+   "score": 0.87,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "沉溺之徒"
+   ]
+  },
+  "5-6": {
+   "client_map": "303",
+   "diffs": [
+    {
+     "at": [
+      2,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      16
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.848,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "使徒"
+   ]
+  },
+  "5-7": {
+   "client_map": "302",
+   "diffs": [
+    {
+     "at": [
+      2,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "179"
+   ],
+   "score": 0.867,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "船员"
+   ]
+  },
+  "5-8": {
+   "client_map": "305",
+   "diffs": [
+    {
+     "at": [
+      0,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.9,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "狂徒与巨刃"
+   ]
+  },
+  "6-1": {
+   "client_map": "35854",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "现实重启"
+   ]
+  },
+  "6-10": {
+   "client_map": "35849",
+   "diffs": [
+    {
+     "at": [
+      1,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      19
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36281"
+   ],
+   "score": 0.939,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "摇摇欲坠"
+   ]
+  },
+  "6-11": {
+   "client_map": "35846",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "诱蛾之火"
+   ]
+  },
+  "6-12": {
+   "client_map": "35847",
+   "diffs": [
+    {
+     "at": [
+      3,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.897,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "前路迷途"
+   ]
+  },
+  "6-14": {
+   "client_map": "35855",
+   "diffs": [
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.971,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "倒错的群星"
+   ]
+  },
+  "6-2": {
+   "client_map": "35852",
+   "diffs": [
+    {
+     "at": [
+      2,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      2
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36285"
+   ],
+   "score": 0.862,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "寄生物"
+   ]
+  },
+  "6-3": {
+   "client_map": "35853",
+   "diffs": [],
+   "same_layout_maps": [
+    "36284"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "悲剧的起航"
+   ]
+  },
+  "6-5": {
+   "client_map": "35850",
+   "diffs": [
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36280"
+   ],
+   "score": 0.917,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "危机之月"
+   ]
+  },
+  "6-6": {
+   "client_map": "35851",
+   "diffs": [
+    {
+     "at": [
+      3,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.939,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "逐火之蛾"
+   ]
+  },
+  "6-8": {
+   "client_map": "35848",
+   "diffs": [
+    {
+     "at": [
+      1,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36282"
+   ],
+   "score": 0.957,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "旧友新朋"
+   ]
+  },
+  "7-1": {
+   "client_map": "47857",
+   "diffs": [
+    {
+     "at": [
+      0,
+      3
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      1,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      1,
+      6
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "48258"
+   ],
+   "score": 0.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "绿洲"
+   ]
+  },
+  "7-10": {
+   "client_map": "47851",
+   "diffs": [
+    {
+     "at": [
+      2,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      5
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      7
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      17
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "48256"
+   ],
+   "score": 0.656,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "对手"
+   ]
+  },
+  "7-11": {
+   "client_map": "47859",
+   "diffs": [
+    {
+     "at": [
+      2,
+      5
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      8
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      10
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      14
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      6,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "48251"
+   ],
+   "score": 0.694,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "魔术"
+   ]
+  },
+  "7-12": {
+   "client_map": "47858",
+   "diffs": [
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      17
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      19
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      13
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      15
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.676,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "风暴之壁"
+   ]
+  },
+  "7-15": {
+   "client_map": "45406",
+   "diffs": [],
+   "same_layout_maps": [
+    "48261"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "赌"
+   ]
+  },
+  "7-16": {
+   "client_map": "47850",
+   "diffs": [
+    {
+     "at": [
+      -1,
+      5
+     ],
+     "client": "event",
+     "ours": null
+    },
+    {
+     "at": [
+      -1,
+      7
+     ],
+     "client": "mother_of_brood",
+     "ours": null
+    },
+    {
+     "at": [
+      -1,
+      11
+     ],
+     "client": "contact",
+     "ours": null
+    },
+    {
+     "at": [
+      0,
+      4
+     ],
+     "client": "event",
+     "ours": null
+    },
+    {
+     "at": [
+      0,
+      8
+     ],
+     "client": "battle",
+     "ours": "mother_of_brood"
+    },
+    {
+     "at": [
+      0,
+      10
+     ],
+     "client": "battle",
+     "ours": null
+    },
+    {
+     "at": [
+      0,
+      12
+     ],
+     "client": "event",
+     "ours": "contact"
+    },
+    {
+     "at": [
+      1,
+      1
+     ],
+     "client": "locked_door",
+     "ours": null
+    },
+    {
+     "at": [
+      1,
+      3
+     ],
+     "client": "meltmark",
+     "ours": null
+    },
+    {
+     "at": [
+      1,
+      7
+     ],
+     "client": "searchlight",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      1,
+      9
+     ],
+     "client": "elite",
+     "ours": "battle"
+    },
+    {
+     "at": [
+      1,
+      11
+     ],
+     "client": null,
+     "ours": "battle"
+    },
+    {
+     "at": [
+      1,
+      13
+     ],
+     "client": null,
+     "ours": "event"
+    },
+    {
+     "at": [
+      1,
+      19
+     ],
+     "client": "extract",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      0
+     ],
+     "client": "plain",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      2
+     ],
+     "client": null,
+     "ours": "locked_door"
+    },
+    {
+     "at": [
+      2,
+      4
+     ],
+     "client": null,
+     "ours": "meltmark"
+    },
+    {
+     "at": [
+      2,
+      6
+     ],
+     "client": "player",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      8
+     ],
+     "client": null,
+     "ours": "searchlight"
+    },
+    {
+     "at": [
+      2,
+      10
+     ],
+     "client": "plain",
+     "ours": "elite"
+    },
+    {
+     "at": [
+      2,
+      12
+     ],
+     "client": "event",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      14
+     ],
+     "client": "locked_door",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      16
+     ],
+     "client": "plain",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      18
+     ],
+     "client": "final_battle",
+     "ours": null
+    },
+    {
+     "at": [
+      2,
+      20
+     ],
+     "client": "meltmark",
+     "ours": "extract"
+    },
+    {
+     "at": [
+      3,
+      -1
+     ],
+     "client": "rusty_key",
+     "ours": null
+    },
+    {
+     "at": [
+      3,
+      1
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      3,
+      7
+     ],
+     "client": null,
+     "ours": "player"
+    },
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "battle",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "contact",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      15
+     ],
+     "client": null,
+     "ours": "locked_door"
+    },
+    {
+     "at": [
+      3,
+      17
+     ],
+     "client": "event",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      3,
+      19
+     ],
+     "client": "event",
+     "ours": "final_battle"
+    },
+    {
+     "at": [
+      3,
+      21
+     ],
+     "client": null,
+     "ours": "meltmark"
+    },
+    {
+     "at": [
+      4,
+      0
+     ],
+     "client": "blackseal",
+     "ours": "rusty_key"
+    },
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "plain",
+     "ours": null
+    },
+    {
+     "at": [
+      4,
+      8
+     ],
+     "client": "plain",
+     "ours": null
+    },
+    {
+     "at": [
+      4,
+      10
+     ],
+     "client": "blackseal",
+     "ours": null
+    },
+    {
+     "at": [
+      4,
+      12
+     ],
+     "client": null,
+     "ours": "battle"
+    },
+    {
+     "at": [
+      4,
+      14
+     ],
+     "client": null,
+     "ours": "contact"
+    },
+    {
+     "at": [
+      4,
+      18
+     ],
+     "client": null,
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      4,
+      20
+     ],
+     "client": null,
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      1
+     ],
+     "client": "battle",
+     "ours": "blackseal"
+    },
+    {
+     "at": [
+      5,
+      3
+     ],
+     "client": "plain",
+     "ours": null
+    },
+    {
+     "at": [
+      5,
+      5
+     ],
+     "client": "battle",
+     "ours": null
+    },
+    {
+     "at": [
+      5,
+      7
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      5,
+      9
+     ],
+     "client": "illusion",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      5,
+      11
+     ],
+     "client": null,
+     "ours": "blackseal"
+    },
+    {
+     "at": [
+      6,
+      0
+     ],
+     "client": "contact",
+     "ours": null
+    },
+    {
+     "at": [
+      6,
+      2
+     ],
+     "client": "event",
+     "ours": "battle"
+    },
+    {
+     "at": [
+      6,
+      4
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      6,
+      6
+     ],
+     "client": "plain",
+     "ours": "battle"
+    },
+    {
+     "at": [
+      6,
+      8
+     ],
+     "client": "event",
+     "ours": null
+    },
+    {
+     "at": [
+      6,
+      10
+     ],
+     "client": null,
+     "ours": "illusion"
+    },
+    {
+     "at": [
+      7,
+      1
+     ],
+     "client": null,
+     "ours": "contact"
+    },
+    {
+     "at": [
+      7,
+      3
+     ],
+     "client": null,
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      7,
+      7
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      7,
+      9
+     ],
+     "client": null,
+     "ours": "event"
+    }
+   ],
+   "same_layout_maps": [
+    "48262"
+   ],
+   "score": 0.032,
+   "shift": [
+    1,
+    1
+   ],
+   "stages": [
+    "归来"
+   ]
+  },
+  "7-18": {
+   "client_map": "47849",
+   "diffs": [
+    {
+     "at": [
+      1,
+      6
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      1,
+      12
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      4,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      13
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      4
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      16
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      6,
+      13
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      7,
+      12
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.68,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "火种"
+   ]
+  },
+  "7-2": {
+   "client_map": "47856",
+   "diffs": [
+    {
+     "at": [
+      1,
+      9
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      16
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      9
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "48259"
+   ],
+   "score": 0.767,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "聚落"
+   ]
+  },
+  "7-4": {
+   "client_map": "47855",
+   "diffs": [
+    {
+     "at": [
+      2,
+      10
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      6,
+      12
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.758,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "繁衍"
+   ]
+  },
+  "7-6": {
+   "client_map": "47854",
+   "diffs": [
+    {
+     "at": [
+      1,
+      4
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      1,
+      10
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      13
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      17
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      8
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      4,
+      7
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.677,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "源流"
+   ]
+  },
+  "7-7": {
+   "client_map": "47853",
+   "diffs": [
+    {
+     "at": [
+      2,
+      6
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      5,
+      9
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "48254"
+   ],
+   "score": 0.763,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "项链"
+   ]
+  },
+  "7-9": {
+   "client_map": "47852",
+   "diffs": [
+    {
+     "at": [
+      1,
+      10
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      5
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      11
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.7,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "遗骸"
+   ]
+  },
+  "8-10": {
+   "client_map": "56506",
+   "diffs": [
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      7
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      7,
+      9
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "59440"
+   ],
+   "score": 0.897,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "德克斯特式转折"
+   ]
+  },
+  "8-11": {
+   "client_map": "56501",
+   "diffs": [
+    {
+     "at": [
+      3,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "59450"
+   ],
+   "score": 0.96,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "宿命"
+   ]
+  },
+  "8-12": {
+   "client_map": "56502",
+   "diffs": [
+    {
+     "at": [
+      2,
+      5
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      9
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      8
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "59449"
+   ],
+   "score": 0.853,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "第三乐章"
+   ]
+  },
+  "8-13": {
+   "client_map": "56497",
+   "diffs": [
+    {
+     "at": [
+      3,
+      15
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      4,
+      6
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      6,
+      16
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "59453"
+   ],
+   "score": 0.895,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "遗忘之理"
+   ]
+  },
+  "8-2": {
+   "client_map": "56507",
+   "diffs": [
+    {
+     "at": [
+      3,
+      4
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    }
+   ],
+   "same_layout_maps": [
+    "59446"
+   ],
+   "score": 0.923,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "校规"
+   ]
+  },
+  "8-3": {
+   "client_map": "56508",
+   "diffs": [
+    {
+     "at": [
+      6,
+      5
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "59445"
+   ],
+   "score": 0.905,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "指挥家"
+   ]
+  },
+  "8-4": {
+   "client_map": "56509",
+   "diffs": [],
+   "same_layout_maps": [
+    "59444"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "排练"
+   ]
+  },
+  "8-5": {
+   "client_map": "56503",
+   "diffs": [
+    {
+     "at": [
+      2,
+      1
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      7
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      2,
+      9
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    }
+   ],
+   "same_layout_maps": [
+    "59443"
+   ],
+   "score": 0.839,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "残躯"
+   ]
+  },
+  "8-7": {
+   "client_map": "56504",
+   "diffs": [
+    {
+     "at": [
+      4,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "59442"
+   ],
+   "score": 0.962,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "路"
+   ]
+  },
+  "8-9": {
+   "client_map": "56505",
+   "diffs": [
+    {
+     "at": [
+      5,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "59441"
+   ],
+   "score": 0.963,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "存续之道"
+   ]
+  },
+  "9-1": {
+   "client_map": "56496",
+   "diffs": [
+    {
+     "at": [
+      1,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      7
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    },
+    {
+     "at": [
+      4,
+      9
+     ],
+     "client": "checkpoint",
+     "ours": "plain"
+    }
+   ],
+   "same_layout_maps": [
+    "59451"
+   ],
+   "score": 0.889,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "引路人"
+   ]
+  },
+  "9-12": {
+   "client_map": "66571",
+   "diffs": [
+    {
+     "at": [
+      1,
+      3
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      2
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      2,
+      4
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "67167"
+   ],
+   "score": 0.8,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "蚍蜉"
+   ]
+  },
+  "9-2": {
+   "client_map": "56499",
+   "diffs": [
+    {
+     "at": [
+      3,
+      10
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      3,
+      12
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      3,
+      14
+     ],
+     "client": "event",
+     "ours": "swamp"
+    },
+    {
+     "at": [
+      4,
+      7
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      4,
+      11
+     ],
+     "client": null,
+     "ours": "plain"
+    }
+   ],
+   "same_layout_maps": [
+    "59447"
+   ],
+   "score": 0.8,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "祭礼"
+   ]
+  },
+  "9-3": {
+   "client_map": "56498",
+   "diffs": [],
+   "same_layout_maps": [
+    "59448"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "梦的崩析"
+   ]
+  },
+  "一步之遥02": {
+   "client_map": "24508",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "孤注一掷"
+   ]
+  },
+  "如歌的雕琢01": {
+   "client_map": "20003",
+   "diffs": [],
+   "same_layout_maps": [
+    "35780",
+    "43612",
+    "43617",
+    "50504",
+    "50509",
+    "53099",
+    "69524"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "见信如唔",
+    "见信如唔",
+    "见信如唔"
+   ]
+  },
+  "如歌的雕琢03": {
+   "client_map": "20001",
+   "diffs": [],
+   "same_layout_maps": [
+    "43622",
+    "50501",
+    "69558"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "珊瑚女之死",
+    "珊瑚女之死",
+    "珊瑚女之死"
+   ]
+  },
+  "扭曲核心02": {
+   "client_map": "20005",
+   "diffs": [
+    {
+     "at": [
+      1,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      15
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      12
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.833,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "声音如是说"
+   ]
+  },
+  "燃烧的群宴02": {
+   "client_map": "36568",
+   "diffs": [],
+   "same_layout_maps": [
+    "36571",
+    "43618",
+    "50502",
+    "69525"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "四个婚礼"
+   ]
+  },
+  "燃烧的群宴04": {
+   "client_map": "36569",
+   "diffs": [
+    {
+     "at": [
+      6,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36570",
+    "43616",
+    "50505",
+    "53088"
+   ],
+   "score": 0.963,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "死亡、蜜酒与歌之夜"
+   ]
+  },
+  "狩猎愉快！11": {
+   "client_map": "58261",
+   "diffs": [
+    {
+     "at": [
+      1,
+      14
+     ],
+     "client": "event",
+     "ours": "swamp"
+    }
+   ],
+   "same_layout_maps": [
+    "58262"
+   ],
+   "score": 0.917,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "最后的致意"
+   ]
+  },
+  "蔷薇礼赞01": {
+   "client_map": "24312",
+   "diffs": [],
+   "same_layout_maps": [
+    "43619",
+    "50497",
+    "69559"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "饮酒歌",
+    "饮酒歌",
+    "饮酒歌"
+   ]
+  },
+  "蔷薇礼赞03": {
+   "client_map": "24310",
+   "diffs": [],
+   "same_layout_maps": [
+    "24748",
+    "36378",
+    "53068",
+    "53098",
+    "69528"
+   ],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "淑女指南",
+    "淑女指南"
+   ]
+  },
+  "蔷薇礼赞04": {
+   "client_map": "24311",
+   "diffs": [],
+   "same_layout_maps": [],
+   "score": 1.0,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "侍女的心愿",
+    "侍女的心愿"
+   ]
+  },
+  "蔷薇礼赞05": {
+   "client_map": "24315",
+   "diffs": [
+    {
+     "at": [
+      1,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      2,
+      3
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "24746",
+    "36373",
+    "53062",
+    "53065",
+    "53104",
+    "69546"
+   ],
+   "score": 0.857,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "卵",
+    "卵"
+   ]
+  },
+  "蔷薇礼赞06": {
+   "client_map": "24316",
+   "diffs": [
+    {
+     "at": [
+      2,
+      20
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      1
+     ],
+     "client": null,
+     "ours": "meltmark"
+    },
+    {
+     "at": [
+      3,
+      3
+     ],
+     "client": "meltmark",
+     "ours": "final_battle"
+    },
+    {
+     "at": [
+      3,
+      5
+     ],
+     "client": "final_battle",
+     "ours": null
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      17
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      19
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      2
+     ],
+     "client": null,
+     "ours": "battle"
+    },
+    {
+     "at": [
+      4,
+      4
+     ],
+     "client": "battle",
+     "ours": null
+    },
+    {
+     "at": [
+      5,
+      1
+     ],
+     "client": null,
+     "ours": "plain"
+    },
+    {
+     "at": [
+      5,
+      3
+     ],
+     "client": "plain",
+     "ours": "contact"
+    },
+    {
+     "at": [
+      5,
+      5
+     ],
+     "client": "contact",
+     "ours": null
+    },
+    {
+     "at": [
+      6,
+      0
+     ],
+     "client": null,
+     "ours": "tunnel"
+    },
+    {
+     "at": [
+      6,
+      2
+     ],
+     "client": "tunnel",
+     "ours": null
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.6,
+   "shift": [
+    0,
+    -2
+   ],
+   "stages": [
+    "红色庆典",
+    "红色庆典"
+   ]
+  },
+  "蔷薇礼赞07": {
+   "client_map": "24313",
+   "diffs": [
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      14
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      5,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "24744"
+   ],
+   "score": 0.875,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "假面和声",
+    "假面和声"
+   ]
+  },
+  "蔷薇礼赞08": {
+   "client_map": "24314",
+   "diffs": [
+    {
+     "at": [
+      1,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      4,
+      4
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36385",
+    "53079",
+    "69532"
+   ],
+   "score": 0.875,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "命运的囚者",
+    "命运的囚者",
+    "命运的囚者"
+   ]
+  },
+  "蔷薇礼赞10": {
+   "client_map": "24308",
+   "diffs": [
+    {
+     "at": [
+      2,
+      10
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [],
+   "score": 0.947,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "N",
+    "N",
+    "N"
+   ]
+  },
+  "蔷薇礼赞12": {
+   "client_map": "24309",
+   "diffs": [
+    {
+     "at": [
+      1,
+      5
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      1
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      13
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "24749",
+    "36377",
+    "53055",
+    "69530"
+   ],
+   "score": 0.9,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "坠落的审判",
+    "坠落的审判"
+   ]
+  },
+  "血与沙02": {
+   "client_map": "20007",
+   "diffs": [
+    {
+     "at": [
+      1,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    },
+    {
+     "at": [
+      3,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "22643"
+   ],
+   "score": 0.905,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "太阳远征"
+   ]
+  },
+  "血与沙04": {
+   "client_map": "20006",
+   "diffs": [
+    {
+     "at": [
+      4,
+      2
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "25325",
+    "53061",
+    "53091"
+   ],
+   "score": 0.96,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "悲剧的谢幕",
+    "悲剧的谢幕",
+    "悲剧的谢幕"
+   ]
+  },
+  "诸事如常02": {
+   "client_map": "35845",
+   "diffs": [
+    {
+     "at": [
+      2,
+      9
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "36168",
+    "43613",
+    "50507",
+    "53096",
+    "69523"
+   ],
+   "score": 0.963,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "朋友大收集"
+   ]
+  },
+  "骑士的愿望03": {
+   "client_map": "20004",
+   "diffs": [
+    {
+     "at": [
+      6,
+      11
+     ],
+     "client": "event",
+     "ours": "wall"
+    }
+   ],
+   "same_layout_maps": [
+    "22641",
+    "36376",
+    "53059",
+    "53066",
+    "69531"
+   ],
+   "score": 0.962,
+   "shift": [
+    0,
+    0
+   ],
+   "stages": [
+    "曲终人散"
+   ]
+  }
+ }
+}

@@ -44,6 +44,7 @@ class MockGame:
             self.links[tun[0]], self.links[tun[1]] = tun[1], tun[0]
         if len(by["oneway_in"]) == 1 and len(by["secret_exit"]) == 1:
             self.links[by["oneway_in"][0]] = by["secret_exit"][0]
+        self.detention = sorted(by["detention"])
         self.hp, self.currency, self.has_key = 1.0, 120, False
         self.awakened = []
         self.awake_enabled = [rng.random() < 0.7 for _ in range(4)]   # some characters cannot be awakened (already done)
@@ -200,14 +201,17 @@ class MockGame:
             self.pos = self.links[tile]
             self.visited.add(self.pos)
             return
+        if ty == "checkpoint":                     # never a place to stand: the event shows on every entry (8-2 live)
+            self._open_event(ty, prev)
+            return
         if not first:
             return
         if ty == "rusty_key":
             self.has_key = True
         if ty in ("battle", "elite", "final_battle"):
             self.screen, self.data = Screen.FORMATION, {"tile": tile, "from": prev}
-        elif ty in ("event", "red_flesh", "inquisitor", "mother_of_brood", "unfinished_statue"):
-            self._open_event(ty)
+        elif ty in ("event", "red_flesh", "inquisitor", "mother_of_brood", "unfinished_statue", "random"):
+            self._open_event(ty, prev)
         elif ty == "contact":
             self.screen, self.data = Screen.CONTACT, {}
         elif ty == "meltmark":
@@ -218,13 +222,13 @@ class MockGame:
             self.screen, self.data = Screen.PICK_CARD, {}
         elif ty == "story":
             self.screen, self.data = Screen.DIALOGUE, {"lines": self.rng.randint(1, 4)}
-        elif ty in ("illusion", "purple_rift"):
+        elif ty in ("illusion", "purple_rift", "swamp"):
             self.hp -= 0.05
-        elif ty in ("extract", "detention", "kind_gift", "honey_wine", "strange_cyst", "proxy_rite", "white_sail", "inquisitor"):
+        elif ty in ("artifact", "silver_core", "shadow_pool", "extract", "detention", "kind_gift", "honey_wine", "strange_cyst", "proxy_rite", "white_sail", "inquisitor"):
             self.pending_popup = True
 
-    def _open_event(self, ty):
-        name = {"red_flesh": "血污之池", "inquisitor": "监察点"}.get(ty)
+    def _open_event(self, ty, prev=None):
+        name = {"red_flesh": "血污之池", "inquisitor": "审查会探员", "checkpoint": "监察点"}.get(ty)
         ev = None
         if name:
             ev = next((e for e in self.kn.events if e["event"] == name), None)
@@ -232,7 +236,7 @@ class MockGame:
             ev = self.events.pop()
         if ev is None:
             ev = {"event": "未知事件", "options": [{"label": "离开", "effects": []}, {"label": "探索", "effects": []}]}
-        self.screen, self.data = Screen.EVENT, {"event": ev}
+        self.screen, self.data = Screen.EVENT, {"event": ev, "from": prev}
 
     def _option(self, idx):
         ev = self.data["event"]
@@ -243,6 +247,7 @@ class MockGame:
         effects = opt["effects"] or ([{"type": self.rng.choice(["heal", "lose_health", "gain_blackseal", "none"])}]
                                      if "离开" not in opt["label"] else [])
         nxt = (Screen.MAP, {})
+        teleported = False
         for e in effects:
             t = e["type"]
             if t == "heal":
@@ -253,12 +258,15 @@ class MockGame:
                 self.hp -= 0.05
             elif t == "teleport":
                 safe = [k for k, t in self.tiles.items() if t in ("plain", "cracked_rock", "contact", "searchlight")]
-                self.pos = self.rng.choice(safe or [self.start])
+                self.pos = self.rng.choice(self.detention or safe or [self.start]) if ev["event"] == "监察点" else self.rng.choice(safe or [self.start])
+                teleported = True
                 self.visited.add(self.pos)
             elif t == "gain_artifact":
                 nxt = (Screen.PICK_ARTIFACT, {})
             elif t == "gain_blackseal":
                 self.pending_popup = True
+        if ev["event"] == "监察点" and not teleported and self.data.get("from"):
+            self.pos = self.data["from"]                   # leaving a checkpoint returns to the previous tile
         if self.hp <= 0:
             self.screen, self.data = Screen.DEFEAT, {"from": self.pos, "tile": self.pos}
             self.hp = 0.0
@@ -325,7 +333,13 @@ def main():
     ap.add_argument("--json", help="write detailed results")
     args = ap.parse_args()
     kn = Knowledge()
-    maps = list(kn.maps) if args.maps == "all" else args.maps.split(",")
+    has_goal = lambda k: any(t["type"] == "final_battle" for t in kn.maps[k]["tiles"])
+    if args.maps == "all":
+        maps = [k for k in kn.maps if has_goal(k)]
+    elif args.maps == "client":                    # every client map once, by id (the stage maps; not our alias keys)
+        maps = [k for k in kn.maps if k.isdigit() and has_goal(k)]
+    else:
+        maps = args.maps.split(",")
     noise = {"ignore": .08 * args.noise, "unknown": .04 * args.noise, "popup": .05 * args.noise, "no_pos": .10 * args.noise}
     results = []
     skipped = set()

@@ -287,5 +287,95 @@ class KnownEventRules(unittest.TestCase):
         self.assertTrue(flipped)
 
 
+class ClientMaps(unittest.TestCase):
+    """The game client's own maps (resource/map_data/maps_client.json) drive the route planning."""
+
+    @classmethod
+    def setUpClass(cls):
+        d = policy.ROOT / "resource" / "map_data"
+        cls.client = json.loads((d / "maps_client.json").read_text(encoding="utf-8"))["maps"]
+        cls.aliases = json.loads((d / "client" / "aliases.json").read_text(encoding="utf-8"))["aliases"]
+        cls.grid = json.loads((d / "client" / "maps.json").read_text(encoding="utf-8"))
+        cls.stages = json.loads((d / "client" / "stages.json").read_text(encoding="utf-8"))
+
+    def test_all_maps_are_imported_and_consistent(self):
+        self.assertEqual(len(self.client), 1171)
+        self.assertEqual(set(self.client), set(self.grid))
+        for mid, m in self.client.items():
+            self.assertEqual(m["tile_count"], len(m["tiles"]), mid)
+            keys = {(t["island"], t["row"], t["col"]) for t in m["tiles"]}
+            self.assertEqual(len(keys), len(m["tiles"]), mid)
+            self.assertTrue(all((t["row"] + t["col"]) % 2 == (m["tiles"][0]["row"] + m["tiles"][0]["col"]) % 2 for t in m["tiles"]), mid)
+            self.assertNotIn("wall", m["counts"], mid)
+            self.assertEqual(m["counts"].get("player"), 1, mid)
+        for sid, st in self.stages.items():
+            for mid in st.get("m", []):
+                self.assertIn(str(mid), self.client, sid)
+
+    def test_our_maps_match_the_client_maps(self):
+        good = [k for k, a in self.aliases.items() if a["score"] >= 0.6]
+        self.assertGreaterEqual(len(good), 105)
+        self.assertEqual(self.aliases["8-2"]["client_map"], "56507")
+        self.assertEqual(KN.maps["8-2"]["client_map"], "56507")
+
+    def test_8_2_route_follows_the_live_run(self):
+        # live: the checkpoint cannot be walked through; 诈降 teleports to the 羁押点, the inquisitor is reached from there
+        nav = Navigator(pol(), KN, "8-2")
+        start = next(k for k, t in nav.tiles.items() if t == "player")
+        dist, parent = nav._dijkstra(start, False)
+        path = [nav.tiles[k] for k in nav._path(parent, nav._best(dist, nav._goal_tiles())[1])]
+        self.assertIn("checkpoint", path)
+        self.assertEqual(path[path.index("checkpoint") + 1], "detention")
+        self.assertEqual(path[-1], "final_battle")
+
+    def test_forced_teleport_landing_can_be_left_again(self):
+        nav = Navigator(pol(), KN, "5-6")
+        pairs = nav.links
+        if not pairs:
+            self.skipTest("no tunnel on 5-6")
+        nav.teleport_forced = True
+        goals = nav._goal_tiles()
+        dist, parent = nav._dijkstra(next(k for k, t in nav.tiles.items() if t == "player"), False)
+        self.assertTrue(nav._best(dist, goals))
+
+    def test_door_without_key_is_never_blacklisted(self):
+        nav = Navigator(pol(), KN, "5-6")
+        door = next((k for k, t in nav.tiles.items() if t == "locked_door"), None)
+        if door is None:
+            self.skipTest("no door on 5-6")
+        for _ in range(10):
+            self.assertFalse(nav.mark_failed(door))
+        self.assertNotIn(door, nav.blacklist)
+
+    def test_random_variants_cost_the_mean(self):
+        cell = next((m, t) for m in self.client.values() for t in m["tiles"] if t.get("alts"))
+        m, t = cell
+        nav = Navigator(pol(), KN, [k for k, v in KN.maps.items() if v is m or v.get("id") == m["id"]][0])
+        key = (t["island"], t["row"], t["col"])
+        costs = [float(KN.tile_effect(x).get("cost", 1)) for x in [t["type"], *t["alts"]]]
+        mult = float(policy.get(pol(), "route.avoid").get(t["type"], 1.0))
+        self.assertAlmostEqual(nav._cost(key), max(sum(costs) / len(costs), 0.1) if mult == 1.0 else nav._cost(key))
+
+    def test_every_client_map_with_a_goal_has_a_plan(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("plan_route", policy.ROOT / "tools" / "plan_route.py")
+        pr = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pr)
+        maps, effects = pr.load()
+        report = pr.check_all(maps, effects)
+        statuses = {s: sum(1 for r in report.values() if r["status"] == s) for s in ("ok", "bridged", "unreachable", "no_goal")}
+        self.assertEqual(statuses["unreachable"], 0, statuses)
+        self.assertGreater(statuses["ok"], 900)
+        self.assertLessEqual(statuses["bridged"], 25, statuses)
+
+    def test_simulated_runs_on_client_maps(self):
+        for mid in ("56507", "35852", "47857", "129", "314", "357"):
+            r = sim.run_one(KN, mid, pol(), 1, forced_teleport=False)
+            self.assertTrue(r["success"] or r["stopped"], (mid, r))
+        for mid in ("314", "357", "22737", "338"):                      # these looped before the forced-teleport fixes
+            r = sim.run_one(KN, mid, pol(), 0, forced_teleport=True)
+            self.assertTrue(r["success"], (mid, r))
+
+
 if __name__ == "__main__":
     unittest.main()
