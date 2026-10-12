@@ -407,3 +407,33 @@ class DiveLayouts(unittest.TestCase):
         self.assertTrue(hit, found)
         self.assertEqual(hit[0][2], (0, 0))
 
+
+class StageCatalogues(unittest.TestCase):
+    """activity_stages.json / train_corridor.json / events_all.json agree with the client data."""
+
+    @classmethod
+    def setUpClass(cls):
+        d = policy.ROOT / "resource" / "map_data"
+        load = lambda n: json.loads((d / n).read_text(encoding="utf-8"))
+        cls.acts, cls.train, cls.events = load("activity_stages.json"), load("train_corridor.json"), load("events_all.json")
+        cls.stages = load("client/stages.json")
+
+    def test_every_activity_stage_is_counted(self):
+        total = sum(a["stages"] for a in self.acts["activities"])
+        self.assertEqual(total, sum(1 for v in self.stages.values() if v["c"] == "活动 / 支线"))
+        for a in self.acts["activities"]:
+            self.assertEqual(len(a["stage_ids"]), a["stages"])
+
+    def test_train_has_all_three_difficulties_and_chapter_pools(self):
+        self.assertEqual(set(self.train["difficulties"]), {"普通", "困难", "癫狂"})
+        for r in self.train["routes"].values():
+            pools = [p for p in r["phases"] if p["kind"] == "chapters"]
+            self.assertEqual(len(pools), 3)
+            for p in pools:
+                self.assertEqual(len(p["groups"]), 4)
+
+    def test_train_events_are_listed_in_the_event_catalogue(self):
+        te = self.events["train_events"]
+        self.assertGreaterEqual(len(te), 12)
+        self.assertEqual(self.events["counts"]["train_events"], len(te))
+

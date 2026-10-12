@@ -82,12 +82,24 @@ def build():
     undocumented = sorted(n for n, k in kinds.items() if n not in out and set(k["ours"]) & {"event", "strange_cyst", "honey_wine", "unfinished_statue", "kind_gift",
                                                                                           "mother_of_brood", "proxy_rite", "white_sail", "checkpoint", "detention",
                                                                                           "inquisitor", "enrollment", "shadow_pool"})
+    # 记忆回廊: the fixed event of every chapter (from the client route); options are not documented yet
+    train = json.loads((DATA / "client" / "train.json").read_text(encoding="utf-8"))["groups"]
+    train_events = OrderedDict()
+    for gid, g in train.items():
+        fixed = [n for n in g["nodes"] if n[1] not in ("随机节点", "褪色遗骨", "灰烬遗迹")]
+        if not fixed or fixed[0][1] == "指令节点":
+            continue
+        name = fixed[0][3] if len(fixed[0]) > 3 else fixed[0][1]
+        e = train_events.setdefault(name, {"chapters": [], "text": fixed[0][4] if len(fixed[0]) > 4 else "", "in_event_library": name in out})
+        if g["cn"] not in e["chapters"]:
+            e["chapters"].append(g["cn"])
     return {"_doc": "由 tools/build_event_catalog.py 生成，请不要手改。events：每个事件名一条（选项+证据+客户端节点+实机是否见过）；"
                     "tile_kinds：客户端全部节点种类及数量；undocumented_event_kinds：客户端有、wiki/实机事件库还没有的事件类节点；live_facts：实机事实。",
             "counts": {"events": len(out), "with_client_node": sum(1 for e in out.values() if "client_node" in e),
                        "live_verified": sum(1 for e in out.values() if e["live_verified"]), "tile_kinds": len(kinds),
-                       "undocumented_event_kinds": len(undocumented)},
-            "events": out, "tile_kinds": kinds, "undocumented_event_kinds": undocumented, "live_facts": facts}
+                       "undocumented_event_kinds": len(undocumented), "train_events": len(train_events),
+                       "train_events_without_options": sum(1 for e in train_events.values() if not e["in_event_library"])},
+            "events": out, "tile_kinds": kinds, "undocumented_event_kinds": undocumented, "train_events": train_events, "live_facts": facts}
 
 
 def main():
