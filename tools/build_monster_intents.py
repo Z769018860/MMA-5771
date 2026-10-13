@@ -82,6 +82,21 @@ def build(src):
                             ("target", TARGETS.get(c.get("CmdTarget"), c.get("CmdTarget") or "")),
                             ("para", c.get("Para", "")), ("desc", clean_desc(s.get("description")))])
 
+    # reference ladder per battle tag from the stage templates: {tag: {lv: (hp, atk, def)}}
+    ladder = {}
+    stats = json.loads((Path(src) / "data/morimens/maps/stage-stats.json").read_text(encoding="utf-8"))
+    for tpl in stats.values():
+        for lv, hp, atk, df, tag in tpl.values():
+            ladder.setdefault(tag, {}).setdefault(lv, (hp, atk, df))
+
+    def template_rows(tag, hp_pct, atk_pct, def_pct):
+        lvs = sorted(ladder.get(tag, {}))
+        if not lvs:
+            return []
+        pick = sorted({lvs[round(i * (len(lvs) - 1) / 6)] for i in range(7)})
+        return [OrderedDict([("lv", lv), ("hp", round(ladder[tag][lv][0] * hp_pct)), ("atk", round(ladder[tag][lv][1] * atk_pct)),
+                             ("def", round(ladder[tag][lv][2] * def_pct))]) for lv in pick]
+
     used, mons = set(), OrderedDict()
     for m in sorted(monsters, key=lambda x: x["id"]):
         c = m["config"]
@@ -94,6 +109,8 @@ def build(src):
         e = OrderedDict([("name", m["name"]), ("class", CLASS.get(c.get("MonsterClass"), c.get("MonsterClass") or "")),
                          ("size", c.get("BodySize", "")), ("desc", m.get("description", "")),
                          ("opening", init), ("cycles", cycles)])
+        e["template_rows"] = template_rows(c.get("BattleTag"), c.get("MonsterHpPercent", 1), c.get("MonsterAtkPercent", 1),
+                                           c.get("MonsterDefPercent", 0))
         if m["id"] in dz:
             e["levels"] = [OrderedDict([("period", r["period"]), ("rows", [OrderedDict([("lv", x["lv"]), ("hp", x["hp"]), ("atk", x["atk"]),
                                                                                           ("def", x["def"]), ("values", x["a"])]) for x in r["rows"]])])
@@ -103,9 +120,10 @@ def build(src):
     return OrderedDict([
         ("schema", 1),
         ("note", "行动意图：opening=首轮行动，cycles=循环1..n（打完 opening 后依次轮换）。skills 里 label 是游戏内意图名，icon 对应 resource/image/intent/intent_<icon>.png；"
-                 "values[技能id]=[数值, 次数, ...]（融灾怪物按关卡等级）。desc 中 [ArgK] 是第 K 个参数（伤害/次数/层数），用 values 填入。"),
+                 "levels[].rows[].values[技能id]=[Arg1, Arg2, ...]（融灾怪物，官方数值）；template_rows 是按关卡数值模板估算的 lv/hp/atk/def（其他怪物，数值由 skills[].para 现算）。desc 中 [ArgK] 是第 K 个参数（伤害/次数/层数），用数值填入。"),
         ("intents", OrderedDict((k, {"label": v[0], "icon": v[1]}) for k, v in INTENTS.items())),
-        ("counts", {"monsters": len(mons), "skills": len(sk), "with_levels": sum(1 for m in mons.values() if "levels" in m)}),
+        ("counts", {"monsters": len(mons), "skills": len(sk), "with_levels": sum(1 for m in mons.values() if "levels" in m),
+                    "with_template_rows": sum(1 for m in mons.values() if m.get("template_rows"))}),
         ("monsters", mons), ("skills", sk)])
 
 

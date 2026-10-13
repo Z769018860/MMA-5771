@@ -467,3 +467,11 @@ class MonsterIntents(unittest.TestCase):
             for sid in m["opening"] + [x for c in m["cycles"] for x in c]:
                 self.assertIn(str(sid), d["skills"])
 
+    def test_other_monsters_get_computed_values(self):
+        (mid, m), = self.intents.find("提灯教牧")
+        steps = dict((t, st) for t, st in self.intents.sequences(m))["首轮行动"]
+        self.assertTrue(steps[0]["value"].startswith("伤害 "))
+        self.assertNotIn("[Arg", steps[0]["desc"])
+        self.assertEqual(self.intents.evaluate("BattleAtkForce*0.35,3", 2530), [886, 3])
+        self.assertEqual(self.intents.evaluate("CmdCaster.GetStateLayer(5)+5", 100), ["层数+5"])
+

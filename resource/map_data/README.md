@@ -146,4 +146,5 @@
 
 `monster_intents.json`(`tools/build_monster_intents.py`,数据来自客户端本地配置导出):492 个怪物、1153 个技能。每个怪物有 `opening`(首轮行动)和 `cycles`(循环 1..n),每个技能带游戏内意图名(如 封印=强力削弱、追猎=强力攻击)、图标编号(`resource/image/intent/intent_NNN.png`)、目标和官方描述;融灾怪物另带各等级数值,可填出「造成 886 点伤害 3 次」。
 - 文本查看:`cd agent && python3 -m morimens_logic.intents 撕裂维度之足 --level 99`(格式同 wiki 的「行动意图 / 技能详情」)。
-- 图文页面:`docs/monster_intents.html`(含图标、箭头流程和技能表,重新生成:`python3 -c "…intents.html_page()"` 见 `agent/morimens_logic/intents.py`)。
+- 图文页面:`docs/monster_intents/{index,boss,elite,common}.html`,全部 492 个怪物都是融灾70期那种格式(等级/攻击力/防御/生命、行动意图按回合顺序带图标、技能详情表:技能/类型/目标/数值/官方描述)。重新生成:`cd agent && python3 -m morimens_logic.intents --html ../docs/monster_intents`。
+- 数值:融灾怪物用官方各等级数值;其余怪物按关卡数值模板估算 lv/攻击力/生命,技能数值由 `para`(如 BattleAtkForce*0.35,3)现算;依赖状态层数的写成「层数+5」。
