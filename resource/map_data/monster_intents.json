@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "note": "行动意图：opening=首轮行动，cycles=循环1..n（打完 opening 后依次轮换）。skills 里 label 是游戏内意图名，icon 对应 resource/image/intent/intent_<icon>.png；values[技能id]=[数值, 次数, ...]（融灾怪物按关卡等级）。desc 中 [ArgK] 是第 K 个参数（伤害/次数/层数），用 values 填入。",
+ "note": "行动意图：opening=首轮行动，cycles=循环1..n（打完 opening 后依次轮换）。skills 里 label 是游戏内意图名，icon 对应 resource/image/intent/intent_<icon>.png；levels[].rows[].values[技能id]=[Arg1, Arg2, ...]（融灾怪物，官方数值）；template_rows 是按关卡数值模板估算的 lv/hp/atk/def（其他怪物，数值由 skills[].para 现算）。desc 中 [ArgK] 是第 K 个参数（伤害/次数/层数），用数值填入。",
  "intents": {
   "Intent_Attack": {
    "label": "攻击",
