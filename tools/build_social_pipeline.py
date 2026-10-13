@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_nav_pipeline as B  # noqa: E402
@@ -26,7 +27,7 @@ def build():
     images, nodes, rects, thr = {}, {}, {}, {}
     for t in ui["templates"]:
         sc = ui["screens"][t["screen"]]
-        img = cv2.imread(str(NAV / "samples" / sc["sample"]))
+        img = cv2.imdecode(np.fromfile(NAV / "samples" / sc["sample"], dtype=np.uint8), cv2.IMREAD_COLOR)
         x0, y0, x1, y1 = B.scale_box(t["box"], sc["src_size"])
         images[f"social_{t['id']}.png"] = img[y0:y1, x0:x1]
         rects[t["id"]] = [x0, y0, x1 - x0, y1 - y0]
@@ -70,6 +71,11 @@ def build():
                           "next": ["Soc_ListPage", "Soc_ProfilePage", "Soc_FromHome"],
                           "focus": focus("校友会：从关注列表、守密人档案或主界面开始。")}
     nodes["Soc_FromHome"] = {**home["NavHome_social"], "next": ["Soc_ListPage"], "timeout": 20000}
+    # The notification dot changes the small social icon. Recognize the three
+    # stable home buttons, then click the social icon at its fixed home position.
+    nodes["Soc_FromHome"]["all_of"] = nodes["Soc_FromHome"]["all_of"][1:]
+    nodes["Soc_FromHome"].pop("target_offset", None)
+    nodes["Soc_FromHome"]["target"] = [110, 240, 30, 35]
     nodes["Soc_ListPage"] = {**match("al_title"), "action": "DoNothing", "timeout": 15000, "next": ["Soc_OpenFirst"],
                              "focus": focus("已进入【校友会 关注】列表。")}
     nodes["Soc_OpenFirst"] = {**match("al_title"), "box_index": 0, **tap("al_first_avatar"), "post_delay": 2200,
@@ -78,8 +84,10 @@ def build():
     nodes["Soc_ProfilePage"] = {**match("pf_title"), "action": "DoNothing", "timeout": 15000,
                                 "next": ["Soc_Like", "Soc_AfterLike"],
                                 "focus": focus("已进入【守密人档案】。")}
-    nodes["Soc_Like"] = {"recognition": "And", "all_of": [match("pf_title"), match("pf_like", 10)], "box_index": 1,
-                         "action": "Click", "target_offset": [6, 6, -12, -12], "post_delay": 1500,
+    like_icon = {"recognition": "TemplateMatch", "template": "social_pf_like_live.png",
+                 "roi": [745, 105, 70, 65], "threshold": 0.8, "method": 10001}
+    nodes["Soc_Like"] = {"recognition": "And", "all_of": [match("pf_title"), like_icon], "box_index": 1,
+                         "action": "Click", "target": [760, 120, 38, 35], "post_delay": 1500,
                          "next": ["Soc_AfterLike"],
                          "focus": {"Node.Action.Succeeded": "已点击点赞按钮。"}}
     nodes["Soc_AfterLike"] = {"recognition": "DirectHit", "action": "DoNothing", "post_delay": 1800, "next": ["Soc_Back", "Soc_BackFixed1"],

@@ -82,13 +82,13 @@ def build():
     nodes["Sweep_FromStage"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["SweepNode1"]}
     nodes["Sweep_FromActivity"] = {
         "recognition": "TemplateMatch", "template": "sweep_mirror_prisoner_banner.png",
-        "roi": [0, 65, 270, 110], "threshold": 0.78, "method": 10001,
+        "roi": [0, 65, 270, 110], "threshold": 0.62, "method": 10001,
         "action": "Click", "target_offset": [20, 12, -40, -24], "post_delay": 800,
         "next": ["Sweep_ActivityEntry"],
         "focus": {"Node.Action.Succeeded": "已识别并选择【镜像囚徒·复刻】活动。"},
     }
     nodes["Sweep_ActivityEntry"] = {
-        "recognition": "DirectHit", "action": "Click", "target": [1070, 625, 50, 48],
+        "recognition": "DirectHit", "action": "Click", "target": [1075, 645, 50, 25],
         "post_delay": 2200, "next": ["Sweep_StagePage"],
         "focus": {"Node.Action.Succeeded": "已点击【飞跃青空】进入该活动横排关卡页。"},
     }
@@ -145,7 +145,8 @@ def build():
     nodes["Sweep_GiveUp"] = {"recognition": "DirectHit", "action": "DoNothing", "next": [],
                              "focus": {"Node.Recognition.Succeeded": "先通关一次的挑战失败，停止。"}}
     # count dialog
-    nodes["Sweep_Dialog"] = {**match("dlg_title"), "action": "DoNothing", "timeout": 15000, "next": ["Sweep_Max"],
+    nodes["Sweep_Dialog"] = {**match("dlg_title"), "action": "DoNothing", "timeout": 15000,
+                             "next": ["Sweep_Max", "Sweep_Confirm"],
                              "focus": focus("已打开【重现次数】窗口。")}
     nodes["Sweep_Max"] = {"recognition": "And", "all_of": [match("dlg_title"), match("dlg_max")], "box_index": 1,
                           "action": "Click", "target_offset": [6, 5, -12, -10], "post_delay": 900,
@@ -171,10 +172,10 @@ def update_interface(data):
     options = data["option"]
     options["扫荡节点"] = {
         "type": "select", "label": "镜像囚徒·复刻：关卡",
-        "description": "从飞跃青空横排关卡页进入时选择；已进入某关的难度列表时，此项不再切换关卡。",
-        "default_case": "node1",
+        "description": "从飞跃青空横排关卡页进入时选择；默认最后一关【自由与死亡】。已进入某关的难度列表时，此项不再切换关卡。",
+        "default_case": "node7",
         "cases": [
-            {"name": f"node{i}", "label": f"{i}. {name}" + ("（默认）" if i == 1 else ""),
+            {"name": f"node{i}", "label": f"{i}. {name}" + ("（默认）" if i == 7 else ""),
              "pipeline_override": {"Sweep_FromStage": {"next": [f"SweepNode{i}"]}}}
             for i, name in enumerate(STAGES, 1)
         ],
@@ -200,6 +201,10 @@ def update_interface(data):
             "pipeline_override": override,
         })
     task = next(task for task in data["task"] if task["name"] == "活动扫荡")
+    task.setdefault("pipeline_override", {})["ReviveDecision"] = {
+        "action": "DoNothing", "next": [],
+        "focus": {"Node.Recognition.Succeeded": "检测到复活确认，已停止活动扫荡；请人工处理弹窗。"},
+    }
     task["option"] = ["扫荡节点", "扫荡难度", *[x for x in task["option"] if x not in ("扫荡节点", "扫荡难度")]]
     task["description"] = "镜像囚徒·复刻：可从飞跃青空选择七个关卡之一，并选择之一至之六扫荡；已有重现则直接扫荡，否则先挑战解锁。癫狂不提供重现。"
     return data

@@ -47,7 +47,7 @@
       270,
       110
     ],
-    "threshold": 0.78,
+    "threshold": 0.62,
     "method": 10001,
     "action": "Click",
     "target_offset": [
@@ -68,10 +68,10 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      1070,
-      625,
+      1075,
+      645,
       50,
-      48
+      25
     ],
     "post_delay": 2200,
     "next": [
@@ -1086,7 +1086,8 @@
     "action": "DoNothing",
     "timeout": 15000,
     "next": [
-      "Sweep_Max"
+      "Sweep_Max",
+      "Sweep_Confirm"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "已打开【重现次数】窗口。"
@@ -1270,6 +1271,87 @@
     "timeout": 10000,
     "focus": {
       "Node.Recognition.Succeeded": "扫荡完成，回到关卡列表。"
+    }
+  },
+  "Monthly_Sweep_Start": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "monthly_claim_prompt.png",
+        "roi": [
+          490,
+          595,
+          300,
+          85
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "monthly_remaining_label.png",
+        "roi": [
+          565,
+          65,
+          100,
+          75
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      610,
+      310,
+      60,
+      70
+    ],
+    "post_delay": 7000,
+    "next": [
+      "MonthlyReward_Sweep_Start",
+      "Sweep_Reward",
+      "Sweep_Dialog",
+      "Sweep_Page",
+      "Sweep_StagePage",
+      "Sweep_FromActivity",
+      "Sweep_FromHome"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "识别到月卡登录页，已点击领取月相观测奖励。"
+    }
+  },
+  "MonthlyReward_Sweep_Start": {
+    "recognition": "TemplateMatch",
+    "template": "daily_reward_title.png",
+    "roi": [
+      480,
+      150,
+      320,
+      90
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1030,
+      470,
+      80,
+      70
+    ],
+    "post_delay": 1200,
+    "next": [
+      "Sweep_Reward",
+      "Sweep_Dialog",
+      "Sweep_Page",
+      "Sweep_StagePage",
+      "Sweep_FromActivity",
+      "Sweep_FromHome"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已关闭月卡领取后的【获得物资】弹窗。"
     }
   }
 }

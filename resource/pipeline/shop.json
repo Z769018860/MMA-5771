@@ -1,0 +1,425 @@
+{
+  "Shop_Start": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "Shop_RewardStart",
+      "Shop_Page",
+      "Shop_FromHome"
+    ],
+    "timeout": 20000
+  },
+  "Shop_RewardStart": {
+    "recognition": "TemplateMatch",
+    "template": "shop_reward_title.png",
+    "roi": [
+      550,
+      175,
+      175,
+      80
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1000,
+      450,
+      150,
+      85
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "关闭已领取奖励弹窗。"
+    }
+  },
+  "Shop_FromHome": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_misago_shop.png",
+    "roi": [
+      1037,
+      541,
+      200,
+      108
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1100,
+      565,
+      100,
+      65
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_Page"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已进入弥萨格商店。"
+    },
+    "timeout": 20000
+  },
+  "Shop_Page": {
+    "recognition": "TemplateMatch",
+    "template": "shop_title.png",
+    "roi": [
+      90,
+      15,
+      165,
+      48
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "next": [
+      "Shop_OpenLimited"
+    ],
+    "timeout": 15000
+  },
+  "Shop_OpenLimited": {
+    "recognition": "TemplateMatch",
+    "template": "shop_title.png",
+    "roi": [
+      90,
+      15,
+      165,
+      48
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      62,
+      180,
+      120,
+      48
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_LimitedFirst",
+      "Shop_LimitedSecond",
+      "Shop_OpenFeatured"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "查看限时礼盒的免费奖励。"
+    }
+  },
+  "Shop_LimitedFirst": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_limited_title.png",
+        "roi": [
+          625,
+          70,
+          215,
+          70
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_claim.png",
+        "roi": [
+          1030,
+          205,
+          135,
+          53
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      1040,
+      208,
+      115,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_RewardLimited",
+      "Shop_LimitedSecond",
+      "Shop_OpenFeatured"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "领取限时礼盒第一笔免费奖励。"
+    }
+  },
+  "Shop_LimitedSecond": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_limited_title.png",
+        "roi": [
+          625,
+          70,
+          215,
+          70
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_claim.png",
+        "roi": [
+          1030,
+          345,
+          135,
+          53
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      1040,
+      348,
+      115,
+      44
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_RewardLimited",
+      "Shop_OpenFeatured"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "领取限时礼盒第二笔免费奖励。"
+    }
+  },
+  "Shop_RewardLimited": {
+    "recognition": "TemplateMatch",
+    "template": "shop_reward_title.png",
+    "roi": [
+      550,
+      175,
+      175,
+      80
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1000,
+      450,
+      150,
+      85
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_LimitedSecond",
+      "Shop_OpenFeatured"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "关闭领取奖励弹窗。"
+    }
+  },
+  "Shop_OpenFeatured": {
+    "recognition": "TemplateMatch",
+    "template": "shop_title.png",
+    "roi": [
+      90,
+      15,
+      165,
+      48
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      62,
+      246,
+      120,
+      48
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_FeaturedFree",
+      "Shop_Exit"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "查看精选礼盒的每日免费补助。"
+    }
+  },
+  "Shop_FeaturedFree": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_featured_tab.png",
+        "roi": [
+          55,
+          245,
+          125,
+          48
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "shop_free.png",
+        "roi": [
+          300,
+          590,
+          80,
+          45
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      315,
+      592,
+      72,
+      40
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_RewardFeatured",
+      "Shop_Exit"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "领取精选礼盒每日免费补助。"
+    }
+  },
+  "Shop_RewardFeatured": {
+    "recognition": "TemplateMatch",
+    "template": "shop_reward_title.png",
+    "roi": [
+      550,
+      175,
+      175,
+      80
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1000,
+      450,
+      150,
+      85
+    ],
+    "post_delay": 1400,
+    "next": [
+      "Shop_Exit"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "关闭每日免费补助弹窗。"
+    }
+  },
+  "Shop_Exit": {
+    "recognition": "TemplateMatch",
+    "template": "shop_title.png",
+    "roi": [
+      90,
+      15,
+      165,
+      48
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1210,
+      8,
+      65,
+      66
+    ],
+    "post_delay": 1400,
+    "next": [],
+    "focus": {
+      "Node.Action.Succeeded": "免费商店奖励已检查完，返回主界面。"
+    }
+  },
+  "Monthly_Shop_Start": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "monthly_claim_prompt.png",
+        "roi": [
+          490,
+          595,
+          300,
+          85
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "monthly_remaining_label.png",
+        "roi": [
+          565,
+          65,
+          100,
+          75
+        ],
+        "threshold": 0.82,
+        "method": 10001
+      }
+    ],
+    "box_index": 0,
+    "action": "Click",
+    "target": [
+      610,
+      310,
+      60,
+      70
+    ],
+    "post_delay": 7000,
+    "next": [
+      "MonthlyReward_Shop_Start",
+      "Shop_RewardStart",
+      "Shop_Page",
+      "Shop_FromHome"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "识别到月卡登录页，已点击领取月相观测奖励。"
+    }
+  },
+  "MonthlyReward_Shop_Start": {
+    "recognition": "TemplateMatch",
+    "template": "daily_reward_title.png",
+    "roi": [
+      480,
+      150,
+      320,
+      90
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1030,
+      470,
+      80,
+      70
+    ],
+    "post_delay": 1200,
+    "next": [
+      "Shop_RewardStart",
+      "Shop_Page",
+      "Shop_FromHome"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已关闭月卡领取后的【获得物资】弹窗。"
+    }
+  }
+}
