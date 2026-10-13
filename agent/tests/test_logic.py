@@ -437,3 +437,33 @@ class StageCatalogues(unittest.TestCase):
         self.assertGreaterEqual(len(te), 12)
         self.assertEqual(self.events["counts"]["train_events"], len(te))
 
+
+class MonsterIntents(unittest.TestCase):
+    """Monster action intents in the game's format (monster_intents.json + intent icons)."""
+
+    @classmethod
+    def setUpClass(cls):
+        from morimens_logic import intents
+        cls.intents = intents
+
+    def test_every_intent_type_has_an_icon_file(self):
+        d = self.intents.load()
+        for k, v in d["intents"].items():
+            self.assertTrue((self.intents.ICON_DIR / f"intent_{v['icon']}.png").exists(), k)
+        for s in d["skills"].values():
+            self.assertIn(s["intent"], d["intents"])
+
+    def test_rendendclaw_matches_the_wiki_page(self):
+        (mid, m), = self.intents.find("撕裂维度之足")
+        seqs = self.intents.sequences(m, 99)
+        self.assertEqual([s["label"] for s in seqs[0][1]], ["强力削弱", "强力攻击", "攻击", "攻击"])
+        self.assertEqual([s["name"] for s in seqs[0][1]][:2], ["封印", "追猎"])
+        self.assertIn("886 点伤害 3 次", seqs[0][1][1]["desc"])
+        self.assertIn("3036", seqs[0][1][3]["desc"])
+
+    def test_all_actions_resolve_to_known_skills(self):
+        d = self.intents.load()
+        for m in d["monsters"].values():
+            for sid in m["opening"] + [x for c in m["cycles"] for x in c]:
+                self.assertIn(str(sid), d["skills"])
+

@@ -141,3 +141,9 @@
 - `activity_stages.json`:客户端全部「活动 / 支线」关卡按活动汇总(50 个活动,关卡数、等级范围、关卡 id),并列出本项目已有的活动配置(`our_profiles`)。客户端活动名按角色/活动 id 命名,与游戏内标题没有自动对应。
 - `train_corridor.json`:记忆回廊路线——3 种难度(普通/困难/癫狂),每条路线 初始化 + 三次共鸣阶段,每阶段从 4 个章节里抽一个;每章的节点序列(固定事件、褪色遗骨、灰烬遗迹、随机节点及其变体数)。
 - `events_all.json` 的 `train_events`:各章固定事件(未完的蜡像、直面深渊、终站将近等),其中多数还没有选项文本,需要实机截图补齐。
+
+## 怪物行动意图
+
+`monster_intents.json`(`tools/build_monster_intents.py`,数据来自客户端本地配置导出):492 个怪物、1153 个技能。每个怪物有 `opening`(首轮行动)和 `cycles`(循环 1..n),每个技能带游戏内意图名(如 封印=强力削弱、追猎=强力攻击)、图标编号(`resource/image/intent/intent_NNN.png`)、目标和官方描述;融灾怪物另带各等级数值,可填出「造成 886 点伤害 3 次」。
+- 文本查看:`cd agent && python3 -m morimens_logic.intents 撕裂维度之足 --level 99`(格式同 wiki 的「行动意图 / 技能详情」)。
+- 图文页面:`docs/monster_intents.html`(含图标、箭头流程和技能表,重新生成:`python3 -c "…intents.html_page()"` 见 `agent/morimens_logic/intents.py`)。
