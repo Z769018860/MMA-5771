@@ -10,7 +10,12 @@
   "train_artifact_choice": {"sample": "train_artifact_choice.png", "src_size": [1600, 900]},
   "train_artifact_selected": {"sample": "train_artifact_selected.png", "src_size": [1600, 900]},
   "train_engrave": {"sample": "train_engrave.png", "src_size": [1600, 900]},
-  "train_engrave_tooltip": {"sample": "train_engrave_tooltip.png", "src_size": [1600, 900]}
+  "train_engrave_tooltip": {"sample": "train_engrave_tooltip.png", "src_size": [1600, 900]},
+  "char_page": {"sample": "train_char_page.png", "src_size": [1280, 720]},
+  "roster_page": {"sample": "train_roster.png", "src_size": [1280, 720]},
+  "card_modify": {"sample": "train_card_modify.png", "src_size": [1280, 720]},
+  "engrave_two": {"sample": "train_engrave_two.png", "src_size": [1280, 720]},
+  "awaken_rage": {"sample": "train_awaken_rage.png", "src_size": [1280, 720]}
  },
  "templates": [
   {"id": "entry_title", "screen": "star_entry", "box": [118, 35, 268, 80], "label": "入口页标题「记忆回廊」", "threshold": 0.8},
@@ -22,7 +27,12 @@
   {"id": "artifact_choice_title", "screen": "train_artifact_choice", "box": [710, 145, 900, 183], "label": "选择1个造物标题", "threshold": 0.8},
   {"id": "artifact_confirm_blue", "screen": "train_artifact_selected", "box": [720, 744, 880, 795], "label": "已选造物蓝色确认按钮", "threshold": 0.8},
   {"id": "engrave_title", "screen": "train_engrave", "box": [655, 148, 960, 187], "label": "镶嵌刻印选牌标题", "threshold": 0.8},
-  {"id": "engrave_tooltip_title", "screen": "train_engrave_tooltip", "box": [980, 210, 1120, 245], "label": "刻印说明悬浮层", "threshold": 0.8}
+  {"id": "engrave_tooltip_title", "screen": "train_engrave_tooltip", "box": [980, 210, 1120, 245], "label": "刻印说明悬浮层", "threshold": 0.8},
+  {"id": "char_page_title", "screen": "char_page", "box": [1010, 630, 1180, 668], "label": "角色详情页底部「灵知深化」（误入时用来退出）", "threshold": 0.85},
+  {"id": "roster_title", "screen": "roster_page", "box": [20, 28, 145, 52], "label": "编队页点开唤醒体槽位后的「选择唤醒体」列表页标题（左上角；战后三选一页的标题居中，两者靠位置区分）", "threshold": 0.85},
+  {"id": "card_modify_title", "screen": "card_modify", "box": [340, 119, 905, 161], "label": "事件奖励「选择 1 张牌降低算力消耗并获得共鸣效果」页顶部长标题", "threshold": 0.85},
+  {"id": "engrave_two_title", "screen": "engrave_two", "box": [495, 120, 780, 158], "label": "「选择两张卡牌镶嵌刻印」页标题（与一张版只差一个字，必须单独建模板）", "threshold": 0.85},
+  {"id": "awaken_rage_title", "screen": "awaken_rage", "box": [550, 92, 748, 130], "label": "战斗中【请选择唤醒体】狂气页标题（与战后带【确定】的「选择唤醒体」页不同，点卡片就立即生效）", "threshold": 0.85}
  ],
  "regions": {
   "go_button": {"screen": "star_entry", "box": [1230, 790, 1520, 852], "label": "入口页右下角启程按钮"},

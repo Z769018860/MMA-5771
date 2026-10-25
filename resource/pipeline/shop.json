@@ -75,155 +75,9 @@
     "method": 10001,
     "action": "DoNothing",
     "next": [
-      "Shop_OpenLimited"
+      "Shop_OpenFeatured"
     ],
     "timeout": 15000
-  },
-  "Shop_OpenLimited": {
-    "recognition": "TemplateMatch",
-    "template": "shop_title.png",
-    "roi": [
-      90,
-      15,
-      165,
-      48
-    ],
-    "threshold": 0.8,
-    "method": 10001,
-    "action": "Click",
-    "target": [
-      62,
-      180,
-      120,
-      48
-    ],
-    "post_delay": 1400,
-    "next": [
-      "Shop_LimitedFirst",
-      "Shop_LimitedSecond",
-      "Shop_OpenFeatured"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "查看限时礼盒的免费奖励。"
-    }
-  },
-  "Shop_LimitedFirst": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "TemplateMatch",
-        "template": "shop_limited_title.png",
-        "roi": [
-          625,
-          70,
-          215,
-          70
-        ],
-        "threshold": 0.8,
-        "method": 10001
-      },
-      {
-        "recognition": "TemplateMatch",
-        "template": "shop_claim.png",
-        "roi": [
-          1030,
-          205,
-          135,
-          53
-        ],
-        "threshold": 0.8,
-        "method": 10001
-      }
-    ],
-    "box_index": 1,
-    "action": "Click",
-    "target": [
-      1040,
-      208,
-      115,
-      44
-    ],
-    "post_delay": 1400,
-    "next": [
-      "Shop_RewardLimited",
-      "Shop_LimitedSecond",
-      "Shop_OpenFeatured"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "领取限时礼盒第一笔免费奖励。"
-    }
-  },
-  "Shop_LimitedSecond": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "TemplateMatch",
-        "template": "shop_limited_title.png",
-        "roi": [
-          625,
-          70,
-          215,
-          70
-        ],
-        "threshold": 0.8,
-        "method": 10001
-      },
-      {
-        "recognition": "TemplateMatch",
-        "template": "shop_claim.png",
-        "roi": [
-          1030,
-          345,
-          135,
-          53
-        ],
-        "threshold": 0.8,
-        "method": 10001
-      }
-    ],
-    "box_index": 1,
-    "action": "Click",
-    "target": [
-      1040,
-      348,
-      115,
-      44
-    ],
-    "post_delay": 1400,
-    "next": [
-      "Shop_RewardLimited",
-      "Shop_OpenFeatured"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "领取限时礼盒第二笔免费奖励。"
-    }
-  },
-  "Shop_RewardLimited": {
-    "recognition": "TemplateMatch",
-    "template": "shop_reward_title.png",
-    "roi": [
-      550,
-      175,
-      175,
-      80
-    ],
-    "threshold": 0.8,
-    "method": 10001,
-    "action": "Click",
-    "target": [
-      1000,
-      450,
-      150,
-      85
-    ],
-    "post_delay": 1400,
-    "next": [
-      "Shop_LimitedSecond",
-      "Shop_OpenFeatured"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "关闭领取奖励弹窗。"
-    }
   },
   "Shop_OpenFeatured": {
     "recognition": "TemplateMatch",
@@ -239,7 +93,7 @@
     "action": "Click",
     "target": [
       62,
-      246,
+      180,
       120,
       48
     ],
@@ -260,9 +114,9 @@
         "template": "shop_featured_tab.png",
         "roi": [
           55,
-          245,
+          175,
           125,
-          48
+          55
         ],
         "threshold": 0.8,
         "method": 10001

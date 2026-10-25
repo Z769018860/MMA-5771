@@ -27,7 +27,15 @@ OUT = ROOT / "resource" / "pipeline" / "train.json"
 INTERFACE = ROOT / "interface.json"
 TASK = "记忆回廊列车"
 GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}   # RGB of the selected-difficulty glow
-TRAIN_PAGES = ("TR_Ability", "TR_Tooltip", "TR_EngraveTooltip", "TR_RelicExit", "TR_ArtifactChoice", "TR_Engrave")
+# TR_CharPageExit first: on the character detail page both tooltip templates still score above 0.8, and
+# 角色详情 is a one-click dead end (it ping-pongs TR_Tooltip <-> StoryAfterRoute forever).
+# TR_RosterExit next: the 编队 slot picker ("选择唤醒体", title at the top-left) and the post-battle
+# 三选一 ("选择唤醒体", title centred) share their wording, so the two exits must not be confused; if the
+# slot picker stays open, StoryFormation clicks 调查 into nothing and the generic handlers wander off.
+# TR_AwakenPick must come next: the 选择唤醒体 page also scores high enough on the tooltip templates to be
+# swallowed by them, and it shows up after battles the same way
+TRAIN_PAGES = ("TR_CharPageExit", "TR_RosterExit", "TR_CardModify", "TR_CommandPick", "TR_CardRemove", "TR_AwakenRage", "TR_AwakenPick", "TR_Ability",
+               "TR_Tooltip", "TR_EngraveTooltip", "TR_RelicExit", "TR_ArtifactChoice", "TR_EngraveTwo", "TR_Engrave")
 DIFFICULTIES = (("normal", "普通"), ("hard", "困难"), ("crazy", "癫狂"))
 
 
@@ -65,11 +73,19 @@ def build():
         return {"Node.Recognition.Succeeded": text}
 
     nodes["TR_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
-                         "next": ["TR_Diff", "TR_Entry", "TR_Resume"], "on_error": ["MA_StuckNotice"],
-                         "focus": focus("记忆回廊：从入口页、难度页或调查中的任意页面开始。")}
-    nodes["TR_Resume"] = {"recognition": "DirectHit", "action": "DoNothing",
-                          "next": ["StoryFormation", "StoryFirstFormation", "StoryCutscene", "StoryEventPage", "StoryChoicePage",
-                                   "StoryShop", "StoryArtifactSelect", "StoryFinishInvestigation", "AA_PaidRevive", "StoryReviveDecision"]}
+                         "next": ["TR_Diff", "TR_Entry", "TR_FromHome", "TR_Resume"], "on_error": ["MA_StuckNotice"],
+                         "focus": focus("记忆回廊：从主界面、入口页、难度页或调查中的任意页面开始。")}
+    # ---- main screen -> entry page: TR_Resume is DirectHit and always matches, so 主界面 must be tested first
+    nav = json.loads((NAV / "nav_ui.json").read_text(encoding="utf-8"))
+    mc = next(b for b in nav["home_buttons"] if b["id"] == "memory_corridor")
+    mx0, my0, mx1, my1 = B.scale_box(mc["box"], nav["screens"]["home"]["src_size"])
+    nodes["TR_FromHome"] = {"recognition": "TemplateMatch", "template": "nav_home_memory_corridor.png",
+                             "roi": B.grow([mx0, my0, mx1 - mx0, my1 - my0], 14), "threshold": 0.8, "method": 10001,
+                             "timeout": 20000, "action": "Click", "target_offset": [4, 4, -8, -8],
+                             "post_delay": 1800, "next": ["TR_Entry"],
+                             "focus": {"Node.Recognition.Succeeded": "已识别主界面按钮【记忆回廊】。",
+                                        "Node.Action.Succeeded": "已点击主界面【记忆回廊】，等待入口页。"}}
+    # TR_Resume lives in resource/navigation/train_nodes.json together with the other calibrated train nodes
     # ---- entry page -> difficulty page
     nodes["TR_Entry"] = {**match("entry_title"), "timeout": 20000, "rate_limit": 700, "action": "Click",
                          "target": inner("go_button"), "post_delay": 2000, "next": ["TR_Diff", "TR_EntryRetry"],
@@ -100,8 +116,11 @@ def build():
     nodes["TR_Started"] = {**match("hud_icon", 24), "timeout": 60000, "rate_limit": 700, "action": "DoNothing",
                            "next": ["StoryAfterRoute"], "on_error": ["MA_StuckNotice"],
                            "focus": focus("已进入调查（右上角出现层数 1-1/6 这类标识）：交给事件/商店/战斗节点。")}
-    nodes["TR_Finished"] = {**match("entry_title"), "action": "DoNothing", "next": [],
-                            "focus": focus("调查已结束并回到入口页：记忆回廊任务完成。")}
+    # a finished run (cleared or wiped) drops back on the entry page, and after a wipe the game sometimes
+    # lands on the difficulty page instead; both mean the investigation is over
+    nodes["TR_Finished"] = {"recognition": "Or", "any_of": [match("entry_title"), match("diff_title")],
+                            "box_index": 0, "action": "DoNothing", "next": [],
+                            "focus": focus("调查已结束（回到入口页或选择难度页）：记忆回廊任务完成。")}
     extra = json.loads((NAV / "train_nodes.json").read_text(encoding="utf-8"))["nodes"]
     nodes.update(extra)
     # the post-revive AUTO click uses the same "button present but not lit" test as the story chain (see README)
@@ -138,12 +157,45 @@ def update_interface(orig, ui, nodes):
         "cases": [{"name": k, "label": label + ("（默认）" if k == "normal" else ""), "pipeline_override": ov[k]}
                   for k, label in DIFFICULTIES]}
     override = M.task_definition(orig, extra=("TR_Finished",), done_next=())
-    override["StoryFormation"] = {"next": ["StoryFormation", "TR_Started", "StoryBattleMonitor"]}
-    # pages seen on the train (calibrated on the device) go in front of the generic story handlers
+    # StoryFormation kept itself in its own next list, so a battle screen that still scored above the template
+    # threshold made the task click 调查 forever. Hand over to the AUTO chain once instead.
+    override["StoryFormation"] = {"next": ["StoryAutoAlreadyOn", "StoryAutoControlReady", "StoryBattleMonitor"]}
+    # the generic StoryEventPage only checks "there is a bright bar at the bottom"; the battle screen and the
+    # victory screen satisfy that too, and clicking there spends the hand cards. Require the dark story panel
+    # above the options as well, which the train's event pages always have (see the frames in live/rec).
+    override["StoryEventPage"] = {
+        "recognition": "And",
+        "all_of": [
+            {"recognition": "ColorMatch", "roi": [552, 552, 520, 48], "method": 4,
+             "lower": [145, 145, 145], "upper": [255, 255, 255], "count": 18000, "connected": False},
+            {"recognition": "ColorMatch", "roi": [552, 462, 520, 58], "method": 4,
+             "lower": [0, 0, 0], "upper": [80, 80, 80], "count": 4000, "connected": False}],
+        "box_index": 0}
+
+    # the train's revive dialog uses its own wording (银钥感知到致命危机…), so the mainline question template
+    # scores only 0.69 there; the 【复活确认】header alone is enough to recognise the dialog and click 确认
+    # keep the inherited target / target_offset (target=true + [341,343,-292,-92] lands on 确认 inside the header box)
+    override["StoryReviveDecision"] = {"recognition": "TemplateMatch", "template": "revive_dialog_header.png",
+                                       "roi": [450, 130, 380, 150], "threshold": 0.85, "method": 10001}
+    # pages seen on the train (calibrated on the device) go in front of the generic story handlers.
+    # The AUTO pair rides along: now that StoryEventPage no longer matches battle screens, a battle entered
+    # from the map would otherwise dead-end on a grey AUTO button.
     for name in ("StoryAfterRoute", "StoryInsideRouter", "StoryBattleMonitor"):
         nxt = override[name]["next"]
         at = nxt.index("StoryCutscene") if "StoryCutscene" in nxt else 0
-        override[name]["next"] = nxt[:at] + [n for n in TRAIN_PAGES if n not in nxt] + nxt[at:]
+        block = [n for n in TRAIN_PAGES + ("StoryAutoAlreadyOn",) if n not in nxt]
+        if name != "StoryBattleMonitor":       # inside the monitor it would only ping-pong with itself
+            block += [n for n in ("StoryAutoControlReady",) if n not in nxt]
+        override[name]["next"] = nxt[:at] + block + nxt[at:]
+    # StoryBattleMonitor only waits for a battle/result; an event page inside the train would dead-end there,
+    # so route the generic map handler (StoryEventPage lives in StoryInsideRouter) in as the last resort
+    bm = override["StoryBattleMonitor"]["next"]
+    # a battle that starts without AUTO (or loses it after a revive) just freezes; the generic AUTO chain
+    # gives up when neither the on nor the off template clears its colour guard, so keep a plain
+    # "dim AUTO text = click it" retry in the monitor loop
+    override["StoryBattleMonitor"]["next"] = bm + [n for n in ("TR_AutoRescue", "StoryEventPage") if n not in bm]
+    # a hard-mode train battle easily runs longer than the 4 minutes inherited from the mainline waiter
+    override["StoryBattleMonitor"]["timeout"] = 1200000
     revive = json.loads(json.dumps(d["option"]["主线灵知"]))
     revive["label"], revive["description"] = ("记忆回廊：战斗失败时使用应急灵知体",
                                               "使用：失败时确认复活，等动画结束后只在 AUTO 仍关闭时点一次；灵知用完或不使用时，失败后弹窗警告并停止。")
@@ -192,7 +244,8 @@ def main():
         print("train pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
+        # cv2.imwrite silently fails on non-ASCII paths; imencode + tofile does not
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
     OUT.write_bytes(text.encode("utf-8"))
     INTERFACE.write_bytes(itext.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}; interface.json updated")

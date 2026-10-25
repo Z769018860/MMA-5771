@@ -5,7 +5,9 @@
     "timeout": 30000,
     "next": [
       "Sweep_Reward",
+      "Sweep_NoStamina",
       "Sweep_Dialog",
+      "Sweep_OnMirror",
       "Sweep_Page",
       "Sweep_StagePage",
       "Sweep_FromActivity",
@@ -13,6 +15,53 @@
     ],
     "focus": {
       "Node.Recognition.Succeeded": "镜像囚徒·复刻扫荡：从主界面、活动页、横排关卡页或难度列表开始。"
+    }
+  },
+  "Sweep_NoStamina": {
+    "recognition": "TemplateMatch",
+    "template": "sweep_stamina_title.png",
+    "roi": [
+      545,
+      85,
+      190,
+      55
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      337,
+      563,
+      244,
+      48
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_NeedStamina",
+      "Sweep_Back"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "灵喵肽不足，已点【取消】不购买体力，返回主界面。"
+    }
+  },
+  "Sweep_OnMirror": {
+    "recognition": "TemplateMatch",
+    "template": "sweep_mirror_title.png",
+    "roi": [
+      805,
+      120,
+      440,
+      76
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "DoNothing",
+    "timeout": 6000,
+    "next": [
+      "Sweep_ActivityEntry"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "当前就在【镜像囚徒·复刻】活动页。"
     }
   },
   "Sweep_StagePage": {
@@ -43,11 +92,11 @@
     "template": "sweep_mirror_prisoner_banner.png",
     "roi": [
       0,
-      65,
-      270,
-      110
+      110,
+      290,
+      430
     ],
-    "threshold": 0.62,
+    "threshold": 0.8,
     "method": 10001,
     "action": "Click",
     "target_offset": [
@@ -56,8 +105,9 @@
       -40,
       -24
     ],
-    "post_delay": 800,
+    "post_delay": 1500,
     "next": [
+      "Sweep_OnMirror",
       "Sweep_ActivityEntry"
     ],
     "focus": {
@@ -880,6 +930,7 @@
     "post_delay": 1500,
     "next": [
       "Sweep_Dialog",
+      "Sweep_NoStamina",
       "Sweep_ReplayRetry"
     ],
     "focus": {
@@ -1086,11 +1137,56 @@
     "action": "DoNothing",
     "timeout": 15000,
     "next": [
+      "Sweep_NeedStamina",
       "Sweep_Max",
       "Sweep_Confirm"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "已打开【重现次数】窗口。"
+    }
+  },
+  "Sweep_NeedStamina": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_title.png",
+        "roi": [
+          573,
+          188,
+          132,
+          60
+        ],
+        "threshold": 0.85,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "sweep_dlg_refill.png",
+        "roi": [
+          748,
+          500,
+          170,
+          58
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
+    ],
+    "box_index": 1,
+    "action": "Click",
+    "target": [
+      335,
+      500,
+      230,
+      48
+    ],
+    "post_delay": 1500,
+    "next": [
+      "Sweep_Back"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "灵喵肽不足（确定键为【补充灵喵肽】），已点【取消】不补充，返回主界面。"
     }
   },
   "Sweep_Max": {
@@ -1175,6 +1271,7 @@
     ],
     "post_delay": 2500,
     "next": [
+      "Sweep_NoStamina",
       "Sweep_Reward",
       "Sweep_ConfirmRetry"
     ],
@@ -1267,10 +1364,40 @@
     "threshold": 0.78,
     "method": 10001,
     "action": "DoNothing",
-    "next": [],
+    "next": [
+      "Sweep_Back"
+    ],
     "timeout": 10000,
     "focus": {
       "Node.Recognition.Succeeded": "扫荡完成，回到关卡列表。"
+    }
+  },
+  "Sweep_Back": {
+    "recognition": "TemplateMatch",
+    "template": "social_compass.png",
+    "roi": [
+      1200,
+      0,
+      80,
+      81
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1800,
+    "timeout": 20000,
+    "next": [
+      "Soc_HomeReached",
+      "Sweep_Back"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"
     }
   },
   "Monthly_Sweep_Start": {
@@ -1313,7 +1440,9 @@
     "next": [
       "MonthlyReward_Sweep_Start",
       "Sweep_Reward",
+      "Sweep_NoStamina",
       "Sweep_Dialog",
+      "Sweep_OnMirror",
       "Sweep_Page",
       "Sweep_StagePage",
       "Sweep_FromActivity",
@@ -1344,7 +1473,9 @@
     "post_delay": 1200,
     "next": [
       "Sweep_Reward",
+      "Sweep_NoStamina",
       "Sweep_Dialog",
+      "Sweep_OnMirror",
       "Sweep_Page",
       "Sweep_StagePage",
       "Sweep_FromActivity",

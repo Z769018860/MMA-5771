@@ -60,20 +60,48 @@ def build():
 
     direct = {"recognition": "DirectHit"}
     tap = lambda region_name: {"action": "Click", "target": click_region(region_name)}
-    tabs = {"daily": "cr_daily", "weekly": "cr_weekly"}
+
+    def select(tid):
+        """Selected-tab check: the active card is framed in gold, the other one is grey."""
+        s = ui["selections"][tid]
+        x0, y0, x1, y1 = B.scale_box(s["box"], ui["screens"][s["screen"]]["src_size"])
+        return {"recognition": "ColorMatch", "lower": [s["lower"]], "upper": [s["upper"]],
+                "roi": [x0, y0, x1 - x0, y1 - y0], "count": s["count"]}
+
+    def limit(title_tid, cancel_region):
+        """【领取确认】二次确认框：材料到上限时点【取消】，不消耗次数也不丢东西。"""
+        return {**match(title_tid), "action": "Click", "target": click_region(cancel_region),
+                "post_delay": 900,
+                "focus": {"Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"}}
+
+    def back(template):
+        """点击右上角罗盘返回；配合 Soc_HomeReached 反复执行直到识别到主界面。"""
+        return {"recognition": "TemplateMatch", "template": template, "roi": [1200, 0, 80, 81],
+                "threshold": 0.7, "method": 10001, "action": "Click", "target_offset": [8, 8, -16, -16],
+                "post_delay": 1800, "timeout": 20000,
+                "focus": {"Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"}}
 
     # ------------------------------------------------------------------ 密境课室
+    # 2026-10 改版：左侧两张卡片（日常试训 / 周常试训），右侧任务列表。
+    # 选中的卡片有金黄色边框，未选中的没有 —— 这是区分两个页签的唯一稳定特征。
     nodes["CR_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
-                         "next": ["CR_PageDaily", "CR_PageWeekly", "CR_FromHome"],
+                         "next": ["CR_PageDaily", "CR_OnWeekly", "CR_FromHome"],
                          "focus": focus("密境课室：从日常/周常页或主界面开始。")}
     home = json.loads((ROOT / "resource" / "pipeline" / "navigation.json").read_text(encoding="utf-8"))
-    nodes["CR_FromHome"] = {**home["NavHome_secret_classroom"], "next": ["CR_PageDaily"], "timeout": 20000}
+    nodes["CR_FromHome"] = {**home["NavHome_secret_classroom"], "next": ["CR_PageDaily", "CR_OnWeekly"], "timeout": 20000}
     nodes["CR_FromHomeInterlude"] = {**home["NavHome_interlude"], "next": ["IL_SelectDispatch"], "timeout": 20000}
-    for kind, tid in tabs.items():
+    # CR_OnWeekly = 停在周常页：先去日常，保证「日常→周常」的顺序固定
+    nodes["CR_OnWeekly"] = {"recognition": "And", "all_of": [match("cr_title"), select("cr_weekly_selected")],
+                            "box_index": 0, "action": "DoNothing", "timeout": 6000, "next": ["CR_ToDaily"],
+                            "focus": focus("当前在密境课室【周常试训】页，先切回日常。")}
+    nodes["CR_ToDaily"] = {"recognition": "And", "all_of": [match("cr_title")], "box_index": 0,
+                           **tap("tab_daily"), "post_delay": 1500, "next": ["CR_PageDaily"],
+                           "focus": {"Node.Action.Succeeded": "已点击左侧【日常试训】卡片。"}}
+    for kind in ("daily", "weekly"):
         K = kind[0].upper()
         nodes[f"CR_Page{kind.capitalize()}"] = {
-            "recognition": "And", "all_of": [match("cr_title"), match(tid)], "box_index": 0,
-            "action": "DoNothing", "timeout": 15000, "next": [f"CR_{K}_Claim", f"CR_{K}_Nodes"],
+            "recognition": "And", "all_of": [match("cr_title"), select(f"cr_{kind}_selected")], "box_index": 0,
+            "action": "DoNothing", "timeout": 6000, "next": [f"CR_{K}_Claim", f"CR_{K}_Nodes"],
             "focus": focus(f"已进入密境课室【{'日常' if kind == 'daily' else '周常'}试训】页。")}
         # claim every visible 领取 button (top to bottom), closing the reward popup after each
         nodes[f"CR_{K}_Claim"] = {
@@ -83,8 +111,10 @@ def build():
             "action": "Click", "target_offset": [8, 6, -16, -12], "post_delay": 1500,
             # Retry only after a real reward popup. A claimed task can still resemble
             # the old button template; retrying it without a popup loops forever.
-            "next": [f"CR_{K}_Popup", f"CR_{K}_Nodes"],
+            "next": [f"CR_{K}_Popup", f"CR_{K}_LimitClaim", f"CR_{K}_Nodes"],
             "focus": {"Node.Action.Succeeded": "已点击一个任务的【领取】。"}}
+        # 领取确认：材料已达持有上限时游戏会二次确认，选【取消】避免白领
+        nodes[f"CR_{K}_LimitClaim"] = {**limit("limit_title", "limit_cancel"), "next": [f"CR_{K}_Nodes"]}
         nodes[f"CR_{K}_Popup"] = {
             **match("reward_title", roi=B.grow([480, 150, 320, 90], 0)), "action": "Click",
             "target": click_region("reward_blank"), "post_delay": 1200,
@@ -95,24 +125,27 @@ def build():
                                   "focus": focus("开始点击底部进度节点领取奖励。")}
         for i in range(1, 5):
             last = i == 4
+            after = f"CR_{K}_End" if last else f"CR_{K}_Node{i + 1}"
             nodes[f"CR_{K}_Node{i}"] = {
                 "recognition": "DirectHit", **tap(f"gift_{i}"), "post_delay": 1200,
-                "next": [f"CR_{K}_NodePopup{i}", f"CR_{K}_NodeBlank{i}"]}
+                "next": [f"CR_{K}_NodePopup{i}", f"CR_{K}_NodeLimit{i}", f"CR_{K}_NodeBlank{i}"]}
+            nodes[f"CR_{K}_NodeLimit{i}"] = {**limit("limit_title", "limit_cancel"), "next": [after]}
             nodes[f"CR_{K}_NodePopup{i}"] = {
                 **match("reward_title", roi=B.grow([480, 150, 320, 90], 0)), "action": "Click",
                 "target": click_region("reward_blank"), "post_delay": 1000,
-                "next": [f"CR_{K}_End" if last else f"CR_{K}_Node{i + 1}"]}
+                "next": [after]}
             nodes[f"CR_{K}_NodeBlank{i}"] = {
                 "recognition": "DirectHit", **tap("safe_blank"), "post_delay": 600,
-                "next": [f"CR_{K}_End" if last else f"CR_{K}_Node{i + 1}"],
+                "next": [after],
                 "focus": {"Node.Action.Succeeded": f"节点 {i} 点击后没有出现【获得物资】（可能未达成或已领取）；点击空白处关闭提示。"}}
         nodes[f"CR_{K}_End"] = {"recognition": "DirectHit", "action": "DoNothing",
                                 "next": ["CR_ToWeekly"] if kind == "daily" else ["CR_Done"]}
     nodes["CR_ToWeekly"] = {"recognition": "And", "all_of": [match("cr_title")], "box_index": 0, **tap("tab_weekly"), "post_delay": 1500, "next": ["CR_PageWeekly"],
-                            "focus": {"Node.Action.Succeeded": "已点击左侧【周常】页签。"}}
-    nodes["CR_ToDaily"] = {"recognition": "And", "all_of": [match("cr_title")], "box_index": 0, **tap("tab_daily"), "post_delay": 1500, "next": ["CR_PageDaily"]}
-    nodes["CR_Done"] = {"recognition": "DirectHit", "action": "DoNothing", "next": [],
+                            "focus": {"Node.Action.Succeeded": "已点击左侧【周常试训】卡片。"}}
+    nodes["CR_Done"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["CR_Back"],
                         "focus": focus("密境课室领取完成。")}
+    # 任务之间要能串联：收尾统一点右上角罗盘回主界面（Soc_HomeReached 判断到家）
+    nodes["CR_Back"] = {**back("social_compass.png"), "next": ["Soc_HomeReached", "CR_Back"]}
 
     # ------------------------------------------------------------------ 幕间演习
     nodes["IL_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
@@ -146,8 +179,9 @@ def build():
                                "box_index": 1, "action": "Click",
                                "target_offset": [10, 8, -20, -16], "post_delay": 1500, "next": ["IL_Done"],
                                "focus": {"Node.Action.Succeeded": "已点击【关闭】。"}}
-    nodes["IL_Done"] = {"recognition": "DirectHit", "action": "DoNothing", "next": [],
+    nodes["IL_Done"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["IL_Back"],
                         "focus": focus("幕间演习一键流程完成。")}
+    nodes["IL_Back"] = {**back("social_compass.png"), "next": ["Soc_HomeReached", "IL_Back"]}
     return images, nodes
 
 

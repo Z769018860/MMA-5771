@@ -403,10 +403,10 @@
         "recognition": "TemplateMatch",
         "template": "nav_home_mail.png",
         "roi": [
-          15,
-          227,
-          66,
-          66
+          23,
+          235,
+          50,
+          50
         ],
         "threshold": 0.8,
         "method": 10001

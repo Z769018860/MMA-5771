@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 
 import cv2
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 NAV = ROOT / "resource" / "navigation"
@@ -30,7 +31,8 @@ def scale_box(box, src):
 
 
 def crop(screen_cfg, box):
-    img = cv2.imread(str(NAV / "samples" / screen_cfg["sample"]))
+    # np.fromfile + imdecode: cv2.imread cannot open non-ASCII paths on Windows
+    img = cv2.imdecode(np.fromfile(str(NAV / "samples" / screen_cfg["sample"]), dtype=np.uint8), cv2.IMREAD_COLOR)
     x0, y0, x1, y1 = scale_box(box, screen_cfg["src_size"])
     return img[y0:y1, x0:x1], [x0, y0, x1 - x0, y1 - y0]
 
@@ -191,8 +193,9 @@ def main():
         print("navigation pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
-    OUT.write_text(text, encoding="utf-8")
+        # cv2.imwrite silently fails on non-ASCII paths; imencode + tofile does not
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
+    OUT.write_bytes(text.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 
 

@@ -127,8 +127,9 @@ def main():
         print("social pipeline is up to date")
         return
     for name, img in images.items():
-        cv2.imwrite(str(IMAGE / name), img)
-    OUT.write_text(text, encoding="utf-8")
+        # cv2.imwrite silently fails on non-ASCII paths; imencode + tofile does not
+        cv2.imencode(".png", img)[1].tofile(str(IMAGE / name))
+    OUT.write_bytes(text.encode("utf-8"))
     print(f"{len(images)} templates, {len(nodes)} nodes -> {OUT.relative_to(ROOT)}")
 
 

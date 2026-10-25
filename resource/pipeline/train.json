@@ -6,30 +6,43 @@
     "next": [
       "TR_Diff",
       "TR_Entry",
+      "TR_FromHome",
       "TR_Resume"
     ],
     "on_error": [
       "MA_StuckNotice"
     ],
     "focus": {
-      "Node.Recognition.Succeeded": "记忆回廊：从入口页、难度页或调查中的任意页面开始。"
+      "Node.Recognition.Succeeded": "记忆回廊：从主界面、入口页、难度页或调查中的任意页面开始。"
     }
   },
-  "TR_Resume": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
+  "TR_FromHome": {
+    "recognition": "TemplateMatch",
+    "template": "nav_home_memory_corridor.png",
+    "roi": [
+      844,
+      478,
+      98,
+      50
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "timeout": 20000,
+    "action": "Click",
+    "target_offset": [
+      4,
+      4,
+      -8,
+      -8
+    ],
+    "post_delay": 1800,
     "next": [
-      "AA_PaidRevive",
-      "StoryFormation",
-      "StoryFirstFormation",
-      "StoryCutscene",
-      "StoryEventPage",
-      "StoryChoicePage",
-      "StoryShop",
-      "StoryArtifactSelect",
-      "StoryFinishInvestigation",
-      "StoryReviveDecision"
-    ]
+      "TR_Entry"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "已识别主界面按钮【记忆回廊】。",
+      "Node.Action.Succeeded": "已点击主界面【记忆回廊】，等待入口页。"
+    }
   },
   "TR_Entry": {
     "recognition": "TemplateMatch",
@@ -235,20 +248,300 @@
     }
   },
   "TR_Finished": {
-    "recognition": "TemplateMatch",
-    "template": "train_entry_title.png",
-    "roi": [
-      78,
-      12,
-      152,
-      68
+    "recognition": "Or",
+    "any_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "train_entry_title.png",
+        "roi": [
+          78,
+          12,
+          152,
+          68
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "TemplateMatch",
+        "template": "train_diff_title.png",
+        "roi": [
+          935,
+          93,
+          148,
+          68
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      }
     ],
-    "threshold": 0.8,
-    "method": 10001,
+    "box_index": 0,
     "action": "DoNothing",
     "next": [],
     "focus": {
-      "Node.Recognition.Succeeded": "调查已结束并回到入口页：记忆回廊任务完成。"
+      "Node.Recognition.Succeeded": "调查已结束（回到入口页或选择难度页）：记忆回廊任务完成。"
+    }
+  },
+  "TR_RosterExit": {
+    "recognition": "TemplateMatch",
+    "template": "train_roster_title.png",
+    "roi": [
+      4,
+      12,
+      157,
+      56
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1218,
+      16,
+      38,
+      40
+    ],
+    "post_delay": 900,
+    "next": [
+      "StoryFormation",
+      "StoryAfterRoute",
+      "TR_Resume"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "停在【选择唤醒体】列表页：点右上角 X 回编队页，让编队节点头继续点【调查】。"
+    }
+  },
+  "TR_CharPageExit": {
+    "recognition": "TemplateMatch",
+    "template": "train_char_page_title.png",
+    "roi": [
+      994,
+      614,
+      202,
+      70
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1218,
+      19,
+      38,
+      38
+    ],
+    "post_delay": 800,
+    "next": [
+      "StoryAfterRoute",
+      "TR_Resume"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "误入角色详情页：点右上角 X 返回。"
+    }
+  },
+  "TR_Resume": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "next": [
+      "TR_CharPageExit",
+      "TR_RosterExit",
+      "TR_CardModify",
+      "AA_PaidRevive",
+      "StoryFormation",
+      "StoryFirstFormation",
+      "StoryAutoAlreadyOn",
+      "TR_CommandPick",
+      "TR_CardRemove",
+      "TR_AwakenPick",
+      "StoryCutscene",
+      "StoryEventPage",
+      "StoryChoicePage",
+      "StoryShop",
+      "StoryArtifactSelect",
+      "StoryFinishInvestigation",
+      "StoryReviveDecision",
+      "StoryAutoControlReady",
+      "StoryBattleMonitor"
+    ]
+  },
+  "TR_CommandPick": {
+    "recognition": "TemplateMatch",
+    "template": "train_command_title.png",
+    "roi": [
+      480,
+      140,
+      380,
+      100
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      870,
+      280,
+      235,
+      50
+    ],
+    "post_delay": 1200,
+    "next": [
+      "StoryBattleMonitor"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "战斗中弹出【请选择指令】：选择第一条可用的【释放】。",
+      "Node.Action.Succeeded": "已释放第一条指令，继续战斗监控。"
+    }
+  },
+  "TR_CardModify": {
+    "recognition": "TemplateMatch",
+    "template": "train_card_modify_title.png",
+    "roi": [
+      324,
+      103,
+      597,
+      74
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      200,
+      250,
+      90,
+      100
+    ],
+    "post_delay": 800,
+    "next": [
+      "TR_CardModifyDismiss"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "事件奖励【选择 1 张牌降低算力消耗并获得共鸣效果】：选左上第一张牌。",
+      "Node.Action.Succeeded": "已选中牌（会同时弹出词缀说明），先点空白关掉说明。"
+    }
+  },
+  "TR_CardModifyConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      910,
+      575,
+      205,
+      50
+    ],
+    "post_delay": 1500,
+    "timeout": 20000,
+    "next": [
+      "TR_CardModify",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点【确定】结束改牌页。"
+    }
+  },
+  "TR_CardRemove": {
+    "recognition": "TemplateMatch",
+    "template": "train_card_remove_title.png",
+    "roi": [
+      300,
+      110,
+      660,
+      60
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      165,
+      180,
+      130,
+      260
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_CardRemove2"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "【选择至多 2 张卡牌删除】页：删掉最左边两张基本牌。",
+      "Node.Action.Succeeded": "已选中第 1 张要删除的卡牌。"
+    }
+  },
+  "TR_CardRemove2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      320,
+      180,
+      130,
+      260
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_CardRemoveConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选中第 2 张要删除的卡牌。"
+    }
+  },
+  "TR_CardRemoveConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      907,
+      575,
+      210,
+      45
+    ],
+    "post_delay": 1600,
+    "timeout": 20000,
+    "next": [
+      "TR_CardRemove",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点【确定】完成删卡。"
+    }
+  },
+  "TR_AwakenPick": {
+    "recognition": "TemplateMatch",
+    "template": "train_awaken_title.png",
+    "roi": [
+      470,
+      105,
+      300,
+      60
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      210,
+      200,
+      220,
+      360
+    ],
+    "post_delay": 900,
+    "next": [
+      "TR_AwakenConfirm"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "【选择唤醒体】页：先点最左边的唤醒体。",
+      "Node.Action.Succeeded": "已选中第一个唤醒体，等待【确定】亮起。"
+    }
+  },
+  "TR_AwakenConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      525,
+      610,
+      225,
+      38
+    ],
+    "post_delay": 1500,
+    "timeout": 20000,
+    "next": [
+      "TR_AwakenPick",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点【确定】离开选择唤醒体页。"
     }
   },
   "TR_FormationRouter": {
@@ -314,10 +607,10 @@
     "method": 10001,
     "action": "Click",
     "target": [
-      95,
-      555,
-      50,
-      50
+      600,
+      100,
+      80,
+      40
     ],
     "post_delay": 500,
     "next": [
@@ -337,10 +630,10 @@
     "method": 10001,
     "action": "Click",
     "target": [
-      95,
-      555,
-      50,
-      50
+      600,
+      100,
+      80,
+      40
     ],
     "post_delay": 500,
     "next": [
@@ -509,11 +802,14 @@
     "next": [
       "AA_PaidRevive",
       "StoryAutoAlreadyOn",
-      "TR_AutoAfterRevive"
+      "TR_AutoAfterRevive",
+      "StoryCutscene",
+      "TR_PostReviveWait"
     ],
     "on_error": [
       "MA_StuckNotice"
-    ]
+    ],
+    "timeout": 120000
   },
   "TR_AutoAfterRevive": {
     "recognition": "And",
@@ -572,8 +868,10 @@
     "post_delay": 1400,
     "next": [
       "StoryAutoAlreadyOn",
-      "TR_AutoUnavailable"
-    ]
+      "TR_AutoAfterRevive",
+      "StoryBattleMonitor"
+    ],
+    "timeout": 30000
   },
   "TR_AutoUnavailable": {
     "recognition": "DirectHit",
@@ -592,6 +890,142 @@
     "on_error": [],
     "focus": {
       "Node.Recognition.Succeeded": "AUTO 点击后仍未启用：已停止并弹出提示。"
+    }
+  },
+  "TR_CardModifyDismiss": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      590,
+      660,
+      100,
+      45
+    ],
+    "post_delay": 600,
+    "next": [
+      "TR_CardModifyConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点空白关闭【词缀说明】弹窗（选中状态保留）。"
+    }
+  },
+  "TR_EngraveTwo": {
+    "recognition": "TemplateMatch",
+    "template": "train_engrave_two_title.png",
+    "roi": [
+      479,
+      104,
+      317,
+      70
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      200,
+      250,
+      90,
+      100
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_EngraveTwo2"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "【选择两张卡牌镶嵌刻印】页：依次选中前两张牌。",
+      "Node.Action.Succeeded": "已选中第 1 张牌。"
+    }
+  },
+  "TR_EngraveTwo2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      370,
+      250,
+      90,
+      100
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_EngraveTwoConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选中第 2 张牌。"
+    }
+  },
+  "TR_EngraveTwoConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      960,
+      575,
+      100,
+      45
+    ],
+    "post_delay": 1500,
+    "timeout": 20000,
+    "next": [
+      "TR_EngraveTwo",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点【确定】完成镶嵌刻印。"
+    }
+  },
+  "TR_AwakenRage": {
+    "recognition": "TemplateMatch",
+    "template": "train_awaken_rage_title.png",
+    "roi": [
+      534,
+      76,
+      230,
+      70
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      240,
+      330,
+      40,
+      40
+    ],
+    "post_delay": 2500,
+    "next": [
+      "StoryBattleMonitor",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "战斗中弹出【请选择唤醒体】（狂气）：点第一张，点完立即生效并继续战斗。",
+      "Node.Action.Succeeded": "已选择唤醒体，回到战斗监控。"
+    }
+  },
+  "TR_AutoRescue": {
+    "recognition": "TemplateMatch",
+    "template": "auto_off_text.png",
+    "roi": [
+      25,
+      470,
+      85,
+      60
+    ],
+    "threshold": 0.82,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      20,
+      480,
+      85,
+      42
+    ],
+    "post_delay": 1200,
+    "next": [
+      "StoryBattleMonitor",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "战斗里 AUTO 仍是暗色（未开启）：补点一次。",
+      "Node.Action.Succeeded": "已点 AUTO，继续监控战斗。"
     }
   }
 }

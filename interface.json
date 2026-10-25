@@ -3,7 +3,7 @@
   "name": "MorimensSyncRate",
   "label": "忘却前夜同调率循环助手",
   "title": "忘却前夜同调率循环助手（MaaFramework）",
-  "version": "2.15.1",
+  "version": "2.16.0",
   "github": "https://github.com/Z769018860/MMA-5771",
   "description": "忘却前夜后台同调率循环与自动推剧情 Demo；事件选项优先于底层战斗信号，并增强多轮同调率结果页恢复。",
   "welcome": "同调率支持可选助战；自动推剧情 Demo 支持战斗、剧情跳过、选项、商店和造物三选一。UID 遮挡随助手自动开启。",
@@ -171,7 +171,7 @@
       ],
       "default_check": false,
       "repeatable": false,
-      "description": "日常流程：从主界面或商店页检查限时礼盒的两笔领取奖励，以及精选礼盒的每日免费补助；只点击可领取的免费按钮，不购买标价礼盒。"
+      "description": "日常流程：从主界面或商店页打开【精选礼盒】，领取【每日常规补助】的【免费】奖励；只点击免费按钮，不购买标价礼盒。"
     },
     {
       "name": "信箱全部领取",
@@ -584,12 +584,22 @@
       "pipeline_override": {
         "StoryAfterRoute": {
           "next": [
+            "TR_CharPageExit",
+            "TR_RosterExit",
+            "TR_CardModify",
+            "TR_CommandPick",
+            "TR_CardRemove",
+            "TR_AwakenRage",
+            "TR_AwakenPick",
             "TR_Ability",
             "TR_Tooltip",
             "TR_EngraveTooltip",
             "TR_RelicExit",
             "TR_ArtifactChoice",
+            "TR_EngraveTwo",
             "TR_Engrave",
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
@@ -611,12 +621,22 @@
         },
         "StoryInsideRouter": {
           "next": [
+            "TR_CharPageExit",
+            "TR_RosterExit",
+            "TR_CardModify",
+            "TR_CommandPick",
+            "TR_CardRemove",
+            "TR_AwakenRage",
+            "TR_AwakenPick",
             "TR_Ability",
             "TR_Tooltip",
             "TR_EngraveTooltip",
             "TR_RelicExit",
             "TR_ArtifactChoice",
+            "TR_EngraveTwo",
             "TR_Engrave",
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
             "StoryCutscene",
             "StoryEventPage",
             "TeamB_Fix",
@@ -641,20 +661,31 @@
             "AA_PaidRevive",
             "StoryReviveDecision",
             "StoryFinishInvestigation",
+            "TR_CharPageExit",
+            "TR_RosterExit",
+            "TR_CardModify",
+            "TR_CommandPick",
+            "TR_CardRemove",
+            "TR_AwakenRage",
+            "TR_AwakenPick",
             "TR_Ability",
             "TR_Tooltip",
             "TR_EngraveTooltip",
             "TR_RelicExit",
             "TR_ArtifactChoice",
+            "TR_EngraveTwo",
             "TR_Engrave",
+            "StoryAutoAlreadyOn",
             "StoryCutscene",
             "StoryChoicePage",
             "StoryShop",
             "StoryArtifactSelect",
             "MA_RewardPopup",
-            "TR_Finished"
+            "TR_Finished",
+            "TR_AutoRescue",
+            "StoryEventPage"
           ],
-          "timeout": 240000,
+          "timeout": 1200000,
           "on_error": [
             "MA_ManualNotice"
           ]
@@ -707,10 +738,72 @@
         },
         "StoryFormation": {
           "next": [
-            "StoryFormation",
-            "TR_Started",
+            "StoryAutoAlreadyOn",
+            "StoryAutoControlReady",
             "StoryBattleMonitor"
           ]
+        },
+        "StoryEventPage": {
+          "recognition": "And",
+          "all_of": [
+            {
+              "recognition": "ColorMatch",
+              "roi": [
+                552,
+                552,
+                520,
+                48
+              ],
+              "method": 4,
+              "lower": [
+                145,
+                145,
+                145
+              ],
+              "upper": [
+                255,
+                255,
+                255
+              ],
+              "count": 18000,
+              "connected": false
+            },
+            {
+              "recognition": "ColorMatch",
+              "roi": [
+                552,
+                462,
+                520,
+                58
+              ],
+              "method": 4,
+              "lower": [
+                0,
+                0,
+                0
+              ],
+              "upper": [
+                80,
+                80,
+                80
+              ],
+              "count": 4000,
+              "connected": false
+            }
+          ],
+          "box_index": 0
+        },
+        "StoryReviveDecision": {
+          "recognition": "TemplateMatch",
+          "template": "revive_dialog_header.png",
+          "roi": [
+            450,
+            130,
+            380,
+            150
+          ],
+          "threshold": 0.85,
+          "method": 10001
         }
       },
       "description": "入口页点启程 → 选难度 → 挑战 → 编队页点调查 → 事件/商店/战斗按主线逻辑自动处理，直到调查结束回到入口页。Boss 超时、战败且灵知用完、或画面无法识别时弹窗提示并停止。"
@@ -1528,6 +1621,7 @@
             },
             "CR_FromHome": {
               "next": [
+                "CR_PageWeekly",
                 "CR_ToWeekly"
               ]
             }
@@ -5307,7 +5401,7 @@
                 "Monthly_CR_Start",
                 "MonthlyReward_CR_Start",
                 "CR_PageDaily",
-                "CR_PageWeekly",
+                "CR_OnWeekly",
                 "CR_FromHome"
               ]
             },
@@ -5333,7 +5427,9 @@
                 "Monthly_Sweep_Start",
                 "MonthlyReward_Sweep_Start",
                 "Sweep_Reward",
+                "Sweep_NoStamina",
                 "Sweep_Dialog",
+                "Sweep_OnMirror",
                 "Sweep_Page",
                 "Sweep_StagePage",
                 "Sweep_FromActivity",

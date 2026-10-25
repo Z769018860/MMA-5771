@@ -57,6 +57,19 @@ def build():
     images["sweep_stage5_title.png"] = right_view[495:535, 430:590]
     images["sweep_stage6_title.png"] = right_view[495:535, 720:835]
     images["sweep_stage7_title.png"] = right_view[495:535, 960:1140]
+    # 活动页右侧的大标题「镜像囚徒·复刻」：只要看到它就说明当前已经是这个活动，
+    # 不必再去点左侧列表（列表项被选中后外观会变，横幅模板反而匹配不上）。
+    mirror_view = cv2.imdecode(np.fromfile(NAV / "samples" / "activity_mirror_prisoner.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+    mirror_view = cv2.resize(mirror_view, (1280, 720))
+    images["sweep_mirror_title.png"] = mirror_view[130:186, 815:1235]
+    # 灵喵肽不足时点【重现/确定】会弹【补充灵喵肽】（用灵喵肽或银芯买体力），必须取消
+    stamina_view = cv2.imdecode(np.fromfile(NAV / "samples" / "sweep_stamina.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+    stamina_view = cv2.resize(stamina_view, (1280, 720))
+    images["sweep_stamina_title.png"] = stamina_view[97:128, 557:723]
+    # 体力不足时【重现次数】窗口的确定键会变成【补充灵喵肽】——看到它就说明体力不够，点取消收工
+    need_view = cv2.imdecode(np.fromfile(NAV / "samples" / "sweep_need_stamina.png", dtype=np.uint8), cv2.IMREAD_COLOR)
+    need_view = cv2.resize(need_view, (1280, 720))
+    images["sweep_dlg_refill.png"] = need_view[514:544, 762:904]
 
     def match(tid, grow=16):
         return {"recognition": "TemplateMatch", "template": f"sweep_{tid}.png", "roi": B.grow(rects[tid], grow),
@@ -71,8 +84,19 @@ def build():
         return {"Node.Recognition.Succeeded": text}
 
     nodes["Sweep_Start"] = {"recognition": "DirectHit", "action": "DoNothing", "timeout": 30000,
-                            "next": ["Sweep_Reward", "Sweep_Dialog", "Sweep_Page", "Sweep_StagePage", "Sweep_FromActivity", "Sweep_FromHome"],
+                            "next": ["Sweep_Reward", "Sweep_NoStamina", "Sweep_Dialog", "Sweep_OnMirror", "Sweep_Page", "Sweep_StagePage", "Sweep_FromActivity", "Sweep_FromHome"],
                             "focus": focus("镜像囚徒·复刻扫荡：从主界面、活动页、横排关卡页或难度列表开始。")}
+    # 灵喵肽不足：【补充灵喵肽】是要花灵喵肽/银芯买体力的付费弹窗，一律点【取消】后回主界面
+    nodes["Sweep_NoStamina"] = {"recognition": "TemplateMatch", "template": "sweep_stamina_title.png",
+                                "roi": [545, 85, 190, 55], "threshold": 0.85, "method": 10001,
+                                "action": "Click", "target": [337, 563, 244, 48], "post_delay": 1500,
+                                "next": ["Sweep_NeedStamina", "Sweep_Back"],
+                                "focus": {"Node.Action.Succeeded": "灵喵肽不足，已点【取消】不购买体力，返回主界面。"}}
+    # 已经在【镜像囚徒·复刻】活动页：右侧大标题是稳定标志，直接点【飞跃青空】
+    nodes["Sweep_OnMirror"] = {"recognition": "TemplateMatch", "template": "sweep_mirror_title.png",
+                               "roi": [805, 120, 440, 76], "threshold": 0.8, "method": 10001,
+                               "action": "DoNothing", "timeout": 6000, "next": ["Sweep_ActivityEntry"],
+                               "focus": focus("当前就在【镜像囚徒·复刻】活动页。")}
     # from the activity stage page: open node N (default 1), arriving at the level list
     act = json.loads((NAV / "activity_ui.json").read_text(encoding="utf-8"))
     asc = act["screens"][act["nodes"]["screen"]]["src_size"]
@@ -81,10 +105,12 @@ def build():
     nodes["Sweep_StagePage"] = {**drop, "action": "DoNothing", "next": ["Sweep_FromStage"]}
     nodes["Sweep_FromStage"] = {"recognition": "DirectHit", "action": "DoNothing", "next": ["SweepNode1"]}
     nodes["Sweep_FromActivity"] = {
+        # 活动页左侧列表会随排期变化，默认选中的是当期新活动（如「不发糖就捣蛋！复刻」）。
+        # 这里用横幅图直接定位【镜像囚徒·复刻】这一项，而不是按固定槽位点 —— 槽位会漂。
         "recognition": "TemplateMatch", "template": "sweep_mirror_prisoner_banner.png",
-        "roi": [0, 65, 270, 110], "threshold": 0.62, "method": 10001,
-        "action": "Click", "target_offset": [20, 12, -40, -24], "post_delay": 800,
-        "next": ["Sweep_ActivityEntry"],
+        "roi": [0, 110, 290, 430], "threshold": 0.8, "method": 10001,
+        "action": "Click", "target_offset": [20, 12, -40, -24], "post_delay": 1500,
+        "next": ["Sweep_OnMirror", "Sweep_ActivityEntry"],
         "focus": {"Node.Action.Succeeded": "已识别并选择【镜像囚徒·复刻】活动。"},
     }
     nodes["Sweep_ActivityEntry"] = {
@@ -126,7 +152,7 @@ def build():
                                  "focus": {"Node.Action.Succeeded": "已选中列表最后一项上面的关卡（癫狂的上一个）。"}}
     nodes["Sweep_Replay"] = {"recognition": "And", "all_of": [LIST_TITLE, match("replay_btn")], "box_index": 1, "timeout": 15000,
                              "action": "Click", "target_offset": [20, 8, -40, -16], "post_delay": 1500,
-                             "next": ["Sweep_Dialog", "Sweep_ReplayRetry"],
+                             "next": ["Sweep_Dialog", "Sweep_NoStamina", "Sweep_ReplayRetry"],
                              "focus": {"Node.Action.Succeeded": "已点击【重现】。"}}
     nodes["Sweep_ReplayRetry"] = {**nodes["Sweep_Replay"], "timeout": 10000, "next": ["Sweep_Dialog"],
                                   "focus": {"Node.Action.Succeeded": "【重现】没有打开窗口，再点一次。"}}
@@ -146,15 +172,23 @@ def build():
                              "focus": {"Node.Recognition.Succeeded": "先通关一次的挑战失败，停止。"}}
     # count dialog
     nodes["Sweep_Dialog"] = {**match("dlg_title"), "action": "DoNothing", "timeout": 15000,
-                             "next": ["Sweep_Max", "Sweep_Confirm"],
+                             "next": ["Sweep_NeedStamina", "Sweep_Max", "Sweep_Confirm"],
                              "focus": focus("已打开【重现次数】窗口。")}
+    # 体力不够：确定键变成【补充灵喵肽】，点【取消】结束本次扫荡（不买体力）
+    nodes["Sweep_NeedStamina"] = {"recognition": "And",
+                                  "all_of": [match("dlg_title"),
+                                             {"recognition": "TemplateMatch", "template": "sweep_dlg_refill.png",
+                                              "roi": [748, 500, 170, 58], "threshold": 0.8, "method": 10001}],
+                                  "box_index": 1, "action": "Click", "target": [335, 500, 230, 48],
+                                  "post_delay": 1500, "next": ["Sweep_Back"],
+                                  "focus": {"Node.Action.Succeeded": "灵喵肽不足（确定键为【补充灵喵肽】），已点【取消】不补充，返回主界面。"}}
     nodes["Sweep_Max"] = {"recognition": "And", "all_of": [match("dlg_title"), match("dlg_max")], "box_index": 1,
                           "action": "Click", "target_offset": [6, 5, -12, -10], "post_delay": 900,
                           "next": ["Sweep_Confirm"],
                           "focus": {"Node.Action.Succeeded": "已点击最大次数按钮（↑）。"}}
     nodes["Sweep_Confirm"] = {"recognition": "And", "all_of": [match("dlg_title"), match("dlg_ok")], "box_index": 1,
                               "action": "Click", "target_offset": [20, 10, -40, -20], "post_delay": 2500,
-                              "next": ["Sweep_Reward", "Sweep_ConfirmRetry"],
+                              "next": ["Sweep_NoStamina", "Sweep_Reward", "Sweep_ConfirmRetry"],
                               "focus": {"Node.Action.Succeeded": "已点击【确定】。"}}
     # one retry only: a window that stays open must not loop forever (确定 may be greyed out, e.g. not enough stamina)
     nodes["Sweep_ConfirmRetry"] = {**nodes["Sweep_Confirm"], "timeout": 10000, "next": ["Sweep_Reward"],
@@ -162,8 +196,14 @@ def build():
     nodes["Sweep_Reward"] = {**match("reward_title"), "timeout": 20000, "action": "Click", "target": region("reward_blank"),
                              "post_delay": 1500, "next": ["Sweep_Reward", "Sweep_Done"],
                              "focus": {"Node.Action.Succeeded": "已点击空白处关闭【重现奖励】。"}}
-    nodes["Sweep_Done"] = {**LIST_TITLE, "action": "DoNothing", "next": [], "timeout": 10000,
+    nodes["Sweep_Done"] = {**LIST_TITLE, "action": "DoNothing", "next": ["Sweep_Back"], "timeout": 10000,
                            "focus": focus("扫荡完成，回到关卡列表。")}
+    # 收尾回主界面，方便和其它日常任务串联
+    nodes["Sweep_Back"] = {"recognition": "TemplateMatch", "template": "social_compass.png",
+                           "roi": [1200, 0, 80, 81], "threshold": 0.7, "method": 10001,
+                           "action": "Click", "target_offset": [8, 8, -16, -16], "post_delay": 1800,
+                           "timeout": 20000, "next": ["Soc_HomeReached", "Sweep_Back"],
+                           "focus": {"Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"}}
     return images, nodes
 
 

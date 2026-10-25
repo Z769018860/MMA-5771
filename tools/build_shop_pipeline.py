@@ -48,20 +48,12 @@ def main():
         "Shop_FromHome": {**match("nav_home_misago_shop.png", [1037, 541, 200, 108]),
                           **click([1100, 565, 100, 65], ["Shop_Page"], "已进入弥萨格商店。"), "timeout": 20000},
         "Shop_Page": {**match("shop_title.png", [90, 15, 165, 48]), "action": "DoNothing",
-                      "next": ["Shop_OpenLimited"], "timeout": 15000},
-        "Shop_OpenLimited": {**match("shop_title.png", [90, 15, 165, 48]),
-                             **click([62, 180, 120, 48], ["Shop_LimitedFirst", "Shop_LimitedSecond", "Shop_OpenFeatured"], "查看限时礼盒的免费奖励。")},
-        "Shop_LimitedFirst": {"recognition": "And", "all_of": [match("shop_limited_title.png", [625, 70, 215, 70]),
-                             match("shop_claim.png", [1030, 205, 135, 53])], "box_index": 1,
-                              **click([1040, 208, 115, 44], ["Shop_RewardLimited", "Shop_LimitedSecond", "Shop_OpenFeatured"], "领取限时礼盒第一笔免费奖励。")},
-        "Shop_LimitedSecond": {"recognition": "And", "all_of": [match("shop_limited_title.png", [625, 70, 215, 70]),
-                              match("shop_claim.png", [1030, 345, 135, 53])], "box_index": 1,
-                               **click([1040, 348, 115, 44], ["Shop_RewardLimited", "Shop_OpenFeatured"], "领取限时礼盒第二笔免费奖励。")},
-        "Shop_RewardLimited": {**match("shop_reward_title.png", [550, 175, 175, 80]),
-                               **click([1000, 450, 150, 85], ["Shop_LimitedSecond", "Shop_OpenFeatured"], "关闭领取奖励弹窗。")},
+                      "next": ["Shop_OpenFeatured"], "timeout": 15000},
+        # 2026-10 改版：左侧页签变为 月相观测 / 精选礼盒 / 幻衣订购 / 课题礼匣 / 银芯购买 / 兑换商店。
+        # 原来的「限时礼盒两笔领取」已下线，唯一的日常免费奖励在【精选礼盒】→【每日常规补助】的【免费】。
         "Shop_OpenFeatured": {**match("shop_title.png", [90, 15, 165, 48]),
-                              **click([62, 246, 120, 48], ["Shop_FeaturedFree", "Shop_Exit"], "查看精选礼盒的每日免费补助。")},
-        "Shop_FeaturedFree": {"recognition": "And", "all_of": [match("shop_featured_tab.png", [55, 245, 125, 48]),
+                              **click([62, 180, 120, 48], ["Shop_FeaturedFree", "Shop_Exit"], "查看精选礼盒的每日免费补助。")},
+        "Shop_FeaturedFree": {"recognition": "And", "all_of": [match("shop_featured_tab.png", [55, 175, 125, 55]),
                               match("shop_free.png", [300, 590, 80, 45])], "box_index": 1,
                                **click([315, 592, 72, 40], ["Shop_RewardFeatured", "Shop_Exit"], "领取精选礼盒每日免费补助。")},
         "Shop_RewardFeatured": {**match("shop_reward_title.png", [550, 175, 175, 80]),
@@ -69,7 +61,7 @@ def main():
         "Shop_Exit": {**match("shop_title.png", [90, 15, 165, 48]),
                       **click([1210, 8, 65, 66], [], "免费商店奖励已检查完，返回主界面。")},
     }
-    PIPELINE.write_text(json.dumps(nodes, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    PIPELINE.write_bytes((json.dumps(nodes, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
     interface_path = ROOT / "interface.json"
     interface = json.loads(interface_path.read_text(encoding="utf-8-sig"))
     interface["task"] = [task for task in interface["task"] if task["name"] != "商店免费奖励"]
@@ -77,9 +69,9 @@ def main():
     interface["task"].insert(insert_at, {
         "name": "商店免费奖励", "label": "弥萨格商店：领取红点免费奖励", "entry": "Shop_Start",
         "option": [], "default_check": False, "repeatable": False,
-        "description": "日常流程：从主界面或商店页检查限时礼盒的两笔领取奖励，以及精选礼盒的每日免费补助；只点击可领取的免费按钮，不购买标价礼盒。",
+        "description": "日常流程：从主界面或商店页打开【精选礼盒】，领取【每日常规补助】的【免费】奖励；只点击免费按钮，不购买标价礼盒。",
     })
-    interface_path.write_text(json.dumps(interface, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    interface_path.write_bytes((json.dumps(interface, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
 
 
 if __name__ == "__main__":

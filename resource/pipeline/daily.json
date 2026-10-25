@@ -5,7 +5,7 @@
     "timeout": 30000,
     "next": [
       "CR_PageDaily",
-      "CR_PageWeekly",
+      "CR_OnWeekly",
       "CR_FromHome"
     ],
     "focus": {
@@ -32,7 +32,8 @@
     ],
     "post_delay": 1500,
     "next": [
-      "CR_PageDaily"
+      "CR_PageDaily",
+      "CR_OnWeekly"
     ],
     "focus": {
       "Node.Recognition.Succeeded": "主界面按钮【密境课堂】已识别。",
@@ -68,15 +69,15 @@
     },
     "timeout": 20000
   },
-  "CR_PageDaily": {
+  "CR_OnWeekly": {
     "recognition": "And",
     "all_of": [
       {
         "recognition": "TemplateMatch",
         "template": "daily_cr_title.png",
         "roi": [
-          86,
-          10,
+          85,
+          9,
           136,
           65
         ],
@@ -84,12 +85,50 @@
         "method": 10001
       },
       {
-        "recognition": "TemplateMatch",
-        "template": "daily_cr_daily.png",
+        "recognition": "ColorMatch",
+        "lower": [
+          [
+            130,
+            100,
+            50
+          ]
+        ],
+        "upper": [
+          [
+            235,
+            200,
+            145
+          ]
+        ],
         "roi": [
-          198,
-          10,
-          57,
+          112,
+          244,
+          14,
+          96
+        ],
+        "count": 60
+      }
+    ],
+    "box_index": 0,
+    "action": "DoNothing",
+    "timeout": 6000,
+    "next": [
+      "CR_ToDaily"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "当前在密境课室【周常试训】页，先切回日常。"
+    }
+  },
+  "CR_ToDaily": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "daily_cr_title.png",
+        "roi": [
+          85,
+          9,
+          136,
           65
         ],
         "threshold": 0.8,
@@ -97,8 +136,64 @@
       }
     ],
     "box_index": 0,
+    "action": "Click",
+    "target": [
+      146,
+      102,
+      278,
+      100
+    ],
+    "post_delay": 1500,
+    "next": [
+      "CR_PageDaily"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点击左侧【日常试训】卡片。"
+    }
+  },
+  "CR_PageDaily": {
+    "recognition": "And",
+    "all_of": [
+      {
+        "recognition": "TemplateMatch",
+        "template": "daily_cr_title.png",
+        "roi": [
+          85,
+          9,
+          136,
+          65
+        ],
+        "threshold": 0.8,
+        "method": 10001
+      },
+      {
+        "recognition": "ColorMatch",
+        "lower": [
+          [
+            130,
+            100,
+            50
+          ]
+        ],
+        "upper": [
+          [
+            235,
+            200,
+            145
+          ]
+        ],
+        "roi": [
+          112,
+          100,
+          14,
+          110
+        ],
+        "count": 60
+      }
+    ],
+    "box_index": 0,
     "action": "DoNothing",
-    "timeout": 15000,
+    "timeout": 6000,
     "next": [
       "CR_D_Claim",
       "CR_D_Nodes"
@@ -114,8 +209,8 @@
         "recognition": "TemplateMatch",
         "template": "daily_cr_title.png",
         "roi": [
-          86,
-          10,
+          85,
+          9,
           136,
           65
         ],
@@ -127,9 +222,9 @@
         "template": "daily_cr_claim.png",
         "roi": [
           1040,
-          80,
-          1220,
-          561
+          90,
+          1210,
+          700
         ],
         "threshold": 0.75,
         "method": 10001,
@@ -148,11 +243,38 @@
     "post_delay": 1500,
     "next": [
       "CR_D_Popup",
+      "CR_D_LimitClaim",
       "CR_D_Nodes"
     ],
     "focus": {
       "Node.Action.Succeeded": "已点击一个任务的【领取】。"
     }
+  },
+  "CR_D_LimitClaim": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_D_Nodes"
+    ]
   },
   "CR_D_Popup": {
     "recognition": "TemplateMatch",
@@ -195,15 +317,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      433,
-      597,
-      36,
-      28
+      729,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_D_NodePopup1",
+      "CR_D_NodeLimit1",
       "CR_D_NodeBlank1"
+    ]
+  },
+  "CR_D_NodeLimit1": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_D_Node2"
     ]
   },
   "CR_D_NodePopup1": {
@@ -233,8 +382,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -250,15 +399,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      666,
-      597,
-      36,
-      28
+      860,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_D_NodePopup2",
+      "CR_D_NodeLimit2",
       "CR_D_NodeBlank2"
+    ]
+  },
+  "CR_D_NodeLimit2": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_D_Node3"
     ]
   },
   "CR_D_NodePopup2": {
@@ -288,8 +464,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -305,15 +481,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      899,
-      597,
-      36,
-      28
+      991,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_D_NodePopup3",
+      "CR_D_NodeLimit3",
       "CR_D_NodeBlank3"
+    ]
+  },
+  "CR_D_NodeLimit3": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_D_Node4"
     ]
   },
   "CR_D_NodePopup3": {
@@ -343,8 +546,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -360,15 +563,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      1132,
-      597,
-      36,
-      28
+      1121,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_D_NodePopup4",
+      "CR_D_NodeLimit4",
       "CR_D_NodeBlank4"
+    ]
+  },
+  "CR_D_NodeLimit4": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_D_End"
     ]
   },
   "CR_D_NodePopup4": {
@@ -398,8 +628,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -425,8 +655,8 @@
         "recognition": "TemplateMatch",
         "template": "daily_cr_title.png",
         "roi": [
-          86,
-          10,
+          85,
+          9,
           136,
           65
         ],
@@ -434,21 +664,33 @@
         "method": 10001
       },
       {
-        "recognition": "TemplateMatch",
-        "template": "daily_cr_weekly.png",
-        "roi": [
-          195,
-          0,
-          58,
-          62
+        "recognition": "ColorMatch",
+        "lower": [
+          [
+            130,
+            100,
+            50
+          ]
         ],
-        "threshold": 0.8,
-        "method": 10001
+        "upper": [
+          [
+            235,
+            200,
+            145
+          ]
+        ],
+        "roi": [
+          112,
+          244,
+          14,
+          96
+        ],
+        "count": 60
       }
     ],
     "box_index": 0,
     "action": "DoNothing",
-    "timeout": 15000,
+    "timeout": 6000,
     "next": [
       "CR_W_Claim",
       "CR_W_Nodes"
@@ -464,8 +706,8 @@
         "recognition": "TemplateMatch",
         "template": "daily_cr_title.png",
         "roi": [
-          86,
-          10,
+          85,
+          9,
           136,
           65
         ],
@@ -477,9 +719,9 @@
         "template": "daily_cr_claim.png",
         "roi": [
           1040,
-          80,
-          1220,
-          561
+          90,
+          1210,
+          700
         ],
         "threshold": 0.75,
         "method": 10001,
@@ -498,11 +740,38 @@
     "post_delay": 1500,
     "next": [
       "CR_W_Popup",
+      "CR_W_LimitClaim",
       "CR_W_Nodes"
     ],
     "focus": {
       "Node.Action.Succeeded": "已点击一个任务的【领取】。"
     }
+  },
+  "CR_W_LimitClaim": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_W_Nodes"
+    ]
   },
   "CR_W_Popup": {
     "recognition": "TemplateMatch",
@@ -545,15 +814,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      433,
-      597,
-      36,
-      28
+      729,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_W_NodePopup1",
+      "CR_W_NodeLimit1",
       "CR_W_NodeBlank1"
+    ]
+  },
+  "CR_W_NodeLimit1": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_W_Node2"
     ]
   },
   "CR_W_NodePopup1": {
@@ -583,8 +879,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -600,15 +896,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      666,
-      597,
-      36,
-      28
+      860,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_W_NodePopup2",
+      "CR_W_NodeLimit2",
       "CR_W_NodeBlank2"
+    ]
+  },
+  "CR_W_NodeLimit2": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_W_Node3"
     ]
   },
   "CR_W_NodePopup2": {
@@ -638,8 +961,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -655,15 +978,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      899,
-      597,
-      36,
-      28
+      991,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_W_NodePopup3",
+      "CR_W_NodeLimit3",
       "CR_W_NodeBlank3"
+    ]
+  },
+  "CR_W_NodeLimit3": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_W_Node4"
     ]
   },
   "CR_W_NodePopup3": {
@@ -693,8 +1043,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -710,15 +1060,42 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      1132,
-      597,
-      36,
-      28
+      1121,
+      583,
+      30,
+      30
     ],
     "post_delay": 1200,
     "next": [
       "CR_W_NodePopup4",
+      "CR_W_NodeLimit4",
       "CR_W_NodeBlank4"
+    ]
+  },
+  "CR_W_NodeLimit4": {
+    "recognition": "TemplateMatch",
+    "template": "daily_limit_title.png",
+    "roi": [
+      563,
+      172,
+      167,
+      63
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      336,
+      476,
+      228,
+      30
+    ],
+    "post_delay": 900,
+    "focus": {
+      "Node.Action.Succeeded": "道具已达持有上限，已点击【取消】不领取。"
+    },
+    "next": [
+      "CR_W_End"
     ]
   },
   "CR_W_NodePopup4": {
@@ -748,8 +1125,8 @@
     "recognition": "DirectHit",
     "action": "Click",
     "target": [
-      259,
-      693,
+      266,
+      690,
       108,
       10
     ],
@@ -775,8 +1152,8 @@
         "recognition": "TemplateMatch",
         "template": "daily_cr_title.png",
         "roi": [
-          86,
-          10,
+          85,
+          9,
           136,
           65
         ],
@@ -787,55 +1164,56 @@
     "box_index": 0,
     "action": "Click",
     "target": [
-      26,
-      181,
-      39,
-      39
+      146,
+      246,
+      278,
+      88
     ],
     "post_delay": 1500,
     "next": [
       "CR_PageWeekly"
     ],
     "focus": {
-      "Node.Action.Succeeded": "已点击左侧【周常】页签。"
+      "Node.Action.Succeeded": "已点击左侧【周常试训】卡片。"
     }
-  },
-  "CR_ToDaily": {
-    "recognition": "And",
-    "all_of": [
-      {
-        "recognition": "TemplateMatch",
-        "template": "daily_cr_title.png",
-        "roi": [
-          86,
-          10,
-          136,
-          65
-        ],
-        "threshold": 0.8,
-        "method": 10001
-      }
-    ],
-    "box_index": 0,
-    "action": "Click",
-    "target": [
-      26,
-      106,
-      39,
-      39
-    ],
-    "post_delay": 1500,
-    "next": [
-      "CR_PageDaily"
-    ]
   },
   "CR_Done": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "next": [],
+    "next": [
+      "CR_Back"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "密境课室领取完成。"
     }
+  },
+  "CR_Back": {
+    "recognition": "TemplateMatch",
+    "template": "social_compass.png",
+    "roi": [
+      1200,
+      0,
+      80,
+      81
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1800,
+    "timeout": 20000,
+    "focus": {
+      "Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"
+    },
+    "next": [
+      "Soc_HomeReached",
+      "CR_Back"
+    ]
   },
   "IL_Start": {
     "recognition": "DirectHit",
@@ -1118,10 +1496,40 @@
   "IL_Done": {
     "recognition": "DirectHit",
     "action": "DoNothing",
-    "next": [],
+    "next": [
+      "IL_Back"
+    ],
     "focus": {
       "Node.Recognition.Succeeded": "幕间演习一键流程完成。"
     }
+  },
+  "IL_Back": {
+    "recognition": "TemplateMatch",
+    "template": "social_compass.png",
+    "roi": [
+      1200,
+      0,
+      80,
+      81
+    ],
+    "threshold": 0.7,
+    "method": 10001,
+    "action": "Click",
+    "target_offset": [
+      8,
+      8,
+      -16,
+      -16
+    ],
+    "post_delay": 1800,
+    "timeout": 20000,
+    "focus": {
+      "Node.Action.Succeeded": "已点击右上角罗盘返回；重复直到识别到主界面。"
+    },
+    "next": [
+      "Soc_HomeReached",
+      "IL_Back"
+    ]
   },
   "Monthly_CR_Start": {
     "recognition": "And",
@@ -1163,11 +1571,39 @@
     "next": [
       "MonthlyReward_CR_Start",
       "CR_PageDaily",
-      "CR_PageWeekly",
+      "CR_OnWeekly",
       "CR_FromHome"
     ],
     "focus": {
       "Node.Action.Succeeded": "识别到月卡登录页，已点击领取月相观测奖励。"
+    }
+  },
+  "MonthlyReward_CR_Start": {
+    "recognition": "TemplateMatch",
+    "template": "daily_reward_title.png",
+    "roi": [
+      480,
+      150,
+      320,
+      90
+    ],
+    "threshold": 0.8,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      1030,
+      470,
+      80,
+      70
+    ],
+    "post_delay": 1200,
+    "next": [
+      "CR_PageDaily",
+      "CR_OnWeekly",
+      "CR_FromHome"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已关闭月卡领取后的【获得物资】弹窗。"
     }
   },
   "Monthly_IL_Start": {
@@ -1214,34 +1650,6 @@
     ],
     "focus": {
       "Node.Action.Succeeded": "识别到月卡登录页，已点击领取月相观测奖励。"
-    }
-  },
-  "MonthlyReward_CR_Start": {
-    "recognition": "TemplateMatch",
-    "template": "daily_reward_title.png",
-    "roi": [
-      480,
-      150,
-      320,
-      90
-    ],
-    "threshold": 0.8,
-    "method": 10001,
-    "action": "Click",
-    "target": [
-      1030,
-      470,
-      80,
-      70
-    ],
-    "post_delay": 1200,
-    "next": [
-      "CR_PageDaily",
-      "CR_PageWeekly",
-      "CR_FromHome"
-    ],
-    "focus": {
-      "Node.Action.Succeeded": "已关闭月卡领取后的【获得物资】弹窗。"
     }
   },
   "MonthlyReward_IL_Start": {
