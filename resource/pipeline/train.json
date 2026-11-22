@@ -282,6 +282,167 @@
       "Node.Recognition.Succeeded": "调查已结束（回到入口页或选择难度页）：记忆回廊任务完成。"
     }
   },
+  "TR_ConfirmInvestigate": {
+    "recognition": "TemplateMatch",
+    "template": "train_confirm_title.png",
+    "roi": [
+      520,
+      140,
+      260,
+      110
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      775,
+      480,
+      110,
+      30
+    ],
+    "post_delay": 1300,
+    "next": [
+      "TR_ConfirmInvestigate",
+      "StoryFormation",
+      "TR_Started",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "编队页点【调查】后弹出【调查确认】（助战命轮/密契与队内重复时的提示）：点【确认】照常开打。",
+      "Node.Action.Succeeded": "已点【确认】越过调查确认提示，继续调查。"
+    }
+  },
+  "TR_CardDiscard": {
+    "recognition": "TemplateMatch",
+    "template": "train_card_discard_title.png",
+    "roi": [
+      460,
+      60,
+      380,
+      110
+    ],
+    "threshold": 0.85,
+    "method": 10001,
+    "action": "Click",
+    "target": [
+      170,
+      190,
+      110,
+      200
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_CardDiscardDismiss"
+    ],
+    "focus": {
+      "Node.Recognition.Succeeded": "【选择 2 张牌丢弃】页（与【选择至多 2 张卡牌删除】措辞不同、模板不通用）：先选最左边一张。",
+      "Node.Action.Succeeded": "已选中第 1 张要丢弃的牌（带因魔/词缀的牌会同时弹出说明）。"
+    }
+  },
+  "TR_CardDiscardDismiss": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      85,
+      560,
+      35,
+      35
+    ],
+    "post_delay": 600,
+    "next": [
+      "TR_CardDiscard2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点左侧空白关掉【衍生卡/词缀说明】弹窗（选中状态保留）。"
+    }
+  },
+  "TR_CardDiscard2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      637,
+      190,
+      110,
+      200
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_CardDiscardDismiss2"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已选中第 2 张要丢弃的牌。"
+    }
+  },
+  "TR_CardDiscardDismiss2": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      85,
+      560,
+      35,
+      35
+    ],
+    "post_delay": 600,
+    "next": [
+      "TR_CardDiscardConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已再次关掉说明弹窗，准备点【确认】。"
+    }
+  },
+  "TR_CardDiscardConfirm": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      560,
+      575,
+      165,
+      45
+    ],
+    "post_delay": 1500,
+    "timeout": 20000,
+    "next": [
+      "TR_CardDiscardTopUp",
+      "StoryAfterRoute"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已点【确认】完成弃牌。"
+    }
+  },
+  "TR_CardDiscardTopUp": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      374,
+      190,
+      110,
+      200
+    ],
+    "post_delay": 700,
+    "next": [
+      "TR_CardDiscardDismiss3"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "【确认】点了页面还在（只选中 1 张）：补选一张再确认。"
+    }
+  },
+  "TR_CardDiscardDismiss3": {
+    "recognition": "DirectHit",
+    "action": "Click",
+    "target": [
+      85,
+      560,
+      35,
+      35
+    ],
+    "post_delay": 600,
+    "next": [
+      "TR_CardDiscardConfirm"
+    ],
+    "focus": {
+      "Node.Action.Succeeded": "已关掉说明弹窗，再次点【确认】。"
+    }
+  },
   "TR_RosterExit": {
     "recognition": "TemplateMatch",
     "template": "train_roster_title.png",

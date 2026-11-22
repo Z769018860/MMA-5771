@@ -34,7 +34,9 @@ GOLD = {"method": 4, "lower": [225, 215, 100], "upper": [255, 255, 255]}   # RGB
 # slot picker stays open, StoryFormation clicks 调查 into nothing and the generic handlers wander off.
 # TR_AwakenPick must come next: the 选择唤醒体 page also scores high enough on the tooltip templates to be
 # swallowed by them, and it shows up after battles the same way
-TRAIN_PAGES = ("TR_CharPageExit", "TR_RosterExit", "TR_CardModify", "TR_CommandPick", "TR_CardRemove", "TR_AwakenRage", "TR_AwakenPick", "TR_Ability",
+# TR_ConfirmInvestigate first: with a borrowed 助战 whose 命轮/密契 collide with the squad, 调查 opens a
+# 【调查确认】 dialog and everything else just pings off it (the run never starts).
+TRAIN_PAGES = ("TR_ConfirmInvestigate", "TR_CharPageExit", "TR_RosterExit", "TR_CardDiscard", "TR_CardModify", "TR_CommandPick", "TR_CardRemove", "TR_AwakenRage", "TR_AwakenPick", "TR_Ability",
                "TR_Tooltip", "TR_EngraveTooltip", "TR_RelicExit", "TR_ArtifactChoice", "TR_EngraveTwo", "TR_Engrave")
 DIFFICULTIES = (("normal", "普通"), ("hard", "困难"), ("crazy", "癫狂"))
 
